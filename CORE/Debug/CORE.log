@@ -1,0 +1,668 @@
+﻿Build started 1/11/2016 11:05:46 PM.
+     1>Project "C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\CORE\CORE.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /showIncludes /analyze- /errorReport:prompt C_Instances\Thing.cpp C_Interfaces\Mobile.cpp C_Managers\ObjectManager.cpp C_Managers\StateManager.cpp Core.cpp
+         Core.cpp
+         Note: including file: C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\SDL.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_main.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_stdinc.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_config.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_platform.h
+         Note: including file:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stddef.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdarg.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_assert.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_atomic.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_audio.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_error.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_endian.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mutex.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_thread.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\process.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rwops.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_clipboard.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_cpuinfo.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\intrin.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\setjmp.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\immintrin.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wmmintrin.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\nmmintrin.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\smmintrin.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\tmmintrin.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\pmmintrin.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\emmintrin.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmmintrin.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mmintrin.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\malloc.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ammintrin.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mm3dnow.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_events.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_video.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_pixels.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rect.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_surface.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_blendmode.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keyboard.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keycode.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_scancode.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mouse.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_joystick.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gamecontroller.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_quit.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gesture.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_touch.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_filesystem.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_haptic.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_hints.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_loadso.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_log.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_messagebox.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_power.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_render.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_system.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_timer.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_version.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:   c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:  c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file: C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include\SDL_Mixer.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\begin_code.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\close_code.h
+         Note: including file: C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include\SDL_TTF.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\begin_code.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\close_code.h
+         Note: including file: C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include\SDL_Image.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\begin_code.h
+         Note: including file:  C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\close_code.h
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances\Thing.h
+         Note: including file:  C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces\Mobile.h
+         Note: including file:   c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\BaseObject.h
+         Note: including file:   c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Updatable.h
+         Note: including file:   c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Visible.h
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers\ObjectManager.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vector
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory0
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdlib
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\yvals.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xkeycheck.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\use_ansi.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ymath.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cfloat
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\float.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtwrn.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\climits
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cmath
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtgmath.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtr1common
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cwchar
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wchar.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\swprintf.inl
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wtime.inl
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstddef
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstddef
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\initializer_list
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\new
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\exception
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\eh.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xutility
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\utility
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iosfwd
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstring
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdbg.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\type_traits
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xrefwrap
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xatomic0.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdexcept
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstring
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers\VideoManager.h
+         Note: including file:  C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main\Globals.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\_Manager.h
+         Note: including file:   C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main\Commands.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iterator
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\istream
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ostream
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ios
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocnum
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\streambuf
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xiosbase
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocale
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\typeinfo
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ctype.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\locale.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xdebug
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xfacet
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\system_error
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cerrno
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\errno.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\share.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\queue
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\algorithm
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\deque
+     1>c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\videomanager.h(53): warning C4526: 'VideoManager::update' : static member function cannot override virtual function 'void Manager::update(void)'
+                 override ignored, virtual function will be hidden
+                 c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\_manager.h(8) : see declaration of 'Manager::update'
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers\StateManager.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\SystemManager.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iostream
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\fstream
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\CollisionManager.h
+     1>c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\collisionmanager.h(10): warning C4526: 'CollisionManager::update' : static member function cannot override virtual function 'void Manager::update(void)'
+                 override ignored, virtual function will be hidden
+                 c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\_manager.h(8) : see declaration of 'Manager::update'
+         Mobile.cpp
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces\Mobile.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\BaseObject.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Updatable.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Visible.h
+         Note: including file:   C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\SDL.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_main.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_stdinc.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_config.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_platform.h
+         Note: including file:        C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stddef.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdarg.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_assert.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_atomic.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_audio.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_error.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_endian.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mutex.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_thread.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\process.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rwops.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_clipboard.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_cpuinfo.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\intrin.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\setjmp.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\immintrin.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wmmintrin.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\nmmintrin.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\smmintrin.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\tmmintrin.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\pmmintrin.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\emmintrin.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmmintrin.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mmintrin.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\malloc.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ammintrin.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mm3dnow.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_events.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_video.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_pixels.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rect.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_surface.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_blendmode.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keyboard.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keycode.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_scancode.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mouse.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_joystick.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gamecontroller.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_quit.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gesture.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_touch.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_filesystem.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_haptic.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_hints.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_loadso.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_log.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_messagebox.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_power.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_render.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_system.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_timer.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_version.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+     1>c:\users\continuum\documents\visual studio 2013\projects\core\core\c_interfaces\mobile.cpp(5): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\continuum\documents\visual studio 2013\projects\core\core\c_interfaces\mobile.cpp(6): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+         Thing.cpp
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces\Mobile.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\BaseObject.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Updatable.h
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_interfaces\Visible.h
+         Note: including file:   C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC (1)\SDL2-2.0.3\include\SDL.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_main.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_stdinc.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_config.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_platform.h
+         Note: including file:        C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stddef.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdarg.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_assert.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_atomic.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_audio.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_error.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_endian.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mutex.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_thread.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\process.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rwops.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_clipboard.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_cpuinfo.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\intrin.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\setjmp.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\immintrin.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wmmintrin.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\nmmintrin.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\smmintrin.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\tmmintrin.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\pmmintrin.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\emmintrin.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmmintrin.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mmintrin.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\malloc.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ammintrin.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mm3dnow.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_events.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_video.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_pixels.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_rect.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_surface.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_blendmode.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:        c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keyboard.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_keycode.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_scancode.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_mouse.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_joystick.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gamecontroller.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_quit.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_gesture.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_touch.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:       c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:      c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_filesystem.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_haptic.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_hints.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_loadso.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_log.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_messagebox.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_power.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_render.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_system.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_timer.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\SDL_version.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:     c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\begin_code.h
+         Note: including file:    c:\users\continuum\documents\_programmingstuff\sdl2-devel-2.0.3-vc (1)\sdl2-2.0.3\include\close_code.h
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers\VideoManager.h
+         Note: including file:  C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main\Globals.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vector
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory0
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdlib
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\yvals.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xkeycheck.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\use_ansi.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ymath.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cfloat
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\float.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtwrn.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\climits
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cmath
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtgmath.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtr1common
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cwchar
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wchar.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\swprintf.inl
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wtime.inl
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstddef
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstddef
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\initializer_list
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\new
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\exception
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\eh.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xutility
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\utility
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iosfwd
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdio
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstring
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdbg.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\type_traits
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xrefwrap
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xatomic0.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdexcept
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstring
+         Note: including file:  c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\_Manager.h
+         Note: including file:   C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main\Commands.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iterator
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\istream
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ostream
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ios
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocnum
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\streambuf
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xiosbase
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocale
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\typeinfo
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ctype.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\locale.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xdebug
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xfacet
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\system_error
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cerrno
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\errno.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\share.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\queue
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\algorithm
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\deque
+     1>c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\videomanager.h(53): warning C4526: 'VideoManager::update' : static member function cannot override virtual function 'void Manager::update(void)'
+                 override ignored, virtual function will be hidden
+                 c:\users\continuum\documents\visual studio 2013\projects\core\core\h_managers\_manager.h(8) : see declaration of 'Manager::update'
+         Note: including file: C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers\ObjectManager.h
+         Note: including file:  C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances\Thing.h
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         StateManager.cpp
+         ObjectManager.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\Debug\CORE.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_Image.lib SDL2_Mixer.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\Debug\CORE.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\Debug\CORE.lib" /MACHINE:X86 Debug\Core.obj
+         Debug\BaseObject.obj
+         Debug\Thing.obj
+         Debug\Collidable.obj
+         Debug\Mobile.obj
+         Debug\ObjectManager.obj
+         Debug\SoundManager.obj
+         Debug\StateManager.obj
+         Debug\_Manager.obj
+         Debug\VideoManager.obj
+         Debug\Visible.obj
+         CORE.vcxproj -> C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\Debug\CORE.exe
+     1>Done Building Project "C:\Users\Continuum\documents\visual studio 2013\Projects\CORE\CORE\CORE.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.45

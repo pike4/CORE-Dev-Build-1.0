@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B6D1EE1E-F7FF-46F4-881C-CB9F777CD9F5}</ProjectGuid>
+    <RootNamespace>CORE</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\include;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Interfaces;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Main;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\include;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Interfaces;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Main;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ShowIncludes>true</ShowIncludes>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_Image.lib;SDL2_Mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ShowIncludes>true</ShowIncludes>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_Image.lib;SDL2_Mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="C_Instances\BaseObject.cpp" />
+    <ClCompile Include="C_Instances\Thing.cpp" />
+    <ClCompile Include="C_Interfaces\Collidable.cpp" />
+    <ClCompile Include="C_Interfaces\Mobile.cpp" />
+    <ClCompile Include="C_Managers\ObjectManager.cpp" />
+    <ClCompile Include="C_Managers\SoundManager.cpp" />
+    <ClCompile Include="C_Managers\StateManager.cpp" />
+    <ClCompile Include="C_Managers\_Manager.cpp" />
+    <ClCompile Include="C_Managers\VideoManager.cpp" />
+    <ClCompile Include="C_Interfaces\Visible.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="H_Instances\Room.h" />
+    <ClInclude Include="H_Interfaces\BaseObject.h" />
+    <ClInclude Include="H_Interfaces\Updatable.h" />
+    <ClInclude Include="H_Interfaces\Visible.h" />
+    <ClInclude Include="H_Interfaces\Mobile.h" />
+    <ClInclude Include="H_Interfaces\Pathable.h" />
+    <ClInclude Include="H_Main\Commands.h" />
+    <ClInclude Include="H_Managers\EventManager.h" />
+    <ClInclude Include="H_Managers\ObjectManager.h" />
+    <ClInclude Include="H_Main\Globals.h" />
+    <ClInclude Include="H_Managers\_Manager.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
