@@ -12,6 +12,9 @@ public:
 
 	Mobile(int x, int y, SDL_Texture* texture);
 
+	void setXVel(double value);
+	void setYVel(double value);
+
 protected:
 	double xVel, yVel;
 };

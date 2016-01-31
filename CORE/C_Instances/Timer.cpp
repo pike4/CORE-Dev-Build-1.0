@@ -6,6 +6,7 @@ void Timer::updateTime()
 	prev = SDL_GetTicks();
 }
 
+//Returns time since Timer last updated in milliseconds
 bool Timer::hasElapsed(Uint32 ms)
 {
 	return ms < elapsed();

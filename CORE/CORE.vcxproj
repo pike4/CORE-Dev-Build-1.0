@@ -39,12 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\include;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Interfaces;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Main;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Interfaces;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\include;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Main;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\H_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Managers;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Interfaces;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Instances;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\C_Main;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\Documents\_ProgrammingStuff\SDL2-devel-2.0.3-VC %281%29\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -75,19 +75,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="C_Instances\BaseObject.cpp" />
+    <ClCompile Include="C_Instances\CoreEvent.cpp" />
+    <ClCompile Include="C_Instances\Subject.cpp" />
+    <ClCompile Include="C_Instances\Timer.cpp" />
     <ClCompile Include="C_Instances\Thing.cpp" />
     <ClCompile Include="C_Interfaces\Collidable.cpp" />
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
+    <ClCompile Include="C_Main\Commands.cpp" />
+    <ClCompile Include="C_Managers\EventManager.cpp" />
     <ClCompile Include="C_Managers\ObjectManager.cpp" />
-    <ClCompile Include="C_Managers\SoundManager.cpp" />
+    <ClCompile Include="C_Managers\AudioManager.cpp" />
     <ClCompile Include="C_Managers\StateManager.cpp" />
+    <ClCompile Include="C_Managers\SystemManager.cpp" />
     <ClCompile Include="C_Managers\_Manager.cpp" />
     <ClCompile Include="C_Managers\VideoManager.cpp" />
     <ClCompile Include="C_Interfaces\Visible.cpp" />
+    <ClCompile Include="Loggables\Loggables.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assets\AssetsManifest.h" />
+    <ClInclude Include="H_Instances\CoreEvent.h" />
+    <ClInclude Include="H_Instances\Player.h" />
+    <ClInclude Include="H_Instances\Subject.h" />
+    <ClInclude Include="H_Instances\Timer.h" />
     <ClInclude Include="H_Instances\Room.h" />
     <ClInclude Include="H_Interfaces\BaseObject.h" />
     <ClInclude Include="H_Interfaces\Updatable.h" />
@@ -99,6 +112,7 @@
     <ClInclude Include="H_Managers\ObjectManager.h" />
     <ClInclude Include="H_Main\Globals.h" />
     <ClInclude Include="H_Managers\_Manager.h" />
+    <ClInclude Include="Loggables\Loggable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

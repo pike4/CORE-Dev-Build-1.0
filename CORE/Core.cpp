@@ -8,6 +8,8 @@
 #include "ObjectManager.h"
 #include "VideoManager.h"
 #include "StateManager.h"
+#include "AudioManager.h"
+#include "AssetsManifest.h"
 
 #undef main
 
@@ -21,6 +23,10 @@ int main()
 
 	SDL_Texture* guy = VideoManager::loadTexture("Sprites/guy.bmp");
 	SDL_Texture* real = VideoManager::loadTexture("Sprites/real.bmp");
+	Mix_Music* mega_Music = AudioManager::loadMusic("Assets/Music/a.ogg");
+	pew = AudioManager::loadChunk("Assets/Music/pew.wav");
+
+	AudioManager::startMusicLoop(mega_Music);
 
 	ObjectManager::add(new Thing(100, 100, guy)); 
 
@@ -30,7 +36,7 @@ int main()
 	ObjectManager::add(new Thing(100, 100, 0, 1, real));
 	ObjectManager::add(new Thing(100, 200, 0, 1, real));
 	ObjectManager::add(new Thing(400, 200, -1, 0, real));
-	ObjectManager::add(new Thing(300, 200, 1, 0, real));
+	ObjectManager::player = new Thing(300, 200, real);
 	ObjectManager::add(new Thing(200, 200, real));
 	
 

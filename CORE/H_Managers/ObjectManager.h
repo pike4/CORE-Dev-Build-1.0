@@ -1,7 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <vector>
-
+#include "_Manager.h"
 #include "Thing.h"
 #include "Updatable.h"
 
@@ -9,7 +9,7 @@
 
 
 
-class ObjectManager
+class ObjectManager : public Manager
 {
 public:
 	
@@ -17,6 +17,10 @@ public:
 	static void update();
 	static void add(Thing* E);
 	static void addUpdatable(Updatable* E);
+	static int getObjectCount();
+	static std::vector <BaseObject*>* getObjectVector();
+
+	static Mobile* player;
 
 private:
 

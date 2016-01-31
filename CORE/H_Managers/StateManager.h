@@ -1,8 +1,5 @@
-#include "ObjectManager.h"
-#include "SystemManager.h"
-#include "CollisionManager.h"
-
 #include "Globals.h"
+#include "Timer.h"
 
 #pragma once
 
@@ -23,6 +20,12 @@ public:
 	static void update();
 
 	static void stop();
+
+	static Timer frameTimer;
+
+	static int lag;
+	static int msPerFrame;
+
 
 private:
 	

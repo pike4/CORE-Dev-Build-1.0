@@ -1,8 +1,9 @@
+#pragma once
 #include "SDL.h"
 
 class Timer
 {
-public:
+public:                                                                                                                                                                                                                                                              
 	void updateTime();
 
 	bool hasElapsed(Uint32 ms);
