@@ -25,6 +25,7 @@ public:
 
 class ChangeMusicCommand : public Command
 {
+public:
 	void execute();
 
 	Mix_Music* track;
@@ -35,8 +36,23 @@ class ChangeMusicCommand : public Command
 	}
 };
 
-#pragma endregion
+class ResumeMusicCommand : public Command
+{
+public:
+	void execute();
 
+	ResumeMusicCommand(){};
+};
+
+class PauseMusicCommand : public Command
+{
+public:
+	void execute();
+
+	PauseMusicCommand(){};
+};
+
+#pragma endregion
 
 #pragma region VideoManager commands
 class FlashCommand : public Command
@@ -60,34 +76,57 @@ class walkForwardCommand : public Command
 public:
 	void execute();
 
-	walkForwardCommand(){}
+	int type;
+
+	walkForwardCommand(int type)
+	{
+		this->type = type;
+	}
 
 };
 
 class walkBackwardCommand : public Command
 {
 public:
+
 	void execute();
 
-	walkBackwardCommand(){}
+	int type;
+
+	walkBackwardCommand(int type)
+	{
+		this->type = type;
+	}
 
 };
 
 class walkLeftCommand : public Command
 {
 public:
+	
 	void execute();
 
-	walkLeftCommand(){}
+	int type;
+
+	walkLeftCommand(int type)
+	{
+		this->type = type;
+	}
 
 };
 
 class walkRightCommand : public Command
 {
 public:
+	
 	void execute();
 
-	walkRightCommand(){}
+	int type;
+
+	walkRightCommand(int type)
+	{
+		this->type = type;
+	}
 
 };
 

@@ -51,6 +51,16 @@ void AudioManager::startMusicLoop(Mix_Music* track)
 	Mix_PlayMusic(track, -1);
 }
 
+void AudioManager::pauseMusic()
+{
+	Mix_PauseMusic();
+}
+
+void AudioManager::resumeMusic()
+{
+	Mix_ResumeMusic();
+}
+
 
 void AudioManager::playSound(Mix_Chunk* sound)
 {
@@ -70,4 +80,14 @@ void PlayCommand::execute()
 void ChangeMusicCommand::execute()
 {
 	AudioManager::startMusicLoop(track);
+}
+
+void PauseMusicCommand::execute()
+{
+	AudioManager::pauseMusic();
+}
+
+void ResumeMusicCommand::execute()
+{
+	AudioManager::resumeMusic();
 }

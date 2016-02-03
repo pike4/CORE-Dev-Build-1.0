@@ -16,5 +16,15 @@ void Mobile::setYVel(double value)
 	yVel = value;
 }
 
+int Mobile::getX()
+{
+	return x;
+}
+
+int Mobile::getY()
+{
+	return y;
+}
+
 Mobile::Mobile(int x, int y, SDL_Texture* texture) : Visible(texture), BaseObject(x, y)
 {}

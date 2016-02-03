@@ -26,13 +26,3 @@ Thing::Thing(int x, int y, int xVel, int yVel, SDL_Texture* texture) : Mobile(x,
 	VideoManager::addVisible(this);
 	ObjectManager::addUpdatable(this);
 }
-
-
-int Thing::getX()
-{
-	return x;
-}
-int Thing::getY()
-{
-	return y;
-}

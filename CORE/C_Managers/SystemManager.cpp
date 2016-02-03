@@ -69,9 +69,15 @@ void SystemManager::printObjectCount()
 	}
 }
 
+void SystemManager::flush()
+{
+	
+}
+
 Uint32 SystemManager::curTime;
 Uint32 SystemManager::prevTime;
 Uint32 SystemManager::outputInterval;
 Uint32 SystemManager::totalTime;
 Uint32 SystemManager::totalFrames;
 Timer SystemManager::FPSTimer;
+string SystemManager::buffer;

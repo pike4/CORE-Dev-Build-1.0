@@ -29,6 +29,8 @@ public:
 
 	static void stop();
 
+	static void flush();
+
 	static void setoutputInterval(Uint32 ms);
 
 	static bool hasElapsed(Uint32 ms);
@@ -48,5 +50,7 @@ private:
 	static Uint32 totalFrames;
 
 	static Timer FPSTimer;
+
+	static string buffer;
 
 };

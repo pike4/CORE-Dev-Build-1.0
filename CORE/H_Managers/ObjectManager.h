@@ -3,6 +3,7 @@
 #include <vector>
 #include "_Manager.h"
 #include "Thing.h"
+#include "Player.h"
 #include "Updatable.h"
 
 
@@ -15,12 +16,13 @@ public:
 	
 
 	static void update();
-	static void add(Thing* E);
+	static void add(BaseObject* E);
+	static void start();
 	static void addUpdatable(Updatable* E);
 	static int getObjectCount();
 	static std::vector <BaseObject*>* getObjectVector();
 
-	static Mobile* player;
+	static Player* player;
 
 private:
 

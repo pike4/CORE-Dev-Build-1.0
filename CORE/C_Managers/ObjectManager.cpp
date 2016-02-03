@@ -15,7 +15,7 @@ void ObjectManager::update()
 
 #pragma endregion
 
-void ObjectManager::add(Thing* E)
+void ObjectManager::add(BaseObject* E)
 {
 	BaseObjectVector.push_back(E);
 }
@@ -38,32 +38,28 @@ std::vector <BaseObject*>* ObjectManager::getObjectVector()
 std::vector <Updatable*> ObjectManager::UpdateVector;
 std::vector <BaseObject*> ObjectManager::BaseObjectVector;
 
-Mobile* ObjectManager::player;
+Player* ObjectManager::player;
 
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
 void walkForwardCommand::execute()
 {
-	printf("up");
-	ObjectManager::player->setYVel(-1);
+	ObjectManager::player->walkUp(type);
 }
 
 void walkBackwardCommand::execute()
 {
-	printf("Down");
-	ObjectManager::player->setYVel(1);
+	ObjectManager::player->walkDown(type);
 }
 
 void walkLeftCommand::execute()
 {
-	printf("left");
-	ObjectManager::player->setXVel(1);
+	ObjectManager::player->walkLeft(type);
 }
 
 void walkRightCommand::execute()
 {
-	printf("right");
-	ObjectManager::player->setXVel(1);
+	ObjectManager::player->walkRight(type);
 }
 #pragma endregion

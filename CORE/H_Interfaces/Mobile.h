@@ -15,6 +15,9 @@ public:
 	void setXVel(double value);
 	void setYVel(double value);
 
+	int getX();
+	int getY();
+
 protected:
 	double xVel, yVel;
 };

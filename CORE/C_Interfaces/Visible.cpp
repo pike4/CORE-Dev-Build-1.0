@@ -8,3 +8,8 @@ Visible::Visible(SDL_Texture* texture)
 
 	VideoManager::addVisible(this);
 }
+
+void Visible::draw(SDL_Renderer* renderer)
+{
+	VideoManager::applyTexture(getX(), getY(), renderer, mTexture);
+}

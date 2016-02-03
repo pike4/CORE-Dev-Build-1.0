@@ -24,5 +24,11 @@ public:
 	//Play the given Mix_Chunk exactly once
 	static void playSound(Mix_Chunk* sound);
 
+	//Pause the music
+	static void pauseMusic();
+
+	//Resume the music
+	static void resumeMusic();
+
 };
 

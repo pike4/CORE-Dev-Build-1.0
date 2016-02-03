@@ -14,11 +14,6 @@ public:
 
 	//Constructor taking coordinates, velocity, and a texture
 	Thing(int x, int y, int xVel, int yVel, SDL_Texture* texture);
-
-	int getX();
-	int getY();
-
-
 };
 
 class Background : public Visible, public BaseObject

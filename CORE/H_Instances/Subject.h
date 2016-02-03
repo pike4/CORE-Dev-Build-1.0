@@ -3,27 +3,27 @@
 class Subject
 {
 public:
-	virtual void execute() = 0;
+	virtual void execute(int type) = 0;
 
 	
 };
 
 class walkForwardButtonPressed : public Subject
 {
-	virtual void execute();
+	virtual void execute(int type);
 };
 
 class walkBackwardButtonPressed : public Subject
 {
-	virtual void execute();
+	virtual void execute(int type);
 };
 
 class walkLeftButtonPressed : public Subject
 {
-	virtual void execute();
+	virtual void execute(int type);
 };
 
 class walkRightButtonPressed : public Subject
 {
-	virtual void execute();
+	virtual void execute(int type);
 };

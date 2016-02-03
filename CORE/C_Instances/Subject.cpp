@@ -5,22 +5,22 @@
 #include "AudioManager.h"
 
 
-void walkForwardButtonPressed::execute()
+void walkForwardButtonPressed::execute(int type)
 {
-	ObjectManager::enqueue(new walkForwardCommand());
+	ObjectManager::enqueue(new walkForwardCommand(type));
 }
 
-void walkBackwardButtonPressed::execute()
+void walkBackwardButtonPressed::execute(int type)
 {
-	ObjectManager::enqueue(new walkBackwardCommand());
+	ObjectManager::enqueue(new walkBackwardCommand(type));
 }
 
-void walkLeftButtonPressed::execute()
+void walkLeftButtonPressed::execute(int type)
 {
-	ObjectManager::enqueue(new walkLeftCommand());
+	ObjectManager::enqueue(new walkLeftCommand(type));
 }
 
-void walkRightButtonPressed::execute()
+void walkRightButtonPressed::execute(int type)
 {
-	ObjectManager::enqueue(new walkRightCommand());
+	ObjectManager::enqueue(new walkRightCommand(type));
 }

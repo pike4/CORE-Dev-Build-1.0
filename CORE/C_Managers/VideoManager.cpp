@@ -2,6 +2,7 @@
 #include "Visible.h"
 #include "SDL.h"
 #include "SDL_Image.h"
+#include "SDL_TTF.h"
 #include <string>
 
 
@@ -27,6 +28,11 @@ bool VideoManager::InitSDL()
 	{
 		printf("SDL failed to initialize!");
 		return false;
+	}
+
+	if (TTF_Init() < 0)
+	{
+		printf("Failed to start SDL_TTF. Reason: %s", TTF_GetError());
 	}
 
 	else return true;
@@ -66,7 +72,8 @@ void VideoManager::update()
 
 	for (int x = 0; x < drawingVector.size(); x++)
 	{
-		applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
+		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
+		drawingVector[x]->draw(mRenderer);
 	}
 
 	SDL_RenderPresent(mRenderer);
@@ -114,6 +121,29 @@ void VideoManager::applyTexture(int x, int y, SDL_Renderer* destination, SDL_Tex
 	src.h = h;
 
 	SDL_RenderCopy(destination, source, &src, &dest);
+}
+
+void VideoManager::applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point)
+{
+	SDL_Rect dest;
+	SDL_Rect src;
+
+	int w;
+	int h;
+
+	SDL_QueryTexture(source, NULL, NULL, &w, &h);
+
+	dest.x = x;
+	dest.y = y;
+	dest.w = w;
+	dest.h = h;
+
+	src.x = 0;
+	src.y = 0;
+	src.w = w;
+	src.h = h;
+
+	SDL_RenderCopyEx(mRenderer, source, &src, &dest, rotation, &point, flip);
 }
 
 void VideoManager::setScreenBackground(std::string filename)

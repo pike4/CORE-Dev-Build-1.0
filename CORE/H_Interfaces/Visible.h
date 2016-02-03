@@ -11,6 +11,8 @@ public:
 
 	Visible(SDL_Texture* texture);
 
+	virtual void draw(SDL_Renderer* renderer);
+
 	virtual int getX() = 0;
 	virtual int getY() = 0;
 };
