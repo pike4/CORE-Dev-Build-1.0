@@ -6,12 +6,18 @@
 #pragma region Manager Implementation Methods
 void ObjectManager::update()
 {
+	quadTree.update();
+	
 	for (int x = 0; x < UpdateVector.size(); x++)
 	{
 		UpdateVector[x]->update();
 	}
 }
 
+void ObjectManager::start()
+{
+	
+}
 
 #pragma endregion
 
@@ -37,6 +43,7 @@ std::vector <BaseObject*>* ObjectManager::getObjectVector()
 
 std::vector <Updatable*> ObjectManager::UpdateVector;
 std::vector <BaseObject*> ObjectManager::BaseObjectVector;
+QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 320, NULL);
 
 Player* ObjectManager::player;
 

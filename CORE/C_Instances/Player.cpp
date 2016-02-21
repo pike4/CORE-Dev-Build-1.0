@@ -16,9 +16,6 @@ Player::Player(int x, int y, SDL_Texture* texture) : Mobile(x, y, texture)
 	yDirectionStack.push(0);
 	xDirectionStack.push(0);
 	walkSpeed = 2;
-
-	VideoManager::addVisible(this);
-	ObjectManager::addUpdatable(this);
 }
 
 void Player::move()

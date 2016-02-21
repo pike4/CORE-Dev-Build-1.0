@@ -16,8 +16,6 @@ Spinner::Spinner(int x, int y, SDL_Texture* aTexture, SDL_RendererFlip aFlip, do
 	: BaseObject(x, y), Manipulatable(aTexture, aFlip, aRotation, aPoint)
 {
 	rotationPerTick = aRotationPerTick;
-	ObjectManager::addUpdatable(this);
-	VideoManager::addVisible(this);
 }
 
 Spinner::Spinner(int x, int y, SDL_Texture* aTexture)

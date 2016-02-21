@@ -5,7 +5,7 @@
 #include "Thing.h"
 #include "Player.h"
 #include "Updatable.h"
-
+#include "QuadTree.h"
 
 
 
@@ -21,6 +21,7 @@ public:
 	static void addUpdatable(Updatable* E);
 	static int getObjectCount();
 	static std::vector <BaseObject*>* getObjectVector();
+	static QuadTree quadTree;
 
 	static Player* player;
 
