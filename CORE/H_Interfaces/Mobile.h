@@ -11,6 +11,7 @@ public:
 	virtual void move();
 
 	Mobile(int x, int y, SDL_Texture* texture);
+	~Mobile();
 
 	void setXVel(double value);
 	void setYVel(double value);

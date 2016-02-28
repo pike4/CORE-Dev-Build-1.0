@@ -4,8 +4,6 @@ class Subject
 {
 public:
 	virtual void execute(int type) = 0;
-
-	
 };
 
 class walkForwardButtonPressed : public Subject
@@ -26,4 +24,9 @@ class walkLeftButtonPressed : public Subject
 class walkRightButtonPressed : public Subject
 {
 	virtual void execute(int type);
+};
+
+class collisionEvent : public Subject
+{
+	virtual void execute();
 };

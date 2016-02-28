@@ -46,6 +46,8 @@ public:
 
 	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point);
 
+	static void removeVisible(Visible* V);
+
 #pragma endregion
 
 		static SDL_Texture* loadTexture(string fileName);

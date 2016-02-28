@@ -13,3 +13,8 @@ void Visible::draw(SDL_Renderer* renderer)
 {
 	VideoManager::applyTexture(getX(), getY(), renderer, mTexture);
 }
+
+Visible::~Visible()
+{
+	VideoManager::removeVisible(this);
+}

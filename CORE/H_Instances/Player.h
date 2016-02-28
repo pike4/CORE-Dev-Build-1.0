@@ -1,12 +1,13 @@
 #pragma once
 #include "Mobile.h"
+#include "Collidable.h"
 #include "SDL.h"
 #include <stack>
 
-class Player : public Mobile
+class Player : public Mobile, public Collidable
 {
 public:
-	Player(int x, int y, SDL_Texture* texture);
+	Player(int x, int y, int w, int h, SDL_Texture* texture);
 
 	void walkUp(int type);
 	void walkDown(int type);

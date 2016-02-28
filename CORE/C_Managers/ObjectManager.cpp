@@ -16,7 +16,7 @@ void ObjectManager::update()
 
 void ObjectManager::start()
 {
-	
+
 }
 
 #pragma endregion
@@ -31,6 +31,22 @@ void ObjectManager::addUpdatable(Updatable* E)
 	UpdateVector.push_back(E);
 }
 
+void ObjectManager::removeUpdatable(Updatable* E)
+{
+	for (int x = 0; x < UpdateVector.size(); x++)
+	{
+		if (UpdateVector[x] == E)
+		{
+			UpdateVector.erase(UpdateVector.begin() + x);
+			return;
+		}
+	}
+}
+
+void ObjectManager::addCollidable(Collidable* C)
+{
+	quadTree.insert(C);
+}
 int ObjectManager::getObjectCount()
 {
 	return BaseObjectVector.size();

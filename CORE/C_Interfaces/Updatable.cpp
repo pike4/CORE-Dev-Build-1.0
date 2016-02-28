@@ -5,3 +5,8 @@ Updatable::Updatable()
 {
 	ObjectManager::addUpdatable(this);
 }
+
+Updatable::~Updatable()
+{
+	ObjectManager::removeUpdatable(this);
+}

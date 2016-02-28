@@ -12,9 +12,6 @@ QuadTree::QuadTree(int aDepth, int x, int y, int width, int height, QuadTree* aP
 	parent = aParent;
 }
 
-
-
-
 #pragma region Update methods
 void QuadTree::update()
 {
@@ -60,13 +57,16 @@ void QuadTree::parentCheck(std::vector<Collidable*> objectsToCheck, QuadTree* pa
 //Check all elements in the vector against all other elements in the vector
 void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 {
-	for each(Collidable* obj1 in vectorToCheck)
+	for (int i = 0; i < vectorToCheck.size(); i++)
 	{
-		for each (Collidable* obj2 in vectorToCheck)
+		Collidable* obj1 = vectorToCheck[i];
+		for (int j = 0; j < vectorToCheck.size(); j++)
 		{
-			if (QuadTree::isOverlapping(obj1->boundingBox, obj1->boundingBox))
+			Collidable* obj2 = vectorToCheck[j];
+			if (QuadTree::isOverlapping(obj1->boundingBox, obj2->boundingBox) && (i != j))
 			{
-				//Handle collisions
+				printf("IT FUCKING WORKS");
+				break;
 			}
 		}
 	}
@@ -92,13 +92,16 @@ void QuadTree::checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*
 #pragma region Reorganizing methods
 void QuadTree::insert(Collidable* objectToAdd)
 {
-	for (int x = 0; x < 4; x++)
+	if (subTrees[0] != NULL)
 	{
-		if (isWithin(objectToAdd->boundingBox, subTrees[x]->frame))
+		for (int x = 0; x < 4; x++)
 		{
-			subTrees[x]->insert(objectToAdd);
+			if (isWithin(objectToAdd->boundingBox, subTrees[x]->frame))
+			{
+				subTrees[x]->insert(objectToAdd);
+			}
+			return;
 		}
-		return;
 	}
 
 	objectsInTree.push_back(objectToAdd);
@@ -110,15 +113,26 @@ void QuadTree::remove(Collidable* objectToRemove)
 	{
 		if (objectsInTree[i] == objectToRemove)
 		{
-			objectsInTree.erase(objectsInTree.begin() + i);
+			objectsInTree.erase(objectsInTree.begin() + i, objectsInTree.begin() + i + 1);
 		}
+	}
+}
+
+//Remove a Collidable and move the iterator back so that nothing gets skipped over due to the vector changing size
+void QuadTree::remove(Collidable* objectToRemove, int* iter)
+{
+	remove(objectToRemove);
+	
+	if (iter != NULL)
+	{
+		*iter -= 1;
 	}
 }
 
 //Completely remove a Collidable from the collision system 
 void QuadTree::destroyCollidable(Collidable* objectToRemove)
 {
-	if(subTrees != NULL)
+	if(subTrees[0] != NULL)
 	{
 		for (int i = 0; i < 4; i++)
 		{
@@ -129,12 +143,15 @@ void QuadTree::destroyCollidable(Collidable* objectToRemove)
 			}
 		}
 		//Only called if object is not in any subtree, or, it is in the current node
+		delete(objectToRemove);
 		remove(objectToRemove);
+		
 	}
 
 	else
 	{
 		//If we have gotten this deep and the object is still not found, it must be in this node
+		delete(objectToRemove);
 		remove(objectToRemove);
 	}
 }
@@ -142,19 +159,26 @@ void QuadTree::destroyCollidable(Collidable* objectToRemove)
 //Give the current node 4 children and send down any objects that fit into the children
 void QuadTree::split()
 {
+	if (subTrees[0] != NULL)
+	{
+		return;
+	}
+
 	subTrees[0] = new QuadTree(currentDepth, frame.x, frame.y, frame.w / 2, frame.h / 2, this);
 	subTrees[1] = new QuadTree(currentDepth, frame.x + frame.w / 2, frame.y, frame.w / 2, frame.h / 2, this);
 	subTrees[2] = new QuadTree(currentDepth, frame.x, frame.y + frame.h / 2, frame.w / 2, frame.h / 2, this);
 	subTrees[3] = new QuadTree(currentDepth, frame.x + frame.w / 2, frame.y + frame.h / 2, frame.w / 2, frame.h / 2, this);
 
-	for each(Collidable* obj in objectsInTree)
+	for (int i = 0; i < objectsInTree.size(); i++)
 	{
+		Collidable* obj = objectsInTree[i];
 		for (int x = 0; x < 4; x++)
 		{
-			if (isOverlapping(obj->boundingBox, subTrees[x]->frame))
+			if (isWithin(obj->boundingBox, subTrees[x]->frame))
 			{
 				subTrees[x]->insert(obj);
-				remove(obj);
+				remove(obj, &i);
+				break;
 			}
 		}
 
@@ -194,6 +218,8 @@ int QuadTree::getRecursiveObjectCount()
 			total += subTrees[i]->getRecursiveObjectCount();
 		}
 
+		total += objectsInTree.size();
+
 		return total;
 	}
 
@@ -221,15 +247,34 @@ void QuadTree::reorganize()
 		split();
 	}
 
-	//Once their are no children to deal with, send any objects that have moved out to the parent
-	for each  (Collidable* obj in objectsInTree)
+	//Send any objects that fit into the children down
+	if (subTrees[0] != NULL)
 	{
+		
+		for (int j = 0; j < objectsInTree.size(); j++)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (isWithin(objectsInTree[j]->boundingBox, subTrees[i]->frame))
+				{
+					subTrees[i]->insert(objectsInTree[j]);
+					remove(objectsInTree[j], &j);
+					break;
+				}
+			}
+		}
+	}
+
+	//Once their are no children to deal with, send any objects that have moved out to the parent
+	for (int i = 0; i < objectsInTree.size(); i++)
+	{
+		Collidable* obj = objectsInTree[i];
 		if (!isWithin(obj->boundingBox, frame))
 		{
 			if (parent != NULL)
 			{
 				parent->insert(obj);
-				remove(obj);
+				remove(obj, &i);
 			}
 		}
 	}

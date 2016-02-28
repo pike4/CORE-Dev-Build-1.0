@@ -16,6 +16,7 @@ public:
 	void split();
 	void insert(Collidable*);
 	void remove(Collidable*);
+	void remove(Collidable*, int*);
 	void destroyCollidable(Collidable*);
 	void update();
 

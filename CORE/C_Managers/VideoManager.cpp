@@ -24,18 +24,26 @@ bool VideoManager::start()
 
 bool VideoManager::InitSDL()
 {
+	bool success = true;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL failed to initialize!");
-		return false;
+		success = false;
+	}
+
+	if (IMG_Init(IMG_INIT_PNG) < 0)
+	{
+		printf("Failed to start SDL_IMG library. Reason: %s", IMG_GetError());
+		success = false;
 	}
 
 	if (TTF_Init() < 0)
 	{
 		printf("Failed to start SDL_TTF. Reason: %s", TTF_GetError());
+		success = false;
 	}
 
-	else return true;
+	return success;
 }
 
 bool VideoManager::InitWindow(int w, int h, std::string name, bool isFullscreen)
@@ -82,6 +90,18 @@ void VideoManager::update()
 void VideoManager::addVisible(Visible* visible)
 {
 	drawingVector.push_back(visible);
+}
+
+void VideoManager::removeVisible(Visible* V)
+{
+	for (int x = 0; x < drawingVector.size(); x++)
+	{
+		if (drawingVector[x] == V)
+		{
+			drawingVector.erase(drawingVector.begin() + x);
+			return;
+		}
+	}
 }
 
 #pragma endregion
@@ -160,7 +180,7 @@ SDL_Texture* VideoManager::loadTexture(string fileName)
 
 	if (loadedTexture == NULL)
 	{
-		printf("Could not find image");
+		printf("Could not find image\n");
 	}
 
 	else
@@ -172,7 +192,6 @@ SDL_Texture* VideoManager::loadTexture(string fileName)
 	}
 
 	return optimizedSurface;
-
 }
 
 

@@ -6,13 +6,17 @@
 #include "VideoManager.h"
 #include "ObjectManager.h"
 
-Player::Player(int x, int y, SDL_Texture* texture) : Mobile(x, y, texture)
+Player::Player(int aX, int aY, int aW, int aH, SDL_Texture* texture) : Mobile(aX, aY, texture), Collidable(aX, aY, aW, aH)
 {
-	this->x = x;
-	this->y = y;
-	this->mTexture = texture;
-	this->xVel = 0;
-	this->yVel = 0;
+	x = aX;
+	y = aY;
+	mTexture = texture;
+	xVel = 0;
+	yVel = 0;
+	boundingBox.x = aX;
+	boundingBox.y = aY;
+	boundingBox.w = aW;
+	boundingBox.h = aH;
 	yDirectionStack.push(0);
 	xDirectionStack.push(0);
 	walkSpeed = 2;
@@ -22,6 +26,8 @@ void Player::move()
 {
 	x += xDirectionStack.top();
 	y += yDirectionStack.top();
+	boundingBox.x = x;
+	boundingBox.y = y;
 }
 
 void Player::update()

@@ -24,3 +24,8 @@ void walkRightButtonPressed::execute(int type)
 {
 	ObjectManager::enqueue(new walkRightCommand(type));
 }
+
+void collisionEvent::execute()
+{
+
+}

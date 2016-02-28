@@ -27,4 +27,11 @@ int Mobile::getY()
 }
 
 Mobile::Mobile(int x, int y, SDL_Texture* texture) : Visible(texture), BaseObject(x, y)
-{}
+{
+	//All instantiation taken care of by parents. Free loading prick.
+}
+
+Mobile::~Mobile()
+{
+	
+}
