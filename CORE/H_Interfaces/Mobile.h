@@ -19,6 +19,9 @@ public:
 	int getX();
 	int getY();
 
+	int prevX;
+	int prevY;
+
 protected:
 	double xVel, yVel;
 };

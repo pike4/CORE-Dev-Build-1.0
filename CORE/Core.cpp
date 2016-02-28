@@ -48,7 +48,7 @@ int main()
 	point.x = 0;
 	point.y = 0;
 	
-	ObjectManager::player = new Player(300, 200, 100, 100, fag);
+	//ObjectManager::player = new Player(300, 200, 100, 100, fag);
 	ObjectManager::add(new Thing(200, 200, real));
 	ObjectManager::add(new Spinner(100, 100, peepee, SDL_FLIP_NONE, 0, point, 100.0));
 	ObjectManager::add(new Spinner(350, 200, cage, SDL_FLIP_NONE, 0, point, 2.0));
@@ -58,12 +58,12 @@ int main()
 
 	for (int i = 0; i < 20; i++)
 	{
-		ObjectManager::add(new BouncingBall(0, 20 + (10 * i), 8, 8, i, 0, ball));
+		ObjectManager::add(new BouncingBall(0, 20 + (10 * i), 8, 8, i, 1, ball));
 	}
 
 	for (int i = 0; i < 20; i++)
 	{
-		ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 0, ball));
+		ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, ball));
 	}
 
 	ObjectManager::add(new PlainText(0, 0, sans, "I will build a great wall and nobody builds walls better than me, believe me and I\'ll build them very inexpensively.", color));

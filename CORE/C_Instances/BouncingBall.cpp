@@ -12,10 +12,16 @@ BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVe
 {
 	xVel = aXVel;
 	yVel = aYVel;
+
+	prevXPtr = &prevX;
+	prevYPtr = &prevY;
 }
 
 void BouncingBall::update()
 {
+	prevX = x;
+	prevY = y;
+
 	x += xVel;
 	y += yVel;
 

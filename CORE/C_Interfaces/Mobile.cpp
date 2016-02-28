@@ -2,6 +2,9 @@
 
 void Mobile::move()
 {
+	prevX = x;
+	prevY = y;
+
 	x += xVel;
 	y += yVel;
 }

@@ -66,7 +66,11 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 			if (QuadTree::isOverlapping(obj1->boundingBox, obj2->boundingBox) && (i != j))
 			{
 				printf("IT FUCKING WORKS");
-				break;
+			}
+
+			else if (PositionVectorIntersect(obj1, obj2))
+			{
+				printf("IT FUCKNIG WORKS");
 			}
 		}
 	}
@@ -145,7 +149,6 @@ void QuadTree::destroyCollidable(Collidable* objectToRemove)
 		//Only called if object is not in any subtree, or, it is in the current node
 		delete(objectToRemove);
 		remove(objectToRemove);
-		
 	}
 
 	else
@@ -293,5 +296,26 @@ bool QuadTree::isOverlapping(SDL_Rect r1, SDL_Rect r2)
 bool QuadTree::isWithin(SDL_Rect r1, SDL_Rect r2)
 {
 	return ((r1.x > r2.x) && ((r1.x + r1.w) < (r2.x + r2.w)) && (r1.y > r2.y) && ((r1.y + r1.h) < (r2.y + r2.h)));
+}
+
+bool QuadTree::PositionVectorIntersect(Collidable* obj1, Collidable* obj2)
+{
+	int obj1AIsRightOfObj2Vector = crossProduct(obj1, *obj2->prevXPtr, *obj2->prevYPtr) > 0;
+	int obj1BIsRightOfObj2Vector = crossProduct(obj1, obj2->boundingBox.x, obj2->boundingBox.y) > 0;
+
+	bool obj2PointstoObj1 = obj1AIsRightOfObj2Vector != obj1BIsRightOfObj2Vector;
+
+	bool obj2AIsRightOfObj1Vector = crossProduct(obj2, *obj1->prevXPtr, *obj1->prevYPtr) > 0;
+	bool obj2BIsRightOfObj1Vector = crossProduct(obj2, obj1->boundingBox.x, obj2->boundingBox.y) > 0;
+
+	bool obj1PointsToObj2 = obj2AIsRightOfObj1Vector != obj2BIsRightOfObj1Vector;
+
+
+	return obj2PointstoObj1 && obj1PointsToObj2;
+}
+
+int QuadTree::crossProduct(Collidable* obj1, int x, int y)
+{
+	return ((obj1->boundingBox.x - *(obj1->prevXPtr)) * (y - obj1->boundingBox.y)) - ((obj1->boundingBox.y - *(obj1->prevYPtr)) * (x - obj1->boundingBox.x));
 }
 #pragma endregion

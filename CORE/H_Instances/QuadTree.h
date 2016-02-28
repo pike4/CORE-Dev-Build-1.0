@@ -59,6 +59,12 @@ private:
 	//Check all elements in v1 against all elements in v2
 	void checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*> v2);
 
+	//Check if the two objects collided between frames based on whether or not their vectors intersect
+	bool PositionVectorIntersect(Collidable* obj1, Collidable* obj2);
+
+	//Returns the cross product two points to determine which side of the vector defined by point one and the origin point 2 lies on
+	int crossProduct(Collidable* obj1, int testPointX, int testPointY);
+
 	//Pointer to parent QuadTree
 	QuadTree* parent;
 

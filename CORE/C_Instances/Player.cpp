@@ -20,10 +20,16 @@ Player::Player(int aX, int aY, int aW, int aH, SDL_Texture* texture) : Mobile(aX
 	yDirectionStack.push(0);
 	xDirectionStack.push(0);
 	walkSpeed = 2;
+
+	prevXPtr = &prevX;
+	prevYPtr = &prevY;
 }
 
 void Player::move()
 {
+	prevX = x;
+	prevY = y;
+
 	x += xDirectionStack.top();
 	y += yDirectionStack.top();
 	boundingBox.x = x;

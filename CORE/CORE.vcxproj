@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,13 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -77,13 +77,21 @@
   <ItemGroup>
     <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="C_Instances\BaseObject.cpp" />
+    <ClCompile Include="C_Interfaces\BaseObject.cpp" />
+    <ClCompile Include="C_Instances\BouncingBall.cpp" />
     <ClCompile Include="C_Instances\CoreEvent.cpp" />
+    <ClCompile Include="C_Instances\Player.cpp" />
+    <ClCompile Include="C_Instances\QuadTree.cpp" />
+    <ClCompile Include="C_Instances\ReflectiveWall.cpp" />
+    <ClCompile Include="C_Instances\Spinner.cpp" />
     <ClCompile Include="C_Instances\Subject.cpp" />
+    <ClCompile Include="C_Instances\TextObjects.cpp" />
     <ClCompile Include="C_Instances\Timer.cpp" />
     <ClCompile Include="C_Instances\Thing.cpp" />
     <ClCompile Include="C_Interfaces\Collidable.cpp" />
+    <ClCompile Include="C_Interfaces\Manipulatable.cpp" />
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
+    <ClCompile Include="C_Interfaces\Updatable.cpp" />
     <ClCompile Include="C_Main\Commands.cpp" />
     <ClCompile Include="C_Managers\EventManager.cpp" />
     <ClCompile Include="C_Managers\ObjectManager.cpp" />
@@ -93,13 +101,19 @@
     <ClCompile Include="C_Managers\_Manager.cpp" />
     <ClCompile Include="C_Managers\VideoManager.cpp" />
     <ClCompile Include="C_Interfaces\Visible.cpp" />
+    <ClInclude Include="H_Instances\BouncingBall.h" />
+    <ClInclude Include="H_Instances\QuadTree.h" />
+    <ClInclude Include="H_Instances\ReflectiveWall.h" />
+    <ClInclude Include="H_Interfaces\Manipulatable.h" />
     <ClCompile Include="Loggables\Loggables.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetsManifest.h" />
     <ClInclude Include="H_Instances\CoreEvent.h" />
     <ClInclude Include="H_Instances\Player.h" />
+    <ClInclude Include="H_Instances\Spinner.h" />
     <ClInclude Include="H_Instances\Subject.h" />
+    <ClInclude Include="H_Instances\TextObjects.h" />
     <ClInclude Include="H_Instances\Timer.h" />
     <ClInclude Include="H_Instances\Room.h" />
     <ClInclude Include="H_Interfaces\BaseObject.h" />
@@ -113,6 +127,9 @@
     <ClInclude Include="H_Main\Globals.h" />
     <ClInclude Include="H_Managers\_Manager.h" />
     <ClInclude Include="Loggables\Loggable.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

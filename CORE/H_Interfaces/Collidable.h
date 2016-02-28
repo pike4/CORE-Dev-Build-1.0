@@ -9,6 +9,8 @@ public:
 	Collidable(int, int, int, int);
 	virtual ~Collidable();
 	
+	int* prevXPtr;
+	int* prevYPtr;
 
 	void onCollide();
 };
