@@ -66,8 +66,11 @@ int main()
 		//ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, ball));
 	}
 
-	ObjectManager::add(new BouncingBall(400, 200, 8, 8, 0, 0, ball));
-	ObjectManager::add(new BouncingBall(390, 200, 8, 8, 50, 0, ball));
+	ObjectManager::add(new BouncingBall(400, 200, 8, 8, 10, 10, ball));
+	ObjectManager::add(new BouncingBall(400, 200, 8, 8, 10, -10, ball));
+	ObjectManager::add(new BouncingBall(400, 200, 8, 8, -10, 10, ball));
+	ObjectManager::add(new BouncingBall(400, 200, 8, 8, -10, -10, ball));
+	//ObjectManager::add(new BouncingBall(200, 200, 8, 8, 5, 10, ball));
 
 	ObjectManager::add(new PlainText(0, 0, sans, "I will build a great wall and nobody builds walls better than me, believe me and I\'ll build them very inexpensively.", color));
 	ObjectManager::add(new PlainText(0, 30, sans, "I will build a great, great wall on our southern border, and I will make Mexico pay for that wall. Mark my words.", color));

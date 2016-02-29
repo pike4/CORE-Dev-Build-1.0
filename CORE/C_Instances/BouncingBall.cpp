@@ -1,5 +1,6 @@
 #include "BouncingBall.h"
 #include "VideoManager.h"
+#include "Math.h"
 
 BouncingBall::BouncingBall(int x, int y, int w, int h, SDL_Texture* mTexture)
 	:Mobile(x, y, mTexture), Collidable(x, y, w, h)
@@ -26,14 +27,34 @@ void BouncingBall::update()
 	x += xVel;
 	y += yVel;
 
-	movementVector.x = prevX;
-	movementVector.w = boundingBox.w + x - prevX;
-
-	movementVector.y = prevY;
-	movementVector.h = boundingBox.h + y - prevY;
-
 	boundingBox.x = x;
 	boundingBox.y = y;
+
+	if (xVel < 0)
+	{
+		movementVector.x = prevX + boundingBox.w;
+		movementVector.w = xVel - ( boundingBox.w);
+	}
+
+	else if (xVel > 0)
+	{
+		movementVector.x = prevX;
+		movementVector.w = xVel + ( boundingBox.w);
+	}
+
+	if (yVel < 0)
+	{
+		movementVector.y = prevY + boundingBox.h;
+		movementVector.h = yVel -  boundingBox.h;
+	}
+
+	else if (yVel > 0)
+	{
+		movementVector.y = prevY;
+		movementVector.h = yVel +  boundingBox.h;
+	}
+
+	
 }
 
 void BouncingBall::draw(SDL_Renderer* renderer)

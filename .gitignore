@@ -2,4 +2,9 @@ CORE.sdf
 CORE.opensdf
 *.obj
 *.exe
-
+*.tlog
+*.log
+*.pdb
+./Release
+./Debug
+*.opendb

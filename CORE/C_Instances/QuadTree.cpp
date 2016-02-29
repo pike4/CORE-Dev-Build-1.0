@@ -85,17 +85,20 @@ void QuadTree::checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*
 	for (int i = 0; i < v1.size(); i++)
 	{
 		Collidable* obj1 = v1[i];
-		for (int j = i; j < v2.size(); j++)
+		for (int j = 0; j < v2.size(); j++)
 		{
 			Collidable* obj2 = v2[j];
-			if (testPairCollision(obj1, obj2))
+			if (i != j)
 			{
-				printf("Collision detected in parent\n");
-			}
+				if (testPairCollision(obj1, obj2))
+				{
+					printf("Collision detected in parent\n");
+				}
 
-			else
-			{
-				printf("No collision was detected in the parent\n");
+				else
+				{
+					printf("No collision was detected in the parent\n");
+				}
 			}
 		}
 	}

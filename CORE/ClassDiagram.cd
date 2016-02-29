@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Manipulatable" Collapsed="true">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAQKQAAAACAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>H_Interfaces\Manipulatable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BouncingBall" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>H_Instances\BouncingBall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuadTree" Collapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAgAAAAhAAIBEAEAAAAAJAZBAAQAEAAEAAQAMAAA=</HashCode>
+      <FileName>H_Instances\QuadTree.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReflectiveWall" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\ReflectiveWall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreEvent" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>H_Instances\CoreEvent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQQgAAAAAAAEACAAAQAAAAAAAAAEAAACEAEAQAMAAw=</HashCode>
+      <FileName>H_Instances\Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spinner" Collapsed="true">
+    <Position X="3.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAAAAAGAEAAA=</HashCode>
+      <FileName>H_Instances\Spinner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Subject" Collapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkForwardButtonPressed" Collapsed="true">
+    <Position X="2.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkBackwardButtonPressed" Collapsed="true">
+    <Position X="5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkLeftButtonPressed" Collapsed="true">
+    <Position X="7.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkRightButtonPressed" Collapsed="true">
+    <Position X="9.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="collisionEvent" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Instances\Subject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlainText" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAGAAAAA=</HashCode>
+      <FileName>H_Instances\TextObjects.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Timer" Collapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAQAAAAAAAAAAQAAAABAAAAEAAA=</HashCode>
+      <FileName>H_Instances\Timer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseObject" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>H_Interfaces\BaseObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Updatable" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAAEAAA=</HashCode>
+      <FileName>H_Interfaces\Updatable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Visible" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAADAAAIAAAAAAAAAAAAIAAAAAGAAAAA=</HashCode>
+      <FileName>H_Interfaces\Visible.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mobile" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAGAAAYA=</HashCode>
+      <FileName>H_Interfaces\Mobile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Command" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayCommand" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEQAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChangeMusicCommand" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABgAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResumeMusicCommand" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseMusicCommand" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashCommand" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkForwardCommand" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkBackwardCommand" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkLeftCommand" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAABAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="walkRightCommand" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>H_Main\Commands.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventManager" Collapsed="true">
+    <Position X="12.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEBAAAICAgIBAQEgDAkIAAYEBAAgICABsBAQAIikgEA=</HashCode>
+      <FileName>H_Managers\EventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectManager" Collapsed="true">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAggAAAAAAAIAgAAAAAAABAAQAAACBAABAAAAGAAA=</HashCode>
+      <FileName>H_Managers\ObjectManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manager" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAgAAAAAAAAAAAgAAAAAAAAAABEQAA=</HashCode>
+      <FileName>H_Managers\_Manager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Loggable" Collapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQCAAAEAAAAAAAAAAACAAAAAAAAAAASAAAAAAAAg=</HashCode>
+      <FileName>Loggables\Loggable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
