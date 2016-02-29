@@ -63,14 +63,18 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 		for (int j = 0; j < vectorToCheck.size(); j++)
 		{
 			Collidable* obj2 = vectorToCheck[j];
-			if (QuadTree::isOverlapping(obj1->boundingBox, obj2->boundingBox) && (i != j))
+			
+			if (i != j)
 			{
-				printf("IT FUCKING WORKS");
-			}
+				if (testPairCollision(obj1, obj2))
+				{
+					printf("Collision Detected\n");
+				}
 
-			else if (PositionVectorIntersect(obj1, obj2))
-			{
-				printf("IT FUCKNIG WORKS");
+				else
+				{
+					printf("\nNo Collision was detected\n");
+				}
 			}
 		}
 	}
@@ -78,13 +82,20 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 
 void QuadTree::checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*> v2)
 {
-	for each(Collidable* obj1 in v1)
+	for (int i = 0; i < v1.size(); i++)
 	{
-		for each(Collidable* obj2 in v2)
+		Collidable* obj1 = v1[i];
+		for (int j = i; j < v2.size(); j++)
 		{
-			if (QuadTree::isOverlapping(obj1->boundingBox, obj2->boundingBox))
+			Collidable* obj2 = v2[j];
+			if (testPairCollision(obj1, obj2))
 			{
-				//Handle the collision
+				printf("Collision detected in parent\n");
+			}
+
+			else
+			{
+				printf("No collision was detected in the parent\n");
 			}
 		}
 	}
@@ -289,7 +300,44 @@ void QuadTree::reorganize()
 //Check if there is any overlap between r1 and r2
 bool QuadTree::isOverlapping(SDL_Rect r1, SDL_Rect r2)
 {
-	return(((r1.x + r1.w) > r2.x) && (r1.x < (r2.x + r2.w)) && ((r1.y + r1.h) > r2.y) && (r1.y < (r2.y + r2.h)));
+	int x1, y1, w1, h1, x2, y2, w2, h2;
+
+	x1 = r1.x;
+	y1 = r1.y;
+	w1 = r1.w;
+	h1 = r1.h;
+
+	x2 = r2.x;
+	y2 = r2.y;
+	w2 = r2.w;
+	h2 = r2.h;
+
+	if (w1 < 0)
+	{
+		x1 = x1 + w1;
+		w1 *= -1;
+	}
+
+	if (h1 < 0)
+	{
+		y1 = y1 + h1;
+		h1 *= -1;
+	}
+
+	if (w2 < 0)
+	{
+		x2 = x2 + w2;
+		w2 *= -1;
+	}
+
+	if (h2 < 0)
+	{
+		y2 = y2 + h2;
+		h2 *= -1;
+	}
+
+
+	return(((x1 + w1) >= x2) && (x1 <= (x2 + w2)) && ((y1 + h1) >= y2) && (y1 <= (y2 + h2)));
 }
 
 //Check if r1 is completely within r2
@@ -300,8 +348,25 @@ bool QuadTree::isWithin(SDL_Rect r1, SDL_Rect r2)
 
 bool QuadTree::PositionVectorIntersect(Collidable* obj1, Collidable* obj2)
 {
-	int obj1AIsRightOfObj2Vector = crossProduct(obj1, *obj2->prevXPtr, *obj2->prevYPtr) > 0;
-	int obj1BIsRightOfObj2Vector = crossProduct(obj1, obj2->boundingBox.x, obj2->boundingBox.y) > 0;
+	int obj1AXobj2 = crossProduct(obj1, *obj2->prevXPtr, *obj2->prevYPtr);
+	int obj1BXobj2 = crossProduct(obj1, obj2->boundingBox.x, obj2->boundingBox.y);
+
+	if (obj1BXobj2 == 0 && obj1AXobj2 == 0)
+	{
+		if ((obj1->boundingBox.y - *(obj1->prevYPtr) == 0) && (obj2->boundingBox.y - *(obj2->prevYPtr) == 0))
+		{
+			if (obj1->boundingBox.y == obj2->boundingBox.y)
+			{
+				if(obj1->boundingBox.x > *obj2->prevXPtr && *obj1->prevXPtr < obj2->boundingBox.x)
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	bool obj1AIsRightOfObj2Vector = obj1AXobj2 > 0;
+	bool obj1BIsRightOfObj2Vector = obj1BXobj2 > 0;
 
 	bool obj2PointstoObj1 = obj1AIsRightOfObj2Vector != obj1BIsRightOfObj2Vector;
 
@@ -312,6 +377,27 @@ bool QuadTree::PositionVectorIntersect(Collidable* obj1, Collidable* obj2)
 
 
 	return obj2PointstoObj1 && obj1PointsToObj2;
+}
+
+bool QuadTree::testPairCollision(Collidable* obj1, Collidable* obj2)
+{
+	if (isOverlapping(obj1->boundingBox, obj2->boundingBox))
+	{
+		printf("Bounding box intersection\t");
+		return true;
+	}
+
+	else if (isOverlapping(obj1->movementVector, obj2->movementVector))
+	{
+		printf("Position Box intersection\t");
+		if (PositionVectorIntersect(obj1, obj2))
+		{
+			printf("Vector have crossed\t");
+			return true;
+		}
+	}
+
+	return false;
 }
 
 int QuadTree::crossProduct(Collidable* obj1, int x, int y)

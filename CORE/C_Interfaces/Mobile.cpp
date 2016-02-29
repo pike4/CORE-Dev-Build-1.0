@@ -1,4 +1,5 @@
 #include "Mobile.h"
+#include "VideoManager.h"
 
 void Mobile::move()
 {
@@ -27,6 +28,11 @@ int Mobile::getX()
 int Mobile::getY()
 {
 	return y;
+}
+
+void Mobile::draw(SDL_Renderer* renderer)
+{
+	VideoManager::applyTexture(x, y, renderer, mTexture);
 }
 
 Mobile::Mobile(int x, int y, SDL_Texture* texture) : Visible(texture), BaseObject(x, y)

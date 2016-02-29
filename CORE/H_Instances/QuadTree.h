@@ -62,6 +62,9 @@ private:
 	//Check if the two objects collided between frames based on whether or not their vectors intersect
 	bool PositionVectorIntersect(Collidable* obj1, Collidable* obj2);
 
+	//Check whether two collidables have intersected or crossed paths during the current frame
+	bool testPairCollision(Collidable* obj1, Collidable* obj2);
+
 	//Returns the cross product two points to determine which side of the vector defined by point one and the origin point 2 lies on
 	int crossProduct(Collidable* obj1, int testPointX, int testPointY);
 

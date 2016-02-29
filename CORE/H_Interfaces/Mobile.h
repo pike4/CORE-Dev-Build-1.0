@@ -22,6 +22,8 @@ public:
 	int prevX;
 	int prevY;
 
+	virtual void draw(SDL_Renderer* renderer);
+
 protected:
 	double xVel, yVel;
 };

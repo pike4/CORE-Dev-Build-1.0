@@ -65,7 +65,7 @@ void SystemManager::printObjectCount()
 	if (FPSTimer.hasElapsed(outputInterval))
 	{
 		std::vector <BaseObject*>* HH = ObjectManager::getObjectVector();
-		printf("Object Count: \t %i", HH->size());
+		printf("Object Count: \t %i\n", HH->size());
 	}
 }
 

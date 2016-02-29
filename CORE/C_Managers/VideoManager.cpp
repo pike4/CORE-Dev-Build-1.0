@@ -76,7 +76,7 @@ void VideoManager::update()
 {
 	updateQueue();
 
-	SDL_RenderClear(mRenderer);
+	//SDL_RenderClear(mRenderer);
 
 	for (int x = 0; x < drawingVector.size(); x++)
 	{
