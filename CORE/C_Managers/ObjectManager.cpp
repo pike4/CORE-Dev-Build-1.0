@@ -1,22 +1,35 @@
 #include "ObjectManager.h"
 #include "Commands.h"
+#include "StateManager.h"
 #include <vector>
 
 
 #pragma region Manager Implementation Methods
 void ObjectManager::update()
 {
-	quadTree.update();
-	
-	for (int x = 0; x < UpdateVector.size(); x++)
+	switch (state)
 	{
-		UpdateVector[x]->update();
+	case StateManager::CORE_RUNNING:
+		quadTree.update();
+
+		for (int x = 0; x < UpdateVector.size(); x++)
+		{
+			UpdateVector[x]->update();
+		}
+		break;
+	case StateManager::CORE_IN_MENU:
+		break;
+
+	case StateManager::CORE_PAUSED:
+		break;
+
+	case StateManager::CORE_BLOCKING:
+		break;
 	}
 }
 
 void ObjectManager::start()
 {
-
 }
 
 #pragma endregion
@@ -60,6 +73,7 @@ std::vector <BaseObject*>* ObjectManager::getObjectVector()
 std::vector <Updatable*> ObjectManager::UpdateVector;
 std::vector <BaseObject*> ObjectManager::BaseObjectVector;
 QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 320, NULL);
+int ObjectManager::state;
 
 Player* ObjectManager::player;
 
@@ -78,11 +92,11 @@ void walkBackwardCommand::execute()
 
 void walkLeftCommand::execute()
 {
-	ObjectManager::player->walkLeft(type);
+	//ObjectManager::player->walkLeft(type);
 }
 
 void walkRightCommand::execute()
 {
-	ObjectManager::player->walkRight(type);
+	//ObjectManager::player->walkRight(type);
 }
 #pragma endregion

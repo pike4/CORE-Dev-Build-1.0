@@ -1,5 +1,6 @@
 #include "EventManager.h"
 #include "Subject.h"
+#include "StateManager.h"
 
 void EventManager::start()
 {
@@ -55,9 +56,10 @@ void EventManager::update()
 					break;
 				case SDLK_LEFT:
 					left_KeyPress->execute(1);
+					StateManager::enqueue(new ChangeStateCommand(StateManager::CORE_PAUSED));
 					break;
 				case SDLK_RIGHT:
-					right_KeyPress->execute(1);
+					StateManager::enqueue(new ChangeStateCommand(StateManager::CORE_RUNNING));
 					break;
 				case SDLK_DOWN:
 					down_KeyPress->execute(1);
@@ -116,6 +118,8 @@ void EventManager::update()
 	}
 
 }
+
+int EventManager::state;
 
 #pragma region KeyEvent declarations
 Subject* EventManager::a_KeyPress;

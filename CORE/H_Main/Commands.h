@@ -8,6 +8,20 @@ public:
 	virtual void execute() = 0;
 };
 
+#pragma region StateManager commands
+class ChangeStateCommand : public Command
+{
+public:
+	void execute();
+
+	int state;
+
+	ChangeStateCommand(int st)
+	{
+		state = st;
+	}
+};
+#pragma endregion
 
 #pragma region AudioManager commands
 class PlayCommand : public Command

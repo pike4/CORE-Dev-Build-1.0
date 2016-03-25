@@ -10,6 +10,8 @@ class AudioManager : public Manager
 {
 public:
 
+	static int state;
+
 	static bool start();
 
 	static void update();

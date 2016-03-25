@@ -1,18 +1,19 @@
 #include "Globals.h"
 #include "Timer.h"
+#include "_Manager.h"
 
 #pragma once
 
-class StateManager
+class StateManager :  public Manager
 {
 public:
 
 	enum StateList: int
 	{
-		CORE_LOADING,
-		CORE_MAIN_MENU,
-		CORE_IN_GAME,
-		CORE_PAUSED
+		CORE_RUNNING,
+		CORE_IN_MENU,
+		CORE_PAUSED,
+		CORE_BLOCKING
 	};
 
 	static void start();
@@ -21,11 +22,12 @@ public:
 
 	static void stop();
 
+	static void changeState(int state);
+
 	static Timer frameTimer;
 
 	static int lag;
 	static int msPerFrame;
-
 
 private:
 	

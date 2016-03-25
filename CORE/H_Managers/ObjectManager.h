@@ -11,6 +11,8 @@
 class ObjectManager : public Manager
 {
 public:
+	static int state;
+
 	static void update();
 	static void add(BaseObject* E);
 	static void start();

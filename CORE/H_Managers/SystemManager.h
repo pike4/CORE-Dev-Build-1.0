@@ -16,10 +16,7 @@ using namespace std;
 class SystemManager : Manager
 {
 public:
-
-	
-
-	
+	static int state;
 
 	static void start();
 
@@ -28,6 +25,8 @@ public:
 	static void updateFPS();
 
 	static void stop();
+
+	static void changeState(int state);
 
 	static void flush();
 

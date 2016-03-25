@@ -1,6 +1,7 @@
 #include "SDL.h"
 #include "SystemManager.h"
 #include "ObjectManager.h"
+#include "StateManager.h"
 
 void SystemManager::start()
 {
@@ -14,11 +15,31 @@ void SystemManager::start()
 
 void SystemManager::update()
 {
-	curTime = SDL_GetTicks();
-	//updateTime();
-	updateQueue();
-	updateFPS();
-	printFPS();
+	switch (state)
+	{
+	case StateManager::StateList::CORE_RUNNING:
+		curTime = SDL_GetTicks();
+		//updateTime();
+		updateQueue();
+		updateFPS();
+		printFPS();
+		break;
+
+	case StateManager::StateList::CORE_IN_MENU:
+		break;
+
+	case StateManager::StateList::CORE_BLOCKING:
+		break;
+
+	case StateManager::StateList::CORE_PAUSED:
+		break;
+	}
+	
+}
+
+void SystemManager::changeState(int state)
+{
+	SystemManager::state = state;
 }
 
 void SystemManager::setoutputInterval(Uint32 ms)
@@ -81,3 +102,4 @@ Uint32 SystemManager::totalTime;
 Uint32 SystemManager::totalFrames;
 Timer SystemManager::FPSTimer;
 string SystemManager::buffer;
+int SystemManager::state;

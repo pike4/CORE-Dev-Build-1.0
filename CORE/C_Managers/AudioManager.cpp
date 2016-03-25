@@ -2,6 +2,9 @@
 #include "SDL_Mixer.h"
 #include <string>
 
+
+int AudioManager::state;
+
 bool AudioManager::start()
 {
 	if (SDL_INIT_AUDIO < 0)
@@ -72,6 +75,8 @@ void AudioManager::update()
 	updateQueue();
 }
 
+
+#pragma region Commands
 void PlayCommand::execute()
 {
 	AudioManager::playSound(sound);
@@ -91,3 +96,4 @@ void ResumeMusicCommand::execute()
 {
 	AudioManager::resumeMusic();
 }
+#pragma endregion

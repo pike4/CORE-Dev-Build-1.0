@@ -66,10 +66,10 @@ int main()
 		//ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, ball));
 	}
 
-	ObjectManager::add(new BouncingBall(400, 200, 8, 8, 10, 10, ball));
-	ObjectManager::add(new BouncingBall(400, 200, 8, 8, 10, -10, ball));
-	ObjectManager::add(new BouncingBall(400, 200, 8, 8, -10, 10, ball));
-	ObjectManager::add(new BouncingBall(400, 200, 8, 8, -10, -10, ball));
+	ObjectManager::add(new BouncingBall(100, 100, 8, 8, 100, 0, ball));
+	ObjectManager::add(new BouncingBall(300, 100, 8, 8, 10, 0, ball));
+	/*ObjectManager::add(new BouncingBall(300, 100, 8, 8, -10, 10, ball));
+	ObjectManager::add(new BouncingBall(300, 300, 8, 8, -10, -10, ball));*/
 	//ObjectManager::add(new BouncingBall(200, 200, 8, 8, 5, 10, ball));
 
 	ObjectManager::add(new PlainText(0, 0, sans, "I will build a great wall and nobody builds walls better than me, believe me and I\'ll build them very inexpensively.", color));

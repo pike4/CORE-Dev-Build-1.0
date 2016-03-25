@@ -17,6 +17,8 @@ class VideoManager : public Manager
 {
 public:
 
+	static int state;
+
 	static SDL_Window* mWindow;
 	static SDL_Surface* mScreenSurface;
 	static SDL_Renderer* mRenderer;

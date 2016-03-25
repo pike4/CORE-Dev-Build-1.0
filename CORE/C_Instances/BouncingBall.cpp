@@ -36,7 +36,7 @@ void BouncingBall::update()
 		movementVector.w = xVel - ( boundingBox.w);
 	}
 
-	else if (xVel > 0)
+	else if (xVel >= 0)
 	{
 		movementVector.x = prevX;
 		movementVector.w = xVel + ( boundingBox.w);
@@ -48,7 +48,7 @@ void BouncingBall::update()
 		movementVector.h = yVel -  boundingBox.h;
 	}
 
-	else if (yVel > 0)
+	else if (yVel >= 0)
 	{
 		movementVector.y = prevY;
 		movementVector.h = yVel +  boundingBox.h;

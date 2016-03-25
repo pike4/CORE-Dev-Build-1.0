@@ -5,10 +5,14 @@
 #include "SystemManager.h"
 #include "ObjectManager.h"
 #include "CollisionManager.h"
+#include "Commands.h"
+
 
 void StateManager::start()
 {
 	quit = false;
+
+	changeState(CORE_RUNNING);
 
 	if (!VideoManager::start())
 		printf("Video manager failed to start");
@@ -18,15 +22,18 @@ void StateManager::start()
 
 	SystemManager::start();
 
+	ObjectManager::start();
+
 	EventManager::start();
 
 	frameTimer = Timer();
 	lag = 0;
-	msPerFrame = 2000;
+	msPerFrame = 1000;
 }
 
 void StateManager::update()
 {
+	updateQueue();
 	lag += frameTimer.elapsed();
 	EventManager::update();
 
@@ -43,6 +50,15 @@ void StateManager::update()
 	VideoManager::update();
 }
 
+void StateManager::changeState(int state)
+{
+	ObjectManager::state = state;
+	VideoManager::state = state;
+	AudioManager::state = state;
+	EventManager::state = state;
+	SystemManager::state = state;
+}
+
 void StateManager::stop()
 {
 	
@@ -52,3 +68,8 @@ int StateManager::lag;
 int StateManager::msPerFrame;
 
 Timer StateManager::frameTimer;
+
+void ChangeStateCommand::execute()
+{
+	StateManager::changeState(state);
+}

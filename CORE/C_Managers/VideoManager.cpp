@@ -3,12 +3,14 @@
 #include "SDL.h"
 #include "SDL_Image.h"
 #include "SDL_TTF.h"
+#include "StateManager.h"
 #include <string>
 
 
 #pragma region Initialization Methods
 bool VideoManager::start()
 {
+
 	if (!InitSDL())
 	{
 		printf("SDL Initialization failed!");
@@ -20,6 +22,8 @@ bool VideoManager::start()
 		printf("Window Initialization Failed!");
 		return false;
 	}
+
+	return true;
 }
 
 bool VideoManager::InitSDL()
@@ -74,17 +78,31 @@ bool VideoManager::InitWindow(int w, int h, std::string name, bool isFullscreen)
 #pragma region Manager Implementation Methods
 void VideoManager::update()
 {
-	updateQueue();
-
-	//SDL_RenderClear(mRenderer);
-
-	for (int x = 0; x < drawingVector.size(); x++)
+	switch (state)
 	{
-		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
-		drawingVector[x]->draw(mRenderer);
-	}
+	case StateManager::CORE_RUNNING:
+		updateQueue();
 
-	SDL_RenderPresent(mRenderer);
+		//SDL_RenderClear(mRenderer);
+
+		for (int x = 0; x < drawingVector.size(); x++)
+		{
+			//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
+			drawingVector[x]->draw(mRenderer);
+		}
+
+		SDL_RenderPresent(mRenderer);
+		break;
+	case StateManager::CORE_IN_MENU:
+		break;
+
+	case StateManager::CORE_BLOCKING:
+		break;
+
+	case StateManager::CORE_PAUSED:
+		break;
+
+	}
 }
 
 void VideoManager::addVisible(Visible* visible)
@@ -200,6 +218,8 @@ SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;
 SDL_Surface* VideoManager::mScreenSurface;
 std::vector <Visible*> VideoManager::drawingVector;
+
+int VideoManager::state;
 
 void FlashCommand::execute()
 {

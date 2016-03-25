@@ -11,6 +11,8 @@ public:
 
 	virtual void stop() = 0;
 
+	virtual void changeState(int state) = 0;
+
 	static void enqueue(Command* command);
 
 	static void updateQueue();

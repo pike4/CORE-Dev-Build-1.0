@@ -18,6 +18,8 @@ public:
 
 	static void start();
 
+	static int state;
+
 	
 
 private:
