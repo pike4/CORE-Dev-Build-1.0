@@ -23,6 +23,29 @@ bool AudioManager::start()
 	else return true;
 }
 
+#pragma region State Transitions
+
+void AudioManager::goToRunning()
+{
+	state = CORE_RUNNING;
+}
+
+void AudioManager::goToBlocking()
+{
+	state = CORE_BLOCKING;
+}
+
+void AudioManager::goToInMenu()
+{
+	state = CORE_IN_MENU;
+}
+
+void AudioManager::goToPaused()
+{
+	state = CORE_PAUSED;
+}
+#pragma endregion
+
 Mix_Music* AudioManager::loadMusic(char* filename)
 {
 	Mix_Music* musicToLoad = Mix_LoadMUS(filename);

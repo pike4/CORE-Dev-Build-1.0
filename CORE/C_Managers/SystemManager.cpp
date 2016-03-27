@@ -17,30 +17,70 @@ void SystemManager::update()
 {
 	switch (state)
 	{
-	case StateManager::StateList::CORE_RUNNING:
-		curTime = SDL_GetTicks();
-		//updateTime();
-		updateQueue();
-		updateFPS();
-		printFPS();
+	case CORE_RUNNING:
+		updateRunning();
 		break;
 
-	case StateManager::StateList::CORE_IN_MENU:
+	case CORE_IN_MENU:
+		updateInMenu();
 		break;
 
-	case StateManager::StateList::CORE_BLOCKING:
+	case CORE_BLOCKING:
+		updateInMenu();
 		break;
 
-	case StateManager::StateList::CORE_PAUSED:
+	case CORE_PAUSED:
+		updateInMenu();
 		break;
 	}
 	
 }
 
-void SystemManager::changeState(int state)
+void SystemManager::updateRunning()
 {
-	SystemManager::state = state;
+	curTime = SDL_GetTicks();
+	//updateTime();
+	updateQueue();
+	updateFPS();
+	printFPS();
 }
+
+void SystemManager::updateInMenu()
+{
+
+}
+
+void SystemManager::updatePaused()
+{
+
+}
+
+void SystemManager::updateBlocking()
+{
+
+}
+
+#pragma region State Transitions
+void SystemManager::goToRunning()
+{
+	state = CORE_RUNNING;
+}
+
+void SystemManager::goToBlocking()
+{
+	state = CORE_BLOCKING;
+}
+
+void SystemManager::goToInMenu()
+{
+	state = CORE_IN_MENU;
+}
+
+void SystemManager::goToPaused()
+{
+	state = CORE_PAUSED;
+}
+#pragma endregion
 
 void SystemManager::setoutputInterval(Uint32 ms)
 {

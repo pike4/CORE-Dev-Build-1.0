@@ -14,8 +14,20 @@ public:
 	static int state;
 
 	static void update();
+
+	static void updateRunning();
+	static void updateInMenu();
+	static void updatePaused();
+	static void updateBlocking();
+
+	static void goToBlocking();
+	static void goToPaused();
+	static void goToRunning();
+	static void goToInMenu();
+
 	static void add(BaseObject* E);
 	static void start();
+	static void stop();
 	static void addCollidable(Collidable* C);
 	static void addUpdatable(Updatable* E);
 	static void removeUpdatable(Updatable* E);

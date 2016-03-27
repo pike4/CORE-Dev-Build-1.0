@@ -28,7 +28,7 @@ void StateManager::start()
 
 	frameTimer = Timer();
 	lag = 0;
-	msPerFrame = 1000;
+	msPerFrame = 14;
 }
 
 void StateManager::update()
@@ -52,11 +52,53 @@ void StateManager::update()
 
 void StateManager::changeState(int state)
 {
-	ObjectManager::state = state;
-	VideoManager::state = state;
-	AudioManager::state = state;
-	EventManager::state = state;
-	SystemManager::state = state;
+	switch (state)
+	{
+	case CORE_RUNNING:
+		goToRunning();
+		break;
+	case CORE_IN_MENU:
+		goToInMenu();
+		break;
+	case CORE_PAUSED:
+		goToPaused();
+		break;
+	case CORE_BLOCKING:
+		goToBlocking();
+		break;
+	}
+}
+
+void StateManager::goToRunning()
+{
+	VideoManager::goToRunning();
+	AudioManager::goToRunning();
+	ObjectManager::goToRunning();
+	SystemManager::goToRunning();
+}
+
+void StateManager::goToInMenu()
+{
+	VideoManager::goToInMenu();
+	AudioManager::goToInMenu();
+	ObjectManager::goToInMenu();
+	SystemManager::goToInMenu();
+}
+
+void StateManager::goToPaused()
+{
+	VideoManager::goToPaused();
+	AudioManager::goToPaused();
+	ObjectManager::goToPaused();
+	SystemManager::goToPaused();
+}
+
+void StateManager::goToBlocking()
+{
+	VideoManager::goToBlocking();
+	AudioManager::goToBlocking();
+	ObjectManager::goToBlocking();
+	SystemManager::goToBlocking();
 }
 
 void StateManager::stop()

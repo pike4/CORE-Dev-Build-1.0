@@ -15,6 +15,8 @@ BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVe
 	xVel = aXVel;
 	yVel = aYVel;
 
+	SDL_QueryTexture(mTexture, NULL, NULL, &boundingBox.w, &boundingBox.h);
+
 	prevXPtr = &prevX;
 	prevYPtr = &prevY;
 }
@@ -24,16 +26,16 @@ void BouncingBall::update()
 	prevX = x;
 	prevY = y;
 
-	x += xVel;
-	y += yVel;
+	x += (int) xVel;
+	y += (int) yVel;
 
 	boundingBox.x = x;
 	boundingBox.y = y;
 
 	if (xVel < 0)
 	{
-		movementVector.x = prevX + boundingBox.w;
-		movementVector.w = xVel - ( boundingBox.w);
+		movementVector.x = (int) prevX + boundingBox.w;
+		movementVector.w = (int) xVel - ( boundingBox.w);
 	}
 
 	else if (xVel >= 0)
@@ -59,7 +61,7 @@ void BouncingBall::update()
 
 void BouncingBall::draw(SDL_Renderer* renderer)
 {
-	SDL_RenderFillRect(renderer, &movementVector);
+	//SDL_RenderFillRect(renderer, &movementVector);
 	VideoManager::applyTexture(x, y, renderer, mTexture);
 }
 

@@ -5,28 +5,58 @@
 
 
 #pragma region Manager Implementation Methods
+
+#pragma region Update Methods
 void ObjectManager::update()
 {
 	switch (state)
 	{
-	case StateManager::CORE_RUNNING:
-		quadTree.update();
-
-		for (int x = 0; x < UpdateVector.size(); x++)
-		{
-			UpdateVector[x]->update();
-		}
+	case CORE_RUNNING:
+		updateRunning();
 		break;
-	case StateManager::CORE_IN_MENU:
+	case CORE_IN_MENU:
+		updateInMenu();
 		break;
 
-	case StateManager::CORE_PAUSED:
+	case CORE_PAUSED:
+		updatePaused();
 		break;
 
-	case StateManager::CORE_BLOCKING:
+	case CORE_BLOCKING:
+		updateBlocking();
 		break;
 	}
 }
+
+
+void ObjectManager::updateRunning()
+{
+	quadTree.update();
+
+	for (int x = 0; x < UpdateVector.size(); x++)
+	{
+		UpdateVector[x]->update();
+	}
+}
+
+void ObjectManager::updateInMenu()
+{
+
+}
+
+void ObjectManager::updatePaused()
+{
+
+}
+
+void ObjectManager::updateBlocking()
+{
+
+}
+
+#pragma endregion
+
+
 
 void ObjectManager::start()
 {
@@ -60,6 +90,7 @@ void ObjectManager::addCollidable(Collidable* C)
 {
 	quadTree.insert(C);
 }
+
 int ObjectManager::getObjectCount()
 {
 	return BaseObjectVector.size();
@@ -77,17 +108,39 @@ int ObjectManager::state;
 
 Player* ObjectManager::player;
 
+#pragma region State Transitions
+
+void ObjectManager::goToRunning()
+{
+	state = CORE_RUNNING;
+}
+
+void ObjectManager::goToBlocking()
+{
+	state = CORE_BLOCKING;
+}
+
+void ObjectManager::goToInMenu()
+{
+	state = CORE_IN_MENU;
+}
+
+void ObjectManager::goToPaused()
+{
+	state = CORE_PAUSED;
+}
+#pragma endregion
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
 void walkForwardCommand::execute()
 {
-	ObjectManager::player->walkUp(type);
+	//ObjectManager::player->walkUp(type);
 }
 
 void walkBackwardCommand::execute()
 {
-	ObjectManager::player->walkDown(type);
+	//ObjectManager::player->walkDown(type);
 }
 
 void walkLeftCommand::execute()

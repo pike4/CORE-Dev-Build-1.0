@@ -19,7 +19,7 @@ void Manipulatable::rotate(double aRotation)
 	rotation += aRotation;
 }
 
-//New Manipulatable at default flip and rotation
+//New Manipulatable at given flip and rotation
 Manipulatable::Manipulatable(SDL_Texture* texture, SDL_RendererFlip aFlip, double aRotation, SDL_Point aPoint)
 	:Visible(texture)
 {
@@ -28,13 +28,17 @@ Manipulatable::Manipulatable(SDL_Texture* texture, SDL_RendererFlip aFlip, doubl
 	point = aPoint;
 }
 
-//New Manipulatable at given flip and rotation
+//New Manipulatable at default flip and rotation
 Manipulatable::Manipulatable(SDL_Texture* texture) : Visible(texture)
 {
 	flip = SDL_FLIP_NONE;
 	rotation = 0;
 	SDL_Point lPoint;
-	lPoint.x = 0;
-	lPoint.y = 0;
+	int x, y;
+	SDL_QueryTexture(texture, NULL, NULL, &x, &y);
+
+	lPoint.x = x/2;
+	lPoint.y = y/2;
+
 	point = lPoint;
 }

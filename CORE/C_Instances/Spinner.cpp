@@ -12,8 +12,15 @@ void Spinner::setRotationPerTick(double aRotationPerTick)
 	rotationPerTick = aRotationPerTick;
 }
 
+
 Spinner::Spinner(int x, int y, SDL_Texture* aTexture, SDL_RendererFlip aFlip, double aRotation, SDL_Point aPoint, double aRotationPerTick)
 	: BaseObject(x, y), Manipulatable(aTexture, aFlip, aRotation, aPoint)
+{
+	rotationPerTick = aRotationPerTick;
+}
+
+Spinner::Spinner(int x, int y, SDL_Texture* aTexture, double aRotationPerTick)
+	: BaseObject(x, y), Manipulatable(aTexture)
 {
 	rotationPerTick = aRotationPerTick;
 }

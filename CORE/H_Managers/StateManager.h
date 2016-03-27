@@ -8,13 +8,7 @@ class StateManager :  public Manager
 {
 public:
 
-	enum StateList: int
-	{
-		CORE_RUNNING,
-		CORE_IN_MENU,
-		CORE_PAUSED,
-		CORE_BLOCKING
-	};
+
 
 	static void start();
 
@@ -23,6 +17,10 @@ public:
 	static void stop();
 
 	static void changeState(int state);
+	static void goToBlocking();
+	static void goToPaused();
+	static void goToRunning();
+	static void goToInMenu();
 
 	static Timer frameTimer;
 

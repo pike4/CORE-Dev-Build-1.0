@@ -49,14 +49,21 @@ public:
 	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point);
 
 	static void removeVisible(Visible* V);
-
 #pragma endregion
 
 		static SDL_Texture* loadTexture(string fileName);
 
-
-//TODO: add these methods to all other manager classes and create a manager virtual class
 	static void update();
+
+	static void updateRunning();
+	static void updateInMenu();
+	static void updatePaused();
+	static void updateBlocking();
+
+	static void goToBlocking();
+	static void goToPaused();
+	static void goToRunning();
+	static void goToInMenu();
 
 	static void addVisible(Visible* visible);
 

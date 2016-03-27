@@ -16,6 +16,18 @@ public:
 
 	static void update();
 
+	static void updateRunning();
+	static void updateInMenu();
+	static void updatePaused();
+	static void updateBlocking();
+
+	static void goToState(int);
+
+	static void goToBlocking();
+	static void goToPaused();
+	static void goToRunning();
+	static void goToInMenu();
+
 	static Mix_Music* loadMusic(char* filename);
 
 	static Mix_Chunk* loadChunk(char* filename);

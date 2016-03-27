@@ -49,21 +49,22 @@ int main()
 	point.y = 0;
 	
 	//ObjectManager::player = new Player(300, 200, 100, 100, fag);
+	ObjectManager::add(new Thing(100, 100, guy));
 	//ObjectManager::add(new Thing(0, 0, real));
-	///*ObjectManager::add(new Spinner(100, 100, peepee, SDL_FLIP_NONE, 0, point, 100.0));
-	//ObjectManager::add(new Spinner(350, 200, cage, SDL_FLIP_NONE, 0, point, 2.0));
-	//ObjectManager::add(new Spinner(400, 200, cage, SDL_FLIP_HORIZONTAL, 0, point, -2.0));
-	//ObjectManager::add(new Spinner(200, 350, fag, SDL_FLIP_NONE, 0, point, 20.0));
-	//ObjectManager::add(new Spinner(400, 50, peepee, SDL_FLIP_NONE, 0, point, -10.0));*/
-	//ObjectManager::add(new Thing(100, 100, guy));
+	ObjectManager::add(new Spinner(100, 100, peepee, 100.0));
+	ObjectManager::add(new Spinner(350, 200, cage, 2.0));
+	ObjectManager::add(new Spinner(400, 200, cage, -2.0));
+	ObjectManager::add(new Spinner(200, 350, fag, 20.0));
+	ObjectManager::add(new Spinner(400, 50, peepee, SDL_FLIP_NONE, 0, point, -10.0));
+
 	for (int i = 0; i < 20; i++)
 	{
-		//ObjectManager::add(new BouncingBall(0, 20 + (10 * i), 8, 8, i, 1, ball));
+		ObjectManager::add(new BouncingBall(0, 20 + (10 * i), 8, 8, i, 1, cage));
 	}
 
 	for (int i = 0; i < 20; i++)
 	{
-		//ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, ball));
+		ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, cage));
 	}
 
 	ObjectManager::add(new BouncingBall(100, 100, 8, 8, 100, 0, ball));

@@ -76,34 +76,82 @@ bool VideoManager::InitWindow(int w, int h, std::string name, bool isFullscreen)
 #pragma endregion
 
 #pragma region Manager Implementation Methods
+
+#pragma region Update Methods
 void VideoManager::update()
 {
 	switch (state)
 	{
-	case StateManager::CORE_RUNNING:
-		updateQueue();
-
-		//SDL_RenderClear(mRenderer);
-
-		for (int x = 0; x < drawingVector.size(); x++)
-		{
-			//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
-			drawingVector[x]->draw(mRenderer);
-		}
-
-		SDL_RenderPresent(mRenderer);
+	case CORE_RUNNING:
+		updateRunning();
 		break;
-	case StateManager::CORE_IN_MENU:
+	case CORE_IN_MENU:
+		updateInMenu();
 		break;
 
-	case StateManager::CORE_BLOCKING:
+	case CORE_BLOCKING:
+		updateBlocking();
 		break;
 
-	case StateManager::CORE_PAUSED:
+	case CORE_PAUSED:
+		updatePaused();
 		break;
 
 	}
 }
+
+void VideoManager::updateRunning()
+{
+	updateQueue();
+
+	SDL_RenderClear(mRenderer);
+
+	for (int x = 0; x < drawingVector.size(); x++)
+	{
+		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
+		drawingVector[x]->draw(mRenderer);
+	}
+
+	SDL_RenderPresent(mRenderer);
+}
+
+void VideoManager::updateInMenu()
+{
+
+}
+
+void VideoManager::updatePaused()
+{
+
+}
+
+void VideoManager::updateBlocking()
+{
+
+}
+#pragma endregion
+
+#pragma region State Transitions
+void VideoManager::goToRunning()
+{
+	state = CORE_RUNNING;
+}
+
+void VideoManager::goToBlocking()
+{
+	state = CORE_BLOCKING;
+}
+
+void VideoManager::goToInMenu()
+{
+	state = CORE_IN_MENU;
+}
+
+void VideoManager::goToPaused()
+{
+	state = CORE_PAUSED;
+}
+#pragma endregion
 
 void VideoManager::addVisible(Visible* visible)
 {

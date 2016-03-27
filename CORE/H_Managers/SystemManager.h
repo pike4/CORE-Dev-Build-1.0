@@ -13,7 +13,7 @@ using namespace std;
 
 #pragma once
 
-class SystemManager : Manager
+class SystemManager : public Manager
 {
 public:
 	static int state;
@@ -21,6 +21,16 @@ public:
 	static void start();
 
 	static void update();
+
+	static void updateRunning();
+	static void updateInMenu();
+	static void updatePaused();
+	static void updateBlocking();
+
+	static void goToBlocking();
+	static void goToPaused();
+	static void goToRunning();
+	static void goToInMenu();
 
 	static void updateFPS();
 
@@ -51,5 +61,4 @@ private:
 	static Timer FPSTimer;
 
 	static string buffer;
-
 };
