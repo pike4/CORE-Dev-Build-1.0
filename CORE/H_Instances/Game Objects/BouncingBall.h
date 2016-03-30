@@ -2,6 +2,7 @@
 #include "Mobile.h"
 #include "Collidable.h"
 #include "SDL.h"
+#include "Player.h"
 
 class BouncingBall : public Mobile, public Collidable
 {
@@ -11,5 +12,9 @@ public:
 	void update();
 	virtual void draw(SDL_Renderer* renderer);
 	virtual ~BouncingBall();
+
+	void onCollide(Collidable*);
+	void onCollide(Player* h);
+	void onCollide(BouncingBall* h);
 
 };

@@ -7,6 +7,7 @@
 #include <string>
 
 
+
 #pragma region Initialization Methods
 bool VideoManager::start()
 {
@@ -56,7 +57,7 @@ bool VideoManager::InitWindow(int w, int h, std::string name, bool isFullscreen)
 	mScreenSurface = SDL_GetWindowSurface(mWindow);
 	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
 
-	SDL_SetRenderDrawColor(mRenderer, 255, 0, 255, 255);
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 
 	if (mWindow == NULL)
 	{
@@ -102,9 +103,9 @@ void VideoManager::update()
 
 void VideoManager::updateRunning()
 {
-	updateQueue();
-
 	SDL_RenderClear(mRenderer);
+
+
 
 	for (int x = 0; x < drawingVector.size(); x++)
 	{
@@ -112,7 +113,8 @@ void VideoManager::updateRunning()
 		drawingVector[x]->draw(mRenderer);
 	}
 
-	SDL_RenderPresent(mRenderer);
+	//SDL_RenderPresent(mRenderer);
+	updateQueue();
 }
 
 void VideoManager::updateInMenu()
@@ -264,6 +266,7 @@ SDL_Texture* VideoManager::loadTexture(string fileName)
 
 SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;
+SDL_Renderer* VideoManager::mRenderer2;
 SDL_Surface* VideoManager::mScreenSurface;
 std::vector <Visible*> VideoManager::drawingVector;
 
@@ -271,5 +274,15 @@ int VideoManager::state;
 
 void FlashCommand::execute()
 {
-	printf(b.c_str());
+	SDL_SetWindowFullscreen(VideoManager::mWindow, SDL_WINDOW_FULLSCREEN);
+}
+
+void DrawRectCommand::execute()
+{
+	Uint8 r, g, b, a;
+	SDL_GetRenderDrawColor(VideoManager::mRenderer, &r, &g, &b, &a);
+	SDL_SetRenderDrawColor(VideoManager::mRenderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(VideoManager::mRenderer, &rect);
+	SDL_SetRenderDrawColor(VideoManager::mRenderer, r, g, b, a);
+	SDL_RenderPresent(VideoManager::mRenderer);
 }

@@ -9,6 +9,8 @@
 #pragma region Update Methods
 void ObjectManager::update()
 {
+	updateQueue();
+
 	switch (state)
 	{
 	case CORE_RUNNING:
@@ -60,9 +62,12 @@ void ObjectManager::updateBlocking()
 
 void ObjectManager::start()
 {
+	
 }
 
 #pragma endregion
+
+#pragma region Object Management
 
 void ObjectManager::add(BaseObject* E)
 {
@@ -101,12 +106,7 @@ std::vector <BaseObject*>* ObjectManager::getObjectVector()
 	return &BaseObjectVector;
 }
 
-std::vector <Updatable*> ObjectManager::UpdateVector;
-std::vector <BaseObject*> ObjectManager::BaseObjectVector;
-QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 320, NULL);
-int ObjectManager::state;
-
-Player* ObjectManager::player;
+#pragma endregion
 
 #pragma region State Transitions
 
@@ -131,6 +131,20 @@ void ObjectManager::goToPaused()
 }
 #pragma endregion
 
+#pragma region 
+void ObjectManager::handleMouseClick()
+{
+
+}
+#pragma endregion
+
+std::vector <Updatable*> ObjectManager::UpdateVector;
+std::vector <BaseObject*> ObjectManager::BaseObjectVector;
+QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 480, NULL);
+SDL_Renderer* ObjectManager::testRenderer;
+int ObjectManager::state;
+Player* ObjectManager::player;
+
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
 void walkForwardCommand::execute()
@@ -151,5 +165,10 @@ void walkLeftCommand::execute()
 void walkRightCommand::execute()
 {
 	//ObjectManager::player->walkRight(type);
+}
+
+void HandleMouseClickCommand::execute()
+{
+	
 }
 #pragma endregion

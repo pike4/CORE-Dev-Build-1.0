@@ -25,6 +25,8 @@ public:
 	static void goToRunning();
 	static void goToInMenu();
 
+	static void handleMouseClick();
+
 	static void add(BaseObject* E);
 	static void start();
 	static void stop();
@@ -35,11 +37,13 @@ public:
 	static std::vector <BaseObject*>* getObjectVector();
 	static QuadTree quadTree;
 
-
+	static SDL_Renderer* testRenderer;
 	static Player* player;
 
 private:
 
 	static std::vector <Updatable*> UpdateVector;
 	static std::vector <BaseObject*> BaseObjectVector;
+
+
 };

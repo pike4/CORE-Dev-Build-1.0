@@ -72,9 +72,6 @@
     <ClInclude Include="H_Instances\Spinner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Interfaces\Manipulatable.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Instances\QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -82,6 +79,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Instances\ReflectiveWall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Interfaces\Manipulatable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,28 +140,13 @@
     <ClCompile Include="C_Instances\Subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\TextObjects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Interfaces\Manipulatable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Spinner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\Updatable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\BouncingBall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\ReflectiveWall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\BaseObject.cpp">
@@ -173,16 +158,13 @@
     <ClCompile Include="C_Instances\Game Objects\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\ReflectiveWall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\Spinner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\TextObjects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\Thing.cpp">
+    <ClCompile Include="C_Instances\Game Objects\ReflectiveWall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

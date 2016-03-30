@@ -20,6 +20,10 @@ public:
 	void destroyCollidable(Collidable*);
 	void update();
 
+	bool drawing;
+
+	SDL_Rect drawRects[4];
+
 	int getObjectCount();
 
 	int getRecursiveObjectCount();

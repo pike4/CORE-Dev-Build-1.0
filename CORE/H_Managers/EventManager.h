@@ -61,6 +61,26 @@ private:
 	static Subject*  down_KeyPress;
 #pragma endregion
 
+#pragma region Mouse Events
+	static Subject* mouse1Press;
+	static Subject* mouse1Release;
+	static Subject* mouse2Press;
+	static Subject* mouse2Release;
+	static Subject* mouse3Press;
+	static Subject* mouse3Release;
+	static Subject* mouse4Press;
+	static Subject* mouse4Release;
+	static Subject* mouse5Press;
+	static Subject* mouse5Release;
+	static Subject* scrollUp;
+	static Subject* scrollDown;
+	static Subject* mouseMotion;
+#pragma endregion
+
+#pragma region Joystick Events
+
+#pragma endregion
+
 
 /*enum events
 	{

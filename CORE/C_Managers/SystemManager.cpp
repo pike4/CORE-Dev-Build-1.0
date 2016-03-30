@@ -2,6 +2,7 @@
 #include "SystemManager.h"
 #include "ObjectManager.h"
 #include "StateManager.h"
+#include "Commands.h"
 
 void SystemManager::start()
 {
@@ -42,7 +43,7 @@ void SystemManager::updateRunning()
 	//updateTime();
 	updateQueue();
 	updateFPS();
-	printFPS();
+	//printFPS();
 }
 
 void SystemManager::updateInMenu()
@@ -143,3 +144,8 @@ Uint32 SystemManager::totalFrames;
 Timer SystemManager::FPSTimer;
 string SystemManager::buffer;
 int SystemManager::state;
+
+void MouseSendCommand::execute()
+{
+	printf("Mouse: %d, %d", point.x, point.y);
+}

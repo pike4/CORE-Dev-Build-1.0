@@ -1,5 +1,7 @@
 #include "QuadTree.h"
 #include "Collidable.h"
+#include "VideoManager.h"
+#include "ObjectManager.h"
 #include <vector>
 
 QuadTree::QuadTree(int aDepth, int x, int y, int width, int height, QuadTree* aParent)
@@ -39,6 +41,36 @@ void QuadTree::checkCollisions()
 	}
 
 	selfCheck(objectsInTree);
+
+	drawRects[0].x = frame.x;
+	drawRects[0].y = frame.y;
+	drawRects[0].w = frame.w;
+	drawRects[0].h = 10;
+
+	drawRects[1].x = frame.x;
+	drawRects[1].y = frame.y;
+	drawRects[1].w = 10;
+	drawRects[1].h = frame.h;
+
+	drawRects[2].x = frame.x + frame.w;
+	drawRects[2].y = frame.y;
+	drawRects[2].w = -10;
+	drawRects[2].h = frame.h;
+
+	drawRects[3].x = frame.x;
+	drawRects[3].y = frame.y + frame.h;
+	drawRects[3].w = frame.w;
+	drawRects[3].h = -10;
+
+
+
+	if (true)
+	{
+		for (int x = 0; x < 4; x++)
+		{
+			VideoManager::enqueue(new DrawRectCommand(drawRects[x]));
+		}
+	}
 }
 
 //Recursively check all objects in this node against all objects in each parent node up to and including the root
@@ -69,6 +101,8 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 				if (testPairCollision(obj1, obj2))
 				{
 					printf("Collision Detected\n");
+					obj1->onCollide(obj2);
+					obj2->onCollide(obj1);
 				}
 
 				else
@@ -117,8 +151,8 @@ void QuadTree::insert(Collidable* objectToAdd)
 			if (isWithin(objectToAdd->boundingBox, subTrees[x]->frame))
 			{
 				subTrees[x]->insert(objectToAdd);
+				return;
 			}
-			return;
 		}
 	}
 
@@ -253,14 +287,16 @@ void QuadTree::reorganize()
 			subTrees[i]->reorganize();
 		}
 
-		if (getRecursiveObjectCount() <= MAX_OBJECTS)
+		if (getRecursiveObjectCount() < MAX_OBJECTS)
 		{
+			int a = MAX_OBJECTS;
 			merge();
 		}
 	}
 
 	else if (objectsInTree.size() >= MAX_OBJECTS && currentDepth < MAX_DEPTH)
 	{
+		int a = MAX_OBJECTS;
 		split();
 	}
 
@@ -386,7 +422,6 @@ bool QuadTree::testPairCollision(Collidable* obj1, Collidable* obj2)
 {
 	if (isOverlapping(obj1->boundingBox, obj2->boundingBox))
 	{
-		printf("Bounding box intersection\t");
 		return true;
 	}
 

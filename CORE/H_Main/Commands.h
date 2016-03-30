@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "SDL.h"
 #include "SDL_Mixer.h"
 
 class Command
@@ -82,6 +83,19 @@ public:
 	}
 };
 
+class DrawRectCommand : public Command
+{
+public:
+	void execute();
+
+	SDL_Rect rect;
+
+	DrawRectCommand(SDL_Rect g)
+	{
+		rect = g;
+	}
+};
+
 #pragma endregion
 
 #pragma region ObjectManager commands
@@ -144,4 +158,35 @@ public:
 
 };
 
+class HandleMouseClickCommand : public Command
+{
+public:
+
+	void execute();
+
+	SDL_Point point;
+
+	HandleMouseClickCommand(int x, int y)
+	{
+		point.x = x;
+		point.y = y;
+	}
+};
+
+#pragma endregion
+
+#pragma region SystemManagerCommands
+class MouseSendCommand : public Command
+{
+public:
+	SDL_Point point;
+
+	void execute();
+
+	MouseSendCommand(SDL_Point mPoint)
+	{
+		point.x = mPoint.x;
+		point.y = mPoint.y;
+	}
+};
 #pragma endregion

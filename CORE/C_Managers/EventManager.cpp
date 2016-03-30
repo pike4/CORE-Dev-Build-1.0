@@ -1,6 +1,7 @@
 #include "EventManager.h"
 #include "Subject.h"
 #include "StateManager.h"
+#include "SystemManager.h"
 
 void EventManager::start()
 {
@@ -111,7 +112,9 @@ void EventManager::update()
 
 			case SDL_MOUSEBUTTONDOWN:
 			{
-				AudioManager::enqueue(new PlayCommand(pew));
+				SDL_Point point;
+				SDL_GetMouseState(&point.x, &point.y);
+				SystemManager::enqueue(new MouseSendCommand(point));
 				break;
 			}
 			}

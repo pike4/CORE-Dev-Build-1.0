@@ -1,10 +1,17 @@
 #pragma once
 #include "SDL.h"
 
+class BouncingBall;
+class Player;
 
 class Collidable
 {
 public:
+	static enum collidibleTypes
+	{
+		Wall, Entity, cPlayer, Button, Bullet, TriggerZone
+	};
+
 	SDL_Rect boundingBox;
 	SDL_Rect movementVector;
 
@@ -14,5 +21,7 @@ public:
 	int* prevXPtr;
 	int* prevYPtr;
 
-	void onCollide();
+	virtual void onCollide(Collidable*) = 0;
+	virtual void onCollide(BouncingBall*) = 0;
+	virtual void onCollide(Player*) = 0;
 };

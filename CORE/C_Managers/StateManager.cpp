@@ -28,7 +28,7 @@ void StateManager::start()
 
 	frameTimer = Timer();
 	lag = 0;
-	msPerFrame = 14;
+	msPerFrame = 100;
 }
 
 void StateManager::update()
@@ -46,7 +46,6 @@ void StateManager::update()
 	}
 
 	frameTimer.updateTime();
-
 	VideoManager::update();
 }
 
