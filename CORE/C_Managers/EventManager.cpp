@@ -13,6 +13,10 @@ void EventManager::start()
 	down_KeyPress = s_KeyPress;
 	left_KeyPress = a_KeyPress;
 	right_KeyPress = d_KeyPress;
+
+	mouseMotion = new mouseMoved();
+	mouse1Press = new mouseDown();
+	mouse1Release = new mouseUp();
 }
 
 void EventManager::update()
@@ -110,11 +114,21 @@ void EventManager::update()
 				break;
 			}
 
+			case SDL_MOUSEMOTION:
+			{
+				mouseMotion->execute(0);
+				break;
+			}
+
 			case SDL_MOUSEBUTTONDOWN:
 			{
-				SDL_Point point;
-				SDL_GetMouseState(&point.x, &point.y);
-				SystemManager::enqueue(new MouseSendCommand(point));
+				mouse1Press->execute(0);
+				break;
+			}
+
+			case SDL_MOUSEBUTTONUP:
+			{
+				mouse1Release->execute(0);
 				break;
 			}
 			}
@@ -158,4 +172,20 @@ Subject* EventManager::left_KeyPress;
 Subject* EventManager::right_KeyPress;
 Subject* EventManager::up_KeyPress;
 Subject* EventManager::down_KeyPress;
+#pragma endregion
+
+#pragma region Mouse Event Definitions
+Subject* EventManager::mouse1Press;
+Subject* EventManager::mouse1Release;
+Subject* EventManager::mouse2Press;
+Subject* EventManager::mouse2Release;
+Subject* EventManager::mouse3Press;
+Subject* EventManager::mouse3Release;
+Subject* EventManager::mouse4Press;
+Subject* EventManager::mouse4Release;
+Subject* EventManager::mouse5Press;
+Subject* EventManager::mouse5Release;
+Subject* EventManager::scrollUp;
+Subject* EventManager::scrollDown;
+Subject* EventManager::mouseMotion;
 #pragma endregion

@@ -7,6 +7,8 @@
 #include "Updatable.h"
 #include "QuadTree.h"
 #include "Collidable.h"
+#include "Cursor.h"
+#include "GUI.h"
 
 class ObjectManager : public Manager
 {
@@ -39,11 +41,12 @@ public:
 
 	static SDL_Renderer* testRenderer;
 	static Player* player;
+	static Cursor* mouse;
+	static GUI* currentGUI;
+	static GUI gui;
 
 private:
 
 	static std::vector <Updatable*> UpdateVector;
 	static std::vector <BaseObject*> BaseObjectVector;
-
-
 };

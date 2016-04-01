@@ -100,14 +100,13 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 			{
 				if (testPairCollision(obj1, obj2))
 				{
-					printf("Collision Detected\n");
 					obj1->onCollide(obj2);
 					obj2->onCollide(obj1);
 				}
 
 				else
 				{
-					printf("\nNo Collision was detected\n");
+					//printf("\nNo Collision was detected\n");
 				}
 			}
 		}
@@ -126,12 +125,12 @@ void QuadTree::checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*
 			{
 				if (testPairCollision(obj1, obj2))
 				{
-					printf("Collision detected in parent\n");
+					//printf("Collision detected in parent\n");
 				}
 
 				else
 				{
-					printf("No collision was detected in the parent\n");
+					//printf("No collision was detected in the parent\n");
 				}
 			}
 		}
@@ -427,10 +426,10 @@ bool QuadTree::testPairCollision(Collidable* obj1, Collidable* obj2)
 
 	else if (isOverlapping(obj1->movementVector, obj2->movementVector))
 	{
-		printf("Position Box intersection\t");
+		//printf("Position Box intersection\t");
 		if (PositionVectorIntersect(obj1, obj2))
 		{
-			printf("Vector have crossed\t");
+			//printf("Vector have crossed\t");
 			return true;
 		}
 	}

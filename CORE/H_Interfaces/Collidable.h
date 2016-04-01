@@ -3,14 +3,17 @@
 
 class BouncingBall;
 class Player;
+class Cursor;
 
 class Collidable
 {
 public:
 	static enum collidibleTypes
 	{
-		Wall, Entity, cPlayer, Button, Bullet, TriggerZone
+		eWall, Entity, cPlayer, Button, Bullet, TriggerZone, cCursor
 	};
+
+	int collidableType;
 
 	SDL_Rect boundingBox;
 	SDL_Rect movementVector;
@@ -21,7 +24,8 @@ public:
 	int* prevXPtr;
 	int* prevYPtr;
 
-	virtual void onCollide(Collidable*) = 0;
+	void onCollide(Collidable*);
 	virtual void onCollide(BouncingBall*) = 0;
 	virtual void onCollide(Player*) = 0;
+	virtual void onCollide(Cursor*) = 0;
 };

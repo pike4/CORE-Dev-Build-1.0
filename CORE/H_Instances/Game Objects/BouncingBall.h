@@ -4,6 +4,8 @@
 #include "SDL.h"
 #include "Player.h"
 
+class Cursor;
+
 class BouncingBall : public Mobile, public Collidable
 {
 public:
@@ -13,8 +15,8 @@ public:
 	virtual void draw(SDL_Renderer* renderer);
 	virtual ~BouncingBall();
 
-	void onCollide(Collidable*);
 	void onCollide(Player* h);
 	void onCollide(BouncingBall* h);
+	void onCollide(Cursor* h);
 
 };

@@ -16,3 +16,22 @@ Collidable::~Collidable()
 {
 	printf("a\n");
 }
+
+void Collidable::onCollide(Collidable* C)
+{
+	switch (C->collidableType)
+	{
+	case Entity:
+		onCollide((BouncingBall*)C);
+		break;
+	case cCursor:
+		onCollide((Cursor*)C);
+		break;
+	case eWall:
+		break;
+
+	default:
+		break;
+
+	}
+}

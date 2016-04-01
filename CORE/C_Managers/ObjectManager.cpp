@@ -1,6 +1,8 @@
 #include "ObjectManager.h"
 #include "Commands.h"
 #include "StateManager.h"
+#include "BouncingBall.h"
+#include "GUI.h"
 #include <vector>
 
 
@@ -29,7 +31,6 @@ void ObjectManager::update()
 		break;
 	}
 }
-
 
 void ObjectManager::updateRunning()
 {
@@ -62,7 +63,13 @@ void ObjectManager::updateBlocking()
 
 void ObjectManager::start()
 {
-	
+	mouse = new Cursor(0, 0, 1, 1);
+	SDL_GetMouseState(&mouse->boundingBox.x, &mouse->boundingBox.y);
+	mouse->prevXPtr = &mouse->boundingBox.x;
+	mouse->prevYPtr = &mouse->boundingBox.y;
+
+	gui = GUI();
+	currentGUI = &gui;
 }
 
 #pragma endregion
@@ -144,6 +151,9 @@ QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 480, NULL);
 SDL_Renderer* ObjectManager::testRenderer;
 int ObjectManager::state;
 Player* ObjectManager::player;
+Cursor* ObjectManager::mouse;
+GUI ObjectManager::gui;
+GUI* ObjectManager::currentGUI;
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
@@ -169,6 +179,26 @@ void walkRightCommand::execute()
 
 void HandleMouseClickCommand::execute()
 {
-	
+	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
+	{
+		ObjectManager::currentGUI->checkMouseDown();
+	}
+}
+
+void HandleMouseMoveCommand::execute()
+{
+	SDL_GetMouseState(&ObjectManager::mouse->boundingBox.x, &ObjectManager::mouse->boundingBox.y);
+	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
+	{
+		ObjectManager::currentGUI->checkMousePos();
+	}
+}
+
+void HandleMouseUpCommand::execute()
+{
+	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
+	{
+		ObjectManager::currentGUI->checkMouseUp();
+	}
 }
 #pragma endregion

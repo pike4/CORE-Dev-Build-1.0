@@ -30,3 +30,18 @@ class collisionEvent : public Subject
 {
 	virtual void execute();
 };
+
+class mouseMoved : public Subject
+{
+	virtual void execute(int type);
+};
+
+class mouseDown : public Subject
+{
+	virtual void execute(int type);
+};
+
+class mouseUp : public Subject
+{
+	virtual void execute(int type);
+};

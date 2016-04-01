@@ -13,6 +13,7 @@
 #include "TextObjects.h"
 #include "BouncingBall.h"
 #include "Spinner.h"
+#include "Button.h"
 
 #undef main
 
@@ -30,6 +31,11 @@ int main()
 	SDL_Texture* cage = VideoManager::loadTexture("Assets/Sprites/cage.png");
 	SDL_Texture* peepee = VideoManager::loadTexture("Assets/Sprites/peepee.png");
 	SDL_Texture* ball = VideoManager::loadTexture("Assets/Sprites/IMG_BouncingBall.png");
+
+	SDL_Texture* hover = VideoManager::loadTexture("Assets/Sprites/ButtonHover.png");
+	SDL_Texture* held = VideoManager::loadTexture("Assets/Sprites/ButtonHeld.png");
+	SDL_Texture* def = VideoManager::loadTexture("Assets/Sprites/ButtonDefault.png");
+
 	Mix_Music* mega_Music = AudioManager::loadMusic("Assets/Music/a.ogg");
 	TTF_Font* sans = TTF_OpenFont("Assets/Fonts/comic.ttf", 12);
 	pew = AudioManager::loadChunk("Assets/Music/pew.wav");
@@ -57,12 +63,23 @@ int main()
 	ObjectManager::add(new Spinner(200, 350, fag, 20.0));
 	ObjectManager::add(new Spinner(400, 50, peepee, SDL_FLIP_NONE, 0, point, -10.0));*/
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		ObjectManager::add(new BouncingBall(100, 100, 8, 8, 0, 0, cage));
 	}
 
 	ObjectManager::add(new BouncingBall(100, 400, 8, 8, 0, -2, cage));
+
+
+	Button a = Button(300, 300, 100, 100, def, hover, held);
+	Button b = Button(400, 200, 100, 100, def, hover, held);
+	std::vector<Button*> bb;
+	ObjectManager::add(&a);
+	ObjectManager::add(&b);
+	bb.push_back(&a);
+	Button array[2] = { a, b };
+	ObjectManager::currentGUI->buttons.push_back(&a);
+	ObjectManager::currentGUI->add(&b);
 
 	for (int i = 0; i < 20; i++)
 	{

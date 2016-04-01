@@ -1,12 +1,15 @@
 #include "BouncingBall.h"
 #include "VideoManager.h"
 #include "Math.h"
+#include "Cursor.h"
 
 BouncingBall::BouncingBall(int x, int y, int w, int h, SDL_Texture* mTexture)
 	:Mobile(x, y, mTexture), Collidable(x, y, w, h)
 {
 	xVel = 0;
 	yVel = 0;
+
+	collidableType = Entity;
 }
 
 BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVel, SDL_Texture* mTexture)
@@ -19,6 +22,8 @@ BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVe
 
 	prevXPtr = &prevX;
 	prevYPtr = &prevY;
+
+	collidableType = Entity;
 }
 
 void BouncingBall::update()
@@ -65,11 +70,6 @@ void BouncingBall::draw(SDL_Renderer* renderer)
 	VideoManager::applyTexture(x, y, renderer, mTexture);
 }
 
-void BouncingBall::onCollide(Collidable* h)
-{
-	printf("");
-}
-
 void BouncingBall::onCollide(Player* h)
 {
 
@@ -78,6 +78,11 @@ void BouncingBall::onCollide(Player* h)
 void BouncingBall::onCollide(BouncingBall* h)
 {
 
+}
+
+void BouncingBall::onCollide(Cursor* C)
+{
+	
 }
 
 BouncingBall::~BouncingBall(){}

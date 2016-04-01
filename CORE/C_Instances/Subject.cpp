@@ -30,3 +30,18 @@ void collisionEvent::execute()
 {
 
 }
+
+void mouseMoved::execute(int type)
+{
+	ObjectManager::enqueue(new HandleMouseMoveCommand());
+}
+
+void mouseDown::execute(int type)
+{
+	ObjectManager::enqueue(new HandleMouseClickCommand(0, 0));
+}
+
+void mouseUp::execute(int type)
+{
+	ObjectManager::enqueue(new HandleMouseUpCommand());
+}

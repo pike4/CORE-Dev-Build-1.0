@@ -173,6 +173,16 @@ public:
 	}
 };
 
+class HandleMouseMoveCommand : public Command
+{
+	void execute();
+};
+
+class HandleMouseUpCommand : public Command
+{
+	void execute();
+};
+
 #pragma endregion
 
 #pragma region SystemManagerCommands
