@@ -1,5 +1,6 @@
 #pragma once
 #include "Commands.h"
+#include "ManagerArgs.h"
 #include <queue>
 
 class Manager
@@ -16,7 +17,9 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void start() = 0;
+	virtual bool start() = 0;
+
+	virtual bool start(ManagerArgs*) = 0;
 
 	virtual void stop() = 0;
 

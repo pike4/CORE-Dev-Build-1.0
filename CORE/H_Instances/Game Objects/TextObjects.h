@@ -1,3 +1,4 @@
+#pragma once
 #include "Visible.h"
 #include "BaseObject.h"
 #include "SDL_ttf.h"

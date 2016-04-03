@@ -93,6 +93,12 @@
     <ClInclude Include="H_Instances\GUI Objects\GUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -183,6 +189,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

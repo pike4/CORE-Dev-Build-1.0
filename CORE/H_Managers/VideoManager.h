@@ -6,7 +6,9 @@
 #include <string>
 #include <queue>
 #include "Commands.h"
+#include "GUI.h"
 #include "Visible.h"
+#include "ManagerArgs.h"
 
 using namespace std;
 
@@ -28,6 +30,7 @@ public:
 
 	//TODO: Make this an override method for the manager abstract class
 	static bool start();
+	static bool start(VideoManagerArgs* args);
 
 	//Initialize SDL and its subsystems
 	static bool InitSDL();
@@ -54,6 +57,7 @@ public:
 		static SDL_Texture* loadTexture(string fileName);
 
 	static void update();
+	static void drawCurrentGUI();
 
 	static void updateRunning();
 	static void updateInMenu();
@@ -66,7 +70,9 @@ public:
 	static void goToInMenu();
 
 	static void addVisible(Visible* visible);
+	static GUI* currentGUI;
 
 private:
-	static std::vector <Visible*> drawingVector;
+	static std::vector <Visible*> gameObjectDrawingVector;
+	static std::vector <Visible*>* GUIDrawingVector;
 };

@@ -14,6 +14,6 @@ public:
 	void checkMouseDown();
 	void checkMouseUp();
 
-	void add(Button buttonsToAdd[], int numButtons);
+	void add(Button* buttonsToAdd[], int numButtons);
 	void add(Button* buttonToAdd);
 };

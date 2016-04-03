@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
+    <IncludePath>.\C_Instances\CORE Objects;.\H_Instances\CORE Objects;.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,9 +77,11 @@
   <ItemGroup>
     <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Cursor.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\GUI.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp" />
     <ClCompile Include="C_Interfaces\BaseObject.cpp" />
     <ClCompile Include="C_Instances\Game Objects\BouncingBall.cpp" />
     <ClCompile Include="C_Instances\CoreEvent.cpp" />
@@ -105,9 +107,11 @@
     <ClCompile Include="C_Managers\VideoManager.cpp" />
     <ClCompile Include="C_Interfaces\Visible.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
+    <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Game Objects\Cursor.h" />
     <ClInclude Include="H_Instances\GUI Objects\Button.h" />
     <ClInclude Include="H_Instances\GUI Objects\GUI.h" />
+    <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h" />
     <ClInclude Include="H_Instances\QuadTree.h" />
     <ClInclude Include="H_Instances\ReflectiveWall.h" />
     <ClInclude Include="H_Interfaces\Manipulatable.h" />

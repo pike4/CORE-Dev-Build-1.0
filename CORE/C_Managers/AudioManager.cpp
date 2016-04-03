@@ -1,5 +1,6 @@
 #include "AudioManager.h"
 #include "SDL_Mixer.h"
+#include "ManagerArgs.h"
 #include <string>
 
 

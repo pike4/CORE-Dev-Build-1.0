@@ -32,11 +32,11 @@ void GUI::checkMousePos()
 	}
 }
 
-void GUI::add(Button buttonsToAdd[], int numButtons)
+void GUI::add(Button* buttonsToAdd[], int numButtons)
 {
 	for (int i = 0; i < numButtons; i++)
 	{
-		buttons.push_back(&buttonsToAdd[i]);
+		buttons.push_back(buttonsToAdd[i]);
 	}
 }
 

@@ -10,6 +10,7 @@ public:
 	SDL_Texture* mTexture;
 
 	Visible(SDL_Texture* texture);
+	Visible();
 	virtual ~Visible();
 
 	virtual void draw(SDL_Renderer* renderer);

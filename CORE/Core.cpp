@@ -14,6 +14,7 @@
 #include "BouncingBall.h"
 #include "Spinner.h"
 #include "Button.h"
+#include "NavigationButton.h"
 
 #undef main
 
@@ -32,15 +33,15 @@ int main()
 	SDL_Texture* peepee = VideoManager::loadTexture("Assets/Sprites/peepee.png");
 	SDL_Texture* ball = VideoManager::loadTexture("Assets/Sprites/IMG_BouncingBall.png");
 
-	SDL_Texture* hover = VideoManager::loadTexture("Assets/Sprites/ButtonHover.png");
-	SDL_Texture* held = VideoManager::loadTexture("Assets/Sprites/ButtonHeld.png");
-	SDL_Texture* def = VideoManager::loadTexture("Assets/Sprites/ButtonDefault.png");
-
+	SDL_Texture* hover = VideoManager::loadTexture("Assets/Sprites/BlankHover.png");
+	SDL_Texture* held = VideoManager::loadTexture("Assets/Sprites/BlankHeld.png");
+	SDL_Texture* def = VideoManager::loadTexture("Assets/Sprites/BlankDefault.png");
+	
 	Mix_Music* mega_Music = AudioManager::loadMusic("Assets/Music/a.ogg");
 	TTF_Font* sans = TTF_OpenFont("Assets/Fonts/comic.ttf", 12);
+	TTF_Font* bigSans = TTF_OpenFont("Assets/Fonts/comic.ttf", 50);
 	pew = AudioManager::loadChunk("Assets/Music/pew.wav");
-
-	AudioManager::startMusicLoop(mega_Music);
+	//AudioManager::startMusicLoop(mega_Music);
 
 	
 
@@ -63,23 +64,42 @@ int main()
 	ObjectManager::add(new Spinner(200, 350, fag, 20.0));
 	ObjectManager::add(new Spinner(400, 50, peepee, SDL_FLIP_NONE, 0, point, -10.0));*/
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		ObjectManager::add(new BouncingBall(100, 100, 8, 8, 0, 0, cage));
 	}
 
 	ObjectManager::add(new BouncingBall(100, 400, 8, 8, 0, -2, cage));
 
+	SDL_Color d;
+	d.r = 255;
+	d.b = 0;
+	d.g = 0;
+	d.a = 255;
 
-	Button a = Button(300, 300, 100, 100, def, hover, held);
-	Button b = Button(400, 200, 100, 100, def, hover, held);
+	Button a = Button(400, 300, def, hover, held, "WORD", sans, d,  pew);
+	Button b = Button(400, 200, def, hover, held, "ANOTHER", NULL, d,  NULL);
+	GUI gui2 = GUI();
+
+	NavigationButton back = NavigationButton(400, 100, def, hover, held, "BACK", bigSans, d, pew, ObjectManager::currentGUI);
+
+	Button c = Button(400, 200, def, hover, held, "WELL", bigSans, d, pew);
+	Button e = Button(400, 300, def, hover, held, "OK THEN", sans, d, pew);
+
+	NavigationButton start = NavigationButton(400, 100, def, hover, held, "START", sans, d, pew, &gui2);
+	
+	gui2.add(&c);
+	gui2.add(&e);
+	gui2.add(&back);
+
 	std::vector<Button*> bb;
 	ObjectManager::add(&a);
 	ObjectManager::add(&b);
 	bb.push_back(&a);
-	Button array[2] = { a, b };
-	ObjectManager::currentGUI->buttons.push_back(&a);
-	ObjectManager::currentGUI->add(&b);
+	Button* array[3] = { &a, &b};
+	ObjectManager::currentGUI->add(array, 2);
+	ObjectManager::currentGUI->add(&start);
+	VideoManager::currentGUI = ObjectManager::currentGUI;
 
 	for (int i = 0; i < 20; i++)
 	{

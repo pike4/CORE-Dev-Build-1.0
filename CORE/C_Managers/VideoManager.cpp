@@ -18,7 +18,24 @@ bool VideoManager::start()
 		return false;
 	}
 
-	if (!InitWindow(640, 480, "Deez nutz", false))
+	if (!InitWindow(640, 480, "CORE", false))
+	{
+		printf("Window Initialization Failed!");
+		return false;
+	}
+
+	return true;
+}
+
+bool VideoManager::start(VideoManagerArgs* args)
+{
+	if (!InitSDL())
+	{
+		printf("SDL Initialization failed!");
+		return false;
+	}
+
+	if (!InitWindow(args->screenWidth, args->screenHeight, args->windowCaption, args->fullscreen))
 	{
 		printf("Window Initialization Failed!");
 		return false;
@@ -53,7 +70,7 @@ bool VideoManager::InitSDL()
 
 bool VideoManager::InitWindow(int w, int h, std::string name, bool isFullscreen)
 {
-	mWindow = SDL_CreateWindow("Deez Nuts", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
+	mWindow = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
 	mScreenSurface = SDL_GetWindowSurface(mWindow);
 	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
 
@@ -86,6 +103,7 @@ void VideoManager::update()
 	case CORE_RUNNING:
 		updateRunning();
 		break;
+
 	case CORE_IN_MENU:
 		updateInMenu();
 		break;
@@ -97,7 +115,17 @@ void VideoManager::update()
 	case CORE_PAUSED:
 		updatePaused();
 		break;
+	}
+}
 
+void VideoManager::drawCurrentGUI()
+{
+	if (currentGUI != NULL)
+	{
+		for (int i = 0; i < currentGUI->buttons.size(); i++)
+		{
+			currentGUI->buttons[i]->draw(mRenderer);
+		}
 	}
 }
 
@@ -105,15 +133,15 @@ void VideoManager::updateRunning()
 {
 	SDL_RenderClear(mRenderer);
 
-
-
-	for (int x = 0; x < drawingVector.size(); x++)
+	for (int x = 0; x < gameObjectDrawingVector.size(); x++)
 	{
 		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
-		drawingVector[x]->draw(mRenderer);
+		gameObjectDrawingVector[x]->draw(mRenderer);
 	}
 
-	//SDL_RenderPresent(mRenderer);
+	drawCurrentGUI();
+
+	SDL_RenderPresent(mRenderer);
 	updateQueue();
 }
 
@@ -157,16 +185,18 @@ void VideoManager::goToPaused()
 
 void VideoManager::addVisible(Visible* visible)
 {
-	drawingVector.push_back(visible);
+	gameObjectDrawingVector.push_back(visible);
 }
+
+
 
 void VideoManager::removeVisible(Visible* V)
 {
-	for (int x = 0; x < drawingVector.size(); x++)
+	for (int x = 0; x < gameObjectDrawingVector.size(); x++)
 	{
-		if (drawingVector[x] == V)
+		if (gameObjectDrawingVector[x] == V)
 		{
-			drawingVector.erase(drawingVector.begin() + x);
+			gameObjectDrawingVector.erase(gameObjectDrawingVector.begin() + x);
 			return;
 		}
 	}
@@ -177,6 +207,7 @@ void VideoManager::removeVisible(Visible* V)
 #pragma region Draw Methods
 void VideoManager::setScreenBackground(int r, int g, int b)
 {
+	//This shouldn't be necessary. SDL_RenderClear handles this
 	SDL_Rect scrRect;
 
 	scrRect.x = 0;
@@ -268,7 +299,9 @@ SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;
 SDL_Renderer* VideoManager::mRenderer2;
 SDL_Surface* VideoManager::mScreenSurface;
-std::vector <Visible*> VideoManager::drawingVector;
+std::vector <Visible*> VideoManager::gameObjectDrawingVector;
+std::vector <Visible*>* VideoManager::GUIDrawingVector;
+GUI* VideoManager::currentGUI;
 
 int VideoManager::state;
 

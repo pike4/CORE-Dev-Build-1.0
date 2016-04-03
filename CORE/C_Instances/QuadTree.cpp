@@ -68,7 +68,7 @@ void QuadTree::checkCollisions()
 	{
 		for (int x = 0; x < 4; x++)
 		{
-			VideoManager::enqueue(new DrawRectCommand(drawRects[x]));
+			//VideoManager::enqueue(new DrawRectCommand(drawRects[x]));
 		}
 	}
 }
