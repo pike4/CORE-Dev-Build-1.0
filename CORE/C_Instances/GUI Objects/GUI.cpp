@@ -25,8 +25,6 @@ void GUI::checkMousePos()
 			else
 			{
 				button->mouseLeave();
-
-				printf("Mouse x: %d, y: %d\n ", x, y);
 			}
 		}
 	}

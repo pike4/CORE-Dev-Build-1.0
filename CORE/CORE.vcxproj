@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\C_Instances\CORE Objects;.\H_Instances\CORE Objects;.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
+    <IncludePath>.\XML Parsing\C_XMLParsing;.\XML Parsing\H_XMLParsing;.\C_Instances\CORE Objects;.\H_Instances\CORE Objects;.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;.\PugiXML;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,6 +98,7 @@
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
     <ClCompile Include="C_Interfaces\Updatable.cpp" />
     <ClCompile Include="C_Main\Commands.cpp" />
+    <ClCompile Include="C_Main\ResourceHashtable.cpp" />
     <ClCompile Include="C_Managers\EventManager.cpp" />
     <ClCompile Include="C_Managers\ObjectManager.cpp" />
     <ClCompile Include="C_Managers\AudioManager.cpp" />
@@ -106,6 +107,9 @@
     <ClCompile Include="C_Managers\_Manager.cpp" />
     <ClCompile Include="C_Managers\VideoManager.cpp" />
     <ClCompile Include="C_Interfaces\Visible.cpp" />
+    <ClCompile Include="PugiXML\pugixml.cpp" />
+    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Reader.cpp" />
+    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Game Objects\Cursor.h" />
@@ -116,6 +120,12 @@
     <ClInclude Include="H_Instances\ReflectiveWall.h" />
     <ClInclude Include="H_Interfaces\Manipulatable.h" />
     <ClCompile Include="Loggables\Loggables.cpp" />
+    <ClInclude Include="H_Interfaces\Readable.h" />
+    <ClInclude Include="H_Main\ResourceHashtable.h" />
+    <ClInclude Include="PugiXML\pugiconfig.hpp" />
+    <ClInclude Include="PugiXML\pugixml.hpp" />
+    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Reader.h" />
+    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetsManifest.h" />

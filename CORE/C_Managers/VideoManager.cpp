@@ -272,29 +272,6 @@ void VideoManager::setScreenBackground(std::string filename)
 
 #pragma endregion
 
-SDL_Texture* VideoManager::loadTexture(string fileName)
-{
-	SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
-	SDL_Texture* optimizedSurface = NULL;
-
-	if (loadedTexture == NULL)
-	{
-		printf("Could not find image\n");
-	}
-
-	else
-	{
-
-		optimizedSurface = SDL_CreateTextureFromSurface(mRenderer, loadedTexture);
-
-		SDL_FreeSurface(loadedTexture);
-	}
-
-	return optimizedSurface;
-}
-
-
-
 SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;
 SDL_Renderer* VideoManager::mRenderer2;

@@ -99,6 +99,24 @@
     <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PugiXML\pugiconfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXML\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Writer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Interfaces\Readable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\ResourceHashtable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -195,6 +213,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PugiXML\pugixml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Main\ResourceHashtable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

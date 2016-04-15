@@ -54,7 +54,6 @@ public:
 	static void removeVisible(Visible* V);
 #pragma endregion
 
-		static SDL_Texture* loadTexture(string fileName);
 
 	static void update();
 	static void drawCurrentGUI();
