@@ -28,6 +28,26 @@ Manipulatable::Manipulatable(SDL_Texture* texture, SDL_RendererFlip aFlip, doubl
 	point = aPoint;
 }
 
+Manipulatable::Manipulatable(pugi::xml_node node, std::vector<Visible*>* drawVector) : Visible(node, drawVector)
+{
+	int rot, pointX, pointY;
+	char* string_Rot = (char*)node.child("rotation").first_child().value();
+	char* string_pointX = (char*)node.child("pointX").first_child().value();
+	char* string_pointY = (char*)node.child("pointY").first_child().value();
+
+	try
+	{ rot = stoi(string_Rot); }
+
+	catch (exception)
+	{rot = 0;}
+
+	try
+	{ pointX = stoi(string_pointX); }
+
+	catch(exception)
+	{pointY = stoi(string_pointY);}
+}
+
 //New Manipulatable at default flip and rotation
 Manipulatable::Manipulatable(SDL_Texture* texture) : Visible(texture)
 {

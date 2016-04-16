@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "BaseObject.h"
 #include "pugixml.hpp"
+#include <vector>
 
 
 
@@ -11,7 +12,7 @@ public:
 	SDL_Texture* mTexture;
 
 	Visible(SDL_Texture* texture);
-	Visible(pugi::xml_node);
+	Visible(pugi::xml_node, std::vector<Visible*>*);
 	Visible();
 	virtual ~Visible();
 

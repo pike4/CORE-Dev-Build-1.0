@@ -16,6 +16,8 @@ public:
 
 	Manipulatable(SDL_Texture* texture, SDL_RendererFlip aFlip, double aRotation, SDL_Point aPoint);
 
+	Manipulatable(pugi::xml_node node, std::vector<Visible*>* drawVector);
+
 private:
 	double rotation;
 	SDL_RendererFlip flip;

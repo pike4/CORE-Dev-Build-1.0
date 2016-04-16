@@ -1,0 +1,11 @@
+<Objects>
+  <BouncingBall>
+    <x>100</x>
+    <y>100</y>
+    <texture>Assets/Sprites/IMG_BouncingBall.png</texture>
+    <w>50</w>
+    <h>50</h>
+    <xVel>2</xVel>
+    <yVel>-1</yVel>
+  </BouncingBall>
+</Objects>

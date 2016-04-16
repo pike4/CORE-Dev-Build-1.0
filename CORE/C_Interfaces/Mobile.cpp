@@ -40,6 +40,11 @@ Mobile::Mobile(int x, int y, SDL_Texture* texture) : Visible(texture), BaseObjec
 	//All instantiation taken care of by parents. Free loading prick.
 }
 
+Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>*  updateVector) : Visible(node, drawVector), BaseObject(node, objectVector)
+{
+	//Same
+}
+
 Mobile::~Mobile()
 {
 	

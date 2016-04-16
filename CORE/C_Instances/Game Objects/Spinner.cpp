@@ -31,6 +31,18 @@ Spinner::Spinner(int x, int y, SDL_Texture* aTexture)
 	this->rotationPerTick = 0;
 }
 
+Spinner::Spinner(pugi::xml_node node, std::vector<BaseObject*>* objectVec, std::vector<Visible*>* drawVec, std::vector<Updatable*>* updateVec)
+	:BaseObject(node, objectVec), Manipulatable(node, drawVec), Updatable(updateVec)
+{
+	int rot;
+	char* rotString = (char*)node.child("rotation_speed").first_child().value();
+
+	try { rot = stoi(rotString); }
+	catch(exception)
+	{ rot = 0; }
+
+}
+
 int Spinner::getX()
 {
 	return x;

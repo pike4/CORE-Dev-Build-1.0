@@ -26,6 +26,31 @@ BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVe
 	collidableType = Entity;
 }
 
+BouncingBall::BouncingBall(pugi::xml_node node, std::vector<BaseObject*>* objectVec, std::vector<Visible*>* drawVec, std::vector<Updatable*>* updateVec)
+	:Mobile(node, objectVec, drawVec, updateVec), Collidable(node)
+{
+	int load_xVel, loadyVel;
+
+	char* str_xVel = (char*)node.child("xVel").first_child().value();
+	char* str_yVel = (char*)node.child("yVel").first_child().value();
+
+	try { xVel = stoi(str_xVel); }
+	catch(exception)
+	{ xVel = 0; }
+
+	try { yVel = stoi(str_yVel); }
+	catch (exception)
+	{ yVel = 0; }
+
+
+	SDL_QueryTexture(mTexture, NULL, NULL, &boundingBox.w, &boundingBox.h);
+
+	prevXPtr = &prevX;
+	prevYPtr = &prevY;
+
+	collidableType = Entity;
+}
+
 void BouncingBall::update()
 {
 	prevX = x;

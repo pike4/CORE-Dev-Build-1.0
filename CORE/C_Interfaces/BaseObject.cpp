@@ -1,5 +1,6 @@
 #include "BaseObject.h"
 #include "pugixml.hpp"
+#include <vector>
 
 BaseObject::BaseObject(int x, int y)
 {
@@ -7,8 +8,10 @@ BaseObject::BaseObject(int x, int y)
 	this->y = y;
 }
 
-BaseObject::BaseObject(pugi::xml_node node)
+BaseObject::BaseObject(pugi::xml_node node, std::vector<BaseObject*>* objectVector)
 {
 	x = atoi(node.child("x").first_child().value());
 	y = atoi(node.child("y").first_child().value());
+
+	objectVector->push_back(this);
 }

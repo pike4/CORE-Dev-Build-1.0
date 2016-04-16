@@ -2,11 +2,11 @@
 #include "SystemManager.h"
 #include "ObjectManager.h"
 #include "StateManager.h"
+#include "BouncingBall.h"
 #include "AudioManager.h"
 #include "Commands.h"
 #include "pugixml.hpp"
 #include<map>
-
 void SystemManager::start()
 {
 	curTime = 0;
@@ -137,6 +137,23 @@ void SystemManager::printObjectCount()
 void SystemManager::flush()
 {
 	
+}
+
+void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector)
+{
+	pugi::xml_document doc;
+
+	pugi::xml_parse_result result = doc.load_file(fileName);
+
+	pugi::xml_node node = doc.first_child();
+	
+	do
+	{
+		if (strcmp(node.name(), "BouncingBall"))
+		{
+			new BouncingBall(node, objectVector, drawVector, updateVector);
+		}
+	} while (node.name() != "");
 }
 
 SDL_Texture* SystemManager::loadTexture(char* fileName)

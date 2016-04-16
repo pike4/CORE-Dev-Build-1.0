@@ -44,6 +44,8 @@ public:
 	static Mix_Chunk* loadChunk(char* fileName);
 	static TTF_Font* loadFont(char* fileName);
 
+	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*);
+
 	static SDL_Texture* assignTexture(char* fileName);
 	static Mix_Chunk* assignSound(char* fileName);
 	static TTF_Font* assignFont(char* fileName);

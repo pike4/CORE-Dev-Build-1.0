@@ -1,5 +1,6 @@
 #include "Visible.h"
 #include "VideoManager.h"
+#include "SystemManager.h"
 #include "BaseObject.h"
 
 Visible::Visible()
@@ -12,6 +13,13 @@ Visible::Visible(SDL_Texture* texture)
 	this->mTexture = texture;
 
 	VideoManager::addVisible(this);
+}
+
+Visible::Visible(pugi::xml_node node, std::vector<Visible*>* drawVector)
+{
+	mTexture = SystemManager::assignTexture((char*)node.child("texture").first_child().value());
+
+	drawVector->push_back(this);
 }
 
 void Visible::draw(SDL_Renderer* renderer)
