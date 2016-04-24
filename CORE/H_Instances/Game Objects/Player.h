@@ -9,6 +9,8 @@ class Player : public Mobile, public Collidable
 public:
 	Player(int x, int y, int w, int h, SDL_Texture* texture);
 
+	Player(pugi::xml_node node, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*, std::vector<Collidable*>*);
+
 	void walkUp(int type);
 	void walkDown(int type);
 	void walkLeft(int type);
@@ -24,11 +26,13 @@ public:
 	bool walkingLeft;
 	bool walkingRight;
 
-	std::stack<int> xDirectionStack;
-	std::stack<int> yDirectionStack;
-
 	void move();
 	void update();
+
+	void onCollide(Collidable*);
+	virtual void onCollide(BouncingBall*);
+	virtual void onCollide(Player*);
+	virtual void onCollide(Cursor*);
 
 private:
 	double walkSpeed;

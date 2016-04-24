@@ -8,6 +8,7 @@
 #include <map>
 #include <fstream>
 #include "pugixml.hpp""
+#include "NavigationButton.h"
 
 #pragma once
 
@@ -42,13 +43,15 @@ public:
 	static SDL_Texture* loadTexture(char* fileName);
 	static Mix_Music* loadMusic(char* fileName);
 	static Mix_Chunk* loadChunk(char* fileName);
-	static TTF_Font* loadFont(char* fileName);
+	static TTF_Font* loadFont(char* fileName, int size);
 
-	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*);
+	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*, std::vector<Collidable*>*);
+
+	static void loadMenuSystemFromFile(char* fileName);
 
 	static SDL_Texture* assignTexture(char* fileName);
 	static Mix_Chunk* assignSound(char* fileName);
-	static TTF_Font* assignFont(char* fileName);
+	static TTF_Font* assignFont(char* fileName, int size);
 
 	static void updateFPS();
 
@@ -68,8 +71,9 @@ public:
 	static void drawableCount();
 
 
-	static GUI* GUI_LoadFromFile(pugi::xml_node node);
+	static MenuScreen* GUI_LoadFromFile(pugi::xml_node node);
 	static Button* Button_LoadFromFile(pugi::xml_node node);
+	static NavigationButton* NavButton_LoadFromFile(pugi::xml_node);
 
 private:
 	static Uint32 curTime;

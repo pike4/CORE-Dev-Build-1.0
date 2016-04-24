@@ -26,8 +26,8 @@ BouncingBall::BouncingBall(int x, int y, int w, int h, double aXVel, double aYVe
 	collidableType = Entity;
 }
 
-BouncingBall::BouncingBall(pugi::xml_node node, std::vector<BaseObject*>* objectVec, std::vector<Visible*>* drawVec, std::vector<Updatable*>* updateVec)
-	:Mobile(node, objectVec, drawVec, updateVec), Collidable(node)
+BouncingBall::BouncingBall(pugi::xml_node node, std::vector<BaseObject*>* objectVec, std::vector<Visible*>* drawVec, std::vector<Updatable*>* updateVec, std::vector<Collidable*>* collidableVector)
+	:Mobile(node, objectVec, drawVec, updateVec), Collidable(node, collidableVector)
 {
 	int load_xVel, loadyVel;
 

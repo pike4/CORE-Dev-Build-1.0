@@ -13,6 +13,8 @@ class Button : public BaseObject, public Updatable
 public:
 	Button(int x, int y, SDL_Texture* defaultTexture, SDL_Texture* hoverTexture, SDL_Texture* heldTexture, std::string text, TTF_Font* font, SDL_Color color,  Mix_Chunk* sound);
 
+	Button(pugi::xml_node node);
+
 	void onCollide(Visible*);
 	void onCollide(Player*);
 	void onCollide(Cursor*);

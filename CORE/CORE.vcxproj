@@ -52,6 +52,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ShowIncludes>true</ShowIncludes>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -78,10 +79,13 @@
     <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
+    <ClCompile Include="C_Instances\Environment.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Cursor.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
-    <ClCompile Include="C_Instances\GUI Objects\GUI.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\MenuScreen.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\MenuSystem.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp" />
+    <ClCompile Include="C_Instances\Room.cpp" />
     <ClCompile Include="C_Interfaces\BaseObject.cpp" />
     <ClCompile Include="C_Instances\Game Objects\BouncingBall.cpp" />
     <ClCompile Include="C_Instances\CoreEvent.cpp" />
@@ -112,9 +116,11 @@
     <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
+    <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\Cursor.h" />
     <ClInclude Include="H_Instances\GUI Objects\Button.h" />
-    <ClInclude Include="H_Instances\GUI Objects\GUI.h" />
+    <ClInclude Include="H_Instances\GUI Objects\MenuScreen.h" />
+    <ClInclude Include="H_Instances\GUI Objects\MenuSystem.h" />
     <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h" />
     <ClInclude Include="H_Instances\QuadTree.h" />
     <ClInclude Include="H_Instances\ReflectiveWall.h" />

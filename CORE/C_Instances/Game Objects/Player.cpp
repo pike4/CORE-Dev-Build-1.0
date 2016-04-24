@@ -17,21 +17,24 @@ Player::Player(int aX, int aY, int aW, int aH, SDL_Texture* texture) : Mobile(aX
 	boundingBox.y = aY;
 	boundingBox.w = aW;
 	boundingBox.h = aH;
-	yDirectionStack.push(0);
-	xDirectionStack.push(0);
 	walkSpeed = 2;
 
 	prevXPtr = &prevX;
 	prevYPtr = &prevY;
 }
 
+Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector)
+: Mobile(node, objectVector, drawVector, updateVector), Collidable(node, collidableVector)
+{
+	ObjectManager::player = this;
+}
+
 void Player::move()
 {
+	x += xVel;
+	y += yVel;
 	prevX = x;
 	prevY = y;
-
-	x += xDirectionStack.top();
-	y += yDirectionStack.top();
 	boundingBox.x = x;
 	boundingBox.y = y;
 }
@@ -43,77 +46,35 @@ void Player::update()
 
 void Player::walkDown(int type)
 {
-	if (type > 0)
-	{
-		if (!yDirectionStack.empty() && yDirectionStack.top() <= 0 && yDirectionStack.size() <= 2)
-		{
-			yDirectionStack.push(walkSpeed);
-			//std::cout << yDirectionStack.top(), type;
-		}
-	}
-
-	else
-	{
-		if (!yDirectionStack.empty() && yDirectionStack.top() != 0)
-		{
-			yDirectionStack.pop();
-		}
-	}
+	yVel = 4;
 }
 
 void Player::walkUp(int type)
 {
-	if (type > 0)
-	{
-		if (!yDirectionStack.empty() && yDirectionStack.top() >= 0 && yDirectionStack.size() <= 2)
-		{
-			yDirectionStack.push(walkSpeed * -1);
-		}
-	}
-
-	else
-	{
-		if (!yDirectionStack.empty() && yDirectionStack.top() != 0)
-		{
-			yDirectionStack.pop();
-		}
-	}
+	yVel = -4;
 }
 
 void Player::walkLeft(int type)
 {
-	if (type > 0)
-	{
-		if (!xDirectionStack.empty() && xDirectionStack.top() >= 0 && yDirectionStack.size() <= 2)
-		{
-			xDirectionStack.push(walkSpeed * -1);
-		}
-	}
-
-	else
-	{
-		if (!xDirectionStack.empty() && xDirectionStack.top() != 0)
-		{
-			xDirectionStack.pop();
-		}
-	}
+	xVel = -4;
 }
 
 void Player::walkRight(int type)
 {
-	if (type > 0)
-	{
-		if (!xDirectionStack.empty() && xDirectionStack.top() <= 0 && yDirectionStack.size() <= 2)
-		{
-			xDirectionStack.push(walkSpeed);
-		}
-	}
+	xVel = 4;
+}
 
-	else
-	{
-		if (!xDirectionStack.empty() && xDirectionStack.top() != 0)
-		{
-			xDirectionStack.pop();
-		}
-	}
+void Player::onCollide(BouncingBall* b)
+{
+
+}
+
+void Player::onCollide(Player* p)
+{
+
+}
+
+void Player::onCollide(Cursor* c)
+{
+
 }

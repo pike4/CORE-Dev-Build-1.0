@@ -22,6 +22,7 @@ Visible::Visible(pugi::xml_node node, std::vector<Visible*>* drawVector)
 	drawVector->push_back(this);
 }
 
+
 void Visible::draw(SDL_Renderer* renderer)
 {
 	VideoManager::applyTexture(getX(), getY(), renderer, mTexture);

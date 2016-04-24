@@ -43,6 +43,8 @@ void EventManager::update()
 				case SDLK_ESCAPE:
 					quit = true;
 					break;
+				case SDLK_1:
+					break;
 				case SDLK_w:
 					w_KeyPress->execute(1);
 					printf("AAAAAAA");

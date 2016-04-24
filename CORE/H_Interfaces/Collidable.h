@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "pugixml.hpp"
+#include <vector>
 
 class BouncingBall;
 class Player;
@@ -20,7 +21,7 @@ public:
 	SDL_Rect movementVector;
 
 	Collidable(int, int, int, int);
-	Collidable(pugi::xml_node);
+	Collidable(pugi::xml_node, std::vector<Collidable*>* collidableVector);
 	virtual ~Collidable();
 	
 	int* prevXPtr;

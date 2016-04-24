@@ -1,4 +1,5 @@
 #include "Collidable.h"
+#include "SystemManager.h"
 #include "Visible.h"
 #include "BaseObject.h"
 #include "Button.h"
@@ -36,6 +37,37 @@ Button::Button(int x, int y, SDL_Texture* defaultTexture, SDL_Texture* hoverText
 	{
 		this->buttonText = NULL;
 	}
+}
+
+Button::Button(pugi::xml_node node)
+	:BaseObject(node), Updatable()
+{
+	int fontSize;
+	char* text;
+	TTF_Font* font;
+
+	printf("%s\n", node.name());
+	x = atoi(node.child("x").first_child().value());
+	y = atoi(node.child("y").first_child().value());
+	w = atoi(node.child("w").first_child().value());
+	h = atoi(node.child("h").first_child().value());
+
+	defaultTexture = SystemManager::assignTexture((char*)node.child("DefTexture").first_child().value());
+	heldTexture = SystemManager::assignTexture((char*)node.child("HeldTexture").first_child().value());
+	hoverTexture= SystemManager::assignTexture((char*)node.child("HoverTexture").first_child().value());
+	pressSound = SystemManager::assignSound((char*)node.child("pressSound").first_child().value());
+	text = (char*)node.child("text").first_child().value();
+	fontSize = atoi(node.child("fontSize").first_child().value());
+	font = SystemManager::assignFont((char*)node.child("font").first_child().value(), fontSize);
+
+	SDL_Color col;
+	col.a = 20;
+
+	buttonText = SDL_CreateTextureFromSurface(VideoManager::mRenderer, TTF_RenderText_Solid(font, text, col));
+	mTexture = defaultTexture;
+
+	SDL_QueryTexture(defaultTexture, NULL, NULL, &(this->w), &(this->h));
+
 }
 
 int Button::getX()

@@ -49,6 +49,12 @@ void StateManager::update()
 	VideoManager::update();
 }
 
+void StateManager::stop()
+{
+
+}
+
+#pragma region State Transitions
 void StateManager::changeState(int state)
 {
 	switch (state)
@@ -99,10 +105,19 @@ void StateManager::goToBlocking()
 	ObjectManager::goToBlocking();
 	SystemManager::goToBlocking();
 }
+#pragma endregion
 
-void StateManager::stop()
+void StateManager::goToRoom(Room* room)
 {
-	
+	ObjectManager::setObjectVector(room->objectVector);
+	ObjectManager::setUpdateVector(room->updateVector);
+	VideoManager::setDrawingVector(room->drawVector);
+}
+
+void StateManager::goToGUI(MenuScreen* gui)
+{
+	ObjectManager::currentGUI = gui;
+	VideoManager::currentGUI = gui;
 }
 
 int StateManager::lag;

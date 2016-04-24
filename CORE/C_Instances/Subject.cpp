@@ -8,7 +8,7 @@
 void walkForwardButtonPressed::execute(int type)
 {
 	ObjectManager::enqueue(new walkForwardCommand(type));
-	VideoManager::enqueue(new FlashCommand("butt"));
+	//VideoManager::enqueue(new FlashCommand("butt"));
 }
 
 void walkBackwardButtonPressed::execute(int type)

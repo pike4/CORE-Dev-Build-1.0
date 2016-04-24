@@ -6,6 +6,7 @@
 #include "AudioManager.h"
 #include "Commands.h"
 #include "pugixml.hpp"
+#include "MenuScreen.h"
 #include<map>
 void SystemManager::start()
 {
@@ -139,20 +140,32 @@ void SystemManager::flush()
 	
 }
 
-void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector)
+void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector)
 {
+	if (fileName == NULL || objectVector == NULL || drawVector == NULL || updateVector == NULL || collidableVector == NULL)
+	{
+		return;
+	}
+
 	pugi::xml_document doc;
 
 	pugi::xml_parse_result result = doc.load_file(fileName);
 
-	pugi::xml_node node = doc.first_child();
+	pugi::xml_node node = doc.first_child().first_child();
 	
 	do
 	{
-		if (strcmp(node.name(), "BouncingBall"))
+		if (strcmp(node.name(), "BouncingBall") == 0)
 		{
-			new BouncingBall(node, objectVector, drawVector, updateVector);
+			new BouncingBall(node, objectVector, drawVector, updateVector, collidableVector);
 		}
+
+		else if (!strcmp(node.name(), "Player"))
+		{
+			new Player(node, objectVector, drawVector, updateVector, collidableVector);
+		}
+
+		node = node.next_sibling();
 	} while (node.name() != "");
 }
 
@@ -215,9 +228,9 @@ Mix_Chunk* SystemManager::loadChunk(char* fileName)
 	return newChunk;
 }
 
-TTF_Font* SystemManager::loadFont(char* fileName)
+TTF_Font* SystemManager::loadFont(char* fileName, int size)
 {
-	TTF_Font* newFont = TTF_OpenFont(fileName, 12);
+	TTF_Font* newFont = TTF_OpenFont(fileName, size);
 
 	if (newFont == NULL)
 	{
@@ -266,14 +279,14 @@ Mix_Chunk* SystemManager::assignSound(char* fileName)
 	return newSound;
 }
 
-TTF_Font* SystemManager::assignFont(char* fileName)
+TTF_Font* SystemManager::assignFont(char* fileName, int size)
 {
 	if (loadedFonts.find(fileName) != loadedFonts.end())
 	{
 		return loadedFonts[fileName];
 	}
 
-	TTF_Font* newFont = loadFont(fileName);
+	TTF_Font* newFont = loadFont(fileName, size);
 
 	if (newFont != NULL)
 	{
@@ -283,15 +296,20 @@ TTF_Font* SystemManager::assignFont(char* fileName)
 	return newFont;
 }
 
-GUI* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
+MenuScreen* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
 {
-	GUI* newGUI = new GUI();
+	MenuScreen* newGUI = new MenuScreen();
 
 	pugi::xml_node childNode = node.first_child();
 	char* curName;
 	do
 	{
 		curName = (char*)childNode.name();
+
+		if (!strcmp(curName, "name"))
+		{
+			newGUI->name = (char*) childNode.first_child().value();
+		}
 
 		if (strcmp(curName, "button") == 0)
 		{
@@ -311,10 +329,11 @@ GUI* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
 
 Button* SystemManager::Button_LoadFromFile(pugi::xml_node node)
 {
-	int x, y, w, h;
+	int x, y, w, h, fontSize;
 	SDL_Texture* held;
 	SDL_Texture* hover;
 	SDL_Texture* def;
+	TTF_Font* font;
 	char* text;
 	printf("%s\n", node.name());
 	x = atoi(node.child("x").first_child().value());
@@ -326,12 +345,16 @@ Button* SystemManager::Button_LoadFromFile(pugi::xml_node node)
 	held= assignTexture((char*)node.child("HeldTexture").first_child().value());
 	hover = assignTexture((char*)node.child("HoverTexture").first_child().value());
 	text = (char*)node.child("text").first_child().value();
+	fontSize = atoi(node.child("fontSize").first_child().value());
+	font = assignFont((char*)node.child("font").first_child().value(), fontSize);
 
 	SDL_Color col;
 	col.a = 20;
 
-	return new Button(x, y, def, held, hover, text, NULL, col, NULL);
+	return new Button(x, y, def, held, hover, text, font, col, NULL);
 }
+
+
 
 Uint32 SystemManager::curTime;
 Uint32 SystemManager::prevTime;

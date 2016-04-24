@@ -5,6 +5,10 @@ CORE.opensdf
 *.tlog
 *.log
 *.pdb
+*.idb
+*.ilk
+*.suo
+*.sdf
 ./Release
 ./Debug
 *.opendb

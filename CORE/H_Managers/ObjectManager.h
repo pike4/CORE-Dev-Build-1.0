@@ -1,6 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <vector>
+#include <map>
 #include "_Manager.h"
 #include "Thing.h"
 #include "Player.h"
@@ -8,7 +9,7 @@
 #include "QuadTree.h"
 #include "Collidable.h"
 #include "Cursor.h"
-#include "GUI.h"
+#include "MenuScreen.h"
 
 class ObjectManager : public Manager
 {
@@ -36,17 +37,22 @@ public:
 	static void addUpdatable(Updatable* E);
 	static void removeUpdatable(Updatable* E);
 	static int getObjectCount();
+
 	static std::vector <BaseObject*>* getObjectVector();
+	static std::vector <Updatable*>* getUpdateVector();
+
+	static void setObjectVector(std::vector<BaseObject*>* newVector);
+	static void setUpdateVector(std::vector<Updatable*>* newVector);
 	static QuadTree quadTree;
 
 	static SDL_Renderer* testRenderer;
 	static Player* player;
 	static Cursor* mouse;
-	static GUI* currentGUI;
-	static GUI gui;
+	static MenuScreen* currentGUI;
+	static MenuScreen gui;
 
 private:
 
-	static std::vector <Updatable*> UpdateVector;
-	static std::vector <BaseObject*> BaseObjectVector;
+	static std::vector <Updatable*>* UpdateVector;
+	static std::vector <BaseObject*>* BaseObjectVector;
 };

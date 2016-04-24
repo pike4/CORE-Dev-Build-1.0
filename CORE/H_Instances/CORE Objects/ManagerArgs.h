@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "GUI.h"
+#include "MenuScreen.h"
 class ManagerArgs
 {
 public:
@@ -30,5 +30,5 @@ class SystemManagerArgs : public ManagerArgs
 class ObjectManagerArgs : public ManagerArgs
 {
 public:
-	GUI* initialGUI;
+	MenuScreen* initialGUI;
 };

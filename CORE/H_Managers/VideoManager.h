@@ -6,7 +6,7 @@
 #include <string>
 #include <queue>
 #include "Commands.h"
-#include "GUI.h"
+#include "MenuScreen.h"
 #include "Visible.h"
 #include "ManagerArgs.h"
 
@@ -54,6 +54,8 @@ public:
 	static void removeVisible(Visible* V);
 #pragma endregion
 
+	static std::vector<Visible*>* getDrawingVector();
+	static void setDrawingVector(std::vector<Visible*>* drawVector);
 
 	static void update();
 	static void drawCurrentGUI();
@@ -69,9 +71,9 @@ public:
 	static void goToInMenu();
 
 	static void addVisible(Visible* visible);
-	static GUI* currentGUI;
+	static MenuScreen* currentGUI;
 
 private:
-	static std::vector <Visible*> gameObjectDrawingVector;
+	static std::vector <Visible*>* gameObjectDrawingVector;
 	static std::vector <Visible*>* GUIDrawingVector;
 };

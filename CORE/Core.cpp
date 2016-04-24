@@ -3,6 +3,9 @@
 #include "SDL_TTF.h"
 #include "SDL_Image.h"
 
+#include "Room.h"
+#include "MenuSystem.h"
+
 #include "Thing.h"
 #include "Updatable.h"
 #include "ObjectManager.h"
@@ -41,19 +44,33 @@ int main()
 	SDL_Texture* held = SystemManager::loadTexture("Assets/Sprites/BlankHeld.png");
 	SDL_Texture* def = SystemManager::loadTexture("Assets/Sprites/BlankDefault.png");
 	
-	Mix_Music* mega_Music = AudioManager::loadMusic("Assets/Music/a.ogg");
+	Mix_Music* mega_Music = SystemManager::loadMusic("Assets/Music/a.ogg");
 	TTF_Font* sans = TTF_OpenFont("Assets/Fonts/comic.ttf", 12);
 	TTF_Font* bigSans = TTF_OpenFont("Assets/Fonts/comic.ttf", 50);
 	pew = AudioManager::loadChunk("Assets/Music/pew.wav");
 	//AudioManager::startMusicLoop(mega_Music);
-	std::string curString = "a";
+
+	MenuSystem* argh = new MenuSystem("g.xml");
+
 	pugi::xml_document doc;
-	pugi::xml_parse_result  result = doc.load_file("g.xml");
 	pugi::xml_node cur = doc.first_child();
 	printf("AA    %s\n", cur.first_child().value());
 	cur = doc.child("menu").child("button");
-	GUI* fileLodedGUI = SystemManager::GUI_LoadFromFile(doc.child("menu"));
+	//MenuScreen* fileLodedGUI = SystemManager::GUI_LoadFromFile(doc.child("menu"));
+	
+	SystemManager::loadGameObjects("object_list.xml", ObjectManager::getObjectVector(), VideoManager::getDrawingVector(), ObjectManager::getUpdateVector(), NULL);
 
+	pugi::xml_parse_result  resul = doc.load_file("room1.xml");
+	pugi::xml_node cu = doc.first_child();
+	Room* r1 = new Room(cu);
+
+	resul = doc.load_file("room2.xml");
+	cu = doc.first_child();
+	Room* r2 = new Room(cu);
+
+	resul = doc.load_file("room3.xml");
+	cu = doc.first_child();
+	Room* r3 = new Room(cu);
 
 	SDL_Color color;
 	color.a = 0;
@@ -65,8 +82,8 @@ int main()
 	point.x = 0;
 	point.y = 0;
 	
-	/*ObjectManager::player = new Player(300, 200, 100, 100, greg);
-	ObjectManager::add(new Thing(100, 100, guy));
+	//ObjectManager::player = new Player(300, 200, 100, 100, greg);
+	/*ObjectManager::add(new Thing(100, 100, guy));
 	ObjectManager::add(new Thing(0, 0, real));
 	ObjectManager::add(new Spinner(100, 100, peepee, 100.0));
 	ObjectManager::add(new Spinner(350, 200, cage, 2.0));
@@ -79,7 +96,7 @@ int main()
 		ObjectManager::add(new BouncingBall(100, 100, 8, 8, 0, 0, cage));
 	}
 
-	ObjectManager::add(new BouncingBall(100, 400, 8, 8, 0, -2, cage));
+//	ObjectManager::add(new BouncingBall(100, 400, 8, 8, 0, -2, cage));
 
 	SDL_Color d;
 	d.r = 255;
@@ -87,33 +104,15 @@ int main()
 	d.g = 0;
 	d.a = 255;
 
-	Button a = Button(400, 300, def, hover, held, "WORD", sans, d,  pew);
-	Button b = Button(400, 200, def, hover, held, "ANOTHER", sans, d,  pew);
-	GUI gui2 = GUI();
 
-	NavigationButton back = NavigationButton(400, 100, def, hover, held, "BACK", bigSans, d, pew, ObjectManager::currentGUI);
-
-	Button c = Button(400, 200, def, hover, held, "WELL", bigSans, d, pew);
-	Button e = Button(400, 300, def, hover, held, "OK THEN", sans, d, pew);
-
-	NavigationButton start = NavigationButton(400, 100, def, hover, held, "START", sans, d, pew, &gui2);
-	
-	gui2.add(&c);
-	gui2.add(&e);
-	gui2.add(&back);
-
-	std::vector<Button*> bb;
-	ObjectManager::add(&a);
-	ObjectManager::add(&b);
-	bb.push_back(&a);
-	Button* array[3] = { &a, &b};
-	ObjectManager::currentGUI->add(array, 2);
-	ObjectManager::currentGUI = fileLodedGUI;
+	ObjectManager::currentGUI = argh->menus["main"];
 	VideoManager::currentGUI = ObjectManager::currentGUI;
+
+	StateManager::goToRoom(r2);
 
 	for (int i = 0; i < 20; i++)
 	{
-		ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, cage));
+		//ObjectManager::add(new BouncingBall(400, 20 + (10 * i), 8, 8, -i, 1, cage));
 	}
 
 	//ObjectManager::add(new BouncingBall(100, 100, 8, 8, 100, 0, ball));

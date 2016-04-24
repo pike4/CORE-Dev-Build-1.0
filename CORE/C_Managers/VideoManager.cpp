@@ -24,22 +24,28 @@ bool VideoManager::start()
 		return false;
 	}
 
+	gameObjectDrawingVector = new std::vector<Visible*>;
+
 	return true;
 }
 
 bool VideoManager::start(VideoManagerArgs* args)
 {
+	bool success;
+
 	if (!InitSDL())
 	{
 		printf("SDL Initialization failed!");
-		return false;
+		success = false;
 	}
 
 	if (!InitWindow(args->screenWidth, args->screenHeight, args->windowCaption, args->fullscreen))
 	{
 		printf("Window Initialization Failed!");
-		return false;
+		success = false;
 	}
+
+	gameObjectDrawingVector = new std::vector<Visible*>;
 
 	return true;
 }
@@ -133,10 +139,10 @@ void VideoManager::updateRunning()
 {
 	SDL_RenderClear(mRenderer);
 
-	for (int x = 0; x < gameObjectDrawingVector.size(); x++)
+	for (int x = 0; x < gameObjectDrawingVector->size(); x++)
 	{
 		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
-		gameObjectDrawingVector[x]->draw(mRenderer);
+		(*gameObjectDrawingVector)[x]->draw(mRenderer);
 	}
 
 	drawCurrentGUI();
@@ -185,18 +191,26 @@ void VideoManager::goToPaused()
 
 void VideoManager::addVisible(Visible* visible)
 {
-	gameObjectDrawingVector.push_back(visible);
+	gameObjectDrawingVector->push_back(visible);
 }
 
+std::vector<Visible*>* VideoManager::getDrawingVector()
+{
+	return gameObjectDrawingVector;
+}
 
+void VideoManager::setDrawingVector(std::vector<Visible*>* drawVector)
+{
+	gameObjectDrawingVector = drawVector;
+}
 
 void VideoManager::removeVisible(Visible* V)
 {
-	for (int x = 0; x < gameObjectDrawingVector.size(); x++)
+	for (int x = 0; x < gameObjectDrawingVector->size(); x++)
 	{
-		if (gameObjectDrawingVector[x] == V)
+		if ((*gameObjectDrawingVector)[x] == V)
 		{
-			gameObjectDrawingVector.erase(gameObjectDrawingVector.begin() + x);
+			gameObjectDrawingVector->erase(gameObjectDrawingVector->begin() + x);
 			return;
 		}
 	}
@@ -276,9 +290,9 @@ SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;
 SDL_Renderer* VideoManager::mRenderer2;
 SDL_Surface* VideoManager::mScreenSurface;
-std::vector <Visible*> VideoManager::gameObjectDrawingVector;
+std::vector <Visible*>* VideoManager::gameObjectDrawingVector;
 std::vector <Visible*>* VideoManager::GUIDrawingVector;
-GUI* VideoManager::currentGUI;
+MenuScreen* VideoManager::currentGUI;
 
 int VideoManager::state;
 

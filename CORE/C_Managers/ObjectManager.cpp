@@ -2,8 +2,9 @@
 #include "Commands.h"
 #include "StateManager.h"
 #include "BouncingBall.h"
-#include "GUI.h"
+#include "MenuScreen.h"
 #include <vector>
+#include <map>
 
 
 #pragma region Manager Implementation Methods
@@ -36,9 +37,9 @@ void ObjectManager::updateRunning()
 {
 	quadTree.update();
 
-	for (int x = 0; x < UpdateVector.size(); x++)
+	for (int x = 0; x < UpdateVector->size(); x++)
 	{
-		UpdateVector[x]->update();
+		(*UpdateVector)[x]->update();
 	}
 }
 
@@ -68,7 +69,10 @@ void ObjectManager::start()
 	mouse->prevXPtr = &mouse->boundingBox.x;
 	mouse->prevYPtr = &mouse->boundingBox.y;
 
-	gui = GUI();
+	BaseObjectVector = new std::vector<BaseObject*>;
+	UpdateVector = new std::vector<Updatable*>;
+
+	gui = MenuScreen();
 	currentGUI = &gui;
 }
 
@@ -78,21 +82,21 @@ void ObjectManager::start()
 
 void ObjectManager::add(BaseObject* E)
 {
-	BaseObjectVector.push_back(E);
+	BaseObjectVector->push_back(E);
 }
 
 void ObjectManager::addUpdatable(Updatable* E)
 {
-	UpdateVector.push_back(E);
+	UpdateVector->push_back(E);
 }
 
 void ObjectManager::removeUpdatable(Updatable* E)
 {
-	for (int x = 0; x < UpdateVector.size(); x++)
+	for (int x = 0; x < UpdateVector->size(); x++)
 	{
-		if (UpdateVector[x] == E)
+		if ((*UpdateVector)[x] == E)
 		{
-			UpdateVector.erase(UpdateVector.begin() + x);
+			UpdateVector->erase(UpdateVector->begin() + x);
 			return;
 		}
 	}
@@ -105,12 +109,27 @@ void ObjectManager::addCollidable(Collidable* C)
 
 int ObjectManager::getObjectCount()
 {
-	return BaseObjectVector.size();
+	return BaseObjectVector->size();
 }
 
 std::vector <BaseObject*>* ObjectManager::getObjectVector()
 {
-	return &BaseObjectVector;
+	return BaseObjectVector;
+}
+
+std::vector<Updatable*>* ObjectManager::getUpdateVector()
+{
+	return UpdateVector;
+}
+
+void ObjectManager::setObjectVector(std::vector<BaseObject*>* newVector)
+{
+	BaseObjectVector = newVector;
+}
+
+void ObjectManager::setUpdateVector(std::vector<Updatable*>* newVector)
+{
+	UpdateVector = newVector;
 }
 
 #pragma endregion
@@ -136,6 +155,7 @@ void ObjectManager::goToPaused()
 {
 	state = CORE_PAUSED;
 }
+
 #pragma endregion
 
 #pragma region 
@@ -145,36 +165,51 @@ void ObjectManager::handleMouseClick()
 }
 #pragma endregion
 
-std::vector <Updatable*> ObjectManager::UpdateVector;
-std::vector <BaseObject*> ObjectManager::BaseObjectVector;
+std::vector <Updatable*>* ObjectManager::UpdateVector;
+std::vector <BaseObject*>* ObjectManager::BaseObjectVector;
+
+//std::map <MenuScreen*, char*> ObjectManager::guis;
+
 QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 480, NULL);
 SDL_Renderer* ObjectManager::testRenderer;
 int ObjectManager::state;
 Player* ObjectManager::player;
 Cursor* ObjectManager::mouse;
-GUI ObjectManager::gui;
-GUI* ObjectManager::currentGUI;
+MenuScreen ObjectManager::gui;
+MenuScreen* ObjectManager::currentGUI;
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
 void walkForwardCommand::execute()
 {
-	//ObjectManager::player->walkUp(type);
+	if (ObjectManager::player != NULL)
+	{
+		ObjectManager::player->walkUp(type);
+	}
 }
 
 void walkBackwardCommand::execute()
 {
-	//ObjectManager::player->walkDown(type);
+	if (ObjectManager::player != NULL)
+	{
+		ObjectManager::player->walkDown(type);
+	}
 }
 
 void walkLeftCommand::execute()
 {
-	//ObjectManager::player->walkLeft(type);
+	if (ObjectManager::player != NULL)
+	{
+		ObjectManager::player->walkLeft(type);
+	}
 }
 
 void walkRightCommand::execute()
 {
-	//ObjectManager::player->walkRight(type);
+	if (ObjectManager::player != NULL)
+	{
+		ObjectManager::player->walkRight(type);
+	}
 }
 
 void HandleMouseClickCommand::execute()

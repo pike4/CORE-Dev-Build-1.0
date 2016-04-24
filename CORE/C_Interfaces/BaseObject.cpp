@@ -15,3 +15,9 @@ BaseObject::BaseObject(pugi::xml_node node, std::vector<BaseObject*>* objectVect
 
 	objectVector->push_back(this);
 }
+
+BaseObject::BaseObject(pugi::xml_node node)
+{
+	x = atoi(node.child("x").first_child().value());
+	y = atoi(node.child("y").first_child().value());
+}

@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Timer.h"
 #include "_Manager.h"
+#include "Room.h"
 
 #pragma once
 
@@ -21,6 +22,9 @@ public:
 	static void goToPaused();
 	static void goToRunning();
 	static void goToInMenu();
+
+	static void goToRoom(Room* room);
+	static void goToGUI(MenuScreen* gui);
 
 	static Timer frameTimer;
 
