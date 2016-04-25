@@ -22,6 +22,7 @@ public:
 		state = st;
 	}
 };
+
 #pragma endregion
 
 #pragma region AudioManager commands

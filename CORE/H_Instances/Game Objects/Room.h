@@ -15,5 +15,12 @@ public:
 	std::vector<BaseObject*>* objectVector;
 	std::vector<Collidable*>* collidableVector;
 
+	std::string name;
+
+
 	Room(pugi::xml_node);
+	Room(char* fileName);
+
+private:
+	void getArgsFromNode(pugi::xml_node node);
 };

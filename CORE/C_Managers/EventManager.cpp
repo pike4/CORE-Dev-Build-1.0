@@ -75,7 +75,10 @@ void EventManager::update()
 					AudioManager::enqueue(new PauseMusicCommand());
 					break;
 				case SDLK_LSHIFT:
-					AudioManager::enqueue(new ResumeMusicCommand());
+					StateManager::goToRoomInCurrentEnvironment("sex dungeon");
+					break;
+				case SDLK_TAB:
+					StateManager::togglePauseMenu("main");
 					break;
 				}
 				break;

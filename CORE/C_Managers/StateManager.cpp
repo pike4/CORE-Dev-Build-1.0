@@ -107,23 +107,110 @@ void StateManager::goToBlocking()
 }
 #pragma endregion
 
+#pragma region Room and Environment transitions
 void StateManager::goToRoom(Room* room)
 {
+	if (room == NULL)
+	{
+		return;
+	}
 	ObjectManager::setObjectVector(room->objectVector);
 	ObjectManager::setUpdateVector(room->updateVector);
 	VideoManager::setDrawingVector(room->drawVector);
 }
 
+void StateManager::goToRoomInCurrentEnvironment(std::string roomName)
+{
+	if (currentEnvironment != NULL && !roomName.empty())
+	{
+		goToRoom(currentEnvironment->rooms[roomName]);
+	}
+}
+
+void StateManager::goToEnvironment(std::string environmentName)
+{
+	if (environments.find(environmentName) != environments.end())
+	{
+		currentEnvironment = environments[environmentName];
+	}
+
+	else
+	{
+		printf("State Manager could not find requested Environment: %s\n", environmentName);
+	}
+}
+#pragma endregion
+
+#pragma region GUI transitions
 void StateManager::goToGUI(MenuScreen* gui)
 {
+	currentMenuScreen = gui;
 	ObjectManager::currentGUI = gui;
 	VideoManager::currentGUI = gui;
 }
 
+void StateManager::goToGUIInCurrentMenuSystem(std::string guiName)
+{
+	if (currentMenuSystem != NULL && !guiName.empty())
+	{
+		goToGUI(currentMenuSystem->menus[guiName]);
+	}
+}
+
+void StateManager::goToMenuSystem(std::string menuSystemName)
+{
+	if (menuSystems.find(menuSystemName) != menuSystems.end())
+	{
+		currentMenuSystem = menuSystems[menuSystemName];
+	}
+
+	else
+	{
+		printf("State Manager could not find requested Menu System: %s\n", menuSystemName);
+	}
+}
+
+void StateManager::togglePauseMenu(std::string guiName)
+{
+	if (currentMenuScreen != NULL)
+	{
+		if (!strcmp(currentMenuScreen->name.c_str(), guiName.c_str()))
+		{
+			goToGUI(NULL);
+		}
+
+		else if (!guiName.empty())
+		{
+			goToGUIInCurrentMenuSystem(guiName);
+		}
+	}
+
+	else
+	{
+		if (!guiName.empty())
+		{
+			goToGUIInCurrentMenuSystem(guiName);
+		}
+	}
+
+}
+#pragma endregion
+
+
+#pragma region Static data members
 int StateManager::lag;
 int StateManager::msPerFrame;
 
 Timer StateManager::frameTimer;
+
+std::map<std::string, Environment*> StateManager::environments;
+std::map<std::string, MenuSystem*> StateManager::menuSystems;
+
+Environment* StateManager::currentEnvironment;
+Room* StateManager::currentRoom;
+MenuSystem* StateManager::currentMenuSystem;
+MenuScreen* StateManager::currentMenuScreen;
+#pragma endregion
 
 void ChangeStateCommand::execute()
 {

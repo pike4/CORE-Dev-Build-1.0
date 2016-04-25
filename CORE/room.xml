@@ -1,3 +1,15 @@
-<room>
-  <objects>object_list.xml</objects>
-</room>
+<Environment>
+  <name>first</name>
+  <Room>
+    <name>living room</name>
+    <objects>object_list1.xml</objects>
+  </Room>
+  <Room>
+    <name>sex dungeon</name>
+    <objects>object_list2.xml</objects>
+  </Room>
+  <Room>
+    <name>kitchen</name>
+    <objects>object_list3.xml</objects>
+  </Room>
+</Environment>

@@ -177,6 +177,7 @@ Player* ObjectManager::player;
 Cursor* ObjectManager::mouse;
 MenuScreen ObjectManager::gui;
 MenuScreen* ObjectManager::currentGUI;
+std::map<std::string, MenuSystem*> ObjectManager::menuSystems;
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands

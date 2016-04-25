@@ -25,8 +25,8 @@ void NavigationButton::mouseDown()
 
 void NavigationButton::mouseUp()
 {
-	this->mTexture = defaultTexture;
 	genericMouseUp();
+	genericMouseLeave();
 	ObjectManager::currentGUI = root->menus[pointer];
 	VideoManager::currentGUI = root->menus[pointer];
 }

@@ -51,6 +51,8 @@ public:
 	static MenuScreen* currentGUI;
 	static MenuScreen gui;
 
+	static std::map<std::string, MenuSystem*> menuSystems;
+
 private:
 
 	static std::vector <Updatable*>* UpdateVector;

@@ -4,7 +4,7 @@
 class Environment
 {
 public:
-	std::map<Room*, std::string> rooms;
+	std::map<std::string, Room*> rooms;
 
 	Environment(char* fileName);
 

@@ -81,6 +81,7 @@
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="C_Instances\Environment.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Cursor.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\Door.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuScreen.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuSystem.cpp" />

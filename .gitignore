@@ -9,6 +9,9 @@ CORE.opensdf
 *.ilk
 *.suo
 *.sdf
+*.enc
+*.filters
+*.vcxproj
 ./Release
 ./Debug
 *.opendb

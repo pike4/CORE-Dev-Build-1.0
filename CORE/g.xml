@@ -3,7 +3,7 @@
   <MenuScreenDec>other</MenuScreenDec>
   <MenuScreenDec>options</MenuScreenDec>
   
-  <name>level1</name>
+  <name>Pause Menu</name>
   <MenuScreen>
     <name>main</name>
     <NavigationButton>
@@ -77,6 +77,7 @@
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
       <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <pointer>main</pointer>
     </NavigationButton>
     <button>
@@ -90,6 +91,7 @@
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
       <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+      <pressSound>Assets/Music/pew.wav</pressSound>
     </button>
   </MenuScreen>
   <MenuScreen>
@@ -99,7 +101,7 @@
       <y>30</y>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <pressSound>Assets/Sounds/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <w>200</w>
       <h>200</h>
       <text>Video</text>
@@ -114,7 +116,7 @@
       <h>200</h>
       <text>Options Options</text>
       <font>Assets/Fonts/comic.ttf</font>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <fontSize>20</fontSize>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -127,7 +129,7 @@
       <h>200</h>
       <text>Sound</text>
       <font>Assets/Fonts/comic.ttf</font>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <fontSize>20</fontSize>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -141,7 +143,7 @@
       <text>Back</text>
       <font>Assets/Fonts/comic.ttf</font>
       <fontSize>20</fontSize>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
       <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
@@ -183,7 +185,7 @@
         <y>30</y>
         <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
         <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-        <pressSound>Assets/Sounds/pew.wav</pressSound>
+        <pressSound>Assets/Music/pew.wav</pressSound>
         <w>200</w>
         <h>200</h>
         <text>Secret Option</text>
@@ -198,7 +200,7 @@
         <h>200</h>
         <text>Option 3</text>
         <font>Assets/Fonts/comic.ttf</font>
-        <pressSound>Assets/Sprites/pew.wav</pressSound>
+        <pressSound>Assets/Music/pew.wav</pressSound>
         <fontSize>20</fontSize>
         <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
         <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -211,7 +213,7 @@
         <h>200</h>
         <text>Option 3</text>
         <font>Assets/Fonts/comic.ttf</font>
-        <pressSound>Assets/Sprites/pew.wav</pressSound>
+        <pressSound>Assets/Music/pew.wav</pressSound>
         <fontSize>20</fontSize>
         <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
         <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -225,7 +227,7 @@
         <text>Back</text>
         <font>Assets/Fonts/comic.ttf</font>
         <fontSize>20</fontSize>
-        <pressSound>Assets/Sprites/pew.wav</pressSound>
+        <pressSound>Assets/Music/pew.wav</pressSound>
         <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
         <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
         <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
@@ -240,7 +242,7 @@
       <y>30</y>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <pressSound>Assets/Sounds/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <w>200</w>
       <h>200</h>
       <text>Spooopy</text>
@@ -255,7 +257,7 @@
       <h>200</h>
       <text>Anti-Gravity</text>
       <font>Assets/Fonts/comic.ttf</font>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <fontSize>20</fontSize>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -268,7 +270,7 @@
       <h>200</h>
       <text>HH</text>
       <font>Assets/Fonts/comic.ttf</font>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <fontSize>20</fontSize>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
@@ -282,7 +284,7 @@
       <text>Back</text>
       <font>Assets/Fonts/comic.ttf</font>
       <fontSize>20</fontSize>
-      <pressSound>Assets/Sprites/pew.wav</pressSound>
+      <pressSound>Assets/Music/pew.wav</pressSound>
       <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
       <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
       <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>

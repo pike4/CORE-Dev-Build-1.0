@@ -1,0 +1,11 @@
+<environment>
+  <Room>
+    <objects>object_list1.xml</objects>
+  </Room>
+  <Room>
+    <objects>object_list2.xml</objects>
+  </Room>
+  <Room>
+    <objects>object_list3.xml</objects>
+  </Room>
+</environment>

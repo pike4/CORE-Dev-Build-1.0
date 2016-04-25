@@ -2,7 +2,7 @@
   <BouncingBall>
     <x>100</x>
     <y>100</y>
-    <texture>Assets/Sprites/IMG_BouncingBall.png</texture>
+    <texture>Assets/Sprites/Retard_Slime.png</texture>
     <w>50</w>
     <h>50</h>
     <xVel>2</xVel>
@@ -11,7 +11,7 @@
   <BouncingBall>
     <x>100</x>
     <y>100</y>
-    <texture>Assets/Sprites/IMG_BouncingBall.png</texture>
+    <texture>Assets/Sprites/Retard_Slime.png</texture>
     <w>50</w>
     <h>50</h>
     <xVel>2</xVel>
@@ -20,7 +20,7 @@
   <BouncingBall>
     <x>100</x>
     <y>100</y>
-    <texture>Assets/Sprites/niceword.png</texture>
+    <texture>Assets/Sprites/Retard_Slime.png</texture>
     <w>50</w>
     <h>50</h>
     <xVel>2</xVel>
