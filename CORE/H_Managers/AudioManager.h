@@ -28,6 +28,8 @@ public:
 	static void goToRunning();
 	static void goToInMenu();
 
+	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+
 	static Mix_Music* loadMusic(char* filename);
 
 	static Mix_Chunk* loadChunk(char* filename);

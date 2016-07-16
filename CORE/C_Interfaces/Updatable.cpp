@@ -1,14 +1,20 @@
 #include "Updatable.h"
 #include "ObjectManager.h"
+#include "Room.h"
 
 Updatable::Updatable()
 {
 	ObjectManager::addUpdatable(this);
 }
 
-Updatable::Updatable(std::vector<Updatable*>* updateVec)
+Updatable::Updatable(std::vector<Updatable*>* updateVector)
 {
-	updateVec->push_back(this);
+	updateVector->push_back(this);
+}
+
+Updatable::Updatable(Room* room)
+{
+	room->updateVector->push_back(this);
 }
 
 Updatable::~Updatable()

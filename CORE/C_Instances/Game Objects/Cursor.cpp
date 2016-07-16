@@ -24,3 +24,5 @@ void Cursor::onCollide(Cursor* C)
 {
 
 }
+
+void Cursor::onCollide(Door* d) {}

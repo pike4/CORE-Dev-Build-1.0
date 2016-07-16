@@ -9,48 +9,45 @@
 #include "AudioManager.h"
 #include "VideoManager.h"
 #include <string.h>
+#include "Aggregate.h"
 
-Button::Button(int x, int y, SDL_Texture* defaultTexture, SDL_Texture* hoverTexture, SDL_Texture* heldTexture, std::string text, TTF_Font* font, SDL_Color textColor, Mix_Chunk* sound) :
-	BaseObject(x, y), Updatable()
-{
-	this->mTexture = defaultTexture;
-	this->defaultTexture = defaultTexture;
-	this->heldTexture = heldTexture;
-	this->hoverTexture = hoverTexture;
-	this->w = w;
-	this->h = h;
-	SDL_QueryTexture(defaultTexture, NULL, NULL, &this->w, &this->h);
-	this->pressSound = sound;
-	if (strcmp(text.c_str(), "") != 0 && font != NULL)
-	{
-		this->buttonText = SDL_CreateTextureFromSurface(VideoManager::mRenderer, TTF_RenderText_Solid(font, text.c_str(), textColor));
-
-		int textWidth, textHeight;
-
-		TTF_SizeText(font, _strdup(text.c_str()), &textWidth, &textHeight);
-
-		textXOffset = (w - textWidth) / 2;
-		textYOffset = (h - textWidth * 9 / 16) / 2;
-	}
-
-	else
-	{
-		this->buttonText = NULL;
-	}
-}
+//Button::Button(int x, int y, SDL_Texture* defaultTexture, SDL_Texture* hoverTexture, SDL_Texture* heldTexture, std::string text, TTF_Font* font, SDL_Color textColor, Mix_Chunk* sound) :
+//	Control()
+//{
+//	this->mTexture = defaultTexture;
+//	this->defaultTexture = defaultTexture;
+//	this->heldTexture = heldTexture;
+//	this->hoverTexture = hoverTexture;
+//	this->w = w;
+//	this->h = h;
+//	SDL_QueryTexture(defaultTexture, NULL, NULL, &this->w, &this->h);
+//	this->pressSound = sound;
+//	if (strcmp(text.c_str(), "") != 0 && font != NULL)
+//	{
+//		this->buttonText = SDL_CreateTextureFromSurface(VideoManager::mRenderer, TTF_RenderText_Solid(font, text.c_str(), textColor));
+//
+//		int textWidth, textHeight;
+//
+//		TTF_SizeText(font, _strdup(text.c_str()), &textWidth, &textHeight);
+//
+//		textXOffset = (w - textWidth) / 2;
+//		textYOffset = (h - textWidth * 9 / 16) / 2;
+//	}
+//
+//	else
+//	{
+//		this->buttonText = NULL;
+//	}
+//}
 
 Button::Button(pugi::xml_node node)
-	:BaseObject(node), Updatable()
+	: Control(node)
 {
 	int fontSize;
 	char* text;
 	TTF_Font* font;
 
 	printf("%s\n", node.name());
-	x = atoi(node.child("x").first_child().value());
-	y = atoi(node.child("y").first_child().value());
-	w = atoi(node.child("w").first_child().value());
-	h = atoi(node.child("h").first_child().value());
 
 	defaultTexture = SystemManager::assignTexture((char*)node.child("DefTexture").first_child().value());
 	heldTexture = SystemManager::assignTexture((char*)node.child("HeldTexture").first_child().value());
@@ -66,33 +63,18 @@ Button::Button(pugi::xml_node node)
 	buttonText = SDL_CreateTextureFromSurface(VideoManager::mRenderer, TTF_RenderText_Solid(font, text, col));
 	mTexture = defaultTexture;
 
-	SDL_QueryTexture(defaultTexture, NULL, NULL, &(this->w), &(this->h));
+	SDL_QueryTexture(defaultTexture, NULL, NULL, &(this->boundingBox.w), &(this->boundingBox.h));
 
 }
 
-int Button::getX()
+Button::Button(pugi::xml_node node, Aggregate* parent) : Button(node)
 {
-	return x;
-}
-
-int Button::getY()
-{
-	return y;
+	parent->addChild(this);
 }
 
 void Button::update()
 {
 
-}
-
-void Button::onCollide(Visible* v)
-{
-
-}
-
-void Button::onCollide(Player* p)
-{
-	
 }
 
 void Button::draw(SDL_Renderer* renderer)
@@ -105,19 +87,7 @@ void Button::draw(SDL_Renderer* renderer)
 	}
 }
 
-bool Button::isWithin(int x, int y)
-{
-	return (x > this->x && x < this->x + this->w && y > this->y && y < this->y + this->h);
-}
-
-void Button::onCollide(BouncingBall* b) {}
-
-void Button::onCollide(Cursor* c)
-{
-		mouseHover();
-}
-
-void Button::mouseHover()
+void Button::mouseEnter()
 {
 	genericMouseHover();
 }
@@ -167,4 +137,9 @@ void Button::genericMouseUp()
 {
 	mouseButtonIsHeld = false;
 	mTexture = hoverTexture;
+}
+
+void Button::handleInput(int keyCode, int upDown, int x, int y)
+{
+
 }

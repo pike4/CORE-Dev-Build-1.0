@@ -50,6 +50,11 @@ bool VideoManager::start(VideoManagerArgs* args)
 	return true;
 }
 
+void VideoManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
+{
+
+}
+
 bool VideoManager::InitSDL()
 {
 	bool success = true;
@@ -124,28 +129,23 @@ void VideoManager::update()
 	}
 }
 
-void VideoManager::drawCurrentGUI()
-{
-	if (currentGUI != NULL)
-	{
-		for (int i = 0; i < currentGUI->buttons.size(); i++)
-		{
-			currentGUI->buttons[i]->draw(mRenderer);
-		}
-	}
-}
-
 void VideoManager::updateRunning()
 {
 	SDL_RenderClear(mRenderer);
-
-	for (int x = 0; x < gameObjectDrawingVector->size(); x++)
+	if (currentRoom == NULL || currentRoom->drawVector == NULL)
 	{
-		//applyTexture(drawingVector[x]->getX(), drawingVector[x]->getY(), mRenderer, drawingVector[x]->mTexture);
-		(*gameObjectDrawingVector)[x]->draw(mRenderer);
+		return;
 	}
 
-	drawCurrentGUI();
+	if (currentRoom != NULL)
+	{
+		currentRoom->draw(mRenderer);
+	}
+
+	for each(MenuScreen* menuScreen in StateManager::currentMenuScreens)
+	{
+		menuScreen->draw(mRenderer);
+	}
 
 	SDL_RenderPresent(mRenderer);
 	updateQueue();
@@ -191,26 +191,17 @@ void VideoManager::goToPaused()
 
 void VideoManager::addVisible(Visible* visible)
 {
-	gameObjectDrawingVector->push_back(visible);
-}
-
-std::vector<Visible*>* VideoManager::getDrawingVector()
-{
-	return gameObjectDrawingVector;
-}
-
-void VideoManager::setDrawingVector(std::vector<Visible*>* drawVector)
-{
-	gameObjectDrawingVector = drawVector;
+	//gameObjectDrawingVector->push_back(visible);
 }
 
 void VideoManager::removeVisible(Visible* V)
 {
-	for (int x = 0; x < gameObjectDrawingVector->size(); x++)
+	if(!currentRoom || !currentRoom->drawVector)
+	for (int x = 0; x < currentRoom->drawVector->size(); x++)
 	{
-		if ((*gameObjectDrawingVector)[x] == V)
+		if ((*currentRoom->drawVector)[x] == V)
 		{
-			gameObjectDrawingVector->erase(gameObjectDrawingVector->begin() + x);
+			currentRoom->drawVector->erase(currentRoom->drawVector->begin() + x);
 			return;
 		}
 	}
@@ -293,6 +284,7 @@ SDL_Surface* VideoManager::mScreenSurface;
 std::vector <Visible*>* VideoManager::gameObjectDrawingVector;
 std::vector <Visible*>* VideoManager::GUIDrawingVector;
 MenuScreen* VideoManager::currentGUI;
+Room* VideoManager::currentRoom;
 
 int VideoManager::state;
 

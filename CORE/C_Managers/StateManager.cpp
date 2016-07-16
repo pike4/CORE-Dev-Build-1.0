@@ -54,6 +54,26 @@ void StateManager::stop()
 
 }
 
+void StateManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
+{
+	VideoManager::handleEvent(eventCode, posOrNeg, x, y);
+	AudioManager::handleEvent(eventCode, posOrNeg, x, y);
+	ObjectManager::handleEvent(eventCode, posOrNeg, x, y);
+	SystemManager::handleEvent(eventCode, posOrNeg, x, y);
+	//EventManager::handleEvent(eventCode, posOrNeg, x, y);
+
+
+	if (currentRoom != NULL)
+	{
+		currentRoom->handleInput(eventCode, posOrNeg, x, y);
+	}
+
+	if (!currentMenuScreens.empty() && currentMenuScreens.back() != NULL)
+	{
+		currentMenuScreens.back()->handleInput(eventCode, posOrNeg, x, y);
+	}
+}
+
 #pragma region State Transitions
 void StateManager::changeState(int state)
 {
@@ -114,9 +134,13 @@ void StateManager::goToRoom(Room* room)
 	{
 		return;
 	}
+	currentRoom = room;
+	ObjectManager::currentRoom = room;
+	VideoManager::currentRoom = room;
+
+
 	ObjectManager::setObjectVector(room->objectVector);
 	ObjectManager::setUpdateVector(room->updateVector);
-	VideoManager::setDrawingVector(room->drawVector);
 }
 
 void StateManager::goToRoomInCurrentEnvironment(std::string roomName)
@@ -144,9 +168,7 @@ void StateManager::goToEnvironment(std::string environmentName)
 #pragma region GUI transitions
 void StateManager::goToGUI(MenuScreen* gui)
 {
-	currentMenuScreen = gui;
-	ObjectManager::currentGUI = gui;
-	VideoManager::currentGUI = gui;
+	currentMenuScreens.push_back(gui);
 }
 
 void StateManager::goToGUIInCurrentMenuSystem(std::string guiName)
@@ -154,6 +176,19 @@ void StateManager::goToGUIInCurrentMenuSystem(std::string guiName)
 	if (currentMenuSystem != NULL && !guiName.empty())
 	{
 		goToGUI(currentMenuSystem->menus[guiName]);
+	}
+}
+
+void StateManager::addMenuScreenLayer(MenuScreen* gui)
+{
+	currentMenuScreens.push_back(gui);
+}
+
+void StateManager::removeMenuScreenLayer(MenuScreen* gui)
+{
+	if (!currentMenuScreens.empty())
+	{
+		currentMenuScreens.pop_back();
 	}
 }
 
@@ -208,6 +243,7 @@ std::map<std::string, MenuSystem*> StateManager::menuSystems;
 
 Environment* StateManager::currentEnvironment;
 Room* StateManager::currentRoom;
+std::vector<MenuScreen*> StateManager::currentMenuScreens;
 MenuSystem* StateManager::currentMenuSystem;
 MenuScreen* StateManager::currentMenuScreen;
 #pragma endregion

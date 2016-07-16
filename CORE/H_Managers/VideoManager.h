@@ -9,6 +9,7 @@
 #include "MenuScreen.h"
 #include "Visible.h"
 #include "ManagerArgs.h"
+#include "Room.h"
 
 using namespace std;
 
@@ -18,7 +19,6 @@ using namespace std;
 class VideoManager : public Manager
 {
 public:
-
 	static int state;
 
 	static SDL_Window* mWindow;
@@ -54,11 +54,7 @@ public:
 	static void removeVisible(Visible* V);
 #pragma endregion
 
-	static std::vector<Visible*>* getDrawingVector();
-	static void setDrawingVector(std::vector<Visible*>* drawVector);
-
 	static void update();
-	static void drawCurrentGUI();
 
 	static void updateRunning();
 	static void updateInMenu();
@@ -72,6 +68,9 @@ public:
 
 	static void addVisible(Visible* visible);
 	static MenuScreen* currentGUI;
+	static Room* currentRoom;
+
+	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 
 private:
 	static std::vector <Visible*>* gameObjectDrawingVector;

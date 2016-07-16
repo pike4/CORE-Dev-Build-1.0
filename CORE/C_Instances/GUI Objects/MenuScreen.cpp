@@ -2,11 +2,12 @@
 #include "ObjectManager.h"
 #include "pugixml.hpp"
 #include "NavigationButton.h"
+#include "EventManager.h"
 #include <vector>
 
 MenuScreen::MenuScreen()
 {
-	//buttons = std::vector();
+	
 }
 
 MenuScreen::MenuScreen(pugi::xml_node node)
@@ -14,9 +15,8 @@ MenuScreen::MenuScreen(pugi::xml_node node)
 	getArgsFromNode(node);
 }
 
-MenuScreen::MenuScreen(pugi::xml_node node, MenuSystem* root)
+MenuScreen::MenuScreen(pugi::xml_node node, MenuSystem* root) : MenuScreen(node)
 {
-	getArgsFromNode(node, root);
 }
 
 MenuScreen::MenuScreen(char* fileName)
@@ -39,8 +39,6 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
 
 	while (strcmp(curNode.name(), "") != 0)
 	{
-
-
 		if (!strcmp(curName, "name"))
 		{
 			name = (char*)curNode.first_child().value();
@@ -48,12 +46,12 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
 
 		else if (strcmp(curName, "button") == 0)
 		{
-			buttons.push_back(new Button(curNode));
+			controls.push_back(new Button(curNode));
 		}
 
 		else if (!strcmp(curName, "NavigationButton"))
 		{
-			buttons.push_back(new NavigationButton(curNode, root));
+			controls.push_back(new NavigationButton(curNode, root));
 		}
 
 		else if (strcmp(curName, "background") == 0)
@@ -69,13 +67,10 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
 void MenuScreen::getArgsFromNode(pugi::xml_node node)
 {
 	pugi::xml_node curNode = node.first_child();
-
 	char* curName = (char*) curNode.name();
-
+	
 	while (strcmp(curNode.name(), "") != 0)
 	{
-
-
 		if (!strcmp(curName, "name"))
 		{
 			name = (char*)curNode.first_child().value();
@@ -83,7 +78,7 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node)
 
 		else if (strcmp(curName, "button") == 0)
 		{
-			buttons.push_back(new Button(curNode));
+			controls.push_back(new Button(curNode));
 		}
 
 		else if (strcmp(curName, "background") == 0)
@@ -96,76 +91,63 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node)
 	} 
 }
 
-void MenuScreen::checkMousePos()
+void MenuScreen::checkMousePos(int x, int y)
 {
-	if (ObjectManager::currentGUI != NULL)
+	
+}
+
+void MenuScreen::add(Control* controlsToAdd[], int numControls)
+{
+	for (int i = 0; i < numControls; i++)
 	{
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-		for (int i = 0; i < buttons.size(); i++)
+		controls.push_back(controls[i]);
+	}
+}
+
+void MenuScreen::add(Control* controlToAdd)
+{
+	controls.push_back(controlToAdd);
+}
+
+void MenuScreen::checkMouseDown(int x, int y)
+{
+
+}
+
+void MenuScreen::checkMouseUp(int x, int y)
+{
+
+}
+
+void MenuScreen::handleInput(int key, int upDown, int x, int y)
+{
+	for (int i = 0; i < controls.size(); i++)
+	{
+		if (controls[i] != NULL)
 		{
-			Button* button = buttons[i];
-
-			if (button->isWithin(x, y))
-			{
-				button->mouseHover();
-			}
-
-			else
-			{
-				button->mouseLeave();
-			}
+			controls[i]->handleInput(key, upDown, x, y);
 		}
 	}
 }
 
-void MenuScreen::add(Button* buttonsToAdd[], int numButtons)
+void MenuScreen::draw(SDL_Renderer* renderer)
 {
-	for (int i = 0; i < numButtons; i++)
+	for (int i = 0; i < controls.size(); i++)
 	{
-		buttons.push_back(buttonsToAdd[i]);
-	}
-}
-
-void MenuScreen::add(Button* buttonToAdd)
-{
-		buttons.push_back(buttonToAdd);
-}
-
-void MenuScreen::checkMouseDown()
-{
-	if (ObjectManager::currentGUI != NULL)
-	{
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-
-		for (int i = 0; i < buttons.size(); i++)
+		if (controls[i] != NULL)
 		{
-			Button* button = buttons[i];
-
-			if (button->isWithin(x, y))
-			{
-				button->mouseDown();
-			}
-
+			controls[i]->draw(renderer);
 		}
 	}
 }
 
-void MenuScreen::checkMouseUp()
+void MenuScreen::update()
 {
-	if (ObjectManager::currentGUI != NULL)
+	for (int i = 0; i < controls.size(); i++)
 	{
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-		for (int i = 0; i < buttons.size(); i++)
+		if (controls[i] != NULL)
 		{
-			Button* button = buttons[i];
-
-			if (button->isWithin(x, y))
-			{
-				button->mouseUp();
-			}
+			controls[i]->update();
 		}
 	}
 }

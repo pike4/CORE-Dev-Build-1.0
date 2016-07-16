@@ -43,6 +43,8 @@ public:
 
 	virtual void changeState(int state) = 0;
 
+	virtual void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0) = 0;
+
 	static void enqueue(Command* command);
 
 	static void updateQueue();

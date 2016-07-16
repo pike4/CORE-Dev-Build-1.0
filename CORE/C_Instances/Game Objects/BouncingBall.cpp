@@ -110,4 +110,6 @@ void BouncingBall::onCollide(Cursor* C)
 	
 }
 
+void BouncingBall::onCollide(Door* d) {}
+
 BouncingBall::~BouncingBall(){}

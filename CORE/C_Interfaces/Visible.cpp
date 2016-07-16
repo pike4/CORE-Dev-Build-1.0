@@ -2,6 +2,7 @@
 #include "VideoManager.h"
 #include "SystemManager.h"
 #include "BaseObject.h"
+#include "Room.h"
 
 Visible::Visible()
 {
@@ -13,6 +14,26 @@ Visible::Visible(SDL_Texture* texture)
 	this->mTexture = texture;
 
 	VideoManager::addVisible(this);
+}
+
+//Only use when this object's child class is being managed by some other structure
+Visible::Visible(pugi::xml_node node)
+{
+	mTexture = SystemManager::assignTexture((char*)node.child("texture").first_child().value());
+}
+
+//Used to programatically add an existing Visible to a room
+Visible::Visible(Room* room)
+{
+	room->drawVector->push_back(this);
+}
+
+//Used to create a new Visible from an XML node. Should change to 
+Visible::Visible(pugi::xml_node node, Room* room)
+{
+	mTexture = SystemManager::assignTexture((char*)node.child("texture").first_child().value());
+
+	room->drawVector->push_back(this);
 }
 
 Visible::Visible(pugi::xml_node node, std::vector<Visible*>* drawVector)

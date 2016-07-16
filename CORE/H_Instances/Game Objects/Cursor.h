@@ -13,4 +13,5 @@ public:
 	void onCollide(Player*);
 	void onCollide(BouncingBall*);
 	void onCollide(Cursor*);
+	void onCollide(Door*);
 };

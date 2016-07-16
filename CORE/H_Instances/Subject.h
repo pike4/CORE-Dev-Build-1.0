@@ -1,47 +1,55 @@
 #pragma once
 #include "_Manager.h"
-class Subject
+#include "Controllable.h"
+#include <vector>
+
+class Subject : public Controllable
 {
 public:
-	virtual void execute(int type) = 0;
-};
+	void addObserver(Controllable* observer)
+	{
+		observers.push_back(observer);
+	}
 
-class walkForwardButtonPressed : public Subject
-{
-	virtual void execute(int type);
-};
+	/*Remove the observer at the pointer
+	Returns:
+	0: Observer was present and was removed
+	-1: Observer was not present*/
+	int removeObserver(Controllable* observer)
+	{
+		for (int i = 0; i < observers.size(); i++)
+		{
+			if (observers[i] == observer)
+			{
+				observers.erase(observers.begin() + i);
+				return 0;
+			}
+		}
+		return -1;
+	}
 
-class walkBackwardButtonPressed : public Subject
-{
-	virtual void execute(int type);
-};
+	/*Remove the observer at the specified index
+	0: Index was within bounds
+	-1: Index was out of bounds*/
+	int removeObserver(int index)
+	{
+		if (index < observers.size() && index >= 0)
+		{
+			observers.erase(observers.begin() + index);
+			return 0;
+		}
+		return -1;
+	}
 
-class walkLeftButtonPressed : public Subject
-{
-	virtual void execute(int type);
-};
 
-class walkRightButtonPressed : public Subject
-{
-	virtual void execute(int type);
-};
+	void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0)
+	{
+		for (int i = 0; i < observers.size(); i++)
+		{
+			observers[i]->handleInput(keyCode, upDown, x, y);
+		}
+	}
 
-class collisionEvent : public Subject
-{
-	virtual void execute();
-};
-
-class mouseMoved : public Subject
-{
-	virtual void execute(int type);
-};
-
-class mouseDown : public Subject
-{
-	virtual void execute(int type);
-};
-
-class mouseUp : public Subject
-{
-	virtual void execute(int type);
+private:
+	std::vector<Controllable*> observers;
 };

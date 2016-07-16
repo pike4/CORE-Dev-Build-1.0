@@ -6,13 +6,14 @@
 class BouncingBall;
 class Player;
 class Cursor;
+class Door;
 
 class Collidable
 {
 public:
 	static enum collidibleTypes
 	{
-		eWall, Entity, cPlayer, Button, Bullet, TriggerZone, cCursor
+		eWall, Entity, cPlayer, Button, Bullet, TriggerZone, cCursor, cDoor
 	};
 
 	int collidableType;
@@ -31,4 +32,5 @@ public:
 	virtual void onCollide(BouncingBall*) = 0;
 	virtual void onCollide(Player*) = 0;
 	virtual void onCollide(Cursor*) = 0;
+	virtual void onCollide(Door*) = 0;
 };

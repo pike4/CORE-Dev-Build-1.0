@@ -9,6 +9,7 @@
 #include <fstream>
 #include "pugixml.hpp""
 #include "NavigationButton.h"
+#include "RenderableCharSet.h"
 
 #pragma once
 
@@ -39,19 +40,23 @@ public:
 	static std::map<char*, Mix_Chunk*> loadedSounds;
 	static std::map<char*, TTF_Font*> loadedFonts;
 	static std::map<char*, Mix_Music*> loadedMusic;
+	static std::map<char*, RenderableCharSet*> loadedCharSets;
 
 	static SDL_Texture* loadTexture(char* fileName);
 	static Mix_Music* loadMusic(char* fileName);
 	static Mix_Chunk* loadChunk(char* fileName);
 	static TTF_Font* loadFont(char* fileName, int size);
 
-	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*, std::vector<Collidable*>*);
+	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*, std::vector<Collidable*>*, std::vector<Controllable*>*);
 
 	static void loadMenuSystemFromFile(char* fileName);
 
 	static SDL_Texture* assignTexture(char* fileName);
 	static Mix_Chunk* assignSound(char* fileName);
 	static TTF_Font* assignFont(char* fileName, int size);
+	static RenderableCharSet* assignCharSet(char* fontName, int fontSize, SDL_Color color);
+
+	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 
 	static void updateFPS();
 

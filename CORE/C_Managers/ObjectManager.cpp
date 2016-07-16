@@ -35,11 +35,21 @@ void ObjectManager::update()
 
 void ObjectManager::updateRunning()
 {
-	quadTree.update();
-
-	for (int x = 0; x < UpdateVector->size(); x++)
+	if (currentRoom == NULL)
 	{
-		(*UpdateVector)[x]->update();
+		return;
+	}
+
+	if (currentRoom->quadTree != NULL)
+	{
+		currentRoom->quadTree->update();
+	}
+
+	currentRoom->update();
+
+	for each(MenuScreen* menuScreen in StateManager::currentMenuScreens)
+	{
+		menuScreen->update();
 	}
 }
 
@@ -60,6 +70,10 @@ void ObjectManager::updateBlocking()
 
 #pragma endregion
 
+void ObjectManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
+{
+
+}
 
 
 void ObjectManager::start()
@@ -87,16 +101,25 @@ void ObjectManager::add(BaseObject* E)
 
 void ObjectManager::addUpdatable(Updatable* E)
 {
-	UpdateVector->push_back(E);
+	if (currentRoom == NULL || currentRoom->updateVector == NULL)
+	{
+		return;
+	}
+	currentRoom->updateVector->push_back(E);
 }
 
 void ObjectManager::removeUpdatable(Updatable* E)
 {
-	for (int x = 0; x < UpdateVector->size(); x++)
+	if (currentRoom == NULL || currentRoom->updateVector == NULL)
 	{
-		if ((*UpdateVector)[x] == E)
+		return;
+	}
+
+	for (int x = 0; x < currentRoom->updateVector->size(); x++)
+	{
+		if ((*currentRoom->updateVector)[x] == E)
 		{
-			UpdateVector->erase(UpdateVector->begin() + x);
+			currentRoom->updateVector->erase(currentRoom->updateVector->begin() + x);
 			return;
 		}
 	}
@@ -177,6 +200,7 @@ Player* ObjectManager::player;
 Cursor* ObjectManager::mouse;
 MenuScreen ObjectManager::gui;
 MenuScreen* ObjectManager::currentGUI;
+Room* ObjectManager::currentRoom;
 std::map<std::string, MenuSystem*> ObjectManager::menuSystems;
 
 //Redefine to change what the ObjectManager does in response to key presses
@@ -217,7 +241,7 @@ void HandleMouseClickCommand::execute()
 {
 	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
 	{
-		ObjectManager::currentGUI->checkMouseDown();
+		//ObjectManager::currentGUI->checkMouseDown();
 	}
 }
 
@@ -226,7 +250,7 @@ void HandleMouseMoveCommand::execute()
 	SDL_GetMouseState(&ObjectManager::mouse->boundingBox.x, &ObjectManager::mouse->boundingBox.y);
 	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
 	{
-		ObjectManager::currentGUI->checkMousePos();
+//		ObjectManager::currentGUI->checkMousePos();
 	}
 }
 
@@ -234,7 +258,7 @@ void HandleMouseUpCommand::execute()
 {
 	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
 	{
-		ObjectManager::currentGUI->checkMouseUp();
+	//	ObjectManager::currentGUI->checkMouseUp();
 	}
 }
 #pragma endregion

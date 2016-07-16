@@ -2,14 +2,20 @@
   <name>first</name>
   <Room>
     <name>living room</name>
+    <w>640</w>
+    <h>480</h>
     <objects>object_list1.xml</objects>
   </Room>
   <Room>
     <name>sex dungeon</name>
+    <w>640</w>
+    <h>480</h>
     <objects>object_list2.xml</objects>
   </Room>
   <Room>
     <name>kitchen</name>
+    <w>640</w>
+    <h>480</h>
     <objects>object_list3.xml</objects>
   </Room>
 </Environment>

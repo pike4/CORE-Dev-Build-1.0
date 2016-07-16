@@ -8,6 +8,21 @@
     <xVel>2</xVel>
     <yVel>0</yVel>
   </BouncingBall>
+  <Door>
+    <x>100</x>
+    <y>100</y>
+    <texture>Assets/Sprites/Eldritch_Lava_Monster.png</texture>
+    <w>50</w>
+    <h>50</h>
+    <pointer>kitchen</pointer>
+  </Door>
+  <Player>
+    <x>100</x>
+    <y>100</y>
+    <texture>Assets/Sprites/IMG_BouncingBall.png</texture>
+    <w>50</w>
+    <h>50</h>
+  </Player>
   <BouncingBall>
     <x>100</x>
     <y>100</y>

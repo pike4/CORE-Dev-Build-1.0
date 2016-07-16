@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 #include "StateManager.h"
 #include "BouncingBall.h"
+#include "Door.h"
 #include "AudioManager.h"
 #include "Commands.h"
 #include "pugixml.hpp"
@@ -61,6 +62,11 @@ void SystemManager::updatePaused()
 }
 
 void SystemManager::updateBlocking()
+{
+
+}
+
+void SystemManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
 {
 
 }
@@ -140,7 +146,7 @@ void SystemManager::flush()
 	
 }
 
-void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector)
+void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
 {
 	if (fileName == NULL || objectVector == NULL || drawVector == NULL || updateVector == NULL || collidableVector == NULL)
 	{
@@ -162,7 +168,12 @@ void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* ob
 
 		else if (!strcmp(node.name(), "Player"))
 		{
-			new Player(node, objectVector, drawVector, updateVector, collidableVector);
+			new Player(node, objectVector, drawVector, updateVector, collidableVector, controllableVector);
+		}
+
+		else if (!strcmp(node.name(), "Door"))
+		{
+			new Door(node, objectVector, drawVector, collidableVector);
 		}
 
 		node = node.next_sibling();
@@ -296,6 +307,23 @@ TTF_Font* SystemManager::assignFont(char* fileName, int size)
 	return newFont;
 }
 
+RenderableCharSet* SystemManager::assignCharSet(char* fontName, int fontSize, SDL_Color color)
+{
+	char* name = fontName;
+	strcat(name, std::to_string(fontSize).c_str());
+	
+	if (loadedCharSets.find(name) != loadedCharSets.end())
+	{
+		return loadedCharSets[name];
+	}
+
+	TTF_Font* newFont = assignFont(fontName, fontSize);
+
+	loadedCharSets[name] = new RenderableCharSet(fontSize, newFont, color, VideoManager::mRenderer);
+
+
+}
+
 MenuScreen* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
 {
 	MenuScreen* newGUI = new MenuScreen();
@@ -313,7 +341,7 @@ MenuScreen* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
 
 		if (strcmp(curName, "button") == 0)
 		{
-			newGUI->buttons.push_back(Button_LoadFromFile(childNode));
+			newGUI->controls.push_back(Button_LoadFromFile(childNode));
 		}
 
 		else if (strcmp(curName, "background") == 0)
@@ -351,7 +379,8 @@ Button* SystemManager::Button_LoadFromFile(pugi::xml_node node)
 	SDL_Color col;
 	col.a = 20;
 
-	return new Button(x, y, def, held, hover, text, font, col, NULL);
+	//return new Button(x, y, def, held, hover, text, font, col, NULL);
+	return NULL;
 }
 
 
@@ -366,6 +395,7 @@ std::map<char*, SDL_Texture*> SystemManager::loadedTextures;
 std::map<char*, Mix_Chunk*> SystemManager::loadedSounds;
 std::map<char*, Mix_Music*> SystemManager::loadedMusic;
 std::map<char*, TTF_Font*> SystemManager::loadedFonts;
+std::map<char*, RenderableCharSet*> SystemManager::loadedCharSets;
 
 
 Timer SystemManager::FPSTimer;

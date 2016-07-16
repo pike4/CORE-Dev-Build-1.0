@@ -5,6 +5,8 @@
 #include "Visible.h"
 #include "pugixml.hpp"
 
+class Room;
+
 
 class Mobile : public Updatable, public Visible, public BaseObject
 {
@@ -13,6 +15,7 @@ public:
 
 	Mobile(int x, int y, SDL_Texture* texture);
 	Mobile(pugi::xml_node, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*);
+	Mobile(pugi::xml_node, Room* room);
 	~Mobile();
 
 	void setXVel(double value);

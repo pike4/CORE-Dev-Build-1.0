@@ -45,6 +45,11 @@ Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std:
 	//Same
 }
 
+Mobile::Mobile(pugi::xml_node node, Room* room): Visible(node, room), BaseObject(node, room), Updatable(room)
+{
+	//Samey same
+}
+
 Mobile::~Mobile()
 {
 	

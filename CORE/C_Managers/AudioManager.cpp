@@ -6,6 +6,11 @@
 
 int AudioManager::state;
 
+void AudioManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
+{
+
+}
+
 bool AudioManager::start()
 {
 	if (SDL_INIT_AUDIO < 0)
@@ -19,7 +24,6 @@ bool AudioManager::start()
 		printf("Failed to open SDL_Audio\n");
 		return false;
 	}
-	
 	
 	else return true;
 }

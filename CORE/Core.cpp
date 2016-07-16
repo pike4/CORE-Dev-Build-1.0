@@ -24,6 +24,8 @@
 #include "pugixml.hpp"
 #include "ResourceHashtable.h"
 #include <map>
+#include "SpeechBox.h"
+#include "TextElement.h"
 
 #undef main
 
@@ -53,15 +55,31 @@ int main()
 	//AudioManager::startMusicLoop(mega_Music);
 	Environment* environment2 = new Environment("room.xml");
 
+	SDL_Color red;
+	red.r = 100;
+
+	RenderableCharSet chars = RenderableCharSet(12, sans, red, VideoManager::mRenderer);
+
+	TextElement testText = TextElement(100, 100, 200, 200, &chars);
+	testText.stringToLines("We need a hang glider, and a crotch less uncle sam costume, and I want the entire field of your largest stadium covered end to end with naked red heads, and I want the stands packed with every man that remotely resembles my father.");
+
+	SDL_Rect temprect = testText.box;
+
+	while(true)
+	{
+		SDL_RenderDrawRect(VideoManager::mRenderer, &temprect);
+		testText.draw(VideoManager::mRenderer);
+		SDL_RenderPresent(VideoManager::mRenderer);
+	}
 
 	MenuSystem* argh = new MenuSystem("g.xml");
 
 
 	StateManager::goToEnvironment("first");
 	StateManager::goToMenuSystem("Pause Menu");
+	StateManager::goToGUIInCurrentMenuSystem("main");
 
-	StateManager::goToRoomInCurrentEnvironment("kitchen");
-
+	StateManager::goToRoomInCurrentEnvironment("living room");
 
 	while (!quit)
 	{

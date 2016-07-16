@@ -36,11 +36,16 @@ void Collidable::onCollide(Collidable* C)
 	case Entity:
 		onCollide((BouncingBall*)C);
 		break;
+	case cPlayer:
+		onCollide((Player*)C);
+		break;
 	case cCursor:
 		onCollide((Cursor*)C);
 		break;
 	case eWall:
 		break;
+	case cDoor:
+		onCollide((Door*)C);
 
 	default:
 		break;

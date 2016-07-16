@@ -10,6 +10,7 @@
 #include "Collidable.h"
 #include "Cursor.h"
 #include "MenuScreen.h"
+#include "Room.h"
 
 class ObjectManager : public Manager
 {
@@ -38,12 +39,16 @@ public:
 	static void removeUpdatable(Updatable* E);
 	static int getObjectCount();
 
+	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+
 	static std::vector <BaseObject*>* getObjectVector();
 	static std::vector <Updatable*>* getUpdateVector();
 
 	static void setObjectVector(std::vector<BaseObject*>* newVector);
 	static void setUpdateVector(std::vector<Updatable*>* newVector);
 	static QuadTree quadTree;
+
+	static Room* currentRoom;
 
 	static SDL_Renderer* testRenderer;
 	static Player* player;
