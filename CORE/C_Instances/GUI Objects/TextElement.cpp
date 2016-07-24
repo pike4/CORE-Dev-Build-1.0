@@ -1,5 +1,6 @@
 #include "TextElement.h"
 #include "VideoManager.h"
+#include "SystemManager.h"
 
 TextElement::TextElement(int x, int y, int w, int h, RenderableCharSet* charSet)
 	:VisibleElement(x, y, w, h)
@@ -7,11 +8,27 @@ TextElement::TextElement(int x, int y, int w, int h, RenderableCharSet* charSet)
 	this->charSet = charSet;
 
 	maxLineLength = box.w / charSet->fontWidth;
+	maxLines = box.h / charSet->fontHeight;
+
+	lineIndex = 0;
 }
+
+TextElement::TextElement(int x, int y, int w, int h, RenderableCharSet* charSet, std::string text)
+	:TextElement(x, y, w, h, charSet)
+{
+	this->charSet = charSet;
+	this->text = text;
+
+	maxLineLength = box.w / charSet->fontWidth;
+	maxLines = box.h / charSet->fontHeight;
+
+	lineIndex = 0;
+}
+
 TextElement::TextElement(pugi::xml_node node)
 	:VisibleElement(node)
 {
-	text = node.child("text").first_child().value();
+	getArgsFromNode(node);
 }
 
 TextElement::TextElement(TextElement& copy)
@@ -25,7 +42,7 @@ void TextElement::draw(SDL_Renderer* renderer)
 	int penX = box.x;
 	int penY = box.y;
 
-	for (int x = 0; x < lines.size(); x++)
+	for (int x = lineIndex; x < lines.size() && x < maxLines; x++)
 	{
 		for (int y = 0; y < lines[x].length(); y++)
 		{
@@ -97,5 +114,22 @@ void TextElement::stringToLines(std::string message)
 	for each (string curString in lines)
 	{
 		printf("%s\n", curString.c_str());
+	}
+}
+
+void TextElement::getArgsFromNode(pugi::xml_node node)
+{
+	text = node.child("text").first_child().value();
+	std::string charSetName = node.child("CharacterSet").first_child().value();
+
+	if (!charSetName.empty())
+	{
+		charSet = SystemManager::assignCharSet(charSetName);
+	}
+
+	else
+	{
+		//TODO: Log error
+		charSet = NULL;
 	}
 }

@@ -36,25 +36,24 @@ public:
 	static void goToRunning();
 	static void goToInMenu();
 
-	static std::map<char*, SDL_Texture*> loadedTextures;
-	static std::map<char*, Mix_Chunk*> loadedSounds;
-	static std::map<char*, TTF_Font*> loadedFonts;
-	static std::map<char*, Mix_Music*> loadedMusic;
-	static std::map<char*, RenderableCharSet*> loadedCharSets;
+	static std::map<std::string, SDL_Texture*> loadedTextures;
+	static std::map<std::string, Mix_Chunk*> loadedSounds;
+	static std::map<std::string, TTF_Font*> loadedFonts;
+	static std::map<std::string, Mix_Music*> loadedMusic;
+	static std::map<std::string, RenderableCharSet*> loadedCharSets;
 
-	static SDL_Texture* loadTexture(char* fileName);
-	static Mix_Music* loadMusic(char* fileName);
-	static Mix_Chunk* loadChunk(char* fileName);
-	static TTF_Font* loadFont(char* fileName, int size);
+	static SDL_Texture* loadTexture(std::string fileName);
+	static Mix_Music* loadMusic(std::string fileName);
+	static Mix_Chunk* loadChunk(std::string fileName);
+	static TTF_Font* loadFont(std::string fileName, int size);
 
 	static void loadGameObjects(char* fileName, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*, std::vector<Collidable*>*, std::vector<Controllable*>*);
 
-	static void loadMenuSystemFromFile(char* fileName);
-
-	static SDL_Texture* assignTexture(char* fileName);
-	static Mix_Chunk* assignSound(char* fileName);
-	static TTF_Font* assignFont(char* fileName, int size);
-	static RenderableCharSet* assignCharSet(char* fontName, int fontSize, SDL_Color color);
+	static SDL_Texture* assignTexture(std::string fileName);
+	static Mix_Chunk* assignSound(std::string fileName);
+	static TTF_Font* assignFont(std::string fileName, int size);
+	static RenderableCharSet* assignCharSet(std::string fontName, int fontSize, SDL_Color color);
+	static RenderableCharSet* assignCharSet(std::string name);
 
 	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 
@@ -74,11 +73,6 @@ public:
 	static void printFPS();
 	static void printObjectCount();
 	static void drawableCount();
-
-
-	static MenuScreen* GUI_LoadFromFile(pugi::xml_node node);
-	static Button* Button_LoadFromFile(pugi::xml_node node);
-	static NavigationButton* NavButton_LoadFromFile(pugi::xml_node);
 
 private:
 	static Uint32 curTime;

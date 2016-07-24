@@ -81,12 +81,6 @@
     <ClInclude Include="H_Interfaces\Manipulatable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Instances\Game Objects\Cursor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H_Instances\GUI Objects\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -154,6 +148,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Instances\GUI Objects\TextElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\UpdatableTextElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Interfaces\DataBound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\ControlTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\ElementTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\GameObjectTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Interfaces\SimpleDrawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Interfaces\CompositeDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,12 +257,6 @@
     <ClCompile Include="C_Instances\Game Objects\ReflectiveWall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\Cursor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\GUI Objects\Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -300,6 +315,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\TextElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\Buton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\GUI_Area.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H_Instances\GUI Objects\DragArea.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\DragArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\UpdatableTextElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\CheckBoxButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Interfaces\CompositeDrawable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Interfaces\SimpleDrawable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

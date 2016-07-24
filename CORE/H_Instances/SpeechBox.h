@@ -1,5 +1,4 @@
 #pragma once
-#include "Visible.h"
 #include "Updatable.h"
 #include "Controllable.h"
 #include "Timer.h"

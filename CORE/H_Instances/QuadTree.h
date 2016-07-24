@@ -12,7 +12,7 @@ class QuadTree
 {
 public:
 	
-	QuadTree(int, int x, int y, int w, int h, QuadTree* parent);
+	QuadTree(int depth, int x, int y, int w, int h, QuadTree* parent);
 	void split();
 	void insert(Collidable*);
 	void remove(Collidable*);

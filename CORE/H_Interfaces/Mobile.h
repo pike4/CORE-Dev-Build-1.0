@@ -2,19 +2,19 @@
 
 #include "BaseObject.h"
 #include "Updatable.h"
-#include "Visible.h"
 #include "pugixml.hpp"
+#include "Drawable.h"
+#include "SimpleDrawable.h"
 
 class Room;
 
 
-class Mobile : public Updatable, public Visible, public BaseObject
+class Mobile : public Updatable, public SimpleDrawable, public BaseObject
 {
 public:
 	virtual void move();
 
-	Mobile(int x, int y, SDL_Texture* texture);
-	Mobile(pugi::xml_node, std::vector<BaseObject*>*, std::vector<Visible*>*, std::vector<Updatable*>*);
+	Mobile(pugi::xml_node, std::vector<BaseObject*>*, std::vector<Drawable*>*, std::vector<Updatable*>*);
 	Mobile(pugi::xml_node, Room* room);
 	~Mobile();
 

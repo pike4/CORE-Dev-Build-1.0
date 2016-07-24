@@ -112,18 +112,16 @@ void SpeechBox::handleInput(int key, int upDown, int x, int y)
 
 int SpeechBox::getX()
 {
-	return x;
+	return box.x;
 }
 
 int SpeechBox::getY()
 {
-	return y;
+	return box.y;
 }
 
 void SpeechBox::draw(SDL_Renderer* renderer)
 {
-	Visible::draw(renderer);
-
 	int penX = 0;
 	int penY = 0;
 

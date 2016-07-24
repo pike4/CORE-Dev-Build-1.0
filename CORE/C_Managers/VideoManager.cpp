@@ -194,7 +194,7 @@ void VideoManager::addVisible(Visible* visible)
 	//gameObjectDrawingVector->push_back(visible);
 }
 
-void VideoManager::removeVisible(Visible* V)
+void VideoManager::removeDrawable(Drawable* V)
 {
 	if(!currentRoom || !currentRoom->drawVector)
 	for (int x = 0; x < currentRoom->drawVector->size(); x++)

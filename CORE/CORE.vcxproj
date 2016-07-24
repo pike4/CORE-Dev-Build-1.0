@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\XML Parsing\C_XMLParsing;.\XML Parsing\H_XMLParsing;.\C_Instances\CORE Objects;.\H_Instances\CORE Objects;.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;.\PugiXML;$(IncludePath)</IncludePath>
+    <IncludePath>.\XML Parsing\C_XMLParsing;.\XML Parsing\H_XMLParsing;.\C_Instances\CORE Objects;.\C_Instances\Elements;.\H_Instances\Elements;.\H_Instances\CORE Objects;.\C_Instances\GUI Objects;.\H_Instances\GUI Objects;.\H_Instances\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;.\PugiXML;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,16 +80,20 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="C_Instances\Environment.cpp" />
-    <ClCompile Include="C_Instances\Game Objects\Cursor.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Door.cpp" />
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\Buton.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\CheckBoxButton.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Control.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\DragArea.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\GUI_Area.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\ImageElement.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuScreen.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuSystem.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\TextElement.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\UpdatableTextElement.cpp" />
     <ClCompile Include="C_Instances\RenderableCharSet.cpp" />
     <ClCompile Include="C_Instances\RendereableCharacter.cpp" />
     <ClCompile Include="C_Instances\Room.cpp" />
@@ -105,9 +109,11 @@
     <ClCompile Include="C_Instances\Timer.cpp" />
     <ClCompile Include="C_Instances\Thing.cpp" />
     <ClCompile Include="C_Interfaces\Collidable.cpp" />
+    <ClCompile Include="C_Interfaces\CompositeDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Controllable.cpp" />
     <ClCompile Include="C_Interfaces\Manipulatable.cpp" />
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
+    <ClCompile Include="C_Interfaces\SimpleDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Updatable.cpp" />
     <ClCompile Include="C_Interfaces\VisibleElement.cpp" />
     <ClCompile Include="C_Main\Commands.cpp" />
@@ -120,6 +126,7 @@
     <ClCompile Include="C_Managers\_Manager.cpp" />
     <ClCompile Include="C_Managers\VideoManager.cpp" />
     <ClCompile Include="C_Interfaces\Visible.cpp" />
+    <ClCompile Include="H_Instances\GUI Objects\DragArea.h" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
     <ClCompile Include="XML Parsing\C_XMLParsing\XML_Reader.cpp" />
     <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp" />
@@ -127,27 +134,34 @@
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
-    <ClInclude Include="H_Instances\Game Objects\Cursor.h" />
     <ClInclude Include="H_Instances\Game Objects\TriggerZone.h" />
-    <ClInclude Include="H_Instances\GUI Objects\Button.h" />
+    <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h" />
+    <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h" />
     <ClInclude Include="H_Instances\GUI Objects\ImageElement.h" />
     <ClInclude Include="H_Instances\GUI Objects\MenuScreen.h" />
     <ClInclude Include="H_Instances\GUI Objects\MenuSystem.h" />
     <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h" />
     <ClInclude Include="H_Instances\GUI Objects\TextElement.h" />
+    <ClInclude Include="H_Instances\GUI Objects\UpdatableTextElement.h" />
     <ClInclude Include="H_Instances\QuadTree.h" />
     <ClInclude Include="H_Instances\ReflectiveWall.h" />
     <ClInclude Include="H_Instances\RenderableCharacter.h" />
     <ClInclude Include="H_Instances\RenderableCharSet.h" />
     <ClInclude Include="H_Instances\SpeechBox.h" />
     <ClInclude Include="H_Interfaces\Aggregate.h" />
+    <ClInclude Include="H_Interfaces\CompositeDrawable.h" />
     <ClInclude Include="H_Interfaces\Control.h" />
     <ClInclude Include="H_Interfaces\Controllable.h" />
     <ClInclude Include="H_Interfaces\Drawable.h" />
+    <ClInclude Include="H_Interfaces\DataBound.h" />
     <ClInclude Include="H_Interfaces\Manipulatable.h" />
     <ClCompile Include="Loggables\Loggables.cpp" />
     <ClInclude Include="H_Interfaces\Readable.h" />
+    <ClInclude Include="H_Interfaces\SimpleDrawable.h" />
     <ClInclude Include="H_Interfaces\VisibleElement.h" />
+    <ClInclude Include="H_Main\ControlTypes.h" />
+    <ClInclude Include="H_Main\ElementTypes.h" />
+    <ClInclude Include="H_Main\GameObjectTypes.h" />
     <ClInclude Include="H_Main\ResourceHashtable.h" />
     <ClInclude Include="PugiXML\pugiconfig.hpp" />
     <ClInclude Include="PugiXML\pugixml.hpp" />

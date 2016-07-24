@@ -7,25 +7,26 @@
 #include "ObjectManager.h"
 #include "Subject.h"
 #include "EventManager.h"
+#include "ImageElement.h"
 
-Player::Player(int aX, int aY, int aW, int aH, SDL_Texture* texture) : Mobile(aX, aY, texture), Collidable(aX, aY, aW, aH), Controllable()
-{
-	x = aX;
-	y = aY;
-	mTexture = texture;
-	xVel = 0;
-	yVel = 0;
-	boundingBox.x = aX;
-	boundingBox.y = aY;
-	boundingBox.w = aW;
-	boundingBox.h = aH;
-	walkSpeed = 2;
+//Player::Player(int aX, int aY, int aW, int aH, SDL_Texture* texture) : Mobile(aX, aY, texture), Collidable(aX, aY, aW, aH), Controllable()
+//{
+//	x = aX;
+//	y = aY;
+//	element = new ImageElement(aX, aY, aW, aH, texture);
+//	xVel = 0;
+//	yVel = 0;
+//	boundingBox.x = aX;
+//	boundingBox.y = aY;
+//	boundingBox.w = aW;
+//	boundingBox.h = aH;
+//	walkSpeed = 2;
+//
+//	prevXPtr = &prevX;
+//	prevYPtr = &prevY;
+//}
 
-	prevXPtr = &prevX;
-	prevYPtr = &prevY;
-}
-
-Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
+Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
 : Mobile(node, objectVector, drawVector, updateVector), Collidable(node, collidableVector), Controllable(controllableVector)
 {
 	ObjectManager::player = this;

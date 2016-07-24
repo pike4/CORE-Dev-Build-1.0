@@ -32,20 +32,16 @@ int Mobile::getY()
 
 void Mobile::draw(SDL_Renderer* renderer)
 {
-	VideoManager::applyTexture(x, y, renderer, mTexture);
+	element->draw(renderer);
 }
 
-Mobile::Mobile(int x, int y, SDL_Texture* texture) : Visible(texture), BaseObject(x, y)
-{
-	//All instantiation taken care of by parents. Free loading prick.
-}
 
-Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>*  updateVector) : Visible(node, drawVector), BaseObject(node, objectVector), Updatable(updateVector)
+Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>*  updateVector) : SimpleDrawable(node), BaseObject(node, objectVector), Updatable(updateVector)
 {
 	//Same
 }
 
-Mobile::Mobile(pugi::xml_node node, Room* room): Visible(node, room), BaseObject(node, room), Updatable(room)
+Mobile::Mobile(pugi::xml_node node, Room* room): SimpleDrawable(node, room), BaseObject(node, room), Updatable(room)
 {
 	//Samey same
 }

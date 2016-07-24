@@ -2,7 +2,6 @@
 #include "SystemManager.h"
 #include "ObjectManager.h"
 #include "StateManager.h"
-#include "BouncingBall.h"
 #include "Door.h"
 #include "AudioManager.h"
 #include "Commands.h"
@@ -146,48 +145,14 @@ void SystemManager::flush()
 	
 }
 
-void SystemManager::loadGameObjects(char* fileName, std::vector<BaseObject*>* objectVector, std::vector<Visible*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
+SDL_Texture* SystemManager::loadTexture(std::string fileName)
 {
-	if (fileName == NULL || objectVector == NULL || drawVector == NULL || updateVector == NULL || collidableVector == NULL)
-	{
-		return;
-	}
-
-	pugi::xml_document doc;
-
-	pugi::xml_parse_result result = doc.load_file(fileName);
-
-	pugi::xml_node node = doc.first_child().first_child();
-	
-	do
-	{
-		if (strcmp(node.name(), "BouncingBall") == 0)
-		{
-			new BouncingBall(node, objectVector, drawVector, updateVector, collidableVector);
-		}
-
-		else if (!strcmp(node.name(), "Player"))
-		{
-			new Player(node, objectVector, drawVector, updateVector, collidableVector, controllableVector);
-		}
-
-		else if (!strcmp(node.name(), "Door"))
-		{
-			new Door(node, objectVector, drawVector, collidableVector);
-		}
-
-		node = node.next_sibling();
-	} while (node.name() != "");
-}
-
-SDL_Texture* SystemManager::loadTexture(char* fileName)
-{
-	SDL_Surface* loadedTexture = IMG_Load(fileName);
+	SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
 	SDL_Texture* optimizedSurface = NULL;
 
 	if (loadedTexture == NULL)
 	{
-		if (strcmp(fileName, "") == 0)
+		if (fileName.empty())
 		{
 			fileName = "NO NAME GIVEN";
 		}
@@ -204,13 +169,13 @@ SDL_Texture* SystemManager::loadTexture(char* fileName)
 	return optimizedSurface;
 }
 
-Mix_Music* SystemManager::loadMusic(char* fileName)
+Mix_Music* SystemManager::loadMusic(std::string fileName)
 {
-	Mix_Music* newMusic = Mix_LoadMUS(fileName);
+	Mix_Music* newMusic = Mix_LoadMUS(fileName.c_str());
 
 	if (newMusic == NULL)
 	{
-		if (strcmp(fileName, "") == 0)
+		if (fileName.empty())
 		{
 			fileName = "NO NAME GIVEN";
 		}
@@ -221,14 +186,14 @@ Mix_Music* SystemManager::loadMusic(char* fileName)
 	return newMusic;
 }
 
-Mix_Chunk* SystemManager::loadChunk(char* fileName)
+Mix_Chunk* SystemManager::loadChunk(std::string fileName)
 {
 	
-	Mix_Chunk* newChunk = Mix_LoadWAV(fileName);
+	Mix_Chunk* newChunk = Mix_LoadWAV(fileName.c_str());
 
 	if (newChunk == NULL)
 	{
-		if (strcmp(fileName, "") == 0)
+		if (fileName.empty())
 		{
 			fileName = "NO NAME GIVEN";
 		}
@@ -239,14 +204,14 @@ Mix_Chunk* SystemManager::loadChunk(char* fileName)
 	return newChunk;
 }
 
-TTF_Font* SystemManager::loadFont(char* fileName, int size)
+TTF_Font* SystemManager::loadFont(std::string fileName, int size)
 {
-	TTF_Font* newFont = TTF_OpenFont(fileName, size);
+	TTF_Font* newFont = TTF_OpenFont(fileName.c_str(), size);
 
 	if (newFont == NULL)
 	{
 
-		if (strcmp(fileName, "") == 0)
+		if (fileName.empty())
 		{
 			fileName = "NO NAME GIVEN";
 		}
@@ -258,7 +223,7 @@ TTF_Font* SystemManager::loadFont(char* fileName, int size)
 }
 
 //Retrieve the texture with the given filename from the hashmap, loading and inserting the texture if it isn't there
-SDL_Texture* SystemManager::assignTexture(char* fileName)
+SDL_Texture* SystemManager::assignTexture(std::string fileName)
 {
 	if (loadedTextures.find(fileName) != loadedTextures.end())
 	{
@@ -274,7 +239,7 @@ SDL_Texture* SystemManager::assignTexture(char* fileName)
 	return newTex;
 }
 
-Mix_Chunk* SystemManager::assignSound(char* fileName)
+Mix_Chunk* SystemManager::assignSound(std::string fileName)
 {
 	if (loadedSounds.find(fileName) != loadedSounds.end())
 	{
@@ -284,13 +249,13 @@ Mix_Chunk* SystemManager::assignSound(char* fileName)
 	Mix_Chunk* newSound = loadChunk(fileName);
 	if (newSound != NULL)
 	{
-		loadedSounds.insert(std::pair<char*, Mix_Chunk*>(fileName, newSound));
+		loadedSounds.insert(std::pair<std::string, Mix_Chunk*>(fileName, newSound));
 	}
 
 	return newSound;
 }
 
-TTF_Font* SystemManager::assignFont(char* fileName, int size)
+TTF_Font* SystemManager::assignFont(std::string fileName, int size)
 {
 	if (loadedFonts.find(fileName) != loadedFonts.end())
 	{
@@ -307,83 +272,27 @@ TTF_Font* SystemManager::assignFont(char* fileName, int size)
 	return newFont;
 }
 
-RenderableCharSet* SystemManager::assignCharSet(char* fontName, int fontSize, SDL_Color color)
+RenderableCharSet* SystemManager::assignCharSet(std::string name, int fontSize, SDL_Color color)
 {
-	char* name = fontName;
-	strcat(name, std::to_string(fontSize).c_str());
+	name.append(std::to_string(fontSize));
 	
 	if (loadedCharSets.find(name) != loadedCharSets.end())
 	{
 		return loadedCharSets[name];
 	}
 
-	TTF_Font* newFont = assignFont(fontName, fontSize);
+	TTF_Font* newFont = assignFont(name.c_str(), fontSize);
 
 	loadedCharSets[name] = new RenderableCharSet(fontSize, newFont, color, VideoManager::mRenderer);
-
-
 }
 
-MenuScreen* SystemManager::GUI_LoadFromFile(pugi::xml_node node)
+RenderableCharSet* SystemManager::assignCharSet(std::string name)
 {
-	MenuScreen* newGUI = new MenuScreen();
-
-	pugi::xml_node childNode = node.first_child();
-	char* curName;
-	do
+	if (loadedCharSets.find(name) != loadedCharSets.end())
 	{
-		curName = (char*)childNode.name();
-
-		if (!strcmp(curName, "name"))
-		{
-			newGUI->name = (char*) childNode.first_child().value();
-		}
-
-		if (strcmp(curName, "button") == 0)
-		{
-			newGUI->controls.push_back(Button_LoadFromFile(childNode));
-		}
-
-		else if (strcmp(curName, "background") == 0)
-		{
-
-		}
-		childNode = childNode.next_sibling();
-
-	} while (strcmp(curName, "") != 0);
-
-	return newGUI;
+		return loadedCharSets[name];
+	}
 }
-
-Button* SystemManager::Button_LoadFromFile(pugi::xml_node node)
-{
-	int x, y, w, h, fontSize;
-	SDL_Texture* held;
-	SDL_Texture* hover;
-	SDL_Texture* def;
-	TTF_Font* font;
-	char* text;
-	printf("%s\n", node.name());
-	x = atoi(node.child("x").first_child().value());
-	y = atoi(node.child("y").first_child().value());
-	w = atoi(node.child("w").first_child().value());
-	h = atoi(node.child("h").first_child().value());
-
-	def = assignTexture((char*) node.child("DefTexture").first_child().value());
-	held= assignTexture((char*)node.child("HeldTexture").first_child().value());
-	hover = assignTexture((char*)node.child("HoverTexture").first_child().value());
-	text = (char*)node.child("text").first_child().value();
-	fontSize = atoi(node.child("fontSize").first_child().value());
-	font = assignFont((char*)node.child("font").first_child().value(), fontSize);
-
-	SDL_Color col;
-	col.a = 20;
-
-	//return new Button(x, y, def, held, hover, text, font, col, NULL);
-	return NULL;
-}
-
-
 
 Uint32 SystemManager::curTime;
 Uint32 SystemManager::prevTime;
@@ -391,11 +300,11 @@ Uint32 SystemManager::outputInterval;
 Uint32 SystemManager::totalTime;
 Uint32 SystemManager::totalFrames;
 
-std::map<char*, SDL_Texture*> SystemManager::loadedTextures;
-std::map<char*, Mix_Chunk*> SystemManager::loadedSounds;
-std::map<char*, Mix_Music*> SystemManager::loadedMusic;
-std::map<char*, TTF_Font*> SystemManager::loadedFonts;
-std::map<char*, RenderableCharSet*> SystemManager::loadedCharSets;
+std::map<std::string, SDL_Texture*> SystemManager::loadedTextures;
+std::map<std::string, Mix_Chunk*> SystemManager::loadedSounds;
+std::map<std::string, Mix_Music*> SystemManager::loadedMusic;
+std::map<std::string, TTF_Font*> SystemManager::loadedFonts;
+std::map<std::string, RenderableCharSet*> SystemManager::loadedCharSets;
 
 
 Timer SystemManager::FPSTimer;

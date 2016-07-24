@@ -1,8 +1,9 @@
 #include "ObjectManager.h"
 #include "Commands.h"
 #include "StateManager.h"
-#include "BouncingBall.h"
 #include "MenuScreen.h"
+#include "ControlTypes.h"
+#include "ElementTypes.h"
 #include <vector>
 #include <map>
 
@@ -78,11 +79,6 @@ void ObjectManager::handleEvent(int eventCode, int posOrNeg, int x, int y)
 
 void ObjectManager::start()
 {
-	mouse = new Cursor(0, 0, 1, 1);
-	SDL_GetMouseState(&mouse->boundingBox.x, &mouse->boundingBox.y);
-	mouse->prevXPtr = &mouse->boundingBox.x;
-	mouse->prevYPtr = &mouse->boundingBox.y;
-
 	BaseObjectVector = new std::vector<BaseObject*>;
 	UpdateVector = new std::vector<Updatable*>;
 
@@ -153,6 +149,77 @@ void ObjectManager::setObjectVector(std::vector<BaseObject*>* newVector)
 void ObjectManager::setUpdateVector(std::vector<Updatable*>* newVector)
 {
 	UpdateVector = newVector;
+}
+
+#pragma endregion
+
+#pragma region Object Management
+Control* ObjectManager::generateControl(std::string controlType, pugi::xml_node node)
+{
+	const char* name = controlType.c_str();
+	if (!strcmp(name, "Checkbox"))
+	{
+		return new CheckBoxButton(node);
+	}
+
+	else if (!strcmp(name, "DragArea.h"))
+	{
+		return new DragArea(node);
+	}
+
+	else if (!strcmp(name, "GUI_Area.h"))
+	{
+		return new GUI_Area(node);
+	}
+
+	else if (!strcmp(name, ""))
+	{
+		return NULL;
+	}
+}
+
+VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, pugi::xml_node node)
+{
+	const char* name = controlType.c_str();
+
+	if (!strcmp(name, "TextElement"))
+	{
+		return new TextElement(node);
+	}
+
+	else if (!strcmp(name, "UpdatableTextElement.h"))
+	{
+		return new UpdatableTextElement(node);
+	}
+
+	else if (!strcmp(name, "ImageElement.h"))
+	{
+		return new ImageElement(node);
+	}
+
+	else
+	{
+		//TODO log error: unsupported type
+		return NULL;
+	}
+}
+
+BaseObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, Room* room)
+{
+	if (!objectType.compare("Player"))
+	{
+		return new Player(node, room->objectVector, room->drawVector, room->updateVector, room->collidableVector, room->controllableVector);
+	}
+
+	else if (!objectType.compare(""))
+	{
+
+	}
+
+	else
+	{
+		//TODO log error undefined type in xml file
+	}
 }
 
 #pragma endregion
@@ -233,7 +300,7 @@ void walkRightCommand::execute()
 {
 	if (ObjectManager::player != NULL)
 	{
-		ObjectManager::player->walkRight(type);
+		//ObjectManager::player->walkRight(type);
 	}
 }
 
@@ -247,7 +314,6 @@ void HandleMouseClickCommand::execute()
 
 void HandleMouseMoveCommand::execute()
 {
-	SDL_GetMouseState(&ObjectManager::mouse->boundingBox.x, &ObjectManager::mouse->boundingBox.y);
 	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)
 	{
 //		ObjectManager::currentGUI->checkMousePos();

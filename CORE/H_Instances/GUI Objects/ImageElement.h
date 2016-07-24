@@ -11,4 +11,7 @@ public:
 	ImageElement(ImageElement& copy);
 
 	virtual void draw(SDL_Renderer* renderer);
+
+private:
+	void getArgsFromNode(pugi::xml_node node);
 };

@@ -4,10 +4,10 @@
 #include "ObjectManager.h"
 #include "StateManager.h"
 
-MenuSystem::MenuSystem(char* fileName)
+MenuSystem::MenuSystem(std::string fileName)
 {
 	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file(fileName);
+	pugi::xml_parse_result result = doc.load_file(fileName.c_str());
 
 	pugi::xml_node cur = doc.first_child().first_child();
 	name = new char;
@@ -40,4 +40,32 @@ MenuSystem::MenuSystem(char* fileName)
 
 	StateManager::menuSystems[name] = this;
 	
+}
+
+MenuScreen* MenuSystem::getMenuScreen(std::string name)
+{
+	if (menus.find(name) != menus.end())
+	{
+		return menus[name];
+	}
+
+	else
+	{
+		//TODO: log error
+		return NULL;
+	}
+}
+
+void MenuSystem::goToMenuScreen(std::string name)
+{
+	if (menus.find(name) != menus.end())
+	{
+		MenuScreen* newLayer = menus[name];
+		StateManager::addMenuScreenLayer(newLayer);
+	}
+
+	else
+	{
+		//TODO log error
+	}
 }

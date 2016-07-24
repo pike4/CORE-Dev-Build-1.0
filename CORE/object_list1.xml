@@ -1,8 +1,7 @@
 <objects>
-
   <Player>
-    <x>100</x>
-    <y>200</y>
+    <x>320</x>
+    <y>350</y>
     <texture>Assets/Sprites/Retard_Slime.png</texture>
     <w>50</w>
     <h>50</h>

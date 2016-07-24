@@ -1,6 +1,7 @@
 #include "Room.h"
 #include "SystemManager.h"
 #include "StateManager.h"
+#include "ObjectManager.h"
 
 //Load room from node
 Room::Room(pugi::xml_node node)
@@ -9,16 +10,16 @@ Room::Room(pugi::xml_node node)
 }
 
 //Load room from file
-Room::Room(char* fileName)
+Room::Room(std::string fileName)
 {
 	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load(fileName);
+	pugi::xml_parse_result result = doc.load(fileName.c_str());
 
 	pugi::xml_node curNode = doc.first_child();
 
 	if (strcmp(curNode.name(), "Room"))
 	{
-		if (!strcmp("", fileName))
+		if (fileName.empty())
 		{
 			fileName = "NO NAME GIVEN";
 		}
@@ -36,7 +37,7 @@ void Room::getArgsFromNode(pugi::xml_node node)
 	node = node.first_child();
 
 	updateVector = new std::vector<Updatable*>;
-	drawVector = new std::vector<Visible*>;
+	drawVector = new std::vector<Drawable*>;
 	objectVector = new std::vector<BaseObject*>;
 	collidableVector = new std::vector<Collidable*>;
 	controllableVector = new std::vector<Controllable*>;
@@ -45,11 +46,14 @@ void Room::getArgsFromNode(pugi::xml_node node)
 	{
 		if (strcmp(node.name(), "objects") == 0)
 		{
-			char* objectFileName = (char*)node.first_child().value();
+			pugi::xml_node objectsNode = node.first_child();
+			std::string curName = objectsNode.name();
 
-			if (strcmp(objectFileName, "") != 0)
+			while (!curName.empty())
 			{
-				SystemManager::loadGameObjects(objectFileName, objectVector, drawVector, updateVector, collidableVector, controllableVector);
+				ObjectManager::generateGameObject(curName, objectsNode, this);
+				objectsNode = objectsNode.next_sibling();
+				curName = objectsNode.name();
 			}
 		}
 
@@ -82,6 +86,7 @@ void Room::getArgsFromNode(pugi::xml_node node)
 	}
 }
 
+// 7/2016 compliant
 void Room::handleInput(int key, int posOrNeg, int x, int y)
 {
 	for (int i = 0; i < controllableVector->size(); i++)
@@ -93,6 +98,7 @@ void Room::handleInput(int key, int posOrNeg, int x, int y)
 	}
 }
 
+//Draw every drawable in the room. 7/2016 compliant
 void Room::draw(SDL_Renderer* renderer)
 {
 	for (int i = 0; i < drawVector->size(); i++)
@@ -103,7 +109,7 @@ void Room::draw(SDL_Renderer* renderer)
 		}
 	}
 }
-
+// 7/2016 compliant
 void Room::update()
 {
 	for (int i = 0; i < updateVector->size(); i++)

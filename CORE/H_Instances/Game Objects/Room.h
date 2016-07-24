@@ -1,7 +1,7 @@
 #pragma once
 #include "Updatable.h"
 #include "BaseObject.h"
-#include "Visible.h"
+#include "Drawable.h"
 #include "Collidable.h"
 #include "QuadTree.h"
 #include "Controllable.h"
@@ -14,7 +14,7 @@ class Room : public Updatable, public Drawable, public Controllable
 public:
 
 	std::vector<Updatable*>* updateVector;
-	std::vector<Visible*>* drawVector;
+	std::vector<Drawable*>* drawVector;
 	std::vector<BaseObject*>* objectVector;
 	std::vector<Collidable*>* collidableVector;
 	std::vector<Controllable*>* controllableVector;
@@ -28,7 +28,7 @@ public:
 	void update();
 
 	Room(pugi::xml_node);
-	Room(char* fileName);
+	Room(std::string fileName);
 
 	QuadTree* quadTree;
 

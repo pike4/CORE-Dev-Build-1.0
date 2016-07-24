@@ -6,7 +6,11 @@ class Environment
 public:
 	std::map<std::string, Room*> rooms;
 
-	Environment(char* fileName);
+	Environment(std::string fileName);
+	Environment(pugi::xml_node node);
 
 	std::string name;
+
+private:
+	void getArgsFromNode(pugi::xml_node node);
 };

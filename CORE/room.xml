@@ -4,7 +4,12 @@
     <name>living room</name>
     <w>640</w>
     <h>480</h>
-    <objects>object_list1.xml</objects>
+    <objects>
+      <Player>
+        <x>200</x>
+        <y>200</y>
+      </Player>
+    </objects>
   </Room>
   <Room>
     <name>sex dungeon</name>

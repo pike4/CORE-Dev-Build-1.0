@@ -9,5 +9,9 @@ public:
 	std::map<std::string, MenuScreen*> menus;
 	std::string name;
 
-	MenuSystem(char* fileName);
+	MenuSystem(std::string fileName);
+
+	MenuScreen* getMenuScreen(std::string name);
+
+	void goToMenuScreen(std::string name);
 };

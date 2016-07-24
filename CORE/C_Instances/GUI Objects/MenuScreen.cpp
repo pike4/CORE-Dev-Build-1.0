@@ -37,26 +37,11 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
 
 	char* curName = (char*)curNode.name();
 
-	while (strcmp(curNode.name(), "") != 0)
+	while (strcmp(curNode.name(), ""))
 	{
 		if (!strcmp(curName, "name"))
 		{
 			name = (char*)curNode.first_child().value();
-		}
-
-		else if (strcmp(curName, "button") == 0)
-		{
-			controls.push_back(new Button(curNode));
-		}
-
-		else if (!strcmp(curName, "NavigationButton"))
-		{
-			controls.push_back(new NavigationButton(curNode, root));
-		}
-
-		else if (strcmp(curName, "background") == 0)
-		{
-
 		}
 
 		curNode = curNode.next_sibling();
@@ -71,21 +56,6 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node)
 	
 	while (strcmp(curNode.name(), "") != 0)
 	{
-		if (!strcmp(curName, "name"))
-		{
-			name = (char*)curNode.first_child().value();
-		}
-
-		else if (strcmp(curName, "button") == 0)
-		{
-			controls.push_back(new Button(curNode));
-		}
-
-		else if (strcmp(curName, "background") == 0)
-		{
-
-		}
-
 		curNode = curNode.next_sibling();
 		curName = (char*) curNode.name();
 	} 

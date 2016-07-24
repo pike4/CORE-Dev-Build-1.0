@@ -51,7 +51,7 @@ public:
 
 	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point);
 
-	static void removeVisible(Visible* V);
+	static void removeDrawable(Drawable* V);
 #pragma endregion
 
 	static void update();

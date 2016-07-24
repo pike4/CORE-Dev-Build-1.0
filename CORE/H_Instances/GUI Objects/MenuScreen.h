@@ -1,7 +1,7 @@
 #pragma once
-#include "Button.h"
 #include "MenuSystem.h"
 #include "Controllable.h"
+#include "Control.h"
 #include "Drawable.h"
 #include "Updatable.h"
 #include <vector>

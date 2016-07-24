@@ -7,7 +7,7 @@
 #include "MenuSystem.h"
 
 #include "Environment.h"
-
+#include "DragArea.h"
 #include "Thing.h"
 #include "Updatable.h"
 #include "ObjectManager.h"
@@ -16,16 +16,17 @@
 #include "AudioManager.h"
 #include "AssetsManifest.h"
 #include "TextObjects.h"
-#include "BouncingBall.h"
 #include "Spinner.h"
-#include "Button.h"
 #include "NavigationButton.h"
 #include "SystemManager.h"
 #include "pugixml.hpp"
 #include "ResourceHashtable.h"
 #include <map>
 #include "SpeechBox.h"
-#include "TextElement.h"
+#include "UpdatableTextElement.h"
+#include "ImageElement.h"
+#include "GUI_Area.h"
+
 
 #undef main
 
@@ -47,6 +48,8 @@ int main()
 	SDL_Texture* hover = SystemManager::loadTexture("Assets/Sprites/BlankHover.png");
 	SDL_Texture* held = SystemManager::loadTexture("Assets/Sprites/BlankHeld.png");
 	SDL_Texture* def = SystemManager::loadTexture("Assets/Sprites/BlankDefault.png");
+
+	Mix_Chunk* voice = SystemManager::loadChunk("Assets/Music/sans.wav");
 	
 	Mix_Music* mega_Music = SystemManager::loadMusic("Assets/Music/a.ogg");
 	TTF_Font* sans = TTF_OpenFont("Assets/Fonts/comic.ttf", 12);
@@ -60,26 +63,9 @@ int main()
 
 	RenderableCharSet chars = RenderableCharSet(12, sans, red, VideoManager::mRenderer);
 
-	TextElement testText = TextElement(100, 100, 200, 200, &chars);
-	testText.stringToLines("We need a hang glider, and a crotch less uncle sam costume, and I want the entire field of your largest stadium covered end to end with naked red heads, and I want the stands packed with every man that remotely resembles my father.");
-
-	SDL_Rect temprect = testText.box;
-
-	while(true)
-	{
-		SDL_RenderDrawRect(VideoManager::mRenderer, &temprect);
-		testText.draw(VideoManager::mRenderer);
-		SDL_RenderPresent(VideoManager::mRenderer);
-	}
-
-	MenuSystem* argh = new MenuSystem("g.xml");
-
-
 	StateManager::goToEnvironment("first");
-	StateManager::goToMenuSystem("Pause Menu");
-	StateManager::goToGUIInCurrentMenuSystem("main");
-
 	StateManager::goToRoomInCurrentEnvironment("living room");
+
 
 	while (!quit)
 	{

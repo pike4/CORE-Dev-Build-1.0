@@ -8,15 +8,13 @@
 #include "Updatable.h"
 #include "QuadTree.h"
 #include "Collidable.h"
-#include "Cursor.h"
 #include "MenuScreen.h"
 #include "Room.h"
 
 class ObjectManager : public Manager
 {
 public:
-	static int state;
-
+	//Update
 	static void update();
 
 	static void updateRunning();
@@ -24,10 +22,12 @@ public:
 	static void updatePaused();
 	static void updateBlocking();
 
+	//State
 	static void goToBlocking();
 	static void goToPaused();
 	static void goToRunning();
 	static void goToInMenu();
+	static int state;
 
 	static void handleMouseClick();
 
@@ -38,6 +38,12 @@ public:
 	static void addUpdatable(Updatable* E);
 	static void removeUpdatable(Updatable* E);
 	static int getObjectCount();
+
+	//Generation
+	static Control* generateControl(std::string controlType, pugi::xml_node node);
+	static VisibleElement* generateVisibleElement(std::string controlType, pugi::xml_node node);
+
+	static BaseObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
 
 	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 
