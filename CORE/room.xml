@@ -8,7 +8,40 @@
       <Player>
         <x>200</x>
         <y>200</y>
+        <VisibleElement>
+          <ImageElement>
+            <x>0</x>
+            <y>0</y>
+            <w>100</w>
+            <h>100</h>
+            <Image>Assets/Sprites/Retard_Slime.png</Image>
+          </ImageElement>
+        </VisibleElement>
       </Player>
+      <CompositeEnemy>
+        <x>200</x>
+        <y>200</y>
+        <VisibleElements>
+          <ImageElement>
+            <X_Offset>20</X_Offset>
+            <Y_Offset>10</Y_Offset>
+            <x>0</x>
+            <y>0</y>
+            <w>100</w>
+            <h>100</h>
+            <Image>Assets/Sprites/Retard_Slime.png</Image>
+          </ImageElement>
+          <ImageElement>
+            <X_Offset>-20</X_Offset>
+            <Y_Offset>-10</Y_Offset>
+            <x>0</x>
+            <y>0</y>
+            <w>100</w>
+            <h>100</h>
+            <Image>Assets/Sprites/Happy_Cow_Man_Big.png</Image>
+          </ImageElement>
+        </VisibleElements>
+      </CompositeEnemy>
     </objects>
   </Room>
   <Room>

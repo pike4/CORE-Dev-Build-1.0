@@ -12,7 +12,7 @@ class Room;
 class Mobile : public Updatable, public SimpleDrawable, public BaseObject
 {
 public:
-	virtual void move();
+	virtual void updatePos();
 
 	Mobile(pugi::xml_node, std::vector<BaseObject*>*, std::vector<Drawable*>*, std::vector<Updatable*>*);
 	Mobile(pugi::xml_node, Room* room);

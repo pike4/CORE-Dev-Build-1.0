@@ -15,6 +15,9 @@ VisibleElement::VisibleElement(pugi::xml_node node)
 	box.y = atoi(node.child("y").first_child().value());
 	box.w = atoi(node.child("w").first_child().value());
 	box.h = atoi(node.child("h").first_child().value());
+
+	parentOffsetX = atoi(node.child("X_Offset").first_child().value());
+	parentOffsetY = atoi(node.child("Y_Offset").first_child().value());
 }
 
 VisibleElement::VisibleElement(VisibleElement& copy)

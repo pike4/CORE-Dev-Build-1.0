@@ -3,35 +3,21 @@
 
 SimpleDrawable::SimpleDrawable(pugi::xml_node node)
 {
-	node = node.first_child();
-	std::string curName = node.name();
+	element = ObjectManager::generateVisibleElement(node.child("VisibleElement").first_child().name(), node.child("VisibleElement").first_child());
 
-	while (!curName.empty())
-	{
-		if (!curName.compare("Visible Element"))
-		{
-			element = ObjectManager::generateVisibleElement(node.first_child().name(), node.first_child());
-		}
-
-		else if (!curName.compare("Z-Index"))
-		{
-			int tempZIndex = 0;
-			tempZIndex = atoi(node.first_child().value());
-			zIndex = tempZIndex;
-		}
-
-		else
-		{
-			//TODO log error: nonstandard element detected in xml file
-		}
-
-		node = node.next_sibling();
-		curName = node.name();
-	}
+	int tempZIndex = atoi(node.child("Z-Index").first_child().value());
+	tempZIndex = atoi(node.first_child().value());
+	zIndex = tempZIndex;
 }
 
 SimpleDrawable::SimpleDrawable(pugi::xml_node node, Room* room)
 	:SimpleDrawable(node)
 {
 	room->drawVector->push_back(this);
+}
+
+void SimpleDrawable::move(int x, int y)
+{
+	element->box.x = x + element->parentOffsetY;
+	element->box.y = y + element->parentOffsetY;
 }

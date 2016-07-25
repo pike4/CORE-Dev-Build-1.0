@@ -2,36 +2,41 @@
 #include "ObjectManager.h"
 
 CompositeDrawable::CompositeDrawable(pugi::xml_node node)
+	:Drawable(node)
 {
-	node = node.first_child();
-	std::string curName = node.name();
+	pugi::xml_node curNode;
+	std::string curName;
 
-	while (!curName.empty())
-	{
-		if (!curName.compare("Visible Element"))
-		{
-			elements.push_back(ObjectManager::generateVisibleElement(node.first_child().name(), node.first_child()));
-		}
+	 curNode = node.child("VisibleElements").first_child();
+	 curName = curNode.name();
 
-		else if (!curName.compare("Z-Index"))
-		{
-			int tempZIndex = 0;
-			tempZIndex = atoi(node.first_child().value());
-			zIndex = tempZIndex;
-		}
+	 while (!curName.empty())
+	 {
+		 elements.push_back(ObjectManager::generateVisibleElement(curName, curNode));
 
-		else
-		{
-			//TODO log error: nonstandard element detected in xml file
-		}
+		 curNode = curNode.next_sibling();
+		 curName = curNode.name();
+	 }
 
-		node = node.next_sibling();
-		curName = node.name();
-	}
+	int tempZIndex = 0;
+	tempZIndex = atoi(node.child("Z-Index").first_child().value());
+	zIndex = tempZIndex;
+
+	node = node.next_sibling();
+	curName = node.name();
 }
 
 CompositeDrawable::CompositeDrawable(pugi::xml_node node, Room* room)
 	:CompositeDrawable(node)
 {
 	room->drawVector->push_back(this);
+}
+
+void CompositeDrawable::move(int x, int y)
+{
+	for (int i = 0; i < elements.size(); i++)
+	{
+		elements[i]->box.x = x + elements[i]->parentOffsetX;
+		elements[i]->box.y = y + elements[i]->parentOffsetY;
+	}
 }

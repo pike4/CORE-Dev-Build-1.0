@@ -4,6 +4,7 @@
 #include "MenuScreen.h"
 #include "ControlTypes.h"
 #include "ElementTypes.h"
+#include "GameObjectTypes.h"
 #include <vector>
 #include <map>
 
@@ -187,12 +188,12 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 		return new TextElement(node);
 	}
 
-	else if (!strcmp(name, "UpdatableTextElement.h"))
+	else if (!strcmp(name, "UpdatableTextElement"))
 	{
 		return new UpdatableTextElement(node);
 	}
 
-	else if (!strcmp(name, "ImageElement.h"))
+	else if (!strcmp(name, "ImageElement"))
 	{
 		return new ImageElement(node);
 	}
@@ -208,12 +209,12 @@ BaseObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 {
 	if (!objectType.compare("Player"))
 	{
-		return new Player(node, room->objectVector, room->drawVector, room->updateVector, room->collidableVector, room->controllableVector);
+		return new Player(node, room);
 	}
 
-	else if (!objectType.compare(""))
+	else if (!objectType.compare("CompositeEnemy"))
 	{
-
+		return new CompositeEnemy(node, room);
 	}
 
 	else
@@ -263,7 +264,6 @@ std::vector <BaseObject*>* ObjectManager::BaseObjectVector;
 QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 480, NULL);
 SDL_Renderer* ObjectManager::testRenderer;
 int ObjectManager::state;
-Player* ObjectManager::player;
 Cursor* ObjectManager::mouse;
 MenuScreen ObjectManager::gui;
 MenuScreen* ObjectManager::currentGUI;
@@ -272,38 +272,6 @@ std::map<std::string, MenuSystem*> ObjectManager::menuSystems;
 
 //Redefine to change what the ObjectManager does in response to key presses
 #pragma region ObjectManagerCommands
-void walkForwardCommand::execute()
-{
-	if (ObjectManager::player != NULL)
-	{
-		ObjectManager::player->walkUp(type);
-	}
-}
-
-void walkBackwardCommand::execute()
-{
-	if (ObjectManager::player != NULL)
-	{
-		ObjectManager::player->walkDown(type);
-	}
-}
-
-void walkLeftCommand::execute()
-{
-	if (ObjectManager::player != NULL)
-	{
-		ObjectManager::player->walkLeft(type);
-	}
-}
-
-void walkRightCommand::execute()
-{
-	if (ObjectManager::player != NULL)
-	{
-		//ObjectManager::player->walkRight(type);
-	}
-}
-
 void HandleMouseClickCommand::execute()
 {
 	if (ObjectManager::currentGUI != NULL && ObjectManager::mouse != NULL)

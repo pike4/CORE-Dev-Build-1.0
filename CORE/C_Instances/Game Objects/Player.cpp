@@ -1,4 +1,4 @@
-#include "PLayer.h"
+#include "Player.h"
 #include "Thing.h"
 #include "SDL.h"
 #include <stack>
@@ -29,15 +29,22 @@
 Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
 : Mobile(node, objectVector, drawVector, updateVector), Collidable(node, collidableVector), Controllable(controllableVector)
 {
-	ObjectManager::player = this;
-
 	prevXPtr = &prevX;
 	prevYPtr = &prevY;
 
 	collidableType = cPlayer;
 }
 
-void Player::move()
+Player::Player(pugi::xml_node node, Room* room)
+	:Mobile(node, room), Collidable(node, room), Controllable(room)
+{
+	prevXPtr = &prevX;
+	prevYPtr = &prevY;
+
+	collidableType = cPlayer;
+}
+
+void Player::updatePos()
 {
 	x += xVel;
 	y += yVel;
@@ -49,7 +56,8 @@ void Player::move()
 
 void Player::update()
 {
-	move();
+	updatePos();
+	move(x, y);
 }
 
 void Player::walkDown(int type)

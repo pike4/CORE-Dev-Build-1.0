@@ -7,9 +7,11 @@
 class VisibleElement : public Drawable
 {
 public:
-	int parentOffssetX, parentOffsetY;
+	int parentOffsetX, parentOffsetY;
 	SDL_Rect box;
 	VisibleElement(int x, int y, int w, int h);
 	VisibleElement(pugi::xml_node node);
 	VisibleElement(VisibleElement& copy);
+
+	void move(int x, int y);
 };

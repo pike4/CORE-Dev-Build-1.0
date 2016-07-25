@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+class Room;
+
 class Controllable
 {
 public:
@@ -9,6 +11,7 @@ public:
 
 	//std::vector<Controllable*>* controllableVector - The vector that this controllable will be added to
 	Controllable(std::vector<Controllable*>* controllableVector);
+	Controllable(Room* room);
 
 	//Does nothing. Only use when the child class is owned
 	Controllable();

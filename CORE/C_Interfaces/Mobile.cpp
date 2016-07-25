@@ -1,7 +1,7 @@
 #include "Mobile.h"
 #include "VideoManager.h"
 
-void Mobile::move()
+void Mobile::updatePos()
 {
 	prevX = x;
 	prevY = y;

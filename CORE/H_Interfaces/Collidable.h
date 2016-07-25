@@ -7,6 +7,7 @@ class BouncingBall;
 class Player;
 class Cursor;
 class Door;
+class Room;
 
 class Collidable
 {
@@ -21,8 +22,10 @@ public:
 	SDL_Rect boundingBox;
 	SDL_Rect movementVector;
 
+	Collidable::Collidable(pugi::xml_node node);
 	Collidable(int, int, int, int);
 	Collidable(pugi::xml_node, std::vector<Collidable*>* collidableVector);
+	Collidable::Collidable(pugi::xml_node node, Room* room);
 	virtual ~Collidable();
 	
 	int* prevXPtr;

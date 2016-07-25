@@ -4,6 +4,7 @@
 #include "pugixml.hpp"
 
 Control::Control(pugi::xml_node node)
+	:Drawable(node)
 {
 	getArgsFromNode(node);
 }

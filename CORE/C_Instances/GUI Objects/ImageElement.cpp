@@ -13,7 +13,7 @@ ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 ImageElement::ImageElement(pugi::xml_node node)
 	:VisibleElement(node)
 {
-
+	texture = SystemManager::assignTexture(node.child("Image").first_child().value());
 }
 
 ImageElement::ImageElement(ImageElement& copy)

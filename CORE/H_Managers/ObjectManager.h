@@ -57,7 +57,6 @@ public:
 	static Room* currentRoom;
 
 	static SDL_Renderer* testRenderer;
-	static Player* player;
 	static Cursor* mouse;
 	static MenuScreen* currentGUI;
 	static MenuScreen gui;

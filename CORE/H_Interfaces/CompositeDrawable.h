@@ -2,10 +2,11 @@
 #pragma once
 #include "Drawable.h"
 #include "pugixml.hpp"
-#include "Room.h"
 #include "VisibleElement.h"
 #include "SDL.h"
 #include <vector>
+
+class Room;
 
 class  CompositeDrawable: public Drawable
 {
@@ -21,4 +22,6 @@ public:
 			elements[i]->draw(renderer);
 		}
 	}
+
+	void move(int x, int y);
 };

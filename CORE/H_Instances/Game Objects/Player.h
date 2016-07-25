@@ -13,6 +13,8 @@ public:
 
 	Player(pugi::xml_node node, std::vector<BaseObject*>*, std::vector<Drawable*>*, std::vector<Updatable*>*, std::vector<Collidable*>*, std::vector<Controllable*>*);
 
+	Player(pugi::xml_node node, Room* room);
+
 	void walkUp(int type);
 	void walkDown(int type);
 	void walkLeft(int type);
@@ -25,7 +27,8 @@ public:
 	bool walkingLeft;
 	bool walkingRight;
 
-	void move();
+	virtual void updatePos();
+
 	void update();
 
 	void onCollide(Collidable*);

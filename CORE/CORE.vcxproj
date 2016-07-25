@@ -80,6 +80,7 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="C_Instances\Environment.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\CompositeEnemy.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Door.cpp" />
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Buton.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="C_Interfaces\Collidable.cpp" />
     <ClCompile Include="C_Interfaces\CompositeDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Controllable.cpp" />
+    <ClCompile Include="C_Interfaces\Drawable.cpp" />
     <ClCompile Include="C_Interfaces\Manipulatable.cpp" />
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
     <ClCompile Include="C_Interfaces\SimpleDrawable.cpp" />
@@ -131,6 +133,7 @@
     <ClCompile Include="XML Parsing\C_XMLParsing\XML_Reader.cpp" />
     <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
+    <ClInclude Include="H_Instances\CompositeEnemy.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
