@@ -24,3 +24,9 @@ VisibleElement::VisibleElement(VisibleElement& copy)
 {
 	box = copy.box;
 }
+
+void VisibleElement::move(int x, int y)
+{
+	box.x = x;
+	box.y = y;
+}

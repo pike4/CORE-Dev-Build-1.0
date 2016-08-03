@@ -6,6 +6,7 @@
 #include "TextElement.h"
 #include "ImageElement.h"
 #include "UpdatableTextElement.h"
+#include "Animation.h"
 
 ///////////////////////////////////
 //User Defined

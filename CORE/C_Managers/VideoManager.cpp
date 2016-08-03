@@ -4,6 +4,7 @@
 #include "SDL_Image.h"
 #include "SDL_TTF.h"
 #include "StateManager.h"
+#include "ImageElement.h"
 #include <string>
 
 
@@ -276,6 +277,32 @@ void VideoManager::setScreenBackground(std::string filename)
 }
 
 #pragma endregion
+
+void VideoManager::getAnimationFromSpriteSheet(int framesX, int framesY, int frameW, int frameH,
+	int seperation, std::string fileName, VisibleElement** outFrames)
+{
+	SDL_Surface* mainSurface = IMG_Load(fileName.c_str());
+	SDL_Surface* tempSurface = new SDL_Surface;
+	SDL_Texture* temp;
+	SDL_Rect curFrame = { 0, 0, frameW, frameH };
+	SDL_Rect blitFrame = { 0, 0, frameW, frameH };
+	int totalFramesIndex = 0;
+
+	for (int i = 0; i < framesX; i++)
+	{
+		for (int j = 0; j < framesY; j++)
+		{
+			tempSurface = SDL_CreateRGBSurface(0, frameW, frameH, 32, 0, 0, 0, 0);
+			printf(SDL_GetError());
+			curFrame.x = j * (frameW + seperation);
+			curFrame.y = i * (frameH + seperation);
+			SDL_BlitSurface(mainSurface, &curFrame, tempSurface, &blitFrame);
+			outFrames[totalFramesIndex++] = new ImageElement(0, 0, frameW, frameH, 
+				SDL_CreateTextureFromSurface(mRenderer, tempSurface));
+		}
+	}
+	SDL_FreeSurface(tempSurface);
+}
 
 SDL_Window* VideoManager::mWindow;
 SDL_Renderer* VideoManager::mRenderer;

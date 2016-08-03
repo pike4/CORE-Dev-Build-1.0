@@ -13,5 +13,5 @@ public:
 	VisibleElement(pugi::xml_node node);
 	VisibleElement(VisibleElement& copy);
 
-	void move(int x, int y);
+	virtual void move(int x, int y);
 };

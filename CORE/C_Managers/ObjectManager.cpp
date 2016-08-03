@@ -198,6 +198,11 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 		return new ImageElement(node);
 	}
 
+	else if (!strcmp(name, "Animation"))
+	{
+		return new Animation(node);
+	}
+
 	else
 	{
 		//TODO log error: unsupported type

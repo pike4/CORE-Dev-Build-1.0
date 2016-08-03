@@ -14,7 +14,7 @@
 using namespace std;
 
 
-
+class VisibleElement;
 
 class VideoManager : public Manager
 {
@@ -49,9 +49,13 @@ public:
 
 	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source);
 
-	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point);
+	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, 
+		double rotation, SDL_RendererFlip flip, SDL_Point point);
 
 	static void removeDrawable(Drawable* V);
+
+	static void getAnimationFromSpriteSheet(int framesX, int framesY, int frameW, int frameH,
+		int seperation, std::string fileName, VisibleElement** outFrmaes);
 #pragma endregion
 
 	static void update();

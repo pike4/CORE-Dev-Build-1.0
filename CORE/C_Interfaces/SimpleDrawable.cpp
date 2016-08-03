@@ -18,6 +18,5 @@ SimpleDrawable::SimpleDrawable(pugi::xml_node node, Room* room)
 
 void SimpleDrawable::move(int x, int y)
 {
-	element->box.x = x + element->parentOffsetY;
-	element->box.y = y + element->parentOffsetY;
+	element->move(x, y);
 }

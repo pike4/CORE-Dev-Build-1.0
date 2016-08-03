@@ -9,13 +9,15 @@
         <x>200</x>
         <y>200</y>
         <VisibleElement>
-          <ImageElement>
-            <x>0</x>
-            <y>0</y>
-            <w>100</w>
-            <h>100</h>
-            <Image>Assets/Sprites/Retard_Slime.png</Image>
-          </ImageElement>
+            <Animation>
+            <framesX>2</framesX>
+            <framesY>2</framesY>
+            <frameW>100</frameW>
+            <frameH>100</frameH>
+            <seperation>1</seperation>
+            <fileName>Assets/Sprites/ANIM_Default.png</fileName>
+            <millisecondsPerFrame>700</millisecondsPerFrame>
+          </Animation>
         </VisibleElement>
       </Player>
       <CompositeEnemy>
