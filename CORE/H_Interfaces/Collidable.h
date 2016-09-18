@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "pugixml.hpp"
+#include "UpdatableComponent.h"
 #include <vector>
 
 class BouncingBall;
@@ -9,7 +10,7 @@ class Cursor;
 class Door;
 class Room;
 
-class Collidable
+class Collidable : public Component
 {
 public:
 	static enum collidibleTypes
@@ -25,15 +26,21 @@ public:
 	Collidable::Collidable(pugi::xml_node node);
 	Collidable(int, int, int, int);
 	Collidable(pugi::xml_node, std::vector<Collidable*>* collidableVector);
-	Collidable::Collidable(pugi::xml_node node, Room* room);
+	Collidable(pugi::xml_node node, Room* room);
+	Collidable(Collidable&);
+	Collidable(Collidable&, Room* room);
+
+	Collidable* spawnCopy();
+
+	virtual void move(int x, int y);
+	
+
+	virtual void addTo(Room*);
+
 	virtual ~Collidable();
 	
 	int* prevXPtr;
 	int* prevYPtr;
 
 	void onCollide(Collidable*);
-	virtual void onCollide(BouncingBall*) = 0;
-	virtual void onCollide(Player*) = 0;
-	virtual void onCollide(Cursor*) = 0;
-	virtual void onCollide(Door*) = 0;
 };

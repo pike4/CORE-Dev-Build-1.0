@@ -6,8 +6,6 @@ ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 	:VisibleElement(x, y, w, h)
 {
 	this->texture = texture;
-
-
 }
 
 ImageElement::ImageElement(pugi::xml_node node)
@@ -39,4 +37,9 @@ void ImageElement::getArgsFromNode(pugi::xml_node node)
 	{
 		//TODO: log error
 	}
+}
+
+Component* ImageElement::spawnCopy()
+{
+	return new ImageElement(*this);
 }

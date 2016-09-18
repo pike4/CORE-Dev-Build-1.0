@@ -10,6 +10,7 @@
 #include "Collidable.h"
 #include "MenuScreen.h"
 #include "Room.h"
+#include "Mover.h"
 
 class ObjectManager : public Manager
 {
@@ -43,7 +44,11 @@ public:
 	static Control* generateControl(std::string controlType, pugi::xml_node node);
 	static VisibleElement* generateVisibleElement(std::string controlType, pugi::xml_node node);
 
-	static BaseObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
+	static GameObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
+	static GameObject* generateGameObject(std::string, pugi::xml_node node);
+	static Mover* generateMover(std::string, pugi::xml_node);
+	static GameObject* generate(std::string prototypeName);
+	static GameObject* spawn(std::string prototypeName, Room* room);
 
 	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 

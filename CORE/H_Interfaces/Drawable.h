@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "pugixml.hpp"
+#include "Component.h"
 
 class Room;
 
@@ -11,5 +12,6 @@ public:
 	Drawable(pugi::xml_node node);
 	Drawable(pugi::xml_node node, Room* room);
 	virtual void draw(SDL_Renderer* renderer) = 0;
+	virtual void add(Room*);
 	int zIndex = 1;
 };

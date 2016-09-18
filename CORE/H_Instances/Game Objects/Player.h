@@ -14,6 +14,9 @@ public:
 	Player(pugi::xml_node node, std::vector<BaseObject*>*, std::vector<Drawable*>*, std::vector<Updatable*>*, std::vector<Collidable*>*, std::vector<Controllable*>*);
 
 	Player(pugi::xml_node node, Room* room);
+	Player(pugi::xml_node node);
+
+	virtual BaseObject* spawnCopy(Room* room);
 
 	void walkUp(int type);
 	void walkDown(int type);

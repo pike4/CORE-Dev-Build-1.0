@@ -67,12 +67,18 @@ public:
 
 	static void setoutputInterval(Uint32 ms);
 
+	static void loadPrototypes(std::string fileName);
+	static void loadPrototypes(pugi::xml_node);
+	static void addPrototype(std::string name, GameObject* prototype);
+
 	static bool hasElapsed(Uint32 ms);
 
 	static void updateTime();
 	static void printFPS();
 	static void printObjectCount();
 	static void drawableCount();
+
+	static inline pugi::xml_node getFirstNodeFromFile(std::string fileName);
 
 private:
 	static Uint32 curTime;

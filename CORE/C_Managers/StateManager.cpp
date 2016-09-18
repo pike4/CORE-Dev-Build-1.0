@@ -7,6 +7,8 @@
 #include "CollisionManager.h"
 #include "Commands.h"
 
+#include "GameObject.h"
+
 
 void StateManager::start()
 {
@@ -240,6 +242,8 @@ Timer StateManager::frameTimer;
 
 std::map<std::string, Environment*> StateManager::environments;
 std::map<std::string, MenuSystem*> StateManager::menuSystems;
+
+std::map<std::string, GameObject*> StateManager::prototypes;
 
 Environment* StateManager::currentEnvironment;
 Room* StateManager::currentRoom;

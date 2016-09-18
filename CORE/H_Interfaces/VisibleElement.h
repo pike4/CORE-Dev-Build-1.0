@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "RenderableCharSet.h"
 
-class VisibleElement : public Drawable
+class VisibleElement : public Drawable, public Component
 {
 public:
 	int parentOffsetX, parentOffsetY;
@@ -14,4 +14,7 @@ public:
 	VisibleElement(VisibleElement& copy);
 
 	virtual void move(int x, int y);
+
+	virtual Component* spawnCopy();
+	virtual void addTo(Room* room);
 };

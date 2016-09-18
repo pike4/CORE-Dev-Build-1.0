@@ -14,7 +14,15 @@ Updatable::Updatable(std::vector<Updatable*>* updateVector)
 
 Updatable::Updatable(Room* room)
 {
-	room->updateVector->push_back(this);
+	add(room);
+}
+
+void Updatable::add(Room* room)
+{
+	if (room != NULL)
+	{
+		room->updateVector->push_back(this);
+	}
 }
 
 Updatable::~Updatable()

@@ -14,6 +14,9 @@ public:
 	CompositeDrawable(pugi::xml_node node);
 	CompositeDrawable(pugi::xml_node node, Room* room);
 
+	CompositeDrawable(CompositeDrawable& other);
+	CompositeDrawable(CompositeDrawable& other, Room* room);
+
 	std::vector<VisibleElement*> elements;
 	virtual void draw(SDL_Renderer* renderer)
 	{

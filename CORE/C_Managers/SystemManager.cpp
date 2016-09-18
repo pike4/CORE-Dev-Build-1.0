@@ -294,6 +294,52 @@ RenderableCharSet* SystemManager::assignCharSet(std::string name)
 	}
 }
 
+void SystemManager::loadPrototypes(std::string fileName)
+{
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file(fileName.c_str());
+	pugi::xml_node node = doc.first_child();
+	loadPrototypes(node);
+}
+
+
+void SystemManager::loadPrototypes(pugi::xml_node node)
+{
+	std::string name = node.name();
+
+	if (strcmp(node.name(), "prototypes"))
+	{
+		return;
+	}
+	
+	node = node.first_child();
+
+	while (strcmp(node.name(), ""))
+	{
+
+		pugi::xml_node cNode = node.child("name");
+		name = node.child("name").first_child().value();
+		GameObject* prototype = ObjectManager::generateGameObject(node.name(), node);
+		addPrototype(name, prototype);
+
+		node = node.next_sibling();
+	}
+}
+
+void SystemManager::addPrototype(std::string name, GameObject* prototype)
+{
+	StateManager::prototypes[name] = prototype;
+}
+
+pugi::xml_node SystemManager::getFirstNodeFromFile(std::string fileName)
+{
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file(fileName.c_str());
+	pugi::xml_node node =  doc.first_child();
+
+	return node;
+}
+
 Uint32 SystemManager::curTime;
 Uint32 SystemManager::prevTime;
 Uint32 SystemManager::outputInterval;

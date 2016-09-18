@@ -10,6 +10,8 @@ public:
 	ImageElement(pugi::xml_node node);
 	ImageElement(ImageElement& copy);
 
+
+	virtual Component* spawnCopy();
 	virtual void draw(SDL_Renderer* renderer);
 
 private:

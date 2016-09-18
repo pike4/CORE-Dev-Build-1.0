@@ -19,6 +19,19 @@ Animation::Animation(pugi::xml_node node)
 	VideoManager::getAnimationFromSpriteSheet(framesX, framesY, frameW, frameH, seperation, fileName, frames);
 }
 
+Animation::Animation(Animation& other)
+	:VisibleElement(other)
+{
+	numFrames = other.numFrames;
+	frames = new VisibleElement*[numFrames];
+	for (int i = 0; i < numFrames; i++)
+	{
+		frames[i] = (VisibleElement*)other.frames[i]->spawnCopy();
+	}
+
+	millisecondsPerFrame = other.millisecondsPerFrame;
+}
+
 void Animation::draw(SDL_Renderer* renderer)
 {
 	if (frameTimer.hasElapsed(millisecondsPerFrame))
@@ -40,4 +53,9 @@ void Animation::move(int x, int y)
 	{
 		frames[i]->move(x, y);
 	}
+}
+
+Component* Animation::spawnCopy()
+{
+	return new Animation(*this);
 }

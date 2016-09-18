@@ -1,5 +1,6 @@
 #include "Mobile.h"
 #include "VideoManager.h"
+#include "GameObject.h"
 
 void Mobile::updatePos()
 {
@@ -8,6 +9,8 @@ void Mobile::updatePos()
 
 	x += xVel;
 	y += yVel;
+
+	parent->move(x, y);
 }
 
 void Mobile::setXVel(double value)
@@ -30,20 +33,36 @@ int Mobile::getY()
 	return y;
 }
 
-void Mobile::draw(SDL_Renderer* renderer)
-{
-	element->draw(renderer);
-}
-
-
-Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>*  updateVector) : SimpleDrawable(node), BaseObject(node, objectVector), Updatable(updateVector)
+Mobile::Mobile(pugi::xml_node node, std::vector<BaseObject*>* objectVector)
+	: BaseObject(node, objectVector)
 {
 	//Same
 }
 
-Mobile::Mobile(pugi::xml_node node, Room* room): SimpleDrawable(node, room), BaseObject(node, room), Updatable(room)
+Mobile::Mobile(pugi::xml_node node, Room* room): BaseObject(node, room)
 {
 	//Samey same
+}
+
+Mobile::Mobile(pugi::xml_node node) : BaseObject(node)
+{
+
+}
+
+void Mobile::move(int aX, int aY)
+{
+	x = aX;
+	y = aY;
+}
+
+void Mobile::addTo(Room* room)
+{
+	room->updateVector->push_back(this);
+}
+
+void Mobile::update()
+{
+	updatePos();
 }
 
 Mobile::~Mobile()

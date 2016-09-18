@@ -27,12 +27,18 @@
 //}
 
 Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
-: Mobile(node, objectVector, drawVector, updateVector), Collidable(node, collidableVector), Controllable(controllableVector)
+: Mobile(node, objectVector), Collidable(node, collidableVector), Controllable(controllableVector)
 {
 	prevXPtr = &prevX;
 	prevYPtr = &prevY;
 
 	collidableType = cPlayer;
+}
+
+Player::Player(pugi::xml_node node)
+	:Mobile(node), Collidable(node)
+{
+
 }
 
 Player::Player(pugi::xml_node node, Room* room)
@@ -42,6 +48,11 @@ Player::Player(pugi::xml_node node, Room* room)
 	prevYPtr = &prevY;
 
 	collidableType = cPlayer;
+}
+
+BaseObject* Player::spawnCopy(Room* room)
+{
+	return NULL;
 }
 
 void Player::updatePos()
@@ -57,7 +68,7 @@ void Player::updatePos()
 void Player::update()
 {
 	updatePos();
-	move(x, y);
+	//move(x, y);
 }
 
 void Player::walkDown(int type)

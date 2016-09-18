@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include "Component.h"
+#include "Events.h"
 
 class Room;
 
@@ -15,4 +17,9 @@ public:
 
 	//Does nothing. Only use when the child class is owned
 	Controllable();
+
+	//Also does nothing. Just a placeholder so you don't keep coming back to see if it's implemented
+	Controllable(Controllable&);
+
+	virtual void addTo(Room*);
 };

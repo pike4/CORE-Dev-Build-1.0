@@ -35,6 +35,37 @@ Collidable::Collidable(pugi::xml_node node, Room* room)
 	room->collidableVector->push_back(this);
 }
 
+Collidable::Collidable(Collidable& other)
+	:Collidable(other.boundingBox.x, other.boundingBox.y, other.boundingBox.w, other.boundingBox.h)
+{
+	collidableType = other.collidableType;
+}
+
+Collidable::Collidable(Collidable& other, Room* room)
+	:Collidable(other)
+{
+	room->collidableVector->push_back(this);
+}
+
+Collidable* Collidable::spawnCopy()
+{
+	return new Collidable(*this);
+}
+
+void Collidable::move(int x, int y)
+{
+	boundingBox.x = x;
+	boundingBox.y = y;
+}
+
+void Collidable::addTo(Room* room)
+{
+	if (room != NULL)
+	{
+		room->collidableVector->push_back(this);
+	}
+}
+
 Collidable::~Collidable()
 {
 	printf("a\n");
@@ -44,19 +75,6 @@ void Collidable::onCollide(Collidable* C)
 {
 	switch (C->collidableType)
 	{
-	case Entity:
-		onCollide((BouncingBall*)C);
-		break;
-	case cPlayer:
-		onCollide((Player*)C);
-		break;
-	case cCursor:
-		onCollide((Cursor*)C);
-		break;
-	case eWall:
-		break;
-	case cDoor:
-		onCollide((Door*)C);
 
 	default:
 		break;

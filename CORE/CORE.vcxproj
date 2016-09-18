@@ -43,8 +43,9 @@
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\H_Interfaces;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
+    <IncludePath>..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\C_Interfaces\Motion;.\H_Interfaces;.\H_Interfaces\Motion;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -67,6 +68,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ShowIncludes>true</ShowIncludes>
+      <AdditionalIncludeDirectories>$(ProjectDir)H_Instances\Motion;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,6 +85,7 @@
     <ClCompile Include="C_Instances\Environment.cpp" />
     <ClCompile Include="C_Instances\Game Objects\CompositeEnemy.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Door.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\GameObject.cpp" />
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Buton.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
@@ -111,16 +114,18 @@
     <ClCompile Include="C_Instances\Timer.cpp" />
     <ClCompile Include="C_Instances\Thing.cpp" />
     <ClCompile Include="C_Interfaces\Collidable.cpp" />
+    <ClCompile Include="C_Interfaces\Component.cpp" />
     <ClCompile Include="C_Interfaces\CompositeDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Controllable.cpp" />
     <ClCompile Include="C_Interfaces\Drawable.cpp" />
     <ClCompile Include="C_Interfaces\Manipulatable.cpp" />
     <ClCompile Include="C_Interfaces\Mobile.cpp" />
+    <ClCompile Include="C_Interfaces\Motion\VelocityComponent.cpp" />
+    <ClCompile Include="C_Interfaces\Mover.cpp" />
     <ClCompile Include="C_Interfaces\SimpleDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Updatable.cpp" />
     <ClCompile Include="C_Interfaces\VisibleElement.cpp" />
     <ClCompile Include="C_Main\Commands.cpp" />
-    <ClCompile Include="C_Main\ResourceHashtable.cpp" />
     <ClCompile Include="C_Managers\EventManager.cpp" />
     <ClCompile Include="C_Managers\ObjectManager.cpp" />
     <ClCompile Include="C_Managers\AudioManager.cpp" />
@@ -131,14 +136,13 @@
     <ClCompile Include="C_Interfaces\Visible.cpp" />
     <ClCompile Include="H_Instances\GUI Objects\DragArea.h" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
-    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Reader.cpp" />
-    <ClCompile Include="XML Parsing\C_XMLParsing\XML_Writer.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
     <ClInclude Include="H_Instances\CompositeEnemy.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Elements\Animation.h" />
     <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
+    <ClInclude Include="H_Instances\Game Objects\GameObject.h" />
     <ClInclude Include="H_Instances\Game Objects\TriggerZone.h" />
     <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h" />
     <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h" />
@@ -154,6 +158,7 @@
     <ClInclude Include="H_Instances\RenderableCharSet.h" />
     <ClInclude Include="H_Instances\SpeechBox.h" />
     <ClInclude Include="H_Interfaces\Aggregate.h" />
+    <ClInclude Include="H_Interfaces\Component.h" />
     <ClInclude Include="H_Interfaces\CompositeDrawable.h" />
     <ClInclude Include="H_Interfaces\Control.h" />
     <ClInclude Include="H_Interfaces\Controllable.h" />
@@ -161,17 +166,19 @@
     <ClInclude Include="H_Interfaces\DataBound.h" />
     <ClInclude Include="H_Interfaces\Manipulatable.h" />
     <ClCompile Include="Loggables\Loggables.cpp" />
+    <ClInclude Include="H_Interfaces\MotionAffector.h" />
+    <ClInclude Include="H_Interfaces\VelocityComponent.h" />
+    <ClInclude Include="H_Interfaces\Mover.h" />
     <ClInclude Include="H_Interfaces\Readable.h" />
     <ClInclude Include="H_Interfaces\SimpleDrawable.h" />
+    <ClInclude Include="H_Interfaces\UpdatableComponent.h" />
     <ClInclude Include="H_Interfaces\VisibleElement.h" />
     <ClInclude Include="H_Main\ControlTypes.h" />
     <ClInclude Include="H_Main\ElementTypes.h" />
+    <ClInclude Include="H_Main\Events.h" />
     <ClInclude Include="H_Main\GameObjectTypes.h" />
-    <ClInclude Include="H_Main\ResourceHashtable.h" />
     <ClInclude Include="PugiXML\pugiconfig.hpp" />
     <ClInclude Include="PugiXML\pugixml.hpp" />
-    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Reader.h" />
-    <ClInclude Include="XML Parsing\H_XMLParsing\XML_Writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetsManifest.h" />

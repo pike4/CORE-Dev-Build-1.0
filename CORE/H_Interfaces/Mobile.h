@@ -9,13 +9,14 @@
 class Room;
 
 
-class Mobile : public Updatable, public SimpleDrawable, public BaseObject
+class Mobile : public BaseObject, public Component, public Updatable
 {
 public:
 	virtual void updatePos();
 
-	Mobile(pugi::xml_node, std::vector<BaseObject*>*, std::vector<Drawable*>*, std::vector<Updatable*>*);
+	Mobile(pugi::xml_node, std::vector<BaseObject*>*);
 	Mobile(pugi::xml_node, Room* room);
+	Mobile(pugi::xml_node);
 	~Mobile();
 
 	void setXVel(double value);
@@ -27,7 +28,9 @@ public:
 	int prevX;
 	int prevY;
 
-	virtual void draw(SDL_Renderer* renderer);
+	virtual void move(int x, int y);
+	virtual void addTo(Room* room);
+	virtual void update();
 
 protected:
 	double xVel, yVel;

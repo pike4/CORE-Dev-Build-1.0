@@ -133,3 +133,8 @@ void TextElement::getArgsFromNode(pugi::xml_node node)
 		charSet = NULL;
 	}
 }
+
+Component* TextElement::spawnCopy()
+{
+	return new TextElement(*this);
+}

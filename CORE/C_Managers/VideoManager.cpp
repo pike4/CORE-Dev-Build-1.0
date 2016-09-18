@@ -12,14 +12,13 @@
 #pragma region Initialization Methods
 bool VideoManager::start()
 {
-
 	if (!InitSDL())
 	{
 		printf("SDL Initialization failed!");
 		return false;
 	}
 
-	if (!InitWindow(640, 480, "CORE", false))
+	if (!InitWindow(1080, 720, "CORE", false))
 	{
 		printf("Window Initialization Failed!");
 		return false;

@@ -8,6 +8,10 @@ public:
 	virtual void draw(SDL_Renderer* renderer);
 	Animation(pugi::xml_node node);
 
+	Animation(Animation& other);
+
+	virtual Component* spawnCopy();
+
 private:
 	VisibleElement** frames;
 

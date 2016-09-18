@@ -5,9 +5,11 @@
 #include "ControlTypes.h"
 #include "ElementTypes.h"
 #include "GameObjectTypes.h"
+#include "VelocityComponent.h"
 #include <vector>
 #include <map>
 
+#include "GameObject.h"
 
 #pragma region Manager Implementation Methods
 
@@ -163,12 +165,12 @@ Control* ObjectManager::generateControl(std::string controlType, pugi::xml_node 
 		return new CheckBoxButton(node);
 	}
 
-	else if (!strcmp(name, "DragArea.h"))
+	else if (!strcmp(name, "DragArea"))
 	{
 		return new DragArea(node);
 	}
 
-	else if (!strcmp(name, "GUI_Area.h"))
+	else if (!strcmp(name, "GUI_Area"))
 	{
 		return new GUI_Area(node);
 	}
@@ -210,21 +212,94 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 	}
 }
 
-BaseObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, Room* room)
+GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, 
+	Room* room)
 {
 	if (!objectType.compare("Player"))
 	{
-		return new Player(node, room);
+		//return new Player(node, room);
 	}
 
 	else if (!objectType.compare("CompositeEnemy"))
 	{
-		return new CompositeEnemy(node, room);
+		//return new CompositeEnemy(node, room);
+	}
+
+	else if (!objectType.compare("GameObject"))
+	{
+		return new GameObject(node);
 	}
 
 	else
 	{
 		//TODO log error undefined type in xml file
+	}
+}
+
+GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node)
+{
+	if (!objectType.compare("Player"))
+	{
+		//return new Player(node);
+	}
+
+	else if (!objectType.compare("CompositeEnemy"))
+	{
+		//return new CompositeEnemy(node);
+	}
+	
+	else if (!objectType.compare("GameObject"))
+	{
+		return new GameObject(node);
+	}
+
+	else
+	{
+		//TODO log error undefined type in xml file
+	}
+}
+
+Mover* ObjectManager::generateMover(std::string objectType, pugi::xml_node node)
+{
+	if (!objectType.compare("VelocityComponent"))
+	{
+		return new VelocityComponent(node);
+	}
+}
+
+GameObject* ObjectManager::generate(std::string prototypeName)
+{
+	//TODO: 
+	GameObject* objectToSpawn = StateManager::prototypes[prototypeName];
+	
+	if (objectToSpawn != NULL)
+	{
+		return new GameObject(*objectToSpawn);
+	}
+
+	else
+	{
+		//TODO
+		//throw warning: prototype <prototypeName> does not exist. spawn() returned NULL
+		return NULL;
+	}
+}
+
+GameObject* ObjectManager::spawn(std::string prototypeName, Room* room)
+{
+	//TODO: 
+	GameObject* objectToSpawn = StateManager::prototypes[prototypeName];
+
+	if (objectToSpawn != NULL)
+	{
+		//return objectToSpawn->spawnCopy(room);
+	}
+
+	else
+	{
+		//TODO
+		//throw warning: prototype <prototypeName> does not exist. spawn() returned NULL
+		return NULL;
 	}
 }
 

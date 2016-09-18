@@ -18,6 +18,8 @@ public:
 	virtual void draw(SDL_Renderer* renderer);
 	void stringToLines(std::string message);
 
+	virtual Component* spawnCopy();
+
 private:
 	RenderableCharSet* charSet;
 

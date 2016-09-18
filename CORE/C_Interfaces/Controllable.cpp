@@ -9,8 +9,16 @@ Controllable::Controllable(std::vector<Controllable*>* controllableVector)
 
 Controllable::Controllable(Room* room)
 {
-	room->controllableVector->push_back(this);
+	addTo(room);
 }
 
-Controllable::Controllable() 
-{}
+void Controllable::addTo(Room* room)
+{
+	if (room != NULL)
+	{
+		room->controllableVector->push_back(this);
+	}
+}
+
+Controllable::Controllable() {}
+Controllable::Controllable(Controllable&) {}
