@@ -3,14 +3,12 @@
 #include <vector>
 #include <map>
 #include "_Manager.h"
-#include "Thing.h"
 #include "Player.h"
 #include "Updatable.h"
 #include "QuadTree.h"
 #include "Collidable.h"
 #include "MenuScreen.h"
 #include "Room.h"
-#include "Mover.h"
 
 class ObjectManager : public Manager
 {
@@ -46,7 +44,6 @@ public:
 
 	static GameObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
 	static GameObject* generateGameObject(std::string, pugi::xml_node node);
-	static Mover* generateMover(std::string, pugi::xml_node);
 	static GameObject* generate(std::string prototypeName);
 	static GameObject* spawn(std::string prototypeName, Room* room);
 

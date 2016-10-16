@@ -8,15 +8,12 @@
 
 #include "Environment.h"
 #include "DragArea.h"
-#include "Thing.h"
 #include "Updatable.h"
 #include "ObjectManager.h"
 #include "VideoManager.h"
 #include "StateManager.h"
 #include "AudioManager.h"
 #include "AssetsManifest.h"
-#include "TextObjects.h"
-#include "Spinner.h"
 #include "NavigationButton.h"
 #include "SystemManager.h"
 #include "pugixml.hpp"
@@ -39,12 +36,10 @@ int main()
 {
 	StateManager::start();
 
-
 	SDL_Texture* guy = SystemManager::loadTexture("Assets/Sprites/guy.png");
 	SDL_Texture* real = SystemManager::loadTexture("Assets/Sprites/real.png");
 	SDL_Texture* greg = SystemManager::loadTexture("Assets/Sprites/cat.png");
 	SDL_Texture* cage = SystemManager::loadTexture("Assets/Sprites/cage.png");
-	SDL_Texture* dog = SystemManager::loadTexture("Assets/Sprites/dog.png");
 	SDL_Texture* ball = SystemManager::loadTexture("Assets/Sprites/IMG_BouncingBall.png");
 
 	SDL_Texture* hover = SystemManager::loadTexture("Assets/Sprites/BlankHover.png");

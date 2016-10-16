@@ -17,7 +17,7 @@ public:
 	-1: Observer was not present*/
 	int removeObserver(Controllable* observer)
 	{
-		for (int i = 0; i < observers.size(); i++)
+		for (int i = 0; i < (int) observers.size(); i++)
 		{
 			if (observers[i] == observer)
 			{
@@ -33,7 +33,7 @@ public:
 	-1: Index was out of bounds*/
 	int removeObserver(int index)
 	{
-		if (index < observers.size() && index >= 0)
+		if (index < (int) observers.size() && index >= 0)
 		{
 			observers.erase(observers.begin() + index);
 			return 0;
@@ -44,7 +44,7 @@ public:
 
 	void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0)
 	{
-		for (int i = 0; i < observers.size(); i++)
+		for (int i = 0; i < (int) observers.size(); i++)
 		{
 			observers[i]->handleInput(keyCode, upDown, x, y);
 		}

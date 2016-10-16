@@ -25,6 +25,7 @@ public:
 	static SDL_Surface* mScreenSurface;
 	static SDL_Renderer* mRenderer;
 	static SDL_Renderer* mRenderer2;
+
 //Methods involving engine setup and window initialization
 #pragma region Initialization Methods
 

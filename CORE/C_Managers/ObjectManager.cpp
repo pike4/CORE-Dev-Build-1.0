@@ -259,14 +259,6 @@ GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 	}
 }
 
-Mover* ObjectManager::generateMover(std::string objectType, pugi::xml_node node)
-{
-	if (!objectType.compare("VelocityComponent"))
-	{
-		return new VelocityComponent(node);
-	}
-}
-
 GameObject* ObjectManager::generate(std::string prototypeName)
 {
 	//TODO: 

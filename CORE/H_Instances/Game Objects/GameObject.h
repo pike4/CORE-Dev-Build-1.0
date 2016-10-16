@@ -5,7 +5,6 @@
 #include "Controllable.h"
 #include "Drawable.h"
 #include "BaseObject.h"
-#include "Mover.h"
 #include "pugixml.hpp"
 
 #include <map>
@@ -19,16 +18,23 @@ public:
 	GameObject(GameObject& other);
 
 	std::map<std::string, long long int> publicData;
+	std::map<std::string, void*> data;
+
+	std::map<int, std::vector<Controllable*>*> listeners;
 
 	std::vector<Component*> components;
-	std::vector<Controllable*> listeners;
 
 	Drawable* drawableComponent;
-	Mover* motionComponent;
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 	virtual void update();
 	virtual void move(int x, int y);
+
+	//Listeners
+	int registerListener(int key, Controllable* listener);
+	int deregisterListener(int key, Controllable* listener);
+
+	void* getPointer(std::string key, int size);
 
 	bool isUpdatable();
 	bool isControllable();
@@ -38,4 +44,7 @@ private:
 	void getArgsFromNode(pugi::xml_node node);
 	bool updatable = false;
 	bool controllable = false;
+
+	//
+	std::string type;
 };

@@ -18,13 +18,6 @@ GameObject::GameObject(GameObject& other)
 	updatable = other.updatable;
 	controllable = other.controllable;
 
-	if (other.motionComponent != NULL)
-	{
-		motionComponent = other.motionComponent->spawnCopy();
-		listeners.push_back(motionComponent);
-		motionComponent->parent = this;
-	}
-
 	for (int i = 0; i < other.components.size(); i++)
 	{
 		components.push_back(other.components[i]->spawnCopy());
@@ -77,7 +70,7 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			}
 		}
 
-		else if (!tempName.compare("Mover"))
+		/*else if (!tempName.compare("Mover"))
 		{
 
 			Mover* tempMover = ObjectManager::generateMover
@@ -87,7 +80,7 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			{
 				tempMover->addTo(this);
 			}
-		}
+		}*/
 
 		else if (!tempName.compare("Mobile"))
 		{
@@ -126,6 +119,51 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 	int aawdadaw = 0;
 }
 
+int GameObject::registerListener(int key, Controllable* listener)
+{
+	if (listeners.find(key) == listeners.end())
+	{
+		listeners[key] = new std::vector<Controllable*>;
+	}
+
+	listeners[key]->push_back(listener);
+
+	return 1;
+}
+
+int GameObject::deregisterListener(int key, Controllable* listener)
+{
+	if (listeners.find(key) == listeners.end())
+	{
+		//Event does not exist
+		return 0;
+	}
+
+	std::vector<Controllable*>* list = listeners[key];
+
+	for (int i = 0; i < list->size(); i++)
+	{
+		if (listener == (*list)[i])
+		{
+			list->erase(list->begin() + i);
+			return 1;
+		}
+	}
+
+	//Element was not found
+	return 0;
+}
+
+//Return a pointer 
+void* GameObject::getPointer(std::string key, int size)
+{
+	if (data.find(key) != data.end())
+	{
+		data[key] = malloc(size);
+	}
+
+	return data[key];
+}
 
 void GameObject::handleInput(int key, int upDown, int x, int y)
 {
@@ -133,9 +171,18 @@ void GameObject::handleInput(int key, int upDown, int x, int y)
 	//warning: this should have been overloaded. Set controllable to false or overload the 
 	//handleInput() method in the derived class this was called from
 
-	for (int i = 0; i < listeners.size(); i++)
+	if (listeners.find(key) == listeners.end())
 	{
-		listeners[i]->handleInput(key, upDown, x, y);
+		//TODO
+		//warning: key not found
+		return;
+	}
+
+	std::vector<Controllable*> listenerList = *(listeners[key]);
+
+	for (int i = 0; i < listenerList.size(); i++)
+	{
+		listenerList[i]->handleInput(key, upDown, x, y);
 	}
 
 	int a = 0;
@@ -146,8 +193,6 @@ void GameObject::update()
 	//TODO
 	//warning: this should have been overloaded. Set updatable to false or overload the 
 	//update() method in the derived class this was called from
-	if(motionComponent != NULL)
-	motionComponent->updatePos();
 }
 
 void GameObject::move(int x, int y)

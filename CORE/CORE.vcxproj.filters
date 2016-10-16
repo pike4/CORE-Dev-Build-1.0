@@ -39,9 +39,6 @@
     <ClInclude Include="H_Interfaces\Mobile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Interfaces\Pathable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Interfaces\Updatable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,9 +75,6 @@
     <ClInclude Include="H_Instances\ReflectiveWall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Interfaces\Manipulatable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -91,9 +85,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PugiXML\pugixml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H_Interfaces\Readable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Instances\GUI Objects\MenuSystem.h">
@@ -183,9 +174,6 @@
     <ClInclude Include="H_Interfaces\UpdatableComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Interfaces\Mover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Interfaces\VelocityComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -193,6 +181,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Main\Events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\Game Objects\Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -209,16 +200,10 @@
     <ClCompile Include="C_Managers\VideoManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Interfaces\Visible.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Interfaces\Collidable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\Mobile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Thing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Managers\StateManager.cpp">
@@ -236,9 +221,6 @@
     <ClCompile Include="C_Managers\AudioManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Main\Commands.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\AssetsManifest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -246,9 +228,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Subject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Interfaces\Manipulatable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\QuadTree.cpp">
@@ -260,25 +239,10 @@
     <ClCompile Include="C_Interfaces\BaseObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\BouncingBall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\Spinner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\TextObjects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\ReflectiveWall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\GUI Objects\NavigationButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PugiXML\pugixml.cpp">
@@ -294,9 +258,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\Door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp">
@@ -324,9 +285,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\TextElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\GUI Objects\Buton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp">
@@ -365,13 +323,13 @@
     <ClCompile Include="C_Instances\Game Objects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Interfaces\Mover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Interfaces\Motion\VelocityComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Game Objects\Components\Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

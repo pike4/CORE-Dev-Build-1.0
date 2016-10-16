@@ -16,10 +16,10 @@ void VelocityComponent::addTo(Room*)
 
 void VelocityComponent::updatePos()
 {
-	parent->x += xVel;
+	/*parent->x += xVel;
 	parent->y += yVel;
 
-	parent->move(parent->x, parent->y);
+	parent->move(parent->x, parent->y);*/
 }
 
 void VelocityComponent::handleInput(int keyCode, int upDown, int x, int y)
@@ -72,9 +72,4 @@ void VelocityComponent::handleInput(int keyCode, int upDown, int x, int y)
 		break;
 	}
 
-}
-
-Mover* VelocityComponent::spawnCopy()
-{
-	return new VelocityComponent(*this);
 }

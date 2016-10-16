@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "Thing.h"
 #include "SDL.h"
 #include <stack>
 #include <iostream>
@@ -26,7 +25,12 @@
 //	prevYPtr = &prevY;
 //}
 
-Player::Player(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* drawVector, std::vector<Updatable*>* updateVector, std::vector<Collidable*>* collidableVector, std::vector<Controllable*>* controllableVector)
+Player::Player(pugi::xml_node node, 
+	std::vector<BaseObject*>* objectVector, 
+	std::vector<Drawable*>* drawVector, 
+	std::vector<Updatable*>* updateVector, 
+	std::vector<Collidable*>* collidableVector, 
+	std::vector<Controllable*>* controllableVector)
 : Mobile(node, objectVector), Collidable(node, collidableVector), Controllable(controllableVector)
 {
 	prevXPtr = &prevX;
