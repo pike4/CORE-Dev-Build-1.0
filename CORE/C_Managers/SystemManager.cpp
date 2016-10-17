@@ -302,7 +302,6 @@ void SystemManager::loadPrototypes(std::string fileName)
 	loadPrototypes(node);
 }
 
-
 void SystemManager::loadPrototypes(pugi::xml_node node)
 {
 	std::string name = node.name();
@@ -316,7 +315,6 @@ void SystemManager::loadPrototypes(pugi::xml_node node)
 
 	while (strcmp(node.name(), ""))
 	{
-
 		pugi::xml_node cNode = node.child("name");
 		name = node.child("name").first_child().value();
 		GameObject* prototype = ObjectManager::generateGameObject(node.name(), node);

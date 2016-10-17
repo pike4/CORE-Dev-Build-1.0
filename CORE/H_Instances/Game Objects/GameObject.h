@@ -11,7 +11,7 @@
 
 class Room;
 
-class GameObject : public Updatable, public Controllable, public BaseObject
+class GameObject : public Controllable, public BaseObject
 {
 public:
 	GameObject(pugi::xml_node node);

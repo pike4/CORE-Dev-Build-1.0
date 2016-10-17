@@ -39,7 +39,21 @@ void ImageElement::getArgsFromNode(pugi::xml_node node)
 	}
 }
 
-Component* ImageElement::spawnCopy()
+VisibleElement* ImageElement::spawnCopy()
 {
 	return new ImageElement(*this);
+}
+
+void ImageElement::handleInput(int key, int upDown, int x, int y)
+{
+	switch (key)
+	{
+	case drawStep:
+		draw(VideoManager::mRenderer);
+		break;
+
+	default:
+
+		break;
+	}
 }

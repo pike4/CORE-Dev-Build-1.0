@@ -162,7 +162,7 @@ void StateManager::goToEnvironment(std::string environmentName)
 
 	else
 	{
-		printf("State Manager could not find requested Environment: %s\n", environmentName);
+		printf("State Manager could not find requested Environment: %s\n", environmentName.c_str());
 	}
 }
 #pragma endregion
@@ -203,7 +203,7 @@ void StateManager::goToMenuSystem(std::string menuSystemName)
 
 	else
 	{
-		printf("State Manager could not find requested Menu System: %s\n", menuSystemName);
+		printf("State Manager could not find requested Menu System: %s\n", menuSystemName.c_str());
 	}
 }
 

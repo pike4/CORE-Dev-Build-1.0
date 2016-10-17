@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "RenderableCharSet.h"
 
-class VisibleElement : public Drawable, public Component
+class VisibleElement : public Drawable
 {
 public:
 	int parentOffsetX, parentOffsetY;
@@ -13,8 +13,10 @@ public:
 	VisibleElement(pugi::xml_node node);
 	VisibleElement(VisibleElement& copy);
 
+	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+
 	virtual void move(int x, int y);
 
-	virtual Component* spawnCopy();
+	virtual VisibleElement* spawnCopy() = 0;
 	virtual void addTo(Room* room);
 };

@@ -186,6 +186,12 @@
     <ClInclude Include="H_Instances\Game Objects\Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="H_Instances\Game Objects\I_VelocityControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\Game Objects\I_DrawComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -330,6 +336,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\Components\Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Game Objects\Components\I_VelocityControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Game Objects\Components\I_DrawComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

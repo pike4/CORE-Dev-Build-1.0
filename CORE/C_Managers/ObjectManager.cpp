@@ -11,6 +11,8 @@
 
 #include "GameObject.h"
 
+#include "I_DrawComponent.h"
+
 #pragma region Manager Implementation Methods
 
 #pragma region Update Methods
@@ -157,6 +159,17 @@ void ObjectManager::setUpdateVector(std::vector<Updatable*>* newVector)
 #pragma endregion
 
 #pragma region Object Management
+
+Component* ObjectManager::generateComponent(std::string type, pugi::xml_node node)
+{
+	const char* name = type.c_str();
+
+	if (!strcmp(name, "I_DrawComponent"))
+	{
+		return new I_DrawComponent(node);
+	}
+}
+
 Control* ObjectManager::generateControl(std::string controlType, pugi::xml_node node)
 {
 	const char* name = controlType.c_str();

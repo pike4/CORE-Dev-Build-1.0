@@ -8,7 +8,7 @@
 
 class Room;
 
-class  CompositeDrawable: public Drawable
+class  CompositeDrawable : public VisibleElement
 {
 public:
 	CompositeDrawable(pugi::xml_node node);
@@ -16,6 +16,8 @@ public:
 
 	CompositeDrawable(CompositeDrawable& other);
 	CompositeDrawable(CompositeDrawable& other, Room* room);
+
+	virtual VisibleElement* spawnCopy();
 
 	std::vector<VisibleElement*> elements;
 	virtual void draw(SDL_Renderer* renderer)

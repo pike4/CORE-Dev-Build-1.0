@@ -9,7 +9,7 @@
 class Room;
 
 
-class Mobile : public BaseObject, public Component, public Updatable
+class Mobile : public BaseObject, public Updatable
 {
 public:
 	virtual void updatePos();

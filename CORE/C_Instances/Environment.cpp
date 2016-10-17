@@ -22,7 +22,7 @@ Environment::Environment(std::string fileName)
 
 	if (name.empty())
 	{
-		printf("No environment name detected in file: %s. Consider adding a <name> node to this file\n", fileName);
+		printf("No environment name detected in file: %s. Consider adding a <name> node to this file\n", fileName.c_str());
 		name = "Default Room";
 	}
 }

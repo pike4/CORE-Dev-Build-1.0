@@ -2,7 +2,7 @@
 #include "ObjectManager.h"
 
 CompositeDrawable::CompositeDrawable(pugi::xml_node node)
-	:Drawable(node)
+	: VisibleElement(node)
 {
 	pugi::xml_node curNode;
 	std::string curName;
@@ -33,13 +33,19 @@ CompositeDrawable::CompositeDrawable(pugi::xml_node node, Room* room)
 }
 
 CompositeDrawable::CompositeDrawable(CompositeDrawable& other)
+	:VisibleElement(other)
 {
 	zIndex = other.zIndex;
 
 	for (int i = 0; i < other.elements.size(); i++)
 	{
-		elements.push_back(other.elements[i]/*->spawnCopy()*/);
+		elements.push_back(other.elements[i]->spawnCopy());
 	}
+}
+
+VisibleElement* CompositeDrawable::spawnCopy()
+{
+	return new CompositeDrawable(*this);
 }
 
 CompositeDrawable::CompositeDrawable(CompositeDrawable& other, Room* room)

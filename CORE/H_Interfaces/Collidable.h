@@ -34,6 +34,7 @@ public:
 
 	virtual void move(int x, int y);
 	
+	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	virtual void addTo(Room*);
 

@@ -55,7 +55,21 @@ void Animation::move(int x, int y)
 	}
 }
 
-Component* Animation::spawnCopy()
+VisibleElement* Animation::spawnCopy()
 {
 	return new Animation(*this);
+}
+
+void Animation::handleInput(int key, int upDown, int x, int y)
+{
+	switch (key)
+	{
+	case updateStep:
+
+		break;
+
+	case drawStep:
+		
+		break;
+	}
 }

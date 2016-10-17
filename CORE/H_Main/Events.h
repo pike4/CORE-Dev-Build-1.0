@@ -1,6 +1,13 @@
 #pragma once
 enum UserDefinedEvents
 {
+	updateStep,
+	drawStep,
+
+
+	////////////////////////////////
+	//
+	////////////////////////////////
 	walkForwardButtonDown,
 	walkForwardButtonUp,
 	walkBackwardButtonDown,

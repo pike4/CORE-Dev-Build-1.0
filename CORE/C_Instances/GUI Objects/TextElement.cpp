@@ -134,7 +134,7 @@ void TextElement::getArgsFromNode(pugi::xml_node node)
 	}
 }
 
-Component* TextElement::spawnCopy()
+VisibleElement* TextElement::spawnCopy()
 {
 	return new TextElement(*this);
 }

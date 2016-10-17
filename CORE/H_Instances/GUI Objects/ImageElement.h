@@ -10,8 +10,9 @@ public:
 	ImageElement(pugi::xml_node node);
 	ImageElement(ImageElement& copy);
 
+	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
-	virtual Component* spawnCopy();
+	virtual VisibleElement* spawnCopy();
 	virtual void draw(SDL_Renderer* renderer);
 
 private:

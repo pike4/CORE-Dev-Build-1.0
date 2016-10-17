@@ -4,6 +4,8 @@
 #include "Updatable.h"
 #include "Collidable.h"
 #include "Controllable.h"
+#include "I_DrawComponent.h"
+#include "I_VelocityControl.h"
 #include "ObjectManager.h"
 
 GameObject::GameObject(pugi::xml_node node)
@@ -21,6 +23,7 @@ GameObject::GameObject(GameObject& other)
 	for (int i = 0; i < other.components.size(); i++)
 	{
 		components.push_back(other.components[i]->spawnCopy());
+		components[i]->registerSelf(this);
 	}
 }
 
@@ -33,29 +36,20 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 
 	while (!tempName.empty())
 	{
-		if (!tempName.compare("VisibleElement"))
+		if (!tempName.compare("I_DrawComponent"))
 		{
-			pugi::xml_node tempVisibleNode = tempNode.first_child();
-			std::string tempVisibleName = tempVisibleNode.name();
-			VisibleElement* tempElement = NULL;
-
-			while (!tempVisibleName.empty())
-			{
-				tempElement = ObjectManager::generateVisibleElement
-					(tempVisibleName, tempVisibleNode);
-
-				if (tempElement != NULL)
-				{
-					tempElement->parent = this;
-					components.push_back(tempElement);
-				}
-
-				tempElement = NULL;
-				tempVisibleNode = tempVisibleNode.next_sibling();
-				tempVisibleName = tempVisibleNode.name();
-			}
+			I_DrawComponent* newDrawComponent = new I_DrawComponent(tempNode);
+			newDrawComponent->registerSelf(this);
+			components.push_back(newDrawComponent);
 		}
 
+		else if (!tempName.compare("I_VelocityControl"))
+		{
+			I_VelocityControl* newComp = new I_VelocityControl(tempNode);
+			newComp->registerSelf(this);
+			components.push_back(newComp);
+		}
+		
 		else if (!tempName.compare("Data"))
 		{
 			pugi::xml_node dataNode = tempNode.first_child();
@@ -70,21 +64,9 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			}
 		}
 
-		/*else if (!tempName.compare("Mover"))
-		{
-
-			Mover* tempMover = ObjectManager::generateMover
-				(tempNode.first_child().name(), tempNode.first_child());
-
-			if (tempMover != NULL)
-			{
-				tempMover->addTo(this);
-			}
-		}*/
-
 		else if (!tempName.compare("Mobile"))
 		{
-			components.push_back(new Mobile(tempNode));
+			//components.push_back(new Mobile(tempNode));
 		}
 
 		else if (!tempName.compare("Updatable"))
@@ -127,7 +109,7 @@ int GameObject::registerListener(int key, Controllable* listener)
 	}
 
 	listeners[key]->push_back(listener);
-
+	
 	return 1;
 }
 
@@ -157,7 +139,7 @@ int GameObject::deregisterListener(int key, Controllable* listener)
 //Return a pointer 
 void* GameObject::getPointer(std::string key, int size)
 {
-	if (data.find(key) != data.end())
+	if (data.find(key) == data.end())
 	{
 		data[key] = malloc(size);
 	}
@@ -167,10 +149,6 @@ void* GameObject::getPointer(std::string key, int size)
 
 void GameObject::handleInput(int key, int upDown, int x, int y)
 {
-	//TODO
-	//warning: this should have been overloaded. Set controllable to false or overload the 
-	//handleInput() method in the derived class this was called from
-
 	if (listeners.find(key) == listeners.end())
 	{
 		//TODO
@@ -184,8 +162,6 @@ void GameObject::handleInput(int key, int upDown, int x, int y)
 	{
 		listenerList[i]->handleInput(key, upDown, x, y);
 	}
-
-	int a = 0;
 }
 
 void GameObject::update()

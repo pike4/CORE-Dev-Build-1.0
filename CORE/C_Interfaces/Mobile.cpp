@@ -10,7 +10,7 @@ void Mobile::updatePos()
 	x += xVel;
 	y += yVel;
 
-	parent->move(x, y);
+	//parent->move(x, y);
 }
 
 void Mobile::setXVel(double value)

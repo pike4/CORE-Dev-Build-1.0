@@ -41,7 +41,7 @@ public:
 	//Generation
 	static Control* generateControl(std::string controlType, pugi::xml_node node);
 	static VisibleElement* generateVisibleElement(std::string controlType, pugi::xml_node node);
-
+	static Component* generateComponent(std::string type, pugi::xml_node node);
 	static GameObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
 	static GameObject* generateGameObject(std::string, pugi::xml_node node);
 	static GameObject* generate(std::string prototypeName);

@@ -66,6 +66,11 @@ void Collidable::addTo(Room* room)
 	}
 }
 
+void Collidable::handleInput(int key, int upDown, int x, int y)
+{
+	
+}
+
 Collidable::~Collidable()
 {
 	printf("a\n");

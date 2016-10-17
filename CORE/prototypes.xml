@@ -11,17 +11,22 @@
         <Health>100</Health>
         <Regen>20</Regen>
       </Data>
-      <VisibleElement>
-        <ImageElement>
-          <X_Offset>-20</X_Offset>
-          <Y_Offset>-10</Y_Offset>
-          <x>150</x>
-          <y>10</y>
-          <w>100</w>
-          <h>100</h>
-          <Image>Assets/Sprites/Happy_Cow_Man_Big.png</Image>
-        </ImageElement>
-      </VisibleElement>
+      <I_DrawComponent>
+        <CompositeDrawable>
+          <VisibleElements>
+            <ImageElement>
+              <X_Offset>-20</X_Offset>
+              <Y_Offset>-10</Y_Offset>
+              <x>150</x>
+              <y>10</y>
+              <w>100</w>
+              <h>100</h>
+              <Image>Assets/Sprites/Happy_Cow_Man_Big.png</Image>
+            </ImageElement>
+          </VisibleElements>
+        </CompositeDrawable>
+      </I_DrawComponent>
+      <I_VelocityControl></I_VelocityControl>
       <Controllable>true</Controllable>
       <Updatable>true</Updatable>
     </Components>

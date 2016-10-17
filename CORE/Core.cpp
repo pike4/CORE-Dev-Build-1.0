@@ -1,3 +1,6 @@
+#pragma warning(disable : 4018)
+#pragma warning(disable : 4244)
+
 #include "SDL.h"
 #include "SDL_Mixer.h"
 #include "SDL_TTF.h"
@@ -24,7 +27,6 @@
 #include "GUI_Area.h"
 #include "GameObjectTypes.h"
 #include "GameObject.h"
-
 
 #undef main
 
@@ -59,11 +61,8 @@ int main()
 
 	SystemManager::loadPrototypes("prototypes.xml");
 	GameObject* chuck = NULL;
-
-
 	
 	GameObject* chucksFriend = StateManager::prototypes["Charlie"];
-
 
 	RenderableCharSet chars = RenderableCharSet(12, sans, red, VideoManager::mRenderer);
 
