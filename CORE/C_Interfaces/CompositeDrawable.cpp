@@ -58,7 +58,9 @@ void CompositeDrawable::move(int x, int y)
 {
 	for (int i = 0; i < elements.size(); i++)
 	{
-		elements[i]->box.x = x + elements[i]->parentOffsetX;
-		elements[i]->box.y = y + elements[i]->parentOffsetY;
+		/*elements[i]->box.x = x + elements[i]->parentOffsetX;
+		elements[i]->box.y = y + elements[i]->parentOffsetY;*/
+
+		elements[i]->move(x, y);
 	}
 }

@@ -286,6 +286,7 @@ GameObject* ObjectManager::generate(std::string prototypeName)
 	{
 		//TODO
 		//throw warning: prototype <prototypeName> does not exist. spawn() returned NULL
+		printf("Warning: prototype %s doesn't exist\n", prototypeName.c_str());
 		return NULL;
 	}
 }

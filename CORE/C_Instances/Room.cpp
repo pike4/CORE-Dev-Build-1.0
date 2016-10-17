@@ -37,10 +37,7 @@ Room::Room(std::string fileName)
 
 void Room::add(GameObject* object)
 {
-	if (object->isControllable())
-	{
 		controllableVector->push_back(object);
-	}
 }
 void Room::add(Updatable* component)
 {
@@ -236,7 +233,7 @@ void Room::draw(SDL_Renderer* renderer)
 // 7/2016 compliant
 void Room::update()
 {
-	for (int i = 0; i < updateVector->size(); i++)
+	/*for (int i = 0; i < updateVector->size(); i++)
 	{
 		if ((*updateVector)[i] != NULL)
 		{
@@ -247,7 +244,7 @@ void Room::update()
 		{
 			printf("NULL update in room\n");
 		}
-	}
+	}*/
 
 	for (int i = 0; i < controllableVector->size(); i++)
 	{

@@ -86,6 +86,7 @@
     <ClCompile Include="C_Instances\Game Objects\Components\I_DrawComponent.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\I_VelocityControl.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\Position.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\Components\Velocity.cpp" />
     <ClCompile Include="C_Instances\Game Objects\CompositeEnemy.cpp" />
     <ClCompile Include="C_Instances\Game Objects\GameObject.cpp" />
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
     <ClInclude Include="H_Instances\Game Objects\GameObject.h" />
     <ClInclude Include="H_Instances\Game Objects\TriggerZone.h" />
+    <ClInclude Include="H_Instances\Game Objects\Velocity.h" />
     <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h" />
     <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h" />
     <ClInclude Include="H_Instances\GUI Objects\ImageElement.h" />

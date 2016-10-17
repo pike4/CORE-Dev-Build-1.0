@@ -27,26 +27,14 @@ I_VelocityControl::I_VelocityControl(I_VelocityControl& other)
 
 void I_VelocityControl::assignPointers(GameObject* parent)
 {
-	x = (int*)parent->getPointer("x", sizeof(int));
-	y = (int*)parent->getPointer("y", sizeof(int));
-	xVel = (double*)parent->getPointer("xVel", sizeof(double));
-	yVel = (double*)parent->getPointer("yVel", sizeof(double));
-
-	*x = 0;
-	*y = 0;
-	*xVel = 0;
-	*yVel = 0;
+	Velocity::assignPointers(parent);
 }
 
-void I_VelocityControl::handleInput(int key, int upDown, int a_x, int a_y)
+void I_VelocityControl::handleInput(int key, int upDown, int aX, int aY)
 {
-	int yy = *yVel;
+	Velocity::handleInput(key, upDown, aX, aY);
 	switch (key)
 	{
-	case updateStep:
-		*x += *xVel;
-		*y += *yVel;
-		break;
 	case walkBackwardButtonDown:
 		if (upDown)
 		{
@@ -91,12 +79,5 @@ void I_VelocityControl::handleInput(int key, int upDown, int a_x, int a_y)
 			*xVel -= 2;
 		}
 		break;
-
 	}
-}
-
-void I_VelocityControl::move(int aX, int aY)
-{
-	*x = aX;
-	*y = aY;
 }

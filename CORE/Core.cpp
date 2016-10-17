@@ -78,16 +78,19 @@ int main()
 
 	chuck = ObjectManager::generate("Fire");
 	StateManager::currentRoom->add(chuck);
-	chuck->move(50, 50);
+	chuck->move(480, 150);
 	chuck = ObjectManager::generate("Fire");
 	StateManager::currentRoom->add(chuck);
-	chuck->move(900, 50);
+	chuck->move(350, 500);
 	chuck = ObjectManager::generate("Fire");
 	StateManager::currentRoom->add(chuck);
-	chuck->move(50, 580);
+	chuck->move(620, 500);
 	chuck = ObjectManager::generate("Fire");
 	StateManager::currentRoom->add(chuck);
-	chuck->move(900, 580);
+	chuck->move(220, 240);
+	chuck = ObjectManager::generate("Fire");
+	StateManager::currentRoom->add(chuck);
+	chuck->move(750, 240);
 
 	while (!quit)
 	{

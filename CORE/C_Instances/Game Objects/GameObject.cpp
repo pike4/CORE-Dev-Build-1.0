@@ -6,20 +6,16 @@
 #include "Controllable.h"
 #include "I_DrawComponent.h"
 #include "I_VelocityControl.h"
+#include "Position.h"
 #include "ObjectManager.h"
 
 GameObject::GameObject(pugi::xml_node node)
-	: BaseObject(node)
 {
 	getArgsFromNode(node);
 }
 
 GameObject::GameObject(GameObject& other)
-	:BaseObject(other)
 {
-	updatable = other.updatable;
-	controllable = other.controllable;
-
 	for (int i = 0; i < other.components.size(); i++)
 	{
 		components.push_back(other.components[i]->spawnCopy());
@@ -49,6 +45,13 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			newComp->registerSelf(this);
 			components.push_back(newComp);
 		}
+
+		else if (!tempName.compare("Position"))
+		{
+			Position* newC = new Position(tempNode);
+			newC->registerSelf(this);
+			components.push_back(newC);
+		}
 		
 		else if (!tempName.compare("Data"))
 		{
@@ -57,7 +60,12 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 
 			while (!dataName.empty())
 			{
-				publicData[dataName] = atoi(dataNode.first_child().value());
+				int size = atoi(dataNode.first_child().value());
+
+				if (size > 0 && size < 100)
+				{
+					data[dataName] = malloc(size);
+				}
 
 				dataNode = dataNode.next_sibling();
 				dataName = dataNode.name();
@@ -69,16 +77,6 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			//components.push_back(new Mobile(tempNode));
 		}
 
-		else if (!tempName.compare("Updatable"))
-		{
-			std::string isUpdatableStr = tempNode.first_child().value();
-
-			if (!isUpdatableStr.compare("true"))
-			{
-				updatable = true;
-			}
-		}
-
 		else if (!tempName.compare("Collidable"))
 		{
 			Collidable* newCollidable = new Collidable(node);
@@ -86,15 +84,6 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			components.push_back(newCollidable);
 		}
 
-		else if (!tempName.compare("Controllable"))
-		{
-			std::string isControllableStr = tempNode.first_child().value();
-
-			if (!isControllableStr.compare("true"))
-			{
-				controllable = true;
-			}
-		}
 		tempNode = tempNode.next_sibling();
 		tempName = tempNode.name();
 	}
@@ -164,27 +153,10 @@ void GameObject::handleInput(int key, int upDown, int x, int y)
 	}
 }
 
-void GameObject::update()
-{
-	//TODO
-	//warning: this should have been overloaded. Set updatable to false or overload the 
-	//update() method in the derived class this was called from
-}
-
 void GameObject::move(int x, int y)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
 		components[i]->move(x, y);
 	}
-}
-
-bool GameObject::isUpdatable()
-{
-	return updatable;
-}
-
-bool GameObject::isControllable()
-{
-	return controllable;
 }

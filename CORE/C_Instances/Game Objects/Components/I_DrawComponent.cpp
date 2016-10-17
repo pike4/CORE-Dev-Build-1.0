@@ -42,6 +42,7 @@ void I_DrawComponent::handleInput(int key, int upDown, int mX, int mY)
 		drawable->draw(VideoManager::mRenderer);
 		break;
 	case updateStep:
+		drawable->handleInput(updateStep);
 		drawable->move(*x, *y);
 		break;
 	}

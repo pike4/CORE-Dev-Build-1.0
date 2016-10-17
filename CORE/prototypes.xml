@@ -2,9 +2,6 @@
   <GameObject>
     <name>Charlie</name>
     <Components>
-      <Mover>
-        <VelocityComponent></VelocityComponent>
-      </Mover>
       <x>100</x>
       <y>20</y>
       <Data>
@@ -35,17 +32,22 @@
   <GameObject>
     <name>Fire</name>
     <Components>
-      <VisibleElement>
-        <Animation>
-          <fileName>Assets/Sprites/Fire.png</fileName>
-          <frameH>128</frameH>
-          <frameW>128</frameW>
-          <framesX>4</framesX>
-          <framesY>4</framesY>
-          <millisecondsPerFrame>50</millisecondsPerFrame>
-          <seperation>0</seperation>
-        </Animation>
-      </VisibleElement>
+      <I_DrawComponent>
+        <CompositeDrawable>
+          <VisibleElements>
+            <Animation>
+              <fileName>Assets/Sprites/Fire.png</fileName>
+              <frameH>128</frameH>
+              <frameW>128</frameW>
+              <framesX>4</framesX>
+              <framesY>4</framesY>
+              <millisecondsPerFrame>50</millisecondsPerFrame>
+              <seperation>0</seperation>
+            </Animation>
+          </VisibleElements>
+        </CompositeDrawable>
+      </I_DrawComponent>
+      <Position></Position>
     </Components>
   </GameObject>
 </prototypes>
