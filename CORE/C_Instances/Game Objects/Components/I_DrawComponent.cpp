@@ -1,5 +1,5 @@
 #include "I_DrawComponent.h"
-#include "GameObject.h"
+#include "Entity.h"
 #include "VideoManager.h"
 
 Component* I_DrawComponent::spawnCopy()
@@ -28,7 +28,7 @@ I_DrawComponent::I_DrawComponent(I_DrawComponent& other)
 	events = { drawStep, updateStep };
 }
 
-void I_DrawComponent::assignPointers(GameObject* parent)
+void I_DrawComponent::assignPointers(Entity* parent)
 {
 	x = (int*)parent->getPointer("x", sizeof(int));
 	y = (int*)parent->getPointer("y", sizeof(int));

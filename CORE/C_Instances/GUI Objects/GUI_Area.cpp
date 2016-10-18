@@ -34,7 +34,7 @@ void GUI_Area::update()
 	{
 		if (control != NULL)
 		{
-			control->update();
+			control->handleInput(updateStep);
 		}
 	}
 }

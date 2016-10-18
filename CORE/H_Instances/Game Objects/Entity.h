@@ -11,11 +11,12 @@
 
 class Room;
 
-class GameObject : public Controllable
+class Entity : public Component
 {
 public:
-	GameObject(pugi::xml_node node);
-	GameObject(GameObject& other);
+	Entity(pugi::xml_node node);
+	Entity(Entity& other);
+	Entity() {};
 
 	//Hashtable of data publicly accessible by components
 	std::map<std::string, void*> data;

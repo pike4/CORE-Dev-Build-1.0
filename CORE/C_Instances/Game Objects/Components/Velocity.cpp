@@ -1,5 +1,5 @@
 #include "Velocity.h"
-#include "GameObject.h"
+#include "Entity.h"
 
 Velocity::Velocity()
 {
@@ -26,7 +26,7 @@ void Velocity::move(int aX, int aY)
 	*y = aY;
 }
 
-void Velocity::assignPointers(GameObject* parent)
+void Velocity::assignPointers(Entity* parent)
 {
 	Position::assignPointers(parent);
 

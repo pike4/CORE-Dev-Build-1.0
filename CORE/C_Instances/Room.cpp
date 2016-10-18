@@ -2,7 +2,7 @@
 #include "SystemManager.h"
 #include "StateManager.h"
 #include "ObjectManager.h"
-#include "GameObject.h"
+#include "Entity.h"
 
 //Load room from node
 Room::Room(pugi::xml_node node)
@@ -35,7 +35,7 @@ Room::Room(std::string fileName)
 
 #pragma region adders and removers
 
-void Room::add(GameObject* object)
+void Room::add(Entity* object)
 {
 		controllableVector->push_back(object);
 }
@@ -140,7 +140,7 @@ void Room::spawn(std::string objectName)
 		return;
 	}
 
-	GameObject* newObject = ObjectManager::generate(objectName);
+	Entity* newObject = ObjectManager::generate(objectName);
 
 	add(newObject);
 }

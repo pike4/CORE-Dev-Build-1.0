@@ -87,8 +87,7 @@
     <ClCompile Include="C_Instances\Game Objects\Components\I_VelocityControl.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\Position.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\Velocity.cpp" />
-    <ClCompile Include="C_Instances\Game Objects\CompositeEnemy.cpp" />
-    <ClCompile Include="C_Instances\Game Objects\GameObject.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\Entity.cpp" />
     <ClCompile Include="C_Instances\Game Objects\TriggerZone.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\CheckBoxButton.cpp" />
@@ -105,7 +104,6 @@
     <ClCompile Include="C_Instances\Room.cpp" />
     <ClCompile Include="C_Instances\SpeechBox.cpp" />
     <ClCompile Include="C_Interfaces\BaseObject.cpp" />
-    <ClCompile Include="C_Instances\Game Objects\Player.cpp" />
     <ClCompile Include="C_Instances\QuadTree.cpp" />
     <ClCompile Include="C_Instances\Subject.cpp" />
     <ClCompile Include="C_Instances\Timer.cpp" />
@@ -114,8 +112,8 @@
     <ClCompile Include="C_Interfaces\CompositeDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Controllable.cpp" />
     <ClCompile Include="C_Interfaces\Drawable.cpp" />
-    <ClCompile Include="C_Interfaces\Mobile.cpp" />
     <ClCompile Include="C_Interfaces\Motion\VelocityComponent.cpp" />
+    <ClCompile Include="C_Interfaces\Observer.cpp" />
     <ClCompile Include="C_Interfaces\SimpleDrawable.cpp" />
     <ClCompile Include="C_Interfaces\Updatable.cpp" />
     <ClCompile Include="C_Interfaces\VisibleElement.cpp" />
@@ -129,7 +127,6 @@
     <ClCompile Include="H_Instances\GUI Objects\DragArea.h" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
-    <ClInclude Include="H_Instances\CompositeEnemy.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Elements\Animation.h" />
     <ClInclude Include="H_Instances\Environment.h" />
@@ -137,7 +134,7 @@
     <ClInclude Include="H_Instances\Game Objects\I_VelocityControl.h" />
     <ClInclude Include="H_Instances\Game Objects\Position.h" />
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
-    <ClInclude Include="H_Instances\Game Objects\GameObject.h" />
+    <ClInclude Include="H_Instances\Game Objects\Entity.h" />
     <ClInclude Include="H_Instances\Game Objects\TriggerZone.h" />
     <ClInclude Include="H_Instances\Game Objects\Velocity.h" />
     <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h" />
@@ -162,6 +159,7 @@
     <ClInclude Include="H_Interfaces\DataBound.h" />
     <ClCompile Include="Loggables\Loggables.cpp" />
     <ClInclude Include="H_Interfaces\MotionAffector.h" />
+    <ClInclude Include="H_Interfaces\Observer.h" />
     <ClInclude Include="H_Interfaces\VelocityComponent.h" />
     <ClInclude Include="H_Interfaces\SimpleDrawable.h" />
     <ClInclude Include="H_Interfaces\UpdatableComponent.h" />
@@ -169,7 +167,6 @@
     <ClInclude Include="H_Main\ControlTypes.h" />
     <ClInclude Include="H_Main\ElementTypes.h" />
     <ClInclude Include="H_Main\Events.h" />
-    <ClInclude Include="H_Main\GameObjectTypes.h" />
     <ClInclude Include="PugiXML\pugiconfig.hpp" />
     <ClInclude Include="PugiXML\pugixml.hpp" />
   </ItemGroup>
@@ -184,7 +181,6 @@
     <ClInclude Include="H_Interfaces\BaseObject.h" />
     <ClInclude Include="H_Interfaces\Updatable.h" />
     <ClInclude Include="H_Interfaces\Visible.h" />
-    <ClInclude Include="H_Interfaces\Mobile.h" />
     <ClInclude Include="H_Main\Commands.h" />
     <ClInclude Include="H_Managers\EventManager.h" />
     <ClInclude Include="H_Managers\ObjectManager.h" />

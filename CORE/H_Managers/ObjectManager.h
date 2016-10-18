@@ -3,7 +3,6 @@
 #include <vector>
 #include <map>
 #include "_Manager.h"
-#include "Player.h"
 #include "Updatable.h"
 #include "QuadTree.h"
 #include "Collidable.h"
@@ -42,10 +41,10 @@ public:
 	static Control* generateControl(std::string controlType, pugi::xml_node node);
 	static VisibleElement* generateVisibleElement(std::string controlType, pugi::xml_node node);
 	static Component* generateComponent(std::string type, pugi::xml_node node);
-	static GameObject* generateGameObject(std::string, pugi::xml_node node, Room* room);
-	static GameObject* generateGameObject(std::string, pugi::xml_node node);
-	static GameObject* generate(std::string prototypeName);
-	static GameObject* spawn(std::string prototypeName, Room* room);
+	static Entity* generateGameObject(std::string, pugi::xml_node node, Room* room);
+	static Entity* generateGameObject(std::string, pugi::xml_node node);
+	static Entity* generate(std::string prototypeName);
+	static Entity* spawn(std::string prototypeName, Room* room);
 
 	static void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
 

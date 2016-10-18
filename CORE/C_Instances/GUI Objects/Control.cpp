@@ -4,7 +4,6 @@
 #include "pugixml.hpp"
 
 Control::Control(pugi::xml_node node)
-	:Drawable(node)
 {
 	getArgsFromNode(node);
 }
@@ -52,16 +51,6 @@ bool Control::isWithin(int x, int y)
 	return (x > box.x && x < box.x + box.w && y > box.y && y < box.y + box.h);
 }
 
-void Control::update() {}
-
-void Control::draw(SDL_Renderer* renderer)
-{
-	for each(VisibleElement* element in elements)
-	{
-		element->draw(renderer);
-	}
-}
-
 void Control::move(int x, int y, bool relative)
 {
 	int deltaX, deltaY;
@@ -90,17 +79,26 @@ void Control::move(int x, int y, bool relative)
 
 void Control::handleInput(int keyCode, int upDown, int x, int y)
 {
+	Entity::handleInput(keyCode, upDown, x, y);
+
 	switch (keyCode)
 	{
+	case drawStep:
+		for each(VisibleElement* element in elements)
+		{
+			element->draw(VideoManager::mRenderer);
+		}
+		break;
+
 	case mouseMoved:
 		if (isWithin(x, y))
 		{
-			mouseEnter();
+			//event mouse hover
 		}
 
 		else if (mouseHovering)
 		{
-			mouseLeave();
+			//event mouse leave
 			if (cancelInputOnMouseLeave)
 			{
 				mouseIsDown = false;
@@ -111,14 +109,15 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 	case mouse1Down:
 		if (mouseHovering)
 		{
-			mouseDown();
+			mouseIsDown = true;
+			//event mouse down
 		}
 		break;
 
 	case mouse1Up:
 		if (mouseIsDown)
 		{
-			mouseUp();
+			//event mouse release
 		}
 		break;
 

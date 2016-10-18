@@ -1,7 +1,7 @@
 #include "Position.h"
-#include "GameObject.h"
+#include "Entity.h"
 
-void Position::assignPointers(GameObject* parent)
+void Position::assignPointers(Entity* parent)
 {
 	x = (int*) parent->getPointer("x", sizeof(int));
 	y = (int*) parent->getPointer("y", sizeof(int));

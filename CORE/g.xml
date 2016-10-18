@@ -4,64 +4,67 @@
   <MenuScreenDec>options</MenuScreenDec>
   
   <name>Pause Menu</name>
-  <MenuScreen>
-    <name>main</name>
-    <NavigationButton>
-      <x>30</x>
-      <y>30</y>
-      <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-      <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <w>200</w>
-      <h>200</h>
-      <text>start</text>
-      <font>Assets/Fonts/comic.ttf</font>
-      <fontSize>20</fontSize>
-      <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      <pressSound>Assets/Music/pew.wav</pressSound>
-      <pointer>other</pointer>
-    </NavigationButton>
-    <NavigationButton>
-      <x>30</x>
-      <y>130</y>
-      <w>200</w>
-      <h>200</h>
-      <text>options</text>
-      <font>Assets/Fonts/comic.ttf</font>
-      <fontSize>20</fontSize>
-      <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-      <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      <pressSound>Assets/Music/pew.wav</pressSound>
-      <pointer>options</pointer>
-    </NavigationButton>
-    <NavigationButton>
-      <x>30</x>
-      <y>230</y>
-      <w>200</w>
-      <h>200</h>
-      <text>Sound</text>
-      <font>Assets/Fonts/comic.ttf</font>
-      <fontSize>20</fontSize>
-      <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-      <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      <pressSound>Assets/Music/pew.wav</pressSound>
-      <pointer>fourth</pointer>
-    </NavigationButton>
-    <NavigationButton>
-      <x>30</x>
-      <y>330</y>
-      <w>200</w>
-      <h>200</h>
-      <text>Other menu</text>
-      <font>Assets/Fonts/comic.ttf</font>
-      <fontSize>20</fontSize>
-      <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-      <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-      <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      <pressSound>Assets/Music/pew.wav</pressSound>
-      <pointer>secret</pointer>
-    </NavigationButton>
+    <MenuScreen>
+      <name>main</name>
+      <Controls>
+      <NavigationButton>
+        <x>30</x>
+        <y>30</y>
+        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
+        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
+        <w>200</w>
+        <h>200</h>
+        <text>start</text>
+        <font>Assets/Fonts/comic.ttf</font>
+        <fontSize>20</fontSize>
+        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+        <pressSound>Assets/Music/pew.wav</pressSound>
+        <pointer>other</pointer>
+      </NavigationButton>
+      <NavigationButton>
+        <x>30</x>
+        <y>130</y>
+        <w>200</w>
+        <h>200</h>
+        <text>options</text>
+        <font>Assets/Fonts/comic.ttf</font>
+        <fontSize>20</fontSize>
+        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
+        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
+        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+        <pressSound>Assets/Music/pew.wav</pressSound>
+        <pointer>options</pointer>
+      </NavigationButton>
+      <NavigationButton>
+        <x>30</x>
+        <y>230</y>
+        <w>200</w>
+        <h>200</h>
+        <text>Sound</text>
+        <font>Assets/Fonts/comic.ttf</font>
+        <fontSize>20</fontSize>
+        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
+        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
+        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+        <pressSound>Assets/Music/pew.wav</pressSound>
+        <pointer>fourth</pointer>
+      </NavigationButton>
+      <NavigationButton>
+        <x>30</x>
+        <y>330</y>
+        <w>200</w>
+        <h>200</h>
+        <text>Other menu</text>
+        <font>Assets/Fonts/comic.ttf</font>
+        <fontSize>20</fontSize>
+        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
+        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
+        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
+        <pressSound>Assets/Music/pew.wav</pressSound>
+        <pointer>secret</pointer>
+      </NavigationButton>
+   </Controls>
+
   </MenuScreen>
 
   <MenuScreen>
@@ -179,7 +182,8 @@
       </button>
     </MenuScreen>
   <MenuScreen>
-      <name>fourth</name>
+    <name>fourth</name>
+    <Controls>
       <button>
         <x>30</x>
         <y>30</y>
@@ -219,6 +223,18 @@
         <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
         <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
       </button>
+      <Checkbox>
+        <x>200</x>
+        <y>200</y>
+        <w>400</w>
+        <h>400</h>
+        <DefTexture_Checked>Assets/Sprites/BlankDefault.png</DefTexture_Checked>
+        <HeldTexture_Checked>Assets/Sprites/BlankHeld.png</HeldTexture_Checked>
+        <HoverTexture_Checked>Assets/Sprites/BlankHover.png</HoverTexture_Checked>
+        <DefTexture_Unchecked>Assets/Sprites/ButtonDefault.png</DefTexture_Unchecked>
+        <HeldTexture_Unchecked>Assets/Sprites/ButtonHeld.png</HeldTexture_Unchecked>
+        <HoverTexture_Unchecked>Assets/Sprites/ButtonHover.png</HoverTexture_Unchecked>
+      </Checkbox>
       <NavigationButton>
         <x>30</x>
         <y>330</y>
@@ -233,6 +249,7 @@
         <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
         <pointer>main</pointer>
       </NavigationButton>
+    </Controls>
     </MenuScreen>
 
   <MenuScreen>

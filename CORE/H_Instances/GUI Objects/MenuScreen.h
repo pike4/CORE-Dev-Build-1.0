@@ -1,17 +1,15 @@
 #pragma once
 #include "MenuSystem.h"
-#include "Controllable.h"
+#include "Entity.h"
 #include "Control.h"
 #include "Drawable.h"
 #include "Updatable.h"
 #include <vector>
 
-class MenuScreen : public Updatable, public Drawable, public Controllable
+class MenuScreen : public Updatable, public Drawable, public Entity
 {
 public:
-
-	MenuScreen();
-
+	MenuScreen() {};
 	MenuScreen(pugi::xml_node node);
 	MenuScreen(pugi::xml_node node, MenuSystem* root);
 	MenuScreen(char* fileName);

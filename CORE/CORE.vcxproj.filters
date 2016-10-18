@@ -36,9 +36,6 @@
     <ClInclude Include="H_Interfaces\BaseObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Interfaces\Mobile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Interfaces\Updatable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -150,25 +147,16 @@
     <ClInclude Include="H_Main\ElementTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Main\GameObjectTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Interfaces\SimpleDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Interfaces\CompositeDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Instances\CompositeEnemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Instances\Elements\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Interfaces\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H_Instances\Game Objects\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Interfaces\UpdatableComponent.h">
@@ -195,6 +183,12 @@
     <ClInclude Include="H_Instances\Game Objects\Velocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="H_Interfaces\Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\Game Objects\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -210,9 +204,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\Collidable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Interfaces\Mobile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Managers\StateManager.cpp">
@@ -246,9 +237,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\BaseObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp">
@@ -323,13 +311,7 @@
     <ClCompile Include="C_Interfaces\Drawable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\CompositeEnemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\Elements\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\Game Objects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Interfaces\Motion\VelocityComponent.cpp">
@@ -348,6 +330,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\Components\Velocity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Interfaces\Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Game Objects\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

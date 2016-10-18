@@ -1,5 +1,5 @@
 #include "I_VelocityControl.h"
-#include "GameObject.h"
+#include "Entity.h"
 
 Component* I_VelocityControl::spawnCopy()
 {
@@ -25,7 +25,7 @@ I_VelocityControl::I_VelocityControl(I_VelocityControl& other)
 	events = { walkBackwardButtonDown, walkBackwardButtonUp, walkDownButtonDown, walkDownButtonUp, walkForwardButtonDown, walkDownButtonUp, walkLeftButtonDown, walkLeftButtonUp, walkRightButtonDown, walkRightButtonUp, updateStep };
 }
 
-void I_VelocityControl::assignPointers(GameObject* parent)
+void I_VelocityControl::assignPointers(Entity* parent)
 {
 	Velocity::assignPointers(parent);
 }

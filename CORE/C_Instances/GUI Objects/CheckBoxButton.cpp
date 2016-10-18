@@ -15,6 +15,10 @@ CheckBoxButton::CheckBoxButton(pugi::xml_node node)
 	heldImage_Unchecked = SystemManager::assignTexture((char*)node.child("HeldTexture_Unchecked").first_child().value());
 	hoverImage_Unchecked = SystemManager::assignTexture((char*)node.child("HoverTexture_Unchecked").first_child().value());
 
+	defaultImage_Current = new ImageElement(box.x, box.y, box.w, box.h,
+		defaultImage_Checked);
+
+	elements.push_back(defaultImage_Current);
 
 	realTime = !strcmp(node.child("realTime").first_child().value(), "true");
 }
@@ -26,16 +30,19 @@ void CheckBoxButton::handleInput(int keyCode, int upDown, int x, int y)
 
 void CheckBoxButton::mouseEnter()
 {
+	defaultImage_Current->texture = hoverImage_Checked;
 	mouseHovering = true;
 }
 
 void CheckBoxButton::mouseLeave()
 {
+	defaultImage_Current->texture = defaultImage_Checked;
 	mouseHovering = false;
 }
 
 void CheckBoxButton::mouseDown()
 {
+	defaultImage_Current->texture = heldImage_Checked;
 	mouseIsDown = true;
 }
 
@@ -64,11 +71,9 @@ void CheckBoxButton::check()
 	checked = true;
 	if (realTime)
 	{
-		submit();
+		//submit();
 	}
 
-	heldImage_Current->texture = heldImage_Checked;
-	hoverImage_Current->texture = hoverImage_Checked;
 	defaultImage_Current->texture = defaultImage_Checked;
 }
 
@@ -78,11 +83,9 @@ void CheckBoxButton::uncheck()
 	checked = false;
 	if (realTime)
 	{
-		submit();
+		//submit();
 	}
 
-	heldImage_Current->texture = heldImage_Unchecked;
-	hoverImage_Current->texture = hoverImage_Unchecked;
 	defaultImage_Current->texture = defaultImage_Unchecked;
 }
 

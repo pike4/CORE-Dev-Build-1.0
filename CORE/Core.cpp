@@ -25,8 +25,7 @@
 #include "UpdatableTextElement.h"
 #include "ImageElement.h"
 #include "GUI_Area.h"
-#include "GameObjectTypes.h"
-#include "GameObject.h"
+#include "Entity.h"
 
 #undef main
 
@@ -60,9 +59,14 @@ int main()
 	Timer genTimer;
 
 	SystemManager::loadPrototypes("prototypes.xml");
-	GameObject* chuck = NULL;
+	Entity* chuck = NULL;
+
+	MenuSystem* newMen = new MenuSystem("g.xml");
+	StateManager::currentMenuSystem = newMen;
+
+	StateManager::addMenuScreenLayer(newMen->getMenuScreen("fourth"));
 	
-	GameObject* chucksFriend = StateManager::prototypes["Charlie"];
+	Entity* chucksFriend = StateManager::prototypes["Charlie"];
 
 	RenderableCharSet chars = RenderableCharSet(12, sans, red, VideoManager::mRenderer);
 

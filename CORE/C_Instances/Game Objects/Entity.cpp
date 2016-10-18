@@ -1,7 +1,4 @@
-#include "GameObject.h"
-#include "BaseObject.h"
-#include "Drawable.h"
-#include "Updatable.h"
+#include "Entity.h"
 #include "Collidable.h"
 #include "Controllable.h"
 #include "I_DrawComponent.h"
@@ -9,12 +6,12 @@
 #include "Position.h"
 #include "ObjectManager.h"
 
-GameObject::GameObject(pugi::xml_node node)
+Entity::Entity(pugi::xml_node node)
 {
 	getArgsFromNode(node);
 }
 
-GameObject::GameObject(GameObject& other)
+Entity::Entity(Entity& other)
 {
 	for (int i = 0; i < other.components.size(); i++)
 	{
@@ -23,7 +20,7 @@ GameObject::GameObject(GameObject& other)
 	}
 }
 
-void GameObject::getArgsFromNode(pugi::xml_node node)
+void Entity::getArgsFromNode(pugi::xml_node node)
 {
 	pugi::xml_node tempNode = node.child("Components");
 
@@ -72,11 +69,6 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 			}
 		}
 
-		else if (!tempName.compare("Mobile"))
-		{
-			//components.push_back(new Mobile(tempNode));
-		}
-
 		else if (!tempName.compare("Collidable"))
 		{
 			Collidable* newCollidable = new Collidable(node);
@@ -90,7 +82,7 @@ void GameObject::getArgsFromNode(pugi::xml_node node)
 	int aawdadaw = 0;
 }
 
-int GameObject::registerListener(int key, Controllable* listener)
+int Entity::registerListener(int key, Controllable* listener)
 {
 	if (listeners.find(key) == listeners.end())
 	{
@@ -102,7 +94,7 @@ int GameObject::registerListener(int key, Controllable* listener)
 	return 1;
 }
 
-int GameObject::deregisterListener(int key, Controllable* listener)
+int Entity::deregisterListener(int key, Controllable* listener)
 {
 	if (listeners.find(key) == listeners.end())
 	{
@@ -126,7 +118,7 @@ int GameObject::deregisterListener(int key, Controllable* listener)
 }
 
 //Return a pointer 
-void* GameObject::getPointer(std::string key, int size)
+void* Entity::getPointer(std::string key, int size)
 {
 	if (data.find(key) == data.end())
 	{
@@ -136,7 +128,7 @@ void* GameObject::getPointer(std::string key, int size)
 	return data[key];
 }
 
-void GameObject::handleInput(int key, int upDown, int x, int y)
+void Entity::handleInput(int key, int upDown, int x, int y)
 {
 	if (listeners.find(key) == listeners.end())
 	{
@@ -153,7 +145,7 @@ void GameObject::handleInput(int key, int upDown, int x, int y)
 	}
 }
 
-void GameObject::move(int x, int y)
+void Entity::move(int x, int y)
 {
 	for (int i = 0; i < components.size(); i++)
 	{

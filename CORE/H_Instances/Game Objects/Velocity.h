@@ -9,7 +9,7 @@ public:
 	Velocity(Velocity&);
 	virtual Component* spawnCopy();
 	virtual void move(int aX, int aY);
-	void assignPointers(GameObject* parent);
+	void assignPointers(Entity* parent);
 
 	virtual void handleInput(int key, int upDown = 0, int aX = 0, int aY = 0);
 

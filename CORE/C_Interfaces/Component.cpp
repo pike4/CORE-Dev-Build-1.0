@@ -1,17 +1,7 @@
 #include "Component.h"
-#include "GameObject.h"
+#include "Entity.h"
 
-void Component::addTo(GameObject* object)
-{
-	if (object != NULL)
-	{
-		parent = object;
-
-		object->components.push_back(this);
-	}
-}
-
-void Component::registerSelf(GameObject* newParent)
+void Component::registerSelf(Entity* newParent)
 {
 	parent = newParent;
 

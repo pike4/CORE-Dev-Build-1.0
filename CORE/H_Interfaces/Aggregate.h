@@ -65,7 +65,7 @@ public:
 	{
 		for (int i = 0; i < children.size(); i++)
 		{
-			children[i]->draw(renderer);
+			children[i]->handleInput(drawStep);
 		}
 	}
 private:

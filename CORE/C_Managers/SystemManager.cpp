@@ -317,14 +317,14 @@ void SystemManager::loadPrototypes(pugi::xml_node node)
 	{
 		pugi::xml_node cNode = node.child("name");
 		name = node.child("name").first_child().value();
-		GameObject* prototype = ObjectManager::generateGameObject(node.name(), node);
+		Entity* prototype = ObjectManager::generateGameObject(node.name(), node);
 		addPrototype(name, prototype);
 
 		node = node.next_sibling();
 	}
 }
 
-void SystemManager::addPrototype(std::string name, GameObject* prototype)
+void SystemManager::addPrototype(std::string name, Entity* prototype)
 {
 	StateManager::prototypes[name] = prototype;
 }

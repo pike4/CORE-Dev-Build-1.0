@@ -43,7 +43,7 @@ public:
 
 	static std::map<std::string, Environment*> environments;
 	static std::map<std::string, MenuSystem*> menuSystems;
-	static std::map<std::string, GameObject*> prototypes;
+	static std::map<std::string, Entity*> prototypes;
 
 	static Environment* currentEnvironment;
 	static Room* currentRoom;

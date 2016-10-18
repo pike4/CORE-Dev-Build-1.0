@@ -1,8 +1,6 @@
 #pragma once
-#include "BaseObject.h"
-#include "Controllable.h"
+#include "Entity.h"
 #include "Drawable.h"
-#include "Updatable.h"
 #include "SDL.h"
 #include "pugixml.hpp"
 #include "VisibleElement.h"
@@ -10,7 +8,7 @@
 class Aggregate;
 class MenuScreen;
 
-class Control : public Controllable, public Drawable, public Updatable
+class Control : public Entity
 {
 public:
 	SDL_Rect box;
@@ -26,16 +24,8 @@ public:
 	int getX();
 	int getY();
 
-	virtual void update();
-
-	virtual void draw(SDL_Renderer* renderer);
 	virtual void move(int x, int y, bool relative = true);
 protected:
-	virtual void mouseEnter() = 0;
-	virtual void mouseLeave() = 0;
-	virtual void mouseDown() = 0;
-	virtual void mouseUp() = 0;
-
 	bool isWithin(int x, int y);
 
 	void getArgsFromNode(pugi::xml_node node);

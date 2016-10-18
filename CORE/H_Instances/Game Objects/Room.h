@@ -9,7 +9,7 @@
 #include "Pugixml.hpp"
 #include <vector>
 
-class  GameObject;
+class  Entity;
 
 class Room : public Updatable, public Drawable, public Controllable
 {
@@ -23,14 +23,14 @@ public:
 
 	void spawn(std::string objectName);
 
-	void add(GameObject* object);
+	void add(Entity* object);
 	void add(Updatable* component);
 	void add(Drawable* component);
 	void add(BaseObject* component);
 	void add(Collidable* component);
 	void add(Controllable* component);
 
-	void remove(GameObject* object);
+	void remove(Entity* object);
 	void remove(Updatable* component);
 	void remove(Drawable* component);
 	void remove(BaseObject* component);

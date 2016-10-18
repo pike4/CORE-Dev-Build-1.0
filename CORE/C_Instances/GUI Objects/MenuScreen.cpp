@@ -5,12 +5,8 @@
 #include "EventManager.h"
 #include <vector>
 
-MenuScreen::MenuScreen()
-{
-	
-}
-
 MenuScreen::MenuScreen(pugi::xml_node node)
+	:Entity(node)
 {
 	getArgsFromNode(node);
 }
@@ -44,6 +40,22 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
 			name = (char*)curNode.first_child().value();
 		}
 
+		else if (!strcmp(curName, "controls"))
+		{
+			pugi::xml_node controlNode = curNode.first_child();
+
+			while (strcmp("", controlNode.name()))
+			{
+				Control* newControl = ObjectManager::generateControl(controlNode.name(), controlNode);
+				
+				if (newControl)
+				{
+					controls.push_back(newControl);
+				}
+				controlNode = controlNode.next_sibling();
+			}
+		}
+
 		curNode = curNode.next_sibling();
 		curName = (char*)curNode.name();
 	}
@@ -56,6 +68,27 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node)
 	
 	while (strcmp(curNode.name(), "") != 0)
 	{
+		if (!strcmp(curNode.name(), "name"))
+		{
+			name = curNode.first_child().value();
+		}
+
+		else if (!strcmp(curName, "Controls"))
+		{
+			pugi::xml_node controlNode = curNode.first_child();
+
+			while (strcmp("", controlNode.name()))
+			{
+				Control* newControl = ObjectManager::generateControl(controlNode.name(), controlNode);
+
+				if (newControl)
+				{
+					controls.push_back(newControl);
+				}
+				controlNode = controlNode.next_sibling();
+			}
+		}
+
 		curNode = curNode.next_sibling();
 		curName = (char*) curNode.name();
 	} 
@@ -106,7 +139,7 @@ void MenuScreen::draw(SDL_Renderer* renderer)
 	{
 		if (controls[i] != NULL)
 		{
-			controls[i]->draw(renderer);
+			controls[i]->handleInput(drawStep);
 		}
 	}
 }
@@ -117,7 +150,7 @@ void MenuScreen::update()
 	{
 		if (controls[i] != NULL)
 		{
-			controls[i]->update();
+			controls[i]->handleInput(updateStep);
 		}
 	}
 }

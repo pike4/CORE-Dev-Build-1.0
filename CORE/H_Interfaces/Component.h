@@ -4,21 +4,19 @@
 #include <vector>
 
 class Room;
-class GameObject;
+class Entity;
 
 class Component : public Controllable
 {
 public:
-	virtual void addTo(Room*) {};
-	virtual void addTo(GameObject*);
 	virtual void move(int x, int y) {};
 
-	virtual void assignPointers(GameObject* parent) {};
-	virtual void registerSelf(GameObject* newParent);
+	virtual void assignPointers(Entity* parent) {};
+	virtual void registerSelf(Entity* newParent);
 
 	std::vector<int> events;
 
-	GameObject* parent;
+	Entity* parent;
 
 	virtual Component* spawnCopy();
 private:

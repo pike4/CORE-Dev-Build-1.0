@@ -4,12 +4,11 @@
 #include "MenuScreen.h"
 #include "ControlTypes.h"
 #include "ElementTypes.h"
-#include "GameObjectTypes.h"
 #include "VelocityComponent.h"
 #include <vector>
 #include <map>
 
-#include "GameObject.h"
+#include "Entity.h"
 
 #include "I_DrawComponent.h"
 
@@ -188,7 +187,7 @@ Control* ObjectManager::generateControl(std::string controlType, pugi::xml_node 
 		return new GUI_Area(node);
 	}
 
-	else if (!strcmp(name, ""))
+	else
 	{
 		return NULL;
 	}
@@ -225,7 +224,7 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 	}
 }
 
-GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, 
+Entity* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, 
 	Room* room)
 {
 	if (!objectType.compare("Player"))
@@ -238,9 +237,9 @@ GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 		//return new CompositeEnemy(node, room);
 	}
 
-	else if (!objectType.compare("GameObject"))
+	else if (!objectType.compare("Entity"))
 	{
-		return new GameObject(node);
+		return new Entity(node);
 	}
 
 	else
@@ -249,7 +248,7 @@ GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 	}
 }
 
-GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node)
+Entity* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node)
 {
 	if (!objectType.compare("Player"))
 	{
@@ -261,9 +260,9 @@ GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 		//return new CompositeEnemy(node);
 	}
 	
-	else if (!objectType.compare("GameObject"))
+	else if (!objectType.compare("Entity"))
 	{
-		return new GameObject(node);
+		return new Entity(node);
 	}
 
 	else
@@ -272,14 +271,14 @@ GameObject* ObjectManager::generateGameObject(std::string objectType, pugi::xml_
 	}
 }
 
-GameObject* ObjectManager::generate(std::string prototypeName)
+Entity* ObjectManager::generate(std::string prototypeName)
 {
 	//TODO: 
-	GameObject* objectToSpawn = StateManager::prototypes[prototypeName];
+	Entity* objectToSpawn = StateManager::prototypes[prototypeName];
 	
 	if (objectToSpawn != NULL)
 	{
-		return new GameObject(*objectToSpawn);
+		return new Entity(*objectToSpawn);
 	}
 
 	else
@@ -291,10 +290,10 @@ GameObject* ObjectManager::generate(std::string prototypeName)
 	}
 }
 
-GameObject* ObjectManager::spawn(std::string prototypeName, Room* room)
+Entity* ObjectManager::spawn(std::string prototypeName, Room* room)
 {
 	//TODO: 
-	GameObject* objectToSpawn = StateManager::prototypes[prototypeName];
+	Entity* objectToSpawn = StateManager::prototypes[prototypeName];
 
 	if (objectToSpawn != NULL)
 	{

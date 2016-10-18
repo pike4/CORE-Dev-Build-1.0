@@ -69,7 +69,7 @@ public:
 
 	static void loadPrototypes(std::string fileName);
 	static void loadPrototypes(pugi::xml_node);
-	static void addPrototype(std::string name, GameObject* prototype);
+	static void addPrototype(std::string name, Entity* prototype);
 
 	static bool hasElapsed(Uint32 ms);
 

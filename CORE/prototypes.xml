@@ -1,5 +1,5 @@
 <prototypes>
-  <GameObject>
+  <Entity>
     <name>Charlie</name>
     <Components>
       <x>100</x>
@@ -27,9 +27,9 @@
       <Controllable>true</Controllable>
       <Updatable>true</Updatable>
     </Components>
-  </GameObject>
+  </Entity>
 
-  <GameObject>
+  <Entity>
     <name>Fire</name>
     <Components>
       <I_DrawComponent>
@@ -49,5 +49,5 @@
       </I_DrawComponent>
       <Position></Position>
     </Components>
-  </GameObject>
+  </Entity>
 </prototypes>

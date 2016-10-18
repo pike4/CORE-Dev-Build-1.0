@@ -7,7 +7,7 @@
 #include "CollisionManager.h"
 #include "Commands.h"
 
-#include "GameObject.h"
+#include "Entity.h"
 
 
 void StateManager::start()
@@ -183,7 +183,16 @@ void StateManager::goToGUIInCurrentMenuSystem(std::string guiName)
 
 void StateManager::addMenuScreenLayer(MenuScreen* gui)
 {
-	currentMenuScreens.push_back(gui);
+	if (gui != NULL)
+	{
+		currentMenuScreens.push_back(gui);
+	}
+
+	else
+	{
+		//TODO log error
+		printf("Attempted to load null menu\n");
+	}
 }
 
 void StateManager::removeMenuScreenLayer(MenuScreen* gui)
@@ -243,7 +252,7 @@ Timer StateManager::frameTimer;
 std::map<std::string, Environment*> StateManager::environments;
 std::map<std::string, MenuSystem*> StateManager::menuSystems;
 
-std::map<std::string, GameObject*> StateManager::prototypes;
+std::map<std::string, Entity*> StateManager::prototypes;
 
 Environment* StateManager::currentEnvironment;
 Room* StateManager::currentRoom;

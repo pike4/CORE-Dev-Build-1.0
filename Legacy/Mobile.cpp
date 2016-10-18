@@ -1,6 +1,6 @@
 #include "Mobile.h"
 #include "VideoManager.h"
-#include "GameObject.h"
+#include "Entity.h"
 
 void Mobile::updatePos()
 {
