@@ -15,10 +15,14 @@ using namespace std;
 
 
 class VisibleElement;
+class Entity;
 
 class VideoManager : public Manager
 {
 public:
+
+	static Entity* player;
+
 	static int state;
 
 	static SDL_Window* mWindow;
@@ -39,6 +43,11 @@ public:
 	//Initialize the engine window
 	static bool InitWindow(int w, int h, std::string name, bool isFullscreen);
 
+	static int* xOffset;
+	static int* yOffset;
+	static int xOffsetInitial;
+	static int yOffsetInitial;
+
 #pragma endregion
 
 //Methods used for applying surfaces to and drawing on the screen
@@ -48,7 +57,7 @@ public:
 
 	static void setScreenBackground(int r, int g, int b);
 
-	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source);
+	static void applyTexture(int x, int y, SDL_Texture* source);
 
 	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, 
 		double rotation, SDL_RendererFlip flip, SDL_Point point);

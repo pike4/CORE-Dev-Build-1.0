@@ -12,8 +12,8 @@ public:
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
-	virtual VisibleElement* spawnCopy();
-	virtual void draw(SDL_Renderer* renderer);
+	virtual Component* spawnCopy();
+	virtual void draw();
 
 private:
 	void getArgsFromNode(pugi::xml_node node);

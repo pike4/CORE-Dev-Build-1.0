@@ -22,8 +22,8 @@ void Position::handleInput(int key, int upDown, int x, int y)
 
 Position::Position()
 {
-	x = NULL;
-	y = NULL;
+	pointers.push_back({ "x", sizeof(int), &x });
+	pointers.push_back({ "y", sizeof(int), &y });
 }
 
 Position::Position(pugi::xml_node node)

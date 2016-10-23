@@ -16,7 +16,6 @@ public:
 
 	void add(Control* control, int x, int y);
 	void add(VisibleElement* element, int x, int y);
-	virtual void move(int x, int y, bool relative = true);
 private:
 	std::vector<Control*> controls;
 

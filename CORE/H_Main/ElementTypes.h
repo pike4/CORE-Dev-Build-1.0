@@ -3,10 +3,11 @@
 ///////////////////////////////////
 //Core Default
 ///////////////////////////////////
-#include "TextElement.h"
+#include "StaticTextElement.h"
 #include "ImageElement.h"
-#include "UpdatableTextElement.h"
+#include "DynamicTextElement.h"
 #include "Animation.h"
+#include "VariableElement.h"
 
 ///////////////////////////////////
 //User Defined

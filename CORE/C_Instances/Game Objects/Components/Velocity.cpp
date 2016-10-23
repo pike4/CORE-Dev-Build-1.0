@@ -2,9 +2,11 @@
 #include "Entity.h"
 
 Velocity::Velocity()
+	:Position()
 {
-	x = NULL;
-	y = NULL;
+	pointers.push_back({ "xVel", sizeof(double), &xVel });
+	pointers.push_back({ "yVel", sizeof(double), &yVel });
+	pointers.push_back({ "direction", sizeof(int), &direction });
 }
 
 Velocity::Velocity(pugi::xml_node node)

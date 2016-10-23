@@ -3,44 +3,45 @@
 #include "SystemManager.h"
 #include "EventManager.h"
 
-//SpeechBox::SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet)
-//{
-//	charSet = characterSet;
-//
-//	textTimer = Timer();
-//	waitTime = 50;
-//
-//	charToLines(message);
-//}
+SpeechBox::SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet)
+{
+	charSet = characterSet;
+
+	textTimer = Timer();
+	waitTime = 50;
+
+	charToLines(message);
+}
 
 void SpeechBox::update()
 {
-	if (textTimer.hasElapsed(waitTime))
+	if (textTimer.hasElapsed((rand() % waitTime) + 100))
 	{
+		AudioManager::playSound(SystemManager::assignSound("Assets/Music/talk_papyrus.wav"));
 		if (characterIndex < lines[firstLineIndex].length() - 1)
 		{
 			characterIndex++;
 		}
 
-		else
+		else if (lastLineIndex < maxLines)
 		{
 			characterIndex = 0;
-			if (lastLineIndex < maxLines)
-			{
-				lastLineIndex++;
+			lastLineIndex++;
 
-				if (lastLineIndex - firstLineIndex > maxLines)
-				{
-					firstLineIndex++;
-				}
+			if (lastLineIndex - firstLineIndex > maxLines)
+			{
+				firstLineIndex++;
 			}
 		}
+
+		textTimer.updateTime();
 	}
 }
 
 void SpeechBox::charToLines(char* message)
 {
 	maxLineLength = 20;
+	maxLines = 30;
 	int length = strlen(message);
 
 	std::string curWord = "";
@@ -107,31 +108,33 @@ void SpeechBox::handleInput(int key, int upDown, int x, int y)
 	{
 	case interactButtonDown:
 		break;
+	case drawStep:
+		draw();
+		break;
+	case updateStep:
+		update();
+		break;
+
 	}
 }
 
-int SpeechBox::getX()
-{
-	return box.x;
-}
-
-int SpeechBox::getY()
-{
-	return box.y;
-}
-
-void SpeechBox::draw(SDL_Renderer* renderer)
+void SpeechBox::draw()
 {
 	int penX = 0;
 	int penY = 0;
 
-	for (int x = firstLineIndex; x <= lastLineIndex; x++)
+	for (int i= firstLineIndex; i <= lastLineIndex; i++)
 	{
-		for (int y = 0; y < lines[x].length(); y++)
+		for (int j = 0; j < lines[i].length(); j++)
 		{
-			VideoManager::applyTexture(penX, penY, renderer, charSet->charSet[lines[x][y]]);
+			if (i == lastLineIndex && j == characterIndex)
+			{
+				break;
+			}
+			VideoManager::applyTexture(penX, penY, charSet->charSet[lines[i][j]]);
 			penX += charSet->fontWidth;
 		}
+		penX = 0;
 
 		penY += charSet->fontHeight;
 	}

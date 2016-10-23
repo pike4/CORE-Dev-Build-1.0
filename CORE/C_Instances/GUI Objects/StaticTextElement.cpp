@@ -1,61 +1,61 @@
-#include "TextElement.h"
+#include "StaticTextElement.h"
 #include "VideoManager.h"
 #include "SystemManager.h"
 
-TextElement::TextElement(int x, int y, int w, int h, RenderableCharSet* charSet)
-	:VisibleElement(x, y, w, h)
+StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableCharSet* charSet)
+	:VisibleElement(aX, aY, aW, aH)
 {
 	this->charSet = charSet;
 
-	maxLineLength = box.w / charSet->fontWidth;
-	maxLines = box.h / charSet->fontHeight;
+	maxLineLength = w / charSet->fontWidth;
+	maxLines = h / charSet->fontHeight;
 
 	lineIndex = 0;
 }
 
-TextElement::TextElement(int x, int y, int w, int h, RenderableCharSet* charSet, std::string text)
-	:TextElement(x, y, w, h, charSet)
+StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableCharSet* charSet, std::string text)
+	:StaticTextElement(aX, aY, aW, aH, charSet)
 {
 	this->charSet = charSet;
 	this->text = text;
 
-	maxLineLength = box.w / charSet->fontWidth;
-	maxLines = box.h / charSet->fontHeight;
+	maxLineLength = w / charSet->fontWidth;
+	maxLines = h / charSet->fontHeight;
 
 	lineIndex = 0;
 }
 
-TextElement::TextElement(pugi::xml_node node)
+StaticTextElement::StaticTextElement(pugi::xml_node node)
 	:VisibleElement(node)
 {
 	getArgsFromNode(node);
 }
 
-TextElement::TextElement(TextElement& copy)
+StaticTextElement::StaticTextElement(StaticTextElement& copy)
 	:VisibleElement(copy)
 {
 	
 }
 
-void TextElement::draw(SDL_Renderer* renderer)
+void StaticTextElement::draw()
 {
-	int penX = box.x;
-	int penY = box.y;
+	int penX = *x;
+	int penY = *y;
 
-	for (int x = lineIndex; x < lines.size() && x < maxLines; x++)
+	for (int i = lineIndex; i < lines.size() && i < maxLines; x++)
 	{
-		for (int y = 0; y < lines[x].length(); y++)
+		for (int j = 0; j < lines[i].length(); j++)
 		{
-			VideoManager::applyTexture(penX, penY, renderer, charSet->charSet[lines[x][y]]);
+			VideoManager::applyTexture(penX, penY, charSet->charSet[lines[i][j]]);
 			penX += charSet->fontWidth;
 		}
 
 		penY += charSet->fontHeight;
-		penX = box.x;
+		penX = *x;
 	}
 }
 
-void TextElement::stringToLines(std::string message)
+void StaticTextElement::stringToLines(std::string message)
 {
 	int length = message.length();
 	std::vector<std::string> words;
@@ -117,7 +117,7 @@ void TextElement::stringToLines(std::string message)
 	}
 }
 
-void TextElement::getArgsFromNode(pugi::xml_node node)
+void StaticTextElement::getArgsFromNode(pugi::xml_node node)
 {
 	text = node.child("text").first_child().value();
 	std::string charSetName = node.child("CharacterSet").first_child().value();
@@ -134,7 +134,7 @@ void TextElement::getArgsFromNode(pugi::xml_node node)
 	}
 }
 
-VisibleElement* TextElement::spawnCopy()
+VisibleElement* StaticTextElement::spawnCopy()
 {
-	return new TextElement(*this);
+	return new StaticTextElement(*this);
 }

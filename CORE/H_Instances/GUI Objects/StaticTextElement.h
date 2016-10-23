@@ -3,19 +3,18 @@
 #include <string>
 #include <vector>
 
-class TextElement : public VisibleElement
+class StaticTextElement : public VisibleElement
 {
 public:
 	std::string text;
 	std::vector<std::string> lines;
 
+	StaticTextElement(int x, int y, int w, int h, RenderableCharSet* charSet);
+	StaticTextElement(int x, int y, int w, int h, RenderableCharSet* charSet, std::string text);
+	StaticTextElement(pugi::xml_node node);
+	StaticTextElement(StaticTextElement& copy);
 
-	TextElement(int x, int y, int w, int h, RenderableCharSet* charSet);
-	TextElement(int x, int y, int w, int h, RenderableCharSet* charSet, std::string text);
-	TextElement(pugi::xml_node node);
-	TextElement(TextElement& copy);
-
-	virtual void draw(SDL_Renderer* renderer);
+	virtual void draw();
 	void stringToLines(std::string message);
 
 	virtual VisibleElement* spawnCopy();

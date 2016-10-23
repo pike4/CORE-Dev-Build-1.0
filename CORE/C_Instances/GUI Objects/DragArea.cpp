@@ -54,8 +54,8 @@ void DragArea::mouseDown()
 	mouseIsDown = true;
 	SDL_GetMouseState(&initDragX, &initDragY);
 
-	initDragX -= box.x;
-	initDragY -= box.y;
+	initDragX -= *x;
+	initDragY -= *y;
 }
 
 void DragArea::mouseUp()
@@ -104,17 +104,17 @@ void DragArea::handleDrag()
 
 void DragArea::moveParent(int x, int y, bool relative)
 {
-	owner->move(x, y, relative);
+	owner->move(x, y);
 }
 
 void DragArea::setBounds(int minX, int maxX, int minY, int maxY, bool relative)
 {
 	if (relative)
 	{
-		bounds.x = minX + box.x;
-		bounds.w = maxX + box.x;
-		bounds.y = minY + box.y;
-		bounds.h = maxY + box.y;
+		bounds.x = minX + *x;
+		bounds.w = maxX + *x;
+		bounds.y = minY + *y;
+		bounds.h = maxY + *y;
 	}
 
 	else

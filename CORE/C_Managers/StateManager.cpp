@@ -30,7 +30,7 @@ void StateManager::start()
 
 	frameTimer = Timer();
 	lag = 0;
-	msPerFrame = 14;
+	msPerFrame = 17;
 }
 
 void StateManager::update()

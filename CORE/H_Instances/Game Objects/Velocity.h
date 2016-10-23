@@ -16,4 +16,6 @@ public:
 protected:
 	double* xVel;
 	double* yVel;
+
+	int* direction;
 };

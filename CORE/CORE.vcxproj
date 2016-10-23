@@ -82,6 +82,7 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="C_Instances\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="C_Instances\Elements\Animation.cpp" />
+    <ClCompile Include="C_Instances\Elements\VariableTexture.cpp" />
     <ClCompile Include="C_Instances\Environment.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\I_DrawComponent.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\I_VelocityControl.cpp" />
@@ -97,8 +98,8 @@
     <ClCompile Include="C_Instances\GUI Objects\ImageElement.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuScreen.cpp" />
     <ClCompile Include="C_Instances\GUI Objects\MenuSystem.cpp" />
-    <ClCompile Include="C_Instances\GUI Objects\TextElement.cpp" />
-    <ClCompile Include="C_Instances\GUI Objects\UpdatableTextElement.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\StaticTextElement.cpp" />
+    <ClCompile Include="C_Instances\GUI Objects\DynamicTextElement.cpp" />
     <ClCompile Include="C_Instances\RenderableCharSet.cpp" />
     <ClCompile Include="C_Instances\RendereableCharacter.cpp" />
     <ClCompile Include="C_Instances\Room.cpp" />
@@ -124,11 +125,11 @@
     <ClCompile Include="C_Managers\SystemManager.cpp" />
     <ClCompile Include="C_Managers\_Manager.cpp" />
     <ClCompile Include="C_Managers\VideoManager.cpp" />
-    <ClCompile Include="H_Instances\GUI Objects\DragArea.h" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
     <ClInclude Include="H_Instances\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="H_Instances\Elements\Animation.h" />
+    <ClInclude Include="H_Instances\Elements\VariableElement.h" />
     <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\I_DrawComponent.h" />
     <ClInclude Include="H_Instances\Game Objects\I_VelocityControl.h" />
@@ -138,13 +139,14 @@
     <ClInclude Include="H_Instances\Game Objects\TriggerZone.h" />
     <ClInclude Include="H_Instances\Game Objects\Velocity.h" />
     <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h" />
+    <ClInclude Include="H_Instances\GUI Objects\DragArea.h" />
     <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h" />
     <ClInclude Include="H_Instances\GUI Objects\ImageElement.h" />
     <ClInclude Include="H_Instances\GUI Objects\MenuScreen.h" />
     <ClInclude Include="H_Instances\GUI Objects\MenuSystem.h" />
     <ClInclude Include="H_Instances\GUI Objects\NavigationButton.h" />
-    <ClInclude Include="H_Instances\GUI Objects\TextElement.h" />
-    <ClInclude Include="H_Instances\GUI Objects\UpdatableTextElement.h" />
+    <ClInclude Include="H_Instances\GUI Objects\StaticTextElement.h" />
+    <ClInclude Include="H_Instances\GUI Objects\DynamicTextElement.h" />
     <ClInclude Include="H_Instances\QuadTree.h" />
     <ClInclude Include="H_Instances\ReflectiveWall.h" />
     <ClInclude Include="H_Instances\RenderableCharacter.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="H_Interfaces\SimpleDrawable.h" />
     <ClInclude Include="H_Interfaces\UpdatableComponent.h" />
     <ClInclude Include="H_Interfaces\VisibleElement.h" />
+    <ClInclude Include="H_Main\ComponentTypes.h" />
     <ClInclude Include="H_Main\ControlTypes.h" />
     <ClInclude Include="H_Main\ElementTypes.h" />
     <ClInclude Include="H_Main\Events.h" />

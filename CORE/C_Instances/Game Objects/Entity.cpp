@@ -2,9 +2,12 @@
 #include "Collidable.h"
 #include "Controllable.h"
 #include "I_DrawComponent.h"
-#include "I_VelocityControl.h"
-#include "Position.h"
+
 #include "ObjectManager.h"
+
+#include "ComponentTypes.h"
+
+#include <cstring>
 
 Entity::Entity(pugi::xml_node node)
 {
@@ -15,8 +18,8 @@ Entity::Entity(Entity& other)
 {
 	for (int i = 0; i < other.components.size(); i++)
 	{
-		components.push_back(other.components[i]->spawnCopy());
-		components[i]->registerSelf(this);
+		Component* g = other.components[i]->spawnCopy();
+		add(g);
 	}
 }
 
@@ -29,25 +32,29 @@ void Entity::getArgsFromNode(pugi::xml_node node)
 
 	while (!tempName.empty())
 	{
-		if (!tempName.compare("I_DrawComponent"))
+		if (!tempName.compare("Animation"))
 		{
-			I_DrawComponent* newDrawComponent = new I_DrawComponent(tempNode);
-			newDrawComponent->registerSelf(this);
-			components.push_back(newDrawComponent);
+			add(new Animation(tempNode));
+		}
+
+		else if (!tempName.compare("ImageElement"))
+		{
+			add(new ImageElement(tempNode));
+		}
+
+		else if (!tempName.compare("StaticTextElement.h"))
+		{
+			add(new StaticTextElement(tempNode));
 		}
 
 		else if (!tempName.compare("I_VelocityControl"))
 		{
-			I_VelocityControl* newComp = new I_VelocityControl(tempNode);
-			newComp->registerSelf(this);
-			components.push_back(newComp);
+			add(new I_VelocityControl(tempNode));
 		}
 
 		else if (!tempName.compare("Position"))
 		{
-			Position* newC = new Position(tempNode);
-			newC->registerSelf(this);
-			components.push_back(newC);
+			add(new Position(tempNode));
 		}
 		
 		else if (!tempName.compare("Data"))
@@ -74,6 +81,16 @@ void Entity::getArgsFromNode(pugi::xml_node node)
 			Collidable* newCollidable = new Collidable(node);
 			newCollidable->parent = this;
 			components.push_back(newCollidable);
+		}
+
+		else
+		{
+			VisibleElement* temp = ObjectManager::generateVisibleElement(tempName, tempNode);
+
+			if (temp)
+			{
+				add(temp);
+			}
 		}
 
 		tempNode = tempNode.next_sibling();
@@ -117,15 +134,44 @@ int Entity::deregisterListener(int key, Controllable* listener)
 	return 0;
 }
 
+//continuumspooky - finish this
+void Entity::add(Component* component)
+{
+	if (!component)
+	{
+		printf("NULL COMPONENT\n");
+		return;
+	}
+
+	components.push_back(component);
+	component->parent = this;
+	component->assignPointers(this);
+	component->registerSelf(this);
+}
+
 //Return a pointer 
 void* Entity::getPointer(std::string key, int size)
 {
 	if (data.find(key) == data.end())
 	{
-		data[key] = malloc(size);
+		data[key] = calloc(1, size);
 	}
 
 	return data[key];
+}
+
+void Entity::getPointer(field& pointer)
+{
+	void* temp = getPointer(pointer.name, pointer.size);
+	std::memcpy(pointer.pointer, &temp, pointer.size);
+	//What have I become
+
+	void* f = pointer.pointer;
+
+	int* g = (int*)f;
+	void* h = (void*)g;
+
+	//std::memcpy((void*)*((int*)pointer.pointer), pointer.pointer, pointer.size);
 }
 
 void Entity::handleInput(int key, int upDown, int x, int y)
@@ -145,10 +191,11 @@ void Entity::handleInput(int key, int upDown, int x, int y)
 	}
 }
 
-void Entity::move(int x, int y)
+void Entity::move(int aX, int aY)
 {
-	for (int i = 0; i < components.size(); i++)
-	{
-		components[i]->move(x, y);
-	}
+	int* X = (int*)getPointer("x", sizeof(int));
+	int* Y = (int*)getPointer("y", sizeof(int));
+
+	*X = aX;
+	*Y = aY;
 }

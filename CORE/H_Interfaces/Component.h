@@ -6,15 +6,22 @@
 class Room;
 class Entity;
 
+typedef struct _field
+{
+	std::string name;
+	unsigned char size;
+	void* pointer;
+}field;
+
 class Component : public Controllable
 {
 public:
-	virtual void move(int x, int y) {};
+	void assignPointers(Entity* parent);
 
-	virtual void assignPointers(Entity* parent) {};
 	virtual void registerSelf(Entity* newParent);
 
-	std::vector<int> events;
+	std::vector<int> events = std::vector<int>();
+	std::vector<field> pointers = std::vector<field>();
 
 	Entity* parent;
 

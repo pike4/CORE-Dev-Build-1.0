@@ -1,10 +1,21 @@
 #pragma once
 #include "Control.h"
 #include "EventManager.h"
+#include "ObjectManager.h"
 #include "pugixml.hpp"
 
-Control::Control(pugi::xml_node node)
+Control::Control()
+	:Entity()
 {
+	x = (int*) getPointer("x", sizeof(int));
+	y = (int*) getPointer("y", sizeof(int));
+}
+
+Control::Control(pugi::xml_node node) : Entity(node)
+{
+	x = (int*)getPointer("x", sizeof(int));
+	y = (int*)getPointer("y", sizeof(int));
+
 	getArgsFromNode(node);
 }
 
@@ -23,58 +34,21 @@ Control::Control(pugi::xml_node node, MenuScreen* parent) : Control(node)
 	
 }
 
-Control::Control(int x, int y, int w, int h)
+Control::Control(int aX, int aY, int aW, int aH)
 {
-	box = { x, y, w, h };
+	w = aW;
+	h = aH;
 }
 
 void Control::getArgsFromNode(pugi::xml_node node)
 {
-	box.x = atoi(node.child("x").first_child().value());
-	box.y = atoi(node.child("y").first_child().value());
-	box.w = atoi(node.child("w").first_child().value());
-	box.h = atoi(node.child("h").first_child().value());
+	w = atoi(node.child("w").first_child().value());
+	h = atoi(node.child("h").first_child().value());
 }
 
-int Control::getX()
+bool Control::isWithin(int aX, int aY)
 {
-	return box.x;
-}
-
-int Control::getY()
-{
-	return box.y;
-}
-
-bool Control::isWithin(int x, int y)
-{
-	return (x > box.x && x < box.x + box.w && y > box.y && y < box.y + box.h);
-}
-
-void Control::move(int x, int y, bool relative)
-{
-	int deltaX, deltaY;
-	if (relative)
-	{
-		deltaX = x;
-		deltaY = y;
-	}
-
-	else
-	{
-		deltaX = x - box.x;
-		deltaY = y - box.y;
-	}
-
-	for (int i = 0; i < elements.size(); i++)
-	{
-		VisibleElement* element = elements[i];
-		element->box.x += deltaX;
-		element->box.y += deltaY;
-	}
-
-	box.x += deltaX;
-	box.y += deltaY;
+	return (aX > *x && aX < *x + w && aY > *y && aY < *y + h);
 }
 
 void Control::handleInput(int keyCode, int upDown, int x, int y)
@@ -86,7 +60,7 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 	case drawStep:
 		for each(VisibleElement* element in elements)
 		{
-			element->draw(VideoManager::mRenderer);
+			element->draw();
 		}
 		break;
 

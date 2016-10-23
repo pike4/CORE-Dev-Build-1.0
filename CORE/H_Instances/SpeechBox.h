@@ -5,7 +5,7 @@
 #include "RenderableCharSet.h"
 #include "Aggregate.h"
 
-class SpeechBox : public Aggregate, public Updatable
+class SpeechBox : public Control
 {
 public:
 
@@ -14,9 +14,7 @@ public:
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	virtual void update();
-	virtual int getX();
-	virtual int getY();
-	virtual void draw(SDL_Renderer*);
+	virtual void draw();
 
 	void show();
 	void hide();
@@ -54,7 +52,7 @@ private:
 	unsigned short lastLineIndex;
 
 	//The amount of time between writing out characters
-	int waitTime;
+	int waitTime = 200;
 	std::vector<std::string> words;
 	std::vector<std::string> lines;
 };

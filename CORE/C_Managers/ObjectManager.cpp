@@ -4,13 +4,10 @@
 #include "MenuScreen.h"
 #include "ControlTypes.h"
 #include "ElementTypes.h"
-#include "VelocityComponent.h"
+#include "ComponentTypes.h"
 #include <vector>
 #include <map>
-
 #include "Entity.h"
-
-#include "I_DrawComponent.h"
 
 #pragma region Manager Implementation Methods
 
@@ -165,8 +162,9 @@ Component* ObjectManager::generateComponent(std::string type, pugi::xml_node nod
 
 	if (!strcmp(name, "I_DrawComponent"))
 	{
-		return new I_DrawComponent(node);
+		//return new I_DrawComponent(node);
 	}
+	return NULL;
 }
 
 Control* ObjectManager::generateControl(std::string controlType, pugi::xml_node node)
@@ -197,14 +195,19 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 {
 	const char* name = controlType.c_str();
 
-	if (!strcmp(name, "TextElement"))
+	if (!strcmp(name, "StaticTextElement"))
 	{
-		return new TextElement(node);
+		return new StaticTextElement(node);
 	}
 
-	else if (!strcmp(name, "UpdatableTextElement"))
+	else if (!strcmp(name, "VariableElement"))
 	{
-		return new UpdatableTextElement(node);
+		return new VariableElement(node);
+	}
+
+	else if (!strcmp(name, "DynamicTextElement"))
+	{
+		return new DynamicTextElement(node);
 	}
 
 	else if (!strcmp(name, "ImageElement"))

@@ -7,19 +7,6 @@
 CheckBoxButton::CheckBoxButton(pugi::xml_node node)
 	:Control(node)
 {
-	defaultImage_Checked = SystemManager::assignTexture((char*)node.child("DefTexture_Checked").first_child().value());
-	heldImage_Checked = SystemManager::assignTexture((char*)node.child("HeldTexture_Checked").first_child().value());
-	hoverImage_Checked = SystemManager::assignTexture((char*)node.child("HoverTexture_Checked").first_child().value());
-
-	defaultImage_Unchecked = SystemManager::assignTexture((char*)node.child("DefTexture_Unchecked").first_child().value());
-	heldImage_Unchecked = SystemManager::assignTexture((char*)node.child("HeldTexture_Unchecked").first_child().value());
-	hoverImage_Unchecked = SystemManager::assignTexture((char*)node.child("HoverTexture_Unchecked").first_child().value());
-
-	defaultImage_Current = new ImageElement(box.x, box.y, box.w, box.h,
-		defaultImage_Checked);
-
-	elements.push_back(defaultImage_Current);
-
 	realTime = !strcmp(node.child("realTime").first_child().value(), "true");
 }
 

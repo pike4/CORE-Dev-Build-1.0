@@ -228,12 +228,30 @@
         <y>200</y>
         <w>400</w>
         <h>400</h>
-        <DefTexture_Checked>Assets/Sprites/BlankDefault.png</DefTexture_Checked>
-        <HeldTexture_Checked>Assets/Sprites/BlankHeld.png</HeldTexture_Checked>
-        <HoverTexture_Checked>Assets/Sprites/BlankHover.png</HoverTexture_Checked>
-        <DefTexture_Unchecked>Assets/Sprites/ButtonDefault.png</DefTexture_Unchecked>
-        <HeldTexture_Unchecked>Assets/Sprites/ButtonHeld.png</HeldTexture_Unchecked>
-        <HoverTexture_Unchecked>Assets/Sprites/ButtonHover.png</HoverTexture_Unchecked>
+        <Components>
+        <VariableElement>
+          <ImageElement>
+            <name>blankDefault</name>
+            <Image>Assets/Sprites/BlankDefault.png</Image>
+          </ImageElement>
+          <ImageElement>
+            <name>blankDefault</name>
+            <Image>Assets/Sprites/BlankHeld.png</Image>
+        </ImageElement>
+          <ImageElement>
+            <name>blankDefault</name>
+              <Image>Assets/Sprites/BlankHover.png</Image>
+            </ImageElement>
+          <ImageElement>
+            <name>blankDefault</name>
+            <Image>Assets/Sprites/ButtonDefault.png</Image>
+          </ImageElement>
+          <ImageElement>
+            <name>blankDefault</name>
+            <Image>Assets/Sprites/ButtonHover.png</Image>
+          </ImageElement>
+        </VariableElement>
+        </Components>
       </Checkbox>
       <NavigationButton>
         <x>30</x>

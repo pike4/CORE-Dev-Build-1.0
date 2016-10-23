@@ -17,14 +17,14 @@ public:
 	CompositeDrawable(CompositeDrawable& other);
 	CompositeDrawable(CompositeDrawable& other, Room* room);
 
-	virtual VisibleElement* spawnCopy();
+	virtual Component* spawnCopy();
 
 	std::vector<VisibleElement*> elements;
-	virtual void draw(SDL_Renderer* renderer)
+	virtual void draw()
 	{
 		for (int i = 0; i < elements.size(); i++)
 		{
-			elements[i]->draw(renderer);
+			elements[i]->draw();
 		}
 	}
 

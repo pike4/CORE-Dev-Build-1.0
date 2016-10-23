@@ -11,7 +11,13 @@ class MenuScreen;
 class Control : public Entity
 {
 public:
-	SDL_Rect box;
+	int w;
+	int h;
+
+	int* x;
+	int* y;
+
+	Control();
 	Control(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* visibleVector);
 	Control(pugi::xml_node node, Aggregate* parent);
 	Control(pugi::xml_node node, MenuScreen* parent);
@@ -21,10 +27,6 @@ public:
 
 	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
 
-	int getX();
-	int getY();
-
-	virtual void move(int x, int y, bool relative = true);
 protected:
 	bool isWithin(int x, int y);
 

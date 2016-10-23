@@ -13,7 +13,6 @@ Animation::Animation(pugi::xml_node node)
 	int seperation = atoi(node.child("seperation").first_child().value());
 
 	frames = new VisibleElement*[framesX * framesY];
-
 	numFrames = framesX * framesY;
 	
 	VideoManager::getAnimationFromSpriteSheet(framesX, framesY, frameW, frameH, seperation, fileName, frames);
@@ -32,7 +31,7 @@ Animation::Animation(Animation& other)
 	millisecondsPerFrame = other.millisecondsPerFrame;
 }
 
-void Animation::draw(SDL_Renderer* renderer)
+void Animation::draw()
 {
 	if (frameTimer.hasElapsed(millisecondsPerFrame))
 	{
@@ -44,7 +43,13 @@ void Animation::draw(SDL_Renderer* renderer)
 		frameTimer.updateTime();
 	}
 
-	frames[frameIndex]->draw(renderer);
+	if (!frames[frameIndex]->x)
+	{
+		frames[frameIndex]->x = x;
+		frames[frameIndex]->y = y;
+	}
+
+	frames[frameIndex]->draw();
 }
 
 void Animation::move(int x, int y)
@@ -64,11 +69,8 @@ void Animation::handleInput(int key, int upDown, int x, int y)
 {
 	switch (key)
 	{
-	case updateStep:
-		break;
-
 	case drawStep:
-		
+		draw();
 		break;
 	}
 }

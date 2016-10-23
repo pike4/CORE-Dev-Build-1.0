@@ -39,11 +39,11 @@ CompositeDrawable::CompositeDrawable(CompositeDrawable& other)
 
 	for (int i = 0; i < other.elements.size(); i++)
 	{
-		elements.push_back(other.elements[i]->spawnCopy());
+		//elements.push_back(other.elements[i]->spawnCopy());
 	}
 }
 
-VisibleElement* CompositeDrawable::spawnCopy()
+Component* CompositeDrawable::spawnCopy()
 {
 	return new CompositeDrawable(*this);
 }

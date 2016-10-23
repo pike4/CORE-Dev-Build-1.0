@@ -5,6 +5,7 @@
 #include "SDL_TTF.h"
 #include "StateManager.h"
 #include "ImageElement.h"
+#include "Entity.h"
 #include <string>
 
 
@@ -137,14 +138,14 @@ void VideoManager::updateRunning()
 		return;
 	}
 
-	if (currentRoom != NULL)
+	if (currentRoom)
 	{
-		currentRoom->draw(mRenderer);
+		currentRoom->draw();
 	}
 
 	for each(MenuScreen* menuScreen in StateManager::currentMenuScreens)
 	{
-		menuScreen->draw(mRenderer);
+		menuScreen->draw();
 	}
 
 	SDL_RenderPresent(mRenderer);
@@ -224,18 +225,31 @@ void VideoManager::setScreenBackground(int r, int g, int b)
 	SDL_RenderFillRect(mRenderer, &scrRect);
 }
 
-void VideoManager::applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source)
+void VideoManager::applyTexture(int x, int y, SDL_Texture* source)
 {
 	SDL_Rect dest;
 	SDL_Rect src;
 
 	int w;
 	int h;
+	int tempX = 0;
+	int tempY = 0;
 
 	SDL_QueryTexture(source, NULL, NULL, &w, &h);
 
-	dest.x = x;
-	dest.y = y;
+	if (xOffset && yOffset)
+	{
+		tempX = *xOffset;
+		tempY = *yOffset;
+	}
+
+	if (tempX != x)
+	{
+		int iawdn = 109;
+	}
+
+	dest.x = x - tempX + xOffsetInitial;
+	dest.y = y - tempY + yOffsetInitial;
 	dest.w = w;
 	dest.h = h;
 
@@ -244,7 +258,7 @@ void VideoManager::applyTexture(int x, int y, SDL_Renderer* destination, SDL_Tex
 	src.w = w;
 	src.h = h;
 
-	SDL_RenderCopy(destination, source, &src, &dest);
+	SDL_RenderCopy(mRenderer, source, &src, &dest);
 }
 
 void VideoManager::applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point)
@@ -311,8 +325,12 @@ std::vector <Visible*>* VideoManager::gameObjectDrawingVector;
 std::vector <Visible*>* VideoManager::GUIDrawingVector;
 MenuScreen* VideoManager::currentGUI;
 Room* VideoManager::currentRoom;
-
+int* VideoManager::xOffset = 0;
+int* VideoManager::yOffset = 0;
+int VideoManager::xOffsetInitial = 0;
+int VideoManager::yOffsetInitial = 0;
 int VideoManager::state;
+Entity* VideoManager::player;
 
 void FlashCommand::execute()
 {

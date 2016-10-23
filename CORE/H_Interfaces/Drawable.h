@@ -11,7 +11,7 @@ public:
 	Drawable();
 	Drawable(pugi::xml_node node);
 	Drawable(pugi::xml_node node, Room* room);
-	virtual void draw(SDL_Renderer* renderer) = 0;
+	virtual void draw() = 0;
 	virtual void add(Room*);
 	int zIndex = 1;
 };

@@ -5,7 +5,7 @@
 class Animation : public VisibleElement
 {
 public:
-	virtual void draw(SDL_Renderer* renderer);
+	virtual void draw();
 	Animation(pugi::xml_node node);
 
 	Animation(Animation& other);

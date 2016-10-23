@@ -2,12 +2,19 @@
 #include "Entity.h"
 #include "VideoManager.h"
 
+/*I_DrawComponent::I_DrawComponent()
+{
+	pointers.push_back({ "x", sizeof(int), &x });
+	pointers.push_back({ "y", sizeof(int), &y });
+}
+
 Component* I_DrawComponent::spawnCopy()
 {
 	return new I_DrawComponent(*this);
 }
 
 I_DrawComponent::I_DrawComponent(pugi::xml_node node)
+	:I_DrawComponent()
 {
 	node = node.child("CompositeDrawable");
 	if (strcmp(node.name(), ""))
@@ -19,19 +26,13 @@ I_DrawComponent::I_DrawComponent(pugi::xml_node node)
 }
 
 I_DrawComponent::I_DrawComponent(I_DrawComponent& other)
+	:I_DrawComponent()
 {
 	x = NULL;
 	y = NULL;
 
 	drawable = (CompositeDrawable*) other.drawable->spawnCopy();
-
 	events = { drawStep, updateStep };
-}
-
-void I_DrawComponent::assignPointers(Entity* parent)
-{
-	x = (int*)parent->getPointer("x", sizeof(int));
-	y = (int*)parent->getPointer("y", sizeof(int));
 }
 
 void I_DrawComponent::handleInput(int key, int upDown, int mX, int mY)
@@ -46,4 +47,4 @@ void I_DrawComponent::handleInput(int key, int upDown, int mX, int mY)
 		drawable->move(*x, *y);
 		break;
 	}
-}
+}*/

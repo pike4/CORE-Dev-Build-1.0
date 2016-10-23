@@ -41,7 +41,7 @@ public:
 
 	void handleInput(int key, int posOrNeg = 0, int x = 0, int y = 0);
 
-	void draw(SDL_Renderer* renderer);
+	void draw();
 
 	void update();
 

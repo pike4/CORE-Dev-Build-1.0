@@ -28,7 +28,8 @@ public:
 	std::vector<Component*> components;
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
-	virtual void move(int x, int y);
+
+	void add(Component* component);
 
 	//Listeners
 	int registerListener(int key, Controllable* listener);
@@ -37,7 +38,8 @@ public:
 	//Return a pointer to the data at the specified key, allocating with the specified size if it 
 	//is not already present in the table
 	void* getPointer(std::string key, int size);
-
+	void getPointer(field& pointer);
+	void move(int aX, int aY);
 private:
 	void getArgsFromNode(pugi::xml_node node);
 

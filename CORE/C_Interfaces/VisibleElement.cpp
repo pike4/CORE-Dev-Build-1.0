@@ -6,17 +6,26 @@
 #include "VideoManager.h"
 #include "Room.h"
 
-VisibleElement::VisibleElement(int x, int y, int w, int h)
+VisibleElement::VisibleElement()
 {
-	box = { x, y, w, h };
+	pointers.push_back({ "x", sizeof(int), &x });
+	pointers.push_back({ "y", sizeof(int), &y });
+
+	events.push_back(drawStep);
+}
+
+VisibleElement::VisibleElement(int x, int y, int aW, int aH)
+	:VisibleElement()
+{
+	w = aW;
+	h = aH;
 }
 
 VisibleElement::VisibleElement(pugi::xml_node node)
+	:VisibleElement()
 {
-	box.x = atoi(node.child("x").first_child().value());
-	box.y = atoi(node.child("y").first_child().value());
-	box.w = atoi(node.child("w").first_child().value());
-	box.h = atoi(node.child("h").first_child().value());
+	w = atoi(node.child("w").first_child().value());
+	h = atoi(node.child("h").first_child().value());
 
 	parentOffsetX = atoi(node.child("X_Offset").first_child().value());
 	parentOffsetY = atoi(node.child("Y_Offset").first_child().value());
@@ -24,15 +33,11 @@ VisibleElement::VisibleElement(pugi::xml_node node)
 
 
 VisibleElement::VisibleElement(VisibleElement& other)
-{
-	box = other.box;
-}
+	:VisibleElement()
+{}
 
 void VisibleElement::move(int x, int y)
-{
-	box.x = x;
-	box.y = y;
-}
+{}
 
 void VisibleElement::addTo(Room* room)
 {
@@ -47,7 +52,7 @@ void VisibleElement::handleInput(int key, int upDown, int x, int y)
 	switch (key)
 	{
 	case drawStep:
-		draw(VideoManager::mRenderer);
+		draw();
 		break;
 	}
 }

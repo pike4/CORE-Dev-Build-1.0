@@ -56,12 +56,12 @@ void GUI_Area::draw(SDL_Renderer* renderer)
 	{
 		if (element != NULL)
 		{
-			element->draw(renderer);
+			element->draw();
 		}
 	}
 }
 
-void GUI_Area::add(Control* control, int x, int y)
+void GUI_Area::add(Control* control, int aX, int aY)
 {
 	if (control == NULL)
 	{
@@ -70,8 +70,8 @@ void GUI_Area::add(Control* control, int x, int y)
 	}
 
 	controls.push_back(control);
-	control->box.x = box.x + x;
-	control->box.y = box.y + y;
+	*(control->x) = *x + aX;
+	*(control->y) = *y + aY;
 }
 
 void GUI_Area::add(VisibleElement* element, int x, int y)
@@ -82,27 +82,9 @@ void GUI_Area::add(VisibleElement* element, int x, int y)
 		return;
 	}
 
-	elements.push_back(element);
-	element->box.x = box.x + x;
-	element->box.y = box.y + y;
-}
-
-void GUI_Area::move(int x, int y, bool relative)
-{
-
-	if (!relative)
-	{
-		x -= box.x;
-		y -= box.y;
-	}
-	
-	for (int i = 0; i < controls.size(); i++)
-	{
-		Control* control = controls[i];
-		control->move(x, y, true);
-	}
-
-	Control::move(x, y, true);
+	//elements.push_back(element);
+//	element->box.x = box.x + x;
+	//element->box.y = box.y + y;
 }
 
 void GUI_Area::mouseEnter(){}

@@ -212,13 +212,13 @@ void Room::handleInput(int key, int posOrNeg, int x, int y)
 }
 
 //Draw every drawable in the room. 7/2016 compliant
-void Room::draw(SDL_Renderer* renderer)
+void Room::draw()
 {
 	for (int i = 0; i < drawVector->size(); i++)
 	{
 		if ((*drawVector)[i] != NULL)
 		{
-			(*drawVector)[i]->draw(renderer);
+			(*drawVector)[i]->draw();
 		}
 	}
 

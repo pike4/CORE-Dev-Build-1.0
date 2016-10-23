@@ -14,8 +14,8 @@ public:
 	VisibleElement* element;
 	void move(int x, int y);
 
-	virtual void draw(SDL_Renderer* renderer)
+	virtual void draw()
 	{
-		element->draw(renderer);
+		element->draw();
 	}
 };

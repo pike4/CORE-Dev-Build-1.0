@@ -17,12 +17,13 @@ ImageElement::ImageElement(pugi::xml_node node)
 ImageElement::ImageElement(ImageElement& copy)
 	:VisibleElement(copy)
 {
+	ImageElement* t = this;
 	texture = copy.texture;
 }
 
-void ImageElement::draw(SDL_Renderer* renderer)
+void ImageElement::draw()
 {
-	VideoManager::applyTexture(box.x, box.y, renderer, texture);
+	VideoManager::applyTexture(*x, *y, texture);
 }
 
 void ImageElement::getArgsFromNode(pugi::xml_node node)
@@ -39,9 +40,10 @@ void ImageElement::getArgsFromNode(pugi::xml_node node)
 	}
 }
 
-VisibleElement* ImageElement::spawnCopy()
+Component* ImageElement::spawnCopy()
 {
-	return new ImageElement(*this);
+	ImageElement* blargle = new ImageElement(*this);
+	return blargle;
 }
 
 void ImageElement::handleInput(int key, int upDown, int x, int y)
@@ -49,7 +51,7 @@ void ImageElement::handleInput(int key, int upDown, int x, int y)
 	switch (key)
 	{
 	case drawStep:
-		draw(VideoManager::mRenderer);
+		draw();
 		break;
 
 	default:

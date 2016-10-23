@@ -22,7 +22,7 @@ public:
 	void checkMouseDown(int x, int y);
 	void checkMouseUp(int x, int y);
 
-	virtual void draw(SDL_Renderer* renderer);
+	virtual void draw();
 	virtual void update();
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 

@@ -126,13 +126,7 @@
     <ClInclude Include="H_Instances\GUI Objects\ImageElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H_Instances\GUI Objects\TextElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H_Instances\GUI Objects\GUI_Area.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H_Instances\GUI Objects\UpdatableTextElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Instances\GUI Objects\CheckBoxButton.h">
@@ -187,6 +181,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H_Instances\Game Objects\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\DragArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\ComponentTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\Elements\VariableElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\DynamicTextElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Instances\GUI Objects\StaticTextElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -281,22 +290,13 @@
     <ClCompile Include="C_Instances\GUI Objects\ImageElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Instances\GUI Objects\TextElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\GUI_Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H_Instances\GUI Objects\DragArea.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\DragArea.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Instances\GUI Objects\UpdatableTextElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\CheckBoxButton.cpp">
@@ -336,6 +336,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\Game Objects\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Elements\VariableTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\DynamicTextElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\GUI Objects\StaticTextElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -133,7 +133,7 @@ void MenuScreen::handleInput(int key, int upDown, int x, int y)
 	}
 }
 
-void MenuScreen::draw(SDL_Renderer* renderer)
+void MenuScreen::draw()
 {
 	for (int i = 0; i < controls.size(); i++)
 	{
