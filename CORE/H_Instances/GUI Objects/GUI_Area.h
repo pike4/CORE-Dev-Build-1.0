@@ -11,11 +11,10 @@ public:
 	GUI_Area(GUI_Area& other);
 
 	virtual void update();
-	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
 	virtual void draw(SDL_Renderer* renderer);
 
-	void add(Control* control, int x, int y);
-	void add(VisibleElement* element, int x, int y);
+	/*void add(Control* control, int x, int y);
+	void add(VisibleElement* element, int x, int y);*/
 private:
 	std::vector<Control*> controls;
 

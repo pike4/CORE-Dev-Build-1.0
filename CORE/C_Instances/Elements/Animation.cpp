@@ -26,6 +26,7 @@ Animation::Animation(Animation& other)
 	for (int i = 0; i < numFrames; i++)
 	{
 		frames[i] = (VisibleElement*)other.frames[i]->spawnCopy();
+		frames[i]->zIndex = zIndex;
 	}
 
 	millisecondsPerFrame = other.millisecondsPerFrame;

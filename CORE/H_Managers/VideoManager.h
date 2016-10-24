@@ -10,9 +10,9 @@
 #include "Visible.h"
 #include "ManagerArgs.h"
 #include "Room.h"
+#include "DrawOrder.h"
 
 using namespace std;
-
 
 class VisibleElement;
 class Entity;
@@ -48,6 +48,8 @@ public:
 	static int xOffsetInitial;
 	static int yOffsetInitial;
 
+	static void addDraw(int x, int y, texture tex, int zIndex);
+
 #pragma endregion
 
 //Methods used for applying surfaces to and drawing on the screen
@@ -56,11 +58,6 @@ public:
 	static void setScreenBackground(string filename);
 
 	static void setScreenBackground(int r, int g, int b);
-
-	static void applyTexture(int x, int y, SDL_Texture* source);
-
-	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source, 
-		double rotation, SDL_RendererFlip flip, SDL_Point point);
 
 	static void removeDrawable(Drawable* V);
 
@@ -89,4 +86,11 @@ public:
 private:
 	static std::vector <Visible*>* gameObjectDrawingVector;
 	static std::vector <Visible*>* GUIDrawingVector;
+
+	static std::priority_queue<drawOrder> drawQueue;
+
+	static void applyTexture(int x, int y, SDL_Texture* source);
+
+	static void applyTexture(int x, int y, SDL_Renderer* destination, SDL_Texture* source,
+		double rotation, SDL_RendererFlip flip, SDL_Point point);
 };

@@ -16,7 +16,7 @@ class Entity : public Component
 public:
 	Entity(pugi::xml_node node);
 	Entity(Entity& other);
-	Entity() {};
+	Entity();
 
 	//Hashtable of data publicly accessible by components
 	std::map<std::string, void*> data;
@@ -35,6 +35,10 @@ public:
 	int registerListener(int key, Controllable* listener);
 	int deregisterListener(int key, Controllable* listener);
 
+	//You HAVE to find a better way
+	int getAbsoluteX();
+	int getAbsoluteY();
+
 	//Return a pointer to the data at the specified key, allocating with the specified size if it 
 	//is not already present in the table
 	void* getPointer(std::string key, int size);
@@ -45,4 +49,12 @@ private:
 
 	//
 	std::string type;
+
+	//I don't want this...
+	int* x;
+	int* y;
+
+	//This control's offset from its parent's position
+	int parentXOffset = 0;
+	int parentYOffset = 0;
 };

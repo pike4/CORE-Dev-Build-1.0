@@ -153,7 +153,7 @@
       <pointer>main</pointer>
     </NavigationButton>
   </MenuScreen>
-    <MenuScreen>
+  <MenuScreen>
       <name>other</name>
       <NavigationButton>
         <x>30</x>
@@ -183,92 +183,56 @@
     </MenuScreen>
   <MenuScreen>
     <name>fourth</name>
+    <x>400</x>
+    <y>400</y>
     <Controls>
-      <button>
-        <x>30</x>
-        <y>30</y>
-        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-        <pressSound>Assets/Music/pew.wav</pressSound>
-        <w>200</w>
-        <h>200</h>
-        <text>Secret Option</text>
-        <font>Assets/Fonts/comic.ttf</font>
-        <fontSize>20</fontSize>
-        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      </button>
-      <button>
-        <x>30</x>
-        <y>130</y>
-        <w>200</w>
-        <h>200</h>
-        <text>Option 3</text>
-        <font>Assets/Fonts/comic.ttf</font>
-        <pressSound>Assets/Music/pew.wav</pressSound>
-        <fontSize>20</fontSize>
-        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      </button>
-      <button>
-        <x>30</x>
-        <y>230</y>
-        <w>200</w>
-        <h>200</h>
-        <text>Option 3</text>
-        <font>Assets/Fonts/comic.ttf</font>
-        <pressSound>Assets/Music/pew.wav</pressSound>
-        <fontSize>20</fontSize>
-        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-      </button>
-      <Checkbox>
-        <x>200</x>
-        <y>200</y>
-        <w>400</w>
-        <h>400</h>
-        <Components>
-        <VariableElement>
+      <GUI_Area>
+        <x>40</x>
+        <y>40</y>
+        <Controls>
+          <Checkbox>
+            <zIndex>10</zIndex>
+            <x>200</x>
+            <y>200</y>
+            <w>400</w>
+            <h>400</h>
+            <Components>
+              <VariableElement>
+                <zIndex>2</zIndex>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/BlankDefault.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/BlankHeld.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/BlankHover.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/ButtonDefault.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/ButtonHover.png</Image>
+                </ImageElement>
+              </VariableElement>
+            </Components>
+          </Checkbox>
+        </Controls>
+        <Elements>
           <ImageElement>
+            <zIndex>20</zIndex>
             <name>blankDefault</name>
-            <Image>Assets/Sprites/BlankDefault.png</Image>
+            <Image>Assets/Sprites/bg1.png</Image>
           </ImageElement>
-          <ImageElement>
-            <name>blankDefault</name>
-            <Image>Assets/Sprites/BlankHeld.png</Image>
-        </ImageElement>
-          <ImageElement>
-            <name>blankDefault</name>
-              <Image>Assets/Sprites/BlankHover.png</Image>
-            </ImageElement>
-          <ImageElement>
-            <name>blankDefault</name>
-            <Image>Assets/Sprites/ButtonDefault.png</Image>
-          </ImageElement>
-          <ImageElement>
-            <name>blankDefault</name>
-            <Image>Assets/Sprites/ButtonHover.png</Image>
-          </ImageElement>
-        </VariableElement>
-        </Components>
-      </Checkbox>
-      <NavigationButton>
-        <x>30</x>
-        <y>330</y>
-        <w>200</w>
-        <h>200</h>
-        <text>Back</text>
-        <font>Assets/Fonts/comic.ttf</font>
-        <fontSize>20</fontSize>
-        <pressSound>Assets/Music/pew.wav</pressSound>
-        <DefTexture>Assets/Sprites/BlankDefault.png</DefTexture>
-        <HeldTexture>Assets/Sprites/BlankHeld.png</HeldTexture>
-        <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
-        <pointer>main</pointer>
-      </NavigationButton>
+        </Elements>
+      </GUI_Area>
     </Controls>
-    </MenuScreen>
+  </MenuScreen>
 
   <MenuScreen>
     <name>secret</name>

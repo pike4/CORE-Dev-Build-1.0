@@ -6,3 +6,4 @@
 #include "ImageElement.h"
 #include "Animation.h"
 #include "StaticTextElement.h"
+#include "VariableElement.h"

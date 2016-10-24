@@ -27,6 +27,12 @@ public:
 
 	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
 
+	//Enable or disable the control for drawing
+	void show();
+	void hide();
+
+	Control* parent;
+
 protected:
 	bool isWithin(int x, int y);
 
@@ -38,4 +44,6 @@ protected:
 	bool mouseIsDown;
 
 	bool cancelInputOnMouseLeave = false;
+
+	bool hidden;
 };

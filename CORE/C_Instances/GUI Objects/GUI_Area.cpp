@@ -1,24 +1,40 @@
 #include "GUI_Area.h"
 #include "CheckBoxButton.h"
 #include "ObjectManager.h"
+#include "Entity.h"
 
 GUI_Area::GUI_Area(pugi::xml_node node)
  :Control(node)
 {
-	pugi::xml_node childrenNode = node.child("Controls").first_child();
+	events.push_back(drawStep);
+	pugi::xml_node tempNode = node.child("Controls").first_child();
+	std::string name = tempNode.name();
 
-	while (strcmp(childrenNode.name(), ""))
+	while (strcmp(tempNode.name(), ""))
 	{
-		if (!strcmp(childrenNode.name(), "Control"))
+		Control* newControl = ObjectManager::generateControl(name, tempNode);
+
+		if (newControl)
 		{
-			//Drag Areas will have a NULL parent this way. Consider adding a parent to the control class and setting it to NULL when there is no parent
-			controls.push_back(ObjectManager::generateControl(childrenNode.name(), childrenNode.first_child()));
+			add(newControl);
 		}
 
-		else if (!strcmp(childrenNode.name(), "Visible Element"))
+		tempNode = tempNode.next_sibling();
+		name = tempNode.name();
+	}
+
+	tempNode = node.child("Elements").first_child();
+	name = tempNode.name();
+	while (strcmp(tempNode.name(), ""))
+	{
+		VisibleElement* newElem = ObjectManager::generateVisibleElement(name, tempNode);
+
+		if (newElem)
 		{
-			elements.push_back(ObjectManager::generateVisibleElement(childrenNode.name(), childrenNode.first_child()));
+			add(newElem);
 		}
+		tempNode = tempNode.next_sibling();
+		name = tempNode.name();
 	}
 }
 
@@ -39,17 +55,6 @@ void GUI_Area::update()
 	}
 }
 
-void GUI_Area::handleInput(int keyCode, int upDown, int x, int y)
-{
-	for each(Control* control in controls)
-	{
-		if (control != NULL)
-		{
-			control->handleInput(keyCode, upDown, x, y);
-		}
-	}
-}
-
 void GUI_Area::draw(SDL_Renderer* renderer)
 {
 	for each(VisibleElement* element in elements)
@@ -61,7 +66,7 @@ void GUI_Area::draw(SDL_Renderer* renderer)
 	}
 }
 
-void GUI_Area::add(Control* control, int aX, int aY)
+/*void GUI_Area::add(Control* control, int aX, int aY)
 {
 	if (control == NULL)
 	{
@@ -85,7 +90,7 @@ void GUI_Area::add(VisibleElement* element, int x, int y)
 	//elements.push_back(element);
 //	element->box.x = box.x + x;
 	//element->box.y = box.y + y;
-}
+}*/
 
 void GUI_Area::mouseEnter(){}
 void GUI_Area::mouseLeave(){}

@@ -7,7 +7,7 @@ StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableC
 {
 	this->charSet = charSet;
 
-	maxLineLength = w / charSet->fontWidth;
+	maxLineLength = w / charSet->fontWidth('W');
 	maxLines = h / charSet->fontHeight;
 
 	lineIndex = 0;
@@ -19,7 +19,7 @@ StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableC
 	this->charSet = charSet;
 	this->text = text;
 
-	maxLineLength = w / charSet->fontWidth;
+	maxLineLength = w / charSet->fontWidth('W');
 	maxLines = h / charSet->fontHeight;
 
 	lineIndex = 0;
@@ -39,15 +39,16 @@ StaticTextElement::StaticTextElement(StaticTextElement& copy)
 
 void StaticTextElement::draw()
 {
-	int penX = *x;
-	int penY = *y;
+	int penX = *x + parentOffsetX;
+	int penY = *y + parentOffsetY;
 
 	for (int i = lineIndex; i < lines.size() && i < maxLines; x++)
 	{
 		for (int j = 0; j < lines[i].length(); j++)
 		{
-			VideoManager::applyTexture(penX, penY, charSet->charSet[lines[i][j]]);
-			penX += charSet->fontWidth;
+			char curChar = lines[i][j];
+			VideoManager::addDraw(penX, penY, (*charSet)[curChar], zIndex);
+			penX += charSet->fontWidth(curChar);
 		}
 
 		penY += charSet->fontHeight;

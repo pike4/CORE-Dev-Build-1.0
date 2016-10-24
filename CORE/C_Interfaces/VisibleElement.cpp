@@ -29,12 +29,15 @@ VisibleElement::VisibleElement(pugi::xml_node node)
 
 	parentOffsetX = atoi(node.child("X_Offset").first_child().value());
 	parentOffsetY = atoi(node.child("Y_Offset").first_child().value());
+	zIndex = atoi(node.child("zIndex").first_child().value());
 }
 
 
 VisibleElement::VisibleElement(VisibleElement& other)
 	:VisibleElement()
-{}
+{
+	zIndex = other.zIndex;
+}
 
 void VisibleElement::move(int x, int y)
 {}

@@ -24,4 +24,6 @@ void Component::assignPointers(Entity* parent)
 	{
 		parent->getPointer(pointers[i]);
 	}
+
+	zIndex += parent->zIndex;
 }

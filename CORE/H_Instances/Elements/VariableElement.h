@@ -1,5 +1,8 @@
+#pragma once
+
 #include "VisibleElement.h"
 #include <map>
+
 
 class VariableElement : public VisibleElement
 {

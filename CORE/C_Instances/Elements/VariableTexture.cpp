@@ -4,7 +4,6 @@
 
 VariableElement::VariableElement()
 {
-
 }
 
 VariableElement::VariableElement(pugi::xml_node node) 

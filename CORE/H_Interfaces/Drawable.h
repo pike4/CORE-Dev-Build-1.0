@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "pugixml.hpp"
 #include "Component.h"
+#include "DrawOrder.h"
 
 class Room;
 
@@ -13,5 +14,4 @@ public:
 	Drawable(pugi::xml_node node, Room* room);
 	virtual void draw() = 0;
 	virtual void add(Room*);
-	int zIndex = 1;
 };

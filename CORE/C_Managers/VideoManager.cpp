@@ -148,6 +148,13 @@ void VideoManager::updateRunning()
 		menuScreen->draw();
 	}
 
+	while (!drawQueue.empty())
+	{
+		drawOrder next = drawQueue.top();
+		applyTexture(next.x, next.y, next.tex);
+		drawQueue.pop();
+	}
+
 	SDL_RenderPresent(mRenderer);
 	updateQueue();
 }
@@ -223,6 +230,12 @@ void VideoManager::setScreenBackground(int r, int g, int b)
 
 
 	SDL_RenderFillRect(mRenderer, &scrRect);
+}
+
+void VideoManager::addDraw(int x, int y, texture tex, int zIndex)
+{
+	drawOrder newOrder = { x, y, tex, zIndex };
+	drawQueue.push(newOrder);
 }
 
 void VideoManager::applyTexture(int x, int y, SDL_Texture* source)
@@ -323,6 +336,7 @@ SDL_Renderer* VideoManager::mRenderer2;
 SDL_Surface* VideoManager::mScreenSurface;
 std::vector <Visible*>* VideoManager::gameObjectDrawingVector;
 std::vector <Visible*>* VideoManager::GUIDrawingVector;
+std::priority_queue<drawOrder> VideoManager::drawQueue;
 MenuScreen* VideoManager::currentGUI;
 Room* VideoManager::currentRoom;
 int* VideoManager::xOffset = 0;

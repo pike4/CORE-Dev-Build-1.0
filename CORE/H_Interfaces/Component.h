@@ -24,6 +24,7 @@ public:
 	std::vector<field> pointers = std::vector<field>();
 
 	Entity* parent;
+	int zIndex = 1;
 
 	virtual Component* spawnCopy();
 private:

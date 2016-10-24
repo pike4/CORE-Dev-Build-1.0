@@ -1,6 +1,7 @@
 <prototypes>
   <Entity>
     <name>Charlie</name>
+    <zIndex>5</zIndex>
     <Components>
       <x>100</x>
       <y>20</y>
@@ -25,6 +26,7 @@
 
   <Entity>
     <name>Fire</name>
+    <zIndex>15</zIndex>
     <Components>
       <Position></Position>
         <Animation>

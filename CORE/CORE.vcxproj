@@ -86,6 +86,7 @@
     <ClCompile Include="C_Instances\Environment.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\I_DrawComponent.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\I_VelocityControl.cpp" />
+    <ClCompile Include="C_Instances\Game Objects\Components\MouseProcesor.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\Position.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Components\Velocity.cpp" />
     <ClCompile Include="C_Instances\Game Objects\Entity.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="H_Instances\Environment.h" />
     <ClInclude Include="H_Instances\Game Objects\I_DrawComponent.h" />
     <ClInclude Include="H_Instances\Game Objects\I_VelocityControl.h" />
+    <ClInclude Include="H_Instances\Game Objects\MouseProcessor.h" />
     <ClInclude Include="H_Instances\Game Objects\Position.h" />
     <ClInclude Include="H_Instances\Game Objects\Door.h" />
     <ClInclude Include="H_Instances\Game Objects\Entity.h" />
@@ -168,6 +170,7 @@
     <ClInclude Include="H_Interfaces\VisibleElement.h" />
     <ClInclude Include="H_Main\ComponentTypes.h" />
     <ClInclude Include="H_Main\ControlTypes.h" />
+    <ClInclude Include="H_Main\DrawOrder.h" />
     <ClInclude Include="H_Main\ElementTypes.h" />
     <ClInclude Include="H_Main\Events.h" />
     <ClInclude Include="PugiXML\pugiconfig.hpp" />

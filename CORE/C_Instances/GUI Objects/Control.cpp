@@ -7,8 +7,7 @@
 Control::Control()
 	:Entity()
 {
-	x = (int*) getPointer("x", sizeof(int));
-	y = (int*) getPointer("y", sizeof(int));
+	events = { drawStep, updateStep };
 }
 
 Control::Control(pugi::xml_node node) : Entity(node)
@@ -58,9 +57,12 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 	switch (keyCode)
 	{
 	case drawStep:
-		for each(VisibleElement* element in elements)
+		if (!hidden)
 		{
-			element->draw();
+			for each(VisibleElement* element in elements)
+			{
+				element->draw();
+			}
 		}
 		break;
 
@@ -98,4 +100,14 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 	default:
 		break;
 	}
+}
+
+void Control::show()
+{
+	hidden = false;
+}
+
+void Control::hide()
+{
+	hidden = true;
 }

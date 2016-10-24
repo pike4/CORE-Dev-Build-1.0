@@ -7,6 +7,7 @@
 CheckBoxButton::CheckBoxButton(pugi::xml_node node)
 	:Control(node)
 {
+	events.push_back(drawStep);
 	realTime = !strcmp(node.child("realTime").first_child().value(), "true");
 }
 

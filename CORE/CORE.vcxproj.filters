@@ -198,6 +198,12 @@
     <ClInclude Include="H_Instances\GUI Objects\StaticTextElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="H_Instances\Game Objects\MouseProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Main\DrawOrder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -345,6 +351,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_Instances\GUI Objects\StaticTextElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Instances\Game Objects\Components\MouseProcesor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,15 +9,19 @@ class SpeechBox : public Control
 {
 public:
 
-	SpeechBox(int x, int y, char*, SDL_Texture*, RenderableCharSet*);
+	SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet);
+	SpeechBox(pugi::xml_node node);
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	virtual void update();
 	virtual void draw();
 
-	void show();
-	void hide();
+	void start();
+	void clear();
+
+	void print(char* message);
+	void print(char* message, RenderableCharSet* newCharSet);
 
 	char* message;
 	RenderableCharSet* charSet;
@@ -52,7 +56,26 @@ private:
 	unsigned short lastLineIndex;
 
 	//The amount of time between writing out characters
-	int waitTime = 200;
+	int frequency = 200;
+
+	//The random interval by which to vary the write speed
+	int variation;
+
+	//The current time interval to wait for the next character
+	int curWaitTime = 0;
+
+	//A vector of individual words so words don't get split across lines
 	std::vector<std::string> words;
+
+	//The string is parsed into lines based on the lengths of words
 	std::vector<std::string> lines;
+
+	//True if the speechbox is currently being updated
+	bool writing;
+
+	//Width and height of the text area
+	int w;
+	int h;
+
+	int zIndex = 1;
 };

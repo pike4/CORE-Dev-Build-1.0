@@ -9,13 +9,22 @@
 
 #include <cstring>
 
+Entity::Entity()
+{
+	x = (int*)getPointer("x", 4);
+	y = (int*)getPointer("y", 4);
+}
+
 Entity::Entity(pugi::xml_node node)
+	:Entity()
 {
 	getArgsFromNode(node);
 }
 
 Entity::Entity(Entity& other)
+	: Entity()
 {
+	zIndex = other.zIndex;
 	for (int i = 0; i < other.components.size(); i++)
 	{
 		Component* g = other.components[i]->spawnCopy();
@@ -25,6 +34,23 @@ Entity::Entity(Entity& other)
 
 void Entity::getArgsFromNode(pugi::xml_node node)
 {
+	int tempX = atoi(node.child("x").first_child().value());
+	int tempY = atoi(node.child("y").first_child().value());
+	int tempZ = atoi(node.child("zIndex").first_child().value());
+	zIndex = tempZ;
+
+	if (parent)
+	{
+		parentXOffset = tempX + parent->getAbsoluteX();
+		parentYOffset = tempY + parent->getAbsoluteY();
+	}
+
+	else
+	{
+		*x = tempX;
+		*y = tempY;
+	}
+
 	pugi::xml_node tempNode = node.child("Components");
 
 	tempNode = tempNode.first_child();
@@ -50,6 +76,11 @@ void Entity::getArgsFromNode(pugi::xml_node node)
 		else if (!tempName.compare("I_VelocityControl"))
 		{
 			add(new I_VelocityControl(tempNode));
+		}
+
+		else if (!tempName.compare("VariableElement"))
+		{
+			add(new VariableElement(tempNode));
 		}
 
 		else if (!tempName.compare("Position"))
@@ -106,7 +137,8 @@ int Entity::registerListener(int key, Controllable* listener)
 		listeners[key] = new std::vector<Controllable*>;
 	}
 
-	listeners[key]->push_back(listener);
+	std::vector<Controllable*>* temp = listeners[key];
+	temp->push_back(listener);
 	
 	return 1;
 }
@@ -198,4 +230,14 @@ void Entity::move(int aX, int aY)
 
 	*X = aX;
 	*Y = aY;
+}
+
+int Entity::getAbsoluteX()
+{
+	return *x + parentXOffset;
+}
+
+int Entity::getAbsoluteY()
+{
+	return *y + parentYOffset;
 }
