@@ -5,17 +5,29 @@
 #include "pugixml.hpp"
 
 Control::Control()
-	:Entity()
 {
-	events = { drawStep, updateStep };
+	events = { drawStep, updateStep, updatePos };
 }
 
 Control::Control(pugi::xml_node node) : Entity(node)
 {
+	events = { drawStep, updateStep, updatePos };
 	x = (int*)getPointer("x", sizeof(int));
 	y = (int*)getPointer("y", sizeof(int));
 
+	xOffset = (int*)getPointer("xOffset", sizeof(int));
+	yOffset = (int*)getPointer("yOffset", sizeof(int));
+
+	w = (int*)getPointer("w", sizeof(int));
+	h = (int*)getPointer("h", sizeof(int));
+
 	getArgsFromNode(node);
+}
+
+void Control::move(int aX, int aY)
+{
+	*x = aX + *xOffset;
+	*y = aY + *yOffset;
 }
 
 Control::Control(pugi::xml_node node, Aggregate* parent) : Control(node)
@@ -35,25 +47,37 @@ Control::Control(pugi::xml_node node, MenuScreen* parent) : Control(node)
 
 Control::Control(int aX, int aY, int aW, int aH)
 {
-	w = aW;
-	h = aH;
+	*w = aW;
+	*h = aH;
 }
 
 void Control::getArgsFromNode(pugi::xml_node node)
 {
-	w = atoi(node.child("w").first_child().value());
-	h = atoi(node.child("h").first_child().value());
+	*xOffset = atoi(node.child("xOffset").first_child().value());
+	*yOffset = atoi(node.child("yOffset").first_child().value());
+	*w = atoi(node.child("w").first_child().value());
+	*h = atoi(node.child("h").first_child().value());
+}
+
+void Control::registerSelf(Entity* parent)
+{
+	this;
+	if (parent)
+	{
+		x = (int*)setPointer("x", sizeof(int), parent->getPointer("x", sizeof(int)));
+		y = (int*)setPointer("y", sizeof(int), parent->getPointer("y", sizeof(int)));
+	}
+
+	Entity::registerSelf(parent);
 }
 
 bool Control::isWithin(int aX, int aY)
 {
-	return (aX > *x && aX < *x + w && aY > *y && aY < *y + h);
+	return (aX > *x && aX < *x + *w && aY > *y && aY < *y + *h);
 }
 
-void Control::handleInput(int keyCode, int upDown, int x, int y)
+void Control::handleInput(int keyCode, int upDown, int aX, int aY)
 {
-	Entity::handleInput(keyCode, upDown, x, y);
-
 	switch (keyCode)
 	{
 	case drawStep:
@@ -67,7 +91,7 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 		break;
 
 	case mouseMoved:
-		if (isWithin(x, y))
+		if (isWithin(aX, aY))
 		{
 			//event mouse hover
 		}
@@ -97,9 +121,17 @@ void Control::handleInput(int keyCode, int upDown, int x, int y)
 		}
 		break;
 
+	case updatePos:
+		*x = aX;
+		*y = aY;
+		break;
+
+
 	default:
 		break;
 	}
+
+	Entity::handleInput(keyCode, upDown, aX, aY);
 }
 
 void Control::show()

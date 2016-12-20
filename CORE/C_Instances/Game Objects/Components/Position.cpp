@@ -10,12 +10,16 @@ void Position::assignPointers(Entity* parent)
 	*y = 0;
 }
 
-void Position::handleInput(int key, int upDown, int x, int y)
+void Position::handleInput(int key, int upDown, int aX, int aY)
 {
 	switch (key)
 	{
 	case updateStep:
 
+		break;
+	case updatePos:
+		*x = aX;
+		*y = aY;
 		break;
 	}
 }

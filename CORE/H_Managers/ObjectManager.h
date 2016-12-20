@@ -60,7 +60,6 @@ public:
 	static SDL_Renderer* testRenderer;
 	static Cursor* mouse;
 	static MenuScreen* currentGUI;
-	static MenuScreen gui;
 
 	static std::map<std::string, MenuSystem*> menuSystems;
 

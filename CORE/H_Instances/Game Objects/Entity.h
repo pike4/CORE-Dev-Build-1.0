@@ -30,12 +30,14 @@ public:
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	void add(Component* component);
+	void recursiveAdd(Component* component);
 
 	//Listeners
 	int registerListener(int key, Controllable* listener);
 	int deregisterListener(int key, Controllable* listener);
 
 	//You HAVE to find a better way
+	//I have
 	int getAbsoluteX();
 	int getAbsoluteY();
 
@@ -43,6 +45,15 @@ public:
 	//is not already present in the table
 	void* getPointer(std::string key, int size);
 	void getPointer(field& pointer);
+
+	void* setPointer(std::string key, int size, void* other);
+
+	//Push recursive add down to children
+	virtual void registerSelf(Entity* parent);
+
+	//Return the pointer with the given name, if it exists
+	void* Entity::findPointer(std::string name);
+
 	void move(int aX, int aY);
 private:
 	void getArgsFromNode(pugi::xml_node node);

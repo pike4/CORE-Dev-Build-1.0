@@ -16,7 +16,12 @@ typedef struct _field
 class Component : public Controllable
 {
 public:
+	Component();
+
 	void assignPointers(Entity* parent);
+
+	//Search up to the top-level parent for the pointer with the given name
+	void* findAncestorPointer(std::string name) const;
 
 	virtual void registerSelf(Entity* newParent);
 
@@ -27,6 +32,8 @@ public:
 	int zIndex = 1;
 
 	virtual Component* spawnCopy();
-private:
-	
+protected:
+	//ID to *almost certainly* uniquely identify every componenet and entity in order to 
+	//prevent hash collisions between parent and child variables of the same name.
+	std::string ID;
 };

@@ -1,8 +1,9 @@
 #include "DragArea.h"
 #include "EventManager.h"
+#include "MouseProcessor.h"
 
-DragArea::DragArea(int x, int y, int w, int h, GUI_Area* owner)
-	:Control(x, y, w, h)
+DragArea::DragArea(int aX, int aY, int aW, int aH, GUI_Area* owner)
+	:Control(aX, aY, aW, aH)
 {
 	this->owner = owner;
 
@@ -12,44 +13,82 @@ DragArea::DragArea(int x, int y, int w, int h, GUI_Area* owner)
 	}
 
 	bounds = { 0, 0, 0, 0 };
+
+
+	//By default, set drag area w and h to that of parent
+	if (!w && parent)
+	{
+		w = (int*) parent->getPointer("w", sizeof(int));
+	}
+
+	if (!h && parent)
+	{
+		h = (int*) parent->getPointer("h", sizeof(int));
+	}
 }
 
 DragArea::DragArea(pugi::xml_node node)
 	:Control(node)
 {
+	events.push_back(mouse1Down);
+	events.push_back(mouseMoved);
+	events.push_back(mouse1Up);
 
+	//By default, set drag area w and h to that of parent
+	if (!(*w) && parent)
+	{
+		w = (int*) parent->getPointer("w", sizeof(int));
+	}
+
+	if (!(*h) && parent)
+	{
+		h = (int*) parent->getPointer("h", sizeof(int));
+	}
+
+	components.push_back(new MouseProcessor());
 }
 
-void DragArea::handleInput(int keyCode, int upDown, int x, int y)
+void DragArea::handleInput(int keyCode, int upDown, int aX, int aY)
 {
-	if (keyCode == mouseMoved && mouseIsDown)
+	switch (keyCode)
 	{
-		handleDrag();
-	}
+	case mouseDrag:
+		int mouseX = 0;
+		int mouseY = 0;
 
-	else if (keyCode == mouse1Down)
-	{
-		if(isWithin(x, y))
-		mouseDown();
+		SDL_GetMouseState(&mouseX, &mouseY);
+		
+		parent->handleInput(updatePos, 0, mouseX - aX, mouseY - aY);
+		break;
 	}
-
-	else if (keyCode == mouse1Up && mouseIsDown)
-	{
-		mouseUp();
-	}
+	Entity::handleInput(keyCode, upDown, aX, aY);
 }
 
-void DragArea::mouseEnter()
+void DragArea::registerSelf(Entity* parent)
+{
+	if (parent && *w == 0)
+	{
+		w = (int*) setPointer("w", sizeof(int), parent->getPointer("w", sizeof(int)));
+	}
+
+	if (parent && *h == 0)
+	{
+		h = (int*) setPointer("h", sizeof(int), parent->getPointer("h", sizeof(int)));
+	}
+	Control::registerSelf(parent);
+}
+
+void DragArea::handleMouseEnter()
 {
 	
 }
 
-void DragArea::mouseLeave()
+void DragArea::handleMouseLeave()
 {
 
 }
 
-void DragArea::mouseDown()
+void DragArea::handleMouseDown()
 {
 	mouseIsDown = true;
 	SDL_GetMouseState(&initDragX, &initDragY);
@@ -58,7 +97,7 @@ void DragArea::mouseDown()
 	initDragY -= *y;
 }
 
-void DragArea::mouseUp()
+void DragArea::handleMouseUp()
 {
 	mouseIsDown = false;
 }
@@ -98,8 +137,6 @@ void DragArea::handleDrag()
 			destY = bounds.h;
 		}
 	}
-
-	moveParent(destX, destY, false);
 }
 
 void DragArea::moveParent(int x, int y, bool relative)

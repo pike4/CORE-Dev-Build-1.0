@@ -8,6 +8,7 @@
 #include "ComponentTypes.h"
 
 #include <cstring>
+#include <iostream>
 
 Entity::Entity()
 {
@@ -58,36 +59,23 @@ void Entity::getArgsFromNode(pugi::xml_node node)
 
 	while (!tempName.empty())
 	{
-		if (!tempName.compare("Animation"))
+		Component* newComponent = NULL;
+
+		if (newComponent = ObjectManager::generateVisibleElement(tempName, tempNode))
 		{
-			add(new Animation(tempNode));
+			components.push_back(newComponent);
 		}
 
-		else if (!tempName.compare("ImageElement"))
+		else if (newComponent = ObjectManager::generateControl(tempName, tempNode))
 		{
-			add(new ImageElement(tempNode));
+			components.push_back(newComponent);
 		}
 
-		else if (!tempName.compare("StaticTextElement.h"))
+		else if (newComponent = ObjectManager::generateComponent(tempName, tempNode))
 		{
-			add(new StaticTextElement(tempNode));
+			components.push_back(newComponent);
 		}
 
-		else if (!tempName.compare("I_VelocityControl"))
-		{
-			add(new I_VelocityControl(tempNode));
-		}
-
-		else if (!tempName.compare("VariableElement"))
-		{
-			add(new VariableElement(tempNode));
-		}
-
-		else if (!tempName.compare("Position"))
-		{
-			add(new Position(tempNode));
-		}
-		
 		else if (!tempName.compare("Data"))
 		{
 			pugi::xml_node dataNode = tempNode.first_child();
@@ -107,27 +95,19 @@ void Entity::getArgsFromNode(pugi::xml_node node)
 			}
 		}
 
-		else if (!tempName.compare("Collidable"))
-		{
-			Collidable* newCollidable = new Collidable(node);
-			newCollidable->parent = this;
-			components.push_back(newCollidable);
-		}
-
 		else
 		{
-			VisibleElement* temp = ObjectManager::generateVisibleElement(tempName, tempNode);
-
-			if (temp)
-			{
-				add(temp);
-			}
+			printf("Undefined object type: %s", tempName.c_str());
 		}
 
 		tempNode = tempNode.next_sibling();
 		tempName = tempNode.name();
 	}
-	int aawdadaw = 0;
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		recursiveAdd(components[i]);
+	}
 }
 
 int Entity::registerListener(int key, Controllable* listener)
@@ -181,6 +161,24 @@ void Entity::add(Component* component)
 	component->registerSelf(this);
 }
 
+//Recursively register all components in the vector
+void Entity::recursiveAdd(Component* component)
+{
+	component->parent = this;
+	component->assignPointers(this);
+	component->registerSelf(this);
+}
+
+void Entity::registerSelf(Entity* parent)
+{
+	Component::registerSelf(parent);
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		recursiveAdd(components[i]);
+	}
+}
+
 //Return a pointer 
 void* Entity::getPointer(std::string key, int size)
 {
@@ -196,14 +194,33 @@ void Entity::getPointer(field& pointer)
 {
 	void* temp = getPointer(pointer.name, pointer.size);
 	std::memcpy(pointer.pointer, &temp, pointer.size);
-	//What have I become
-
-	void* f = pointer.pointer;
-
-	int* g = (int*)f;
-	void* h = (void*)g;
-
 	//std::memcpy((void*)*((int*)pointer.pointer), pointer.pointer, pointer.size);
+}
+
+//Sets the given pointer and its associated slot in the data table 
+//return the other pointer so it may be assigned to a member pointer
+void* Entity::setPointer(std::string key, int size, void* other)
+{
+	if (data.find(key) == data.end())
+	{
+		data[key] = calloc(1, size);
+	}
+	
+	data[key] = other;
+	return other;
+}
+
+//Return the pointer if it exists
+void* Entity::findPointer(std::string name) 
+{
+	void* ret = NULL;
+
+	if (data.find(name) != data.end())
+	{
+		ret = data[name];
+	}
+
+	return ret;
 }
 
 void Entity::handleInput(int key, int upDown, int x, int y)

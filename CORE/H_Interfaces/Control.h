@@ -11,11 +11,14 @@ class MenuScreen;
 class Control : public Entity
 {
 public:
-	int w;
-	int h;
+	int* w;
+	int* h;
 
 	int* x;
 	int* y;
+
+	int* xOffset;
+	int* yOffset;
 
 	Control();
 	Control(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* visibleVector);
@@ -25,13 +28,15 @@ public:
 
 	Control(int x, int y, int w, int h);
 
+	void registerSelf(Entity* parent);
+
 	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
+
+	void move(int aX, int aY);
 
 	//Enable or disable the control for drawing
 	void show();
 	void hide();
-
-	Control* parent;
 
 protected:
 	bool isWithin(int x, int y);

@@ -7,12 +7,12 @@
 CheckBoxButton::CheckBoxButton(pugi::xml_node node)
 	:Control(node)
 {
-	events.push_back(drawStep);
 	realTime = !strcmp(node.child("realTime").first_child().value(), "true");
 }
 
 void CheckBoxButton::handleInput(int keyCode, int upDown, int x, int y)
 {
+	this;
 	Control::handleInput(keyCode, upDown, x, y);
 }
 

@@ -16,7 +16,7 @@ GUI_Area::GUI_Area(pugi::xml_node node)
 
 		if (newControl)
 		{
-			add(newControl);
+			components.push_back(newControl);
 		}
 
 		tempNode = tempNode.next_sibling();
@@ -31,10 +31,15 @@ GUI_Area::GUI_Area(pugi::xml_node node)
 
 		if (newElem)
 		{
-			add(newElem);
+			components.push_back(newElem);
 		}
 		tempNode = tempNode.next_sibling();
 		name = tempNode.name();
+	}
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		recursiveAdd(components[i]);
 	}
 }
 

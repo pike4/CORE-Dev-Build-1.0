@@ -4,9 +4,66 @@
   <MenuScreenDec>options</MenuScreenDec>
   
   <name>Pause Menu</name>
-    <MenuScreen>
-      <name>main</name>
-      <Controls>
+    
+  <MenuScreen>
+    <name>fourth</name>
+    <Controls>
+      <GUI_Area>
+        <x>0</x>
+        <y>40</y>
+        <w>400</w>
+        <h>400</h>
+        <Controls>
+          <DragArea>
+            <xOffset>0</xOffset>
+            <yOffset>0</yOffset>
+          </DragArea>
+          <Checkbox>
+            <zIndex>10</zIndex>
+            <xOffset>100</xOffset>
+            <yOffset>200</yOffset>
+            <w>100</w>
+            <h>100</h>
+            <Components>
+              <VariableElement>
+                <zIndex>2</zIndex>
+                <ImageElement>
+                  <name>blankDefault</name>
+                  <Image>Assets/Sprites/BlankDefault.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankHeld</name>
+                  <Image>Assets/Sprites/BlankHeld.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>blankHover</name>
+                  <Image>Assets/Sprites/BlankHover.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>buttonDefault</name>
+                  <Image>Assets/Sprites/ButtonDefault.png</Image>
+                </ImageElement>
+                <ImageElement>
+                  <name>buttonHover</name>
+                  <Image>Assets/Sprites/ButtonHover.png</Image>
+                </ImageElement>
+              </VariableElement>
+            </Components>
+          </Checkbox>
+        </Controls>
+        <Elements>
+          <ImageElement>
+            <zIndex>20</zIndex>
+            <name>blankDefault</name>
+            <Image>Assets/Sprites/bg1.png</Image>
+          </ImageElement>
+        </Elements>
+      </GUI_Area>
+    </Controls>
+  </MenuScreen>
+  <MenuScreen>
+    <name>main</name>
+    <Controls>
       <NavigationButton>
         <x>30</x>
         <y>30</y>
@@ -63,10 +120,9 @@
         <pressSound>Assets/Music/pew.wav</pressSound>
         <pointer>secret</pointer>
       </NavigationButton>
-   </Controls>
+    </Controls>
 
   </MenuScreen>
-
   <MenuScreen>
     <name>other</name>
     <NavigationButton>
@@ -181,58 +237,6 @@
         <HoverTexture>Assets/Sprites/BlankHover.png</HoverTexture>
       </button>
     </MenuScreen>
-  <MenuScreen>
-    <name>fourth</name>
-    <x>400</x>
-    <y>400</y>
-    <Controls>
-      <GUI_Area>
-        <x>40</x>
-        <y>40</y>
-        <Controls>
-          <Checkbox>
-            <zIndex>10</zIndex>
-            <x>200</x>
-            <y>200</y>
-            <w>400</w>
-            <h>400</h>
-            <Components>
-              <VariableElement>
-                <zIndex>2</zIndex>
-                <ImageElement>
-                  <name>blankDefault</name>
-                  <Image>Assets/Sprites/BlankDefault.png</Image>
-                </ImageElement>
-                <ImageElement>
-                  <name>blankDefault</name>
-                  <Image>Assets/Sprites/BlankHeld.png</Image>
-                </ImageElement>
-                <ImageElement>
-                  <name>blankDefault</name>
-                  <Image>Assets/Sprites/BlankHover.png</Image>
-                </ImageElement>
-                <ImageElement>
-                  <name>blankDefault</name>
-                  <Image>Assets/Sprites/ButtonDefault.png</Image>
-                </ImageElement>
-                <ImageElement>
-                  <name>blankDefault</name>
-                  <Image>Assets/Sprites/ButtonHover.png</Image>
-                </ImageElement>
-              </VariableElement>
-            </Components>
-          </Checkbox>
-        </Controls>
-        <Elements>
-          <ImageElement>
-            <zIndex>20</zIndex>
-            <name>blankDefault</name>
-            <Image>Assets/Sprites/bg1.png</Image>
-          </ImageElement>
-        </Elements>
-      </GUI_Area>
-    </Controls>
-  </MenuScreen>
 
   <MenuScreen>
     <name>secret</name>

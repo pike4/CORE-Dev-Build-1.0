@@ -27,8 +27,6 @@ VisibleElement::VisibleElement(pugi::xml_node node)
 	w = atoi(node.child("w").first_child().value());
 	h = atoi(node.child("h").first_child().value());
 
-	parentOffsetX = atoi(node.child("X_Offset").first_child().value());
-	parentOffsetY = atoi(node.child("Y_Offset").first_child().value());
 	zIndex = atoi(node.child("zIndex").first_child().value());
 }
 

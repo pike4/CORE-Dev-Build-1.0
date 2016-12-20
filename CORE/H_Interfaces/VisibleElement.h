@@ -7,7 +7,8 @@
 class VisibleElement : public Drawable, public Component
 {
 public:
-	int parentOffsetX, parentOffsetY;
+	int parentOffsetX;
+	int parentOffsetY;
 
 	int* x;
 	int* y;

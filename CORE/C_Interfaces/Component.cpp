@@ -3,6 +3,11 @@
 
 #include <cstring>
 
+Component::Component()
+{
+	ID = std::to_string((rand() << 0) | rand());
+}
+
 void Component::registerSelf(Entity* newParent)
 {
 	for (int i = 0; i < events.size(); i++)
@@ -26,4 +31,21 @@ void Component::assignPointers(Entity* parent)
 	}
 
 	zIndex += parent->zIndex;
+}
+
+void* Component::findAncestorPointer(std::string name) const
+{
+	void* temp = NULL;
+
+	if (parent)
+	{
+		temp = parent->findPointer(name);
+
+		if (!temp)
+		{
+			return parent->findAncestorPointer(name);
+		}
+	}
+
+	return temp;
 }

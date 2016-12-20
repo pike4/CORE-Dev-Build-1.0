@@ -26,6 +26,8 @@
 #include "ImageElement.h"
 #include "GUI_Area.h"
 #include "Entity.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #undef main
 
@@ -35,9 +37,14 @@ bool quit;
 
 int main()
 {
-	StateManager::start();
-	srand(time(NULL));
+	std::cout << rand() << std::endl;
+	std::cout << rand() << std::endl;
 
+	srand(time(NULL));
+	std::cout << rand() << std::endl;
+	std::cout << rand() << std::endl;
+
+	StateManager::start();
 	SDL_Texture* guy = SystemManager::loadTexture("Assets/Sprites/guy.png");
 	SDL_Texture* real = SystemManager::loadTexture("Assets/Sprites/real.png");
 	SDL_Texture* greg = SystemManager::loadTexture("Assets/Sprites/cat.png");
@@ -74,10 +81,12 @@ int main()
 	StateManager::goToEnvironment("first");
 	StateManager::goToRoomInCurrentEnvironment("living room");
 
+	StateManager::currentMenuScreens.back()->handleInput(updatePos, 0, 0, 0);
+
 	SpeechBox* textSpeechBox = new SpeechBox(500, 100, "The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively", NULL, &chars);
 
 	StateManager::currentRoom->add(textSpeechBox);
-	
+	textSpeechBox->clear();
 	for (int i = 0; i < 1; i++)
 	{
 		chuck = ObjectManager::generate("Charlie");

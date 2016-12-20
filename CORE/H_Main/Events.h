@@ -40,5 +40,7 @@ enum UserDefinedEvents
 	mouse3Down,
 	mouse3Up,
 	mouse4Down,
-	mouse4Up
+	mouse4Up,
+
+	updatePos
 };

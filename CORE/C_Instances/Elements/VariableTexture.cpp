@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 
 VariableElement::VariableElement()
+	:VisibleElement()
 {
 }
 

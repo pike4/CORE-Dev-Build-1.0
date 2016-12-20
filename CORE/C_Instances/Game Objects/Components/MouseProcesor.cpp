@@ -10,11 +10,12 @@ bool isWithin(int pointX, int pointY, int rectX, int rectY, int rectW, int rectH
 
 MouseProcessor::MouseProcessor()
 {
-	int a[] = { mouse1Down, mouseMoved, mouse1Up};
-	events.insert(events.begin(), a, a + 2);
+	events.push_back(mouseMoved);
+	events.push_back(mouse1Down);
+	events.push_back(mouse1Up);
 }
 
-void MouseProcessor::handleInput(int key, int upDown, int x, int y)
+void MouseProcessor::handleInput(int key, int upDown, int aX, int aY)
 {
 	if (!parent)
 	{
@@ -25,11 +26,11 @@ void MouseProcessor::handleInput(int key, int upDown, int x, int y)
 	{
 	
 	case mouseMoved:
-		newWithin = isWithin(x, y, 0, 0, 0, 0);
+		newWithin = isWithin(aX, aY, *x, *y, *w, *h);
 
 		if (mouseIsDownOnThis)
 		{
-			parent->handleInput(mouseDrag, true, x, y);
+			parent->handleInput(mouseDrag, true, dragOriginX, dragOriginY);
 		}
 		
 		if (!mouseIsWithin && newWithin)
@@ -46,9 +47,11 @@ void MouseProcessor::handleInput(int key, int upDown, int x, int y)
 		break;
 
 	case mouse1Down:
-		if (isWithin(x, y, 0, 0, 0, 0))
+		if (isWithin(aX, aY, *x, *y, *w, *h))
 		{
 			mouseIsDownOnThis = true;
+			dragOriginX = aX - *x;
+			dragOriginY = aY - *y;
 			parent->handleInput(mousePress);
 		}
 
@@ -68,4 +71,14 @@ void MouseProcessor::handleInput(int key, int upDown, int x, int y)
 		}
 		break;
 	}
+}
+
+void MouseProcessor::registerSelf(Entity* parent)
+{
+	Component::registerSelf(parent);
+
+	x = (int*) parent->getPointer("x", sizeof(int));
+	y = (int*) parent->getPointer("y", sizeof(int));
+	w = (int*) parent->getPointer("w", sizeof(int));
+	h = (int*) parent->getPointer("h", sizeof(int));
 }

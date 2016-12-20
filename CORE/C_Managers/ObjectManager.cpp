@@ -83,8 +83,8 @@ void ObjectManager::start()
 	BaseObjectVector = new std::vector<BaseObject*>;
 	UpdateVector = new std::vector<Updatable*>;
 
-	gui = MenuScreen();
-	currentGUI = &gui;
+	//gui = MenuScreen();
+	currentGUI = NULL;
 }
 
 #pragma endregion
@@ -164,6 +164,27 @@ Component* ObjectManager::generateComponent(std::string type, pugi::xml_node nod
 	{
 		//return new I_DrawComponent(node);
 	}
+
+	else if (!type.compare("I_VelocityControl"))
+	{
+		return new I_VelocityControl(node);
+	}
+
+	else if (!type.compare("Position"))
+	{
+		return new Position(node);
+	}
+
+	else if (!type.compare("Collidable"))
+	{
+		return new Collidable(node);
+	}
+
+	else if (!type.compare("MouseProcessor"))
+	{
+		return new Collidable(node);
+	}
+
 	return NULL;
 }
 
@@ -353,7 +374,7 @@ QuadTree ObjectManager::quadTree = QuadTree(0, 0, 0, 640, 480, NULL);
 SDL_Renderer* ObjectManager::testRenderer;
 int ObjectManager::state;
 Cursor* ObjectManager::mouse;
-MenuScreen ObjectManager::gui;
+//MenuScreen ObjectManager::gui;
 MenuScreen* ObjectManager::currentGUI;
 Room* ObjectManager::currentRoom;
 std::map<std::string, MenuSystem*> ObjectManager::menuSystems;
