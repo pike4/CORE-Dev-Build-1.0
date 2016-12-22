@@ -1,0 +1,7 @@
+#include "Subject.h"
+#include "Commands.h"
+#include "ObjectManager.h"
+#include "VideoManager.h"
+#include "AudioManager.h"
+#include "StateManager.h"
+#include "EventManager.h"
