@@ -1,6 +1,7 @@
 #include "MotionAffector.h"
 #include "VelocityComponent.h"
 #include "Entity.h"
+#include "Data.h"
 
 VelocityComponent::VelocityComponent(pugi::xml_node node)
 {

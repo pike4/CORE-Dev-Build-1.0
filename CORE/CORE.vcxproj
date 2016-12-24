@@ -40,7 +40,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Managers\Headers;.\PugiXML;$(IncludePath)</IncludePath>
+    <IncludePath>.\Instances\Headers\Data;.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Managers\Headers;.\PugiXML;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)Bin\Debug</OutDir>
   </PropertyGroup>
@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\AssetsManifest.cpp" />
+    <ClCompile Include="Instances\Source Files\Data\Data.cpp" />
     <ClCompile Include="Main\Source Files\Core.cpp" />
     <ClCompile Include="Instances\Source Files\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="Instances\Source Files\Elements\Animation.cpp" />
@@ -130,7 +131,9 @@
     <ClCompile Include="Managers\Source Files\VideoManager.cpp" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
+    <ClInclude Include="Instances\Headers\CORE Objects\Dependency.h" />
     <ClInclude Include="Instances\Headers\CORE Objects\ManagerArgs.h" />
+    <ClInclude Include="Instances\Headers\Data\Data.h" />
     <ClInclude Include="Instances\Headers\Elements\Animation.h" />
     <ClInclude Include="Instances\Headers\Elements\VariableElement.h" />
     <ClInclude Include="Instances\Headers\Environment.h" />

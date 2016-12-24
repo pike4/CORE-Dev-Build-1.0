@@ -29,6 +29,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "Data.h"
+
 #undef main
 
 SDL_Event e;
@@ -37,12 +40,14 @@ bool quit;
 
 int main()
 {
-	std::cout << rand() << std::endl;
-	std::cout << rand() << std::endl;
 
-	srand(time(NULL));
-	std::cout << rand() << std::endl;
-	std::cout << rand() << std::endl;
+	DataOffset<int> i = 2;
+
+	SimpleData<int> r = 2;
+	SimpleData<int> he = 3;
+	i.add(&r);
+	i.add(&he);
+	int h = i;
 
 	StateManager::start();
 	SDL_Texture* guy = SystemManager::loadTexture("Assets/Sprites/guy.png");

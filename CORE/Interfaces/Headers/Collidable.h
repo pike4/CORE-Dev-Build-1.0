@@ -13,7 +13,7 @@ class Room;
 class Collidable : public Component
 {
 public:
-	static enum collidibleTypes
+	enum collidibleTypes
 	{
 		eWall, Entity, cPlayer, Button, Bullet, TriggerZone, cCursor, cDoor
 	};

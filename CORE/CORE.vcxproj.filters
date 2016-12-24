@@ -204,6 +204,12 @@
     <ClInclude Include="Main\Headers\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Instances\Headers\CORE Objects\Dependency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Loggables\Loggables.cpp">
@@ -354,6 +360,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main\Source Files\Core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\Data\Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
