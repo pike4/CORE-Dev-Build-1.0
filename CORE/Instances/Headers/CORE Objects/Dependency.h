@@ -15,7 +15,7 @@ struct Dependency
 			{
 				T difference = value - *pointer;
 
-				for (int i = 0; i < dependencyCount; i++)
+				for (unsigned int i = 0; i < dependencyCount; i++)
 				{
 					Dependency* child = dependencies + i;
 					chiild->data += difference;

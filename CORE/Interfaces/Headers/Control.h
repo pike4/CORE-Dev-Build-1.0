@@ -11,14 +11,11 @@ class MenuScreen;
 class Control : public Entity
 {
 public:
-	int* w;
-	int* h;
+	SimpleData<int>* w;
+	SimpleData<int>* h;
 
-	int* x;
-	int* y;
-
-	int* xOffset;
-	int* yOffset;
+	DataOffset<int>* x;
+	DataOffset<int>* y;
 
 	Control();
 	Control(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* visibleVector);

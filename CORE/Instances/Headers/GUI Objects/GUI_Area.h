@@ -12,6 +12,8 @@ public:
 
 	virtual void update();
 	virtual void draw(SDL_Renderer* renderer);
+	virtual void handleInput(int keyCode, int upDown, int aX, int aY);
+
 
 	/*void add(Control* control, int x, int y);
 	void add(VisibleElement* element, int x, int y);*/

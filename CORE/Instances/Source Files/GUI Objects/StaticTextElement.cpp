@@ -39,12 +39,12 @@ StaticTextElement::StaticTextElement(StaticTextElement& copy)
 
 void StaticTextElement::draw()
 {
-	int penX = *x + parentOffsetX;
-	int penY = *y + parentOffsetY;
+	int penX = *X;
+	int penY = *Y;
 
-	for (int i = lineIndex; i < lines.size() && i < maxLines; x++)
+	for (unsigned int i = lineIndex; i < lines.size() && i < maxLines; i++)
 	{
-		for (int j = 0; j < lines[i].length(); j++)
+		for (unsigned int j = 0; j < lines[i].length(); j++)
 		{
 			char curChar = lines[i][j];
 			VideoManager::addDraw(penX, penY, (*charSet)[curChar], zIndex);
@@ -52,7 +52,7 @@ void StaticTextElement::draw()
 		}
 
 		penY += charSet->fontHeight;
-		penX = *x;
+		penX = *X;
 	}
 }
 
@@ -64,7 +64,7 @@ void StaticTextElement::stringToLines(std::string message)
 	std::string buffer = "";
 
 	//Convert given char* to vector of char* words
-	for (int x = 0; x < length; x++)
+	for (unsigned int x = 0; x < length; x++)
 	{
 		if (message[x] != ' ')
 		{
@@ -85,7 +85,7 @@ void StaticTextElement::stringToLines(std::string message)
 	buffer = "";
 
 	//Push down words onto lines vector so they wrap
-	for (int x = 0; x < words.size(); x++)
+	for (unsigned int x = 0; x < words.size(); x++)
 	{
 		if (words[x].length() + buffer.length() < maxLineLength)
 		{

@@ -7,3 +7,7 @@
 #include "Animation.h"
 #include "StaticTextElement.h"
 #include "VariableElement.h"
+#include "MenuDestination.h"
+#include "MenuLayerAdd.h"
+
+#include "MouseProcessor.h"

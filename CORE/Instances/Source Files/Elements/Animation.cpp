@@ -23,7 +23,7 @@ Animation::Animation(Animation& other)
 {
 	numFrames = other.numFrames;
 	frames = new VisibleElement*[numFrames];
-	for (int i = 0; i < numFrames; i++)
+	for (unsigned int i = 0; i < numFrames; i++)
 	{
 		frames[i] = (VisibleElement*)other.frames[i]->spawnCopy();
 		frames[i]->zIndex = zIndex;
@@ -44,10 +44,12 @@ void Animation::draw()
 		frameTimer.updateTime();
 	}
 
-	if (!frames[frameIndex]->x)
+	//Assign this animation's pointers to the frame if its pointers are not already
+	//initialized
+	if (!frames[frameIndex]->X)
 	{
-		frames[frameIndex]->x = x;
-		frames[frameIndex]->y = y;
+		frames[frameIndex]->X = X;
+		frames[frameIndex]->Y = Y;
 	}
 
 	frames[frameIndex]->draw();
@@ -55,7 +57,7 @@ void Animation::draw()
 
 void Animation::move(int x, int y)
 {
-	for (int i = 0; i < numFrames; i++)
+	for (unsigned int i = 0; i < numFrames; i++)
 	{
 		frames[i]->move(x, y);
 	}

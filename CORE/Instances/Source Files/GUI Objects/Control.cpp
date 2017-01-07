@@ -7,27 +7,29 @@
 Control::Control()
 {
 	events = { drawStep, updateStep, updatePos };
+
+	x = (DataOffset<int>*) getCompoundData<DataOffset<int>>("x");
+	y = (DataOffset<int>*) getCompoundData<DataOffset<int>>("y");
 }
 
 Control::Control(pugi::xml_node node) : Entity(node)
 {
 	events = { drawStep, updateStep, updatePos };
-	x = (int*)getPointer("x", sizeof(int));
-	y = (int*)getPointer("y", sizeof(int));
 
-	xOffset = (int*)getPointer("xOffset", sizeof(int));
-	yOffset = (int*)getPointer("yOffset", sizeof(int));
+	x = (DataOffset<int>*) getCompoundData<DataOffset<int>>("x");
+	y = (DataOffset<int>*) getCompoundData<DataOffset<int>>("y");
 
-	w = (int*)getPointer("w", sizeof(int));
-	h = (int*)getPointer("h", sizeof(int));
+	w = getData<int>("w");
+	h = getData<int>("h");
 
 	getArgsFromNode(node);
 }
 
+//This is marked for death
 void Control::move(int aX, int aY)
 {
-	*x = aX + *xOffset;
-	*y = aY + *yOffset;
+	*x = aX;
+	*y = aY;
 }
 
 Control::Control(pugi::xml_node node, Aggregate* parent) : Control(node)
@@ -47,14 +49,14 @@ Control::Control(pugi::xml_node node, MenuScreen* parent) : Control(node)
 
 Control::Control(int aX, int aY, int aW, int aH)
 {
-	*w = aW;
-	*h = aH;
+
 }
 
 void Control::getArgsFromNode(pugi::xml_node node)
 {
-	*xOffset = atoi(node.child("xOffset").first_child().value());
-	*yOffset = atoi(node.child("yOffset").first_child().value());
+	*x = atoi(node.child("xOffset").first_child().value());
+	*y = atoi(node.child("yOffset").first_child().value());
+
 	*w = atoi(node.child("w").first_child().value());
 	*h = atoi(node.child("h").first_child().value());
 }
@@ -64,8 +66,8 @@ void Control::registerSelf(Entity* parent)
 	this;
 	if (parent)
 	{
-		x = (int*)setPointer("x", sizeof(int), parent->getPointer("x", sizeof(int)));
-		y = (int*)setPointer("y", sizeof(int), parent->getPointer("y", sizeof(int)));
+		x->addDependency((DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("x"));
+		y->addDependency((DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("y"));
 	}
 
 	Entity::registerSelf(parent);
@@ -130,7 +132,7 @@ void Control::handleInput(int keyCode, int upDown, int aX, int aY)
 	default:
 		break;
 	}
-
+	this;
 	Entity::handleInput(keyCode, upDown, aX, aY);
 }
 

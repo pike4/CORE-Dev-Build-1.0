@@ -7,39 +7,56 @@ GUI_Area::GUI_Area(pugi::xml_node node)
  :Control(node)
 {
 	events.push_back(drawStep);
-	pugi::xml_node tempNode = node.child("Controls").first_child();
+	pugi::xml_node tempNode = node.first_child();
 	std::string name = tempNode.name();
-
-	while (strcmp(tempNode.name(), ""))
+	
+	while (!name.empty())
 	{
-		Control* newControl = ObjectManager::generateControl(name, tempNode);
-
-		if (newControl)
+		if (!name.compare("Controls"))
 		{
-			components.push_back(newControl);
+			pugi::xml_node node2 = tempNode.first_child();
+			while (strcmp(node2.name(), ""))
+			{
+				Control* newControl = ObjectManager::generateControl(node2.name(), node2);
+
+				if (newControl)
+				{
+					components.push_back(newControl);
+					newControl->parent = this;
+				}
+
+				node2 = node2.next_sibling();
+			}
+		}
+
+		else if (!name.compare("Elements"))
+		{
+			pugi::xml_node node2 = tempNode.first_child();
+			while (strcmp(node2.name(), ""))
+			{
+				VisibleElement* newElem = ObjectManager::generateVisibleElement
+					(node2.name(), node2);
+
+				if (newElem)
+				{
+					components.push_back(newElem);
+				}
+				node2 = node2.next_sibling();
+			}
+		}
+
+		else if (!name.compare("x"))
+		{
+			*x = atoi(tempNode.first_child().value());
+		}
+
+		else if (!name.compare("y"))
+		{
+			*y = atoi(tempNode.first_child().value());
 		}
 
 		tempNode = tempNode.next_sibling();
 		name = tempNode.name();
-	}
-
-	tempNode = node.child("Elements").first_child();
-	name = tempNode.name();
-	while (strcmp(tempNode.name(), ""))
-	{
-		VisibleElement* newElem = ObjectManager::generateVisibleElement(name, tempNode);
-
-		if (newElem)
-		{
-			components.push_back(newElem);
-		}
-		tempNode = tempNode.next_sibling();
-		name = tempNode.name();
-	}
-
-	for (int i = 0; i < components.size(); i++)
-	{
-		recursiveAdd(components[i]);
 	}
 }
 
@@ -71,31 +88,10 @@ void GUI_Area::draw(SDL_Renderer* renderer)
 	}
 }
 
-/*void GUI_Area::add(Control* control, int aX, int aY)
+void GUI_Area::handleInput(int keyCode, int upDown, int aX, int aY)
 {
-	if (control == NULL)
-	{
-		//TODO: log error
-		return;
-	}
-
-	controls.push_back(control);
-	*(control->x) = *x + aX;
-	*(control->y) = *y + aY;
+	Control::handleInput(keyCode, upDown, aX, aY);
 }
-
-void GUI_Area::add(VisibleElement* element, int x, int y)
-{
-	if (element == NULL)
-	{
-		//TODO: log error
-		return;
-	}
-
-	//elements.push_back(element);
-//	element->box.x = box.x + x;
-	//element->box.y = box.y + y;
-}*/
 
 void GUI_Area::mouseEnter(){}
 void GUI_Area::mouseLeave(){}

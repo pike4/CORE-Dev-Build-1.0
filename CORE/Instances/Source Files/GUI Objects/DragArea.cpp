@@ -16,14 +16,14 @@ DragArea::DragArea(int aX, int aY, int aW, int aH, GUI_Area* owner)
 
 
 	//By default, set drag area w and h to that of parent
-	if (!w && parent)
+	if (!(*w) && parent)
 	{
-		w = (int*) parent->getPointer("w", sizeof(int));
+		w->addDependency(parent->getData<int>("w"));
 	}
 
-	if (!h && parent)
+	if (!(*h) && parent)
 	{
-		h = (int*) parent->getPointer("h", sizeof(int));
+		h->addDependency(parent->getData<int>("h"));
 	}
 }
 
@@ -37,12 +37,12 @@ DragArea::DragArea(pugi::xml_node node)
 	//By default, set drag area w and h to that of parent
 	if (!(*w) && parent)
 	{
-		w = (int*) parent->getPointer("w", sizeof(int));
+		w = parent->getData<int>("w");
 	}
 
 	if (!(*h) && parent)
 	{
-		h = (int*) parent->getPointer("h", sizeof(int));
+		h = parent->getData<int>("h");
 	}
 
 	components.push_back(new MouseProcessor());
@@ -58,7 +58,9 @@ void DragArea::handleInput(int keyCode, int upDown, int aX, int aY)
 
 		SDL_GetMouseState(&mouseX, &mouseY);
 		
-		parent->handleInput(updatePos, 0, mouseX - aX, mouseY - aY);
+		//parent->handleInput(updatePos, 0, mouseX - aX, mouseY - aY);
+		parent->setValue<int>("x", mouseX - aX);
+		parent->setValue<int>("y", mouseY - aY);
 		break;
 	}
 	Entity::handleInput(keyCode, upDown, aX, aY);
@@ -66,14 +68,17 @@ void DragArea::handleInput(int keyCode, int upDown, int aX, int aY)
 
 void DragArea::registerSelf(Entity* parent)
 {
+	//Get parent dimensions if dimensoins were left uninitialized at construction
 	if (parent && *w == 0)
 	{
-		w = (int*) setPointer("w", sizeof(int), parent->getPointer("w", sizeof(int)));
+		setData("w", parent->getData<int>("w"));
+		w = getData<int>("w");
 	}
 
 	if (parent && *h == 0)
 	{
-		h = (int*) setPointer("h", sizeof(int), parent->getPointer("h", sizeof(int)));
+		setData("h", parent->getData<int>("h"));
+		h = getData<int>("h");
 	}
 	Control::registerSelf(parent);
 }
@@ -139,9 +144,9 @@ void DragArea::handleDrag()
 	}
 }
 
-void DragArea::moveParent(int x, int y, bool relative)
+void DragArea::moveParent(int aX, int aY, bool relative)
 {
-	owner->move(x, y);
+	owner->move(aX, aY);
 }
 
 void DragArea::setBounds(int minX, int maxX, int minY, int maxY, bool relative)

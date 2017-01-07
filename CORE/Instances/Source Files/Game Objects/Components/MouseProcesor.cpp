@@ -1,6 +1,7 @@
 #include "MouseProcessor.h"
 #include "QuadTree.h"
 #include "Entity.h"
+#include "Data.h"
 
 bool isWithin(int pointX, int pointY, int rectX, int rectY, int rectW, int rectH)
 {
@@ -76,9 +77,8 @@ void MouseProcessor::handleInput(int key, int upDown, int aX, int aY)
 void MouseProcessor::registerSelf(Entity* parent)
 {
 	Component::registerSelf(parent);
-
-	x = (int*) parent->getPointer("x", sizeof(int));
-	y = (int*) parent->getPointer("y", sizeof(int));
-	w = (int*) parent->getPointer("w", sizeof(int));
-	h = (int*) parent->getPointer("h", sizeof(int));
+	x = (DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("x");
+	y = (DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("y");
+	w = parent->getData<int>("w");
+	h = parent->getData<int>("h");
 }

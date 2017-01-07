@@ -8,9 +8,6 @@
 
 VisibleElement::VisibleElement()
 {
-	pointers.push_back({ "x", sizeof(int), &x });
-	pointers.push_back({ "y", sizeof(int), &y });
-
 	events.push_back(drawStep);
 }
 
@@ -24,6 +21,8 @@ VisibleElement::VisibleElement(int x, int y, int aW, int aH)
 VisibleElement::VisibleElement(pugi::xml_node node)
 	:VisibleElement()
 {
+	//*X = atoi(node.child("x").first_child().value());
+	//*Y= atoi(node.child("y").first_child().value());
 	w = atoi(node.child("w").first_child().value());
 	h = atoi(node.child("h").first_child().value());
 
@@ -35,6 +34,14 @@ VisibleElement::VisibleElement(VisibleElement& other)
 	:VisibleElement()
 {
 	zIndex = other.zIndex;
+}
+
+void VisibleElement::assignPointers(Entity* aParent)
+{
+	Component::assignPointers(aParent);
+
+	X = (DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("x");
+	Y = (DataOffset<int>*) parent->getCompoundData<DataOffset<int>>("y");
 }
 
 void VisibleElement::move(int x, int y)

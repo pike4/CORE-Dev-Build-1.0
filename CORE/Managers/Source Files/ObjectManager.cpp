@@ -112,7 +112,7 @@ void ObjectManager::removeUpdatable(Updatable* E)
 		return;
 	}
 
-	for (int x = 0; x < currentRoom->updateVector->size(); x++)
+	for (unsigned int x = 0; x < currentRoom->updateVector->size(); x++)
 	{
 		if ((*currentRoom->updateVector)[x] == E)
 		{
@@ -182,7 +182,17 @@ Component* ObjectManager::generateComponent(std::string type, pugi::xml_node nod
 
 	else if (!type.compare("MouseProcessor"))
 	{
-		return new Collidable(node);
+		return new MouseProcessor();
+	}
+
+	else if (!type.compare("MenuDestination"))
+	{
+		return new MenuDestination(node);
+	}
+
+	else if (!type.compare("MenuLayerAdd"))
+	{
+		return new MenuLayerAdd(node);
 	}
 
 	return NULL;
@@ -251,17 +261,7 @@ VisibleElement* ObjectManager::generateVisibleElement(std::string controlType, p
 Entity* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node, 
 	Room* room)
 {
-	if (!objectType.compare("Player"))
-	{
-		//return new Player(node, room);
-	}
-
-	else if (!objectType.compare("CompositeEnemy"))
-	{
-		//return new CompositeEnemy(node, room);
-	}
-
-	else if (!objectType.compare("Entity"))
+	if (!objectType.compare("Entity"))
 	{
 		return new Entity(node);
 	}
@@ -274,24 +274,19 @@ Entity* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node
 
 Entity* ObjectManager::generateGameObject(std::string objectType, pugi::xml_node node)
 {
-	if (!objectType.compare("Player"))
+	if (!objectType.compare("Entity"))
 	{
-		//return new Player(node);
-	}
-
-	else if (!objectType.compare("CompositeEnemy"))
-	{
-		//return new CompositeEnemy(node);
-	}
-	
-	else if (!objectType.compare("Entity"))
-	{
-		return new Entity(node);
+		
+		Entity* ret = new Entity(node);
+		ret->registerSelf(NULL);
+		return ret;
 	}
 
 	else
 	{
 		//TODO log error undefined type in xml file
+		printf("undefined object type in xml file");
+		return NULL;
 	}
 }
 
@@ -302,7 +297,9 @@ Entity* ObjectManager::generate(std::string prototypeName)
 	
 	if (objectToSpawn != NULL)
 	{
-		return new Entity(*objectToSpawn);
+		Entity* ret = new Entity(*objectToSpawn);
+		ret->registerSelf(NULL);
+		return ret;
 	}
 
 	else

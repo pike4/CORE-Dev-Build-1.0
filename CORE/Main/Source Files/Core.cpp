@@ -1,6 +1,11 @@
 #pragma warning(disable : 4018)
 #pragma warning(disable : 4244)
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <map>
+
 #include "SDL.h"
 #include "SDL_Mixer.h"
 #include "SDL_TTF.h"
@@ -8,7 +13,6 @@
 
 #include "Room.h"
 #include "MenuSystem.h"
-
 #include "Environment.h"
 #include "DragArea.h"
 #include "Updatable.h"
@@ -16,19 +20,13 @@
 #include "VideoManager.h"
 #include "StateManager.h"
 #include "AudioManager.h"
-#include "AssetsManifest.h"
-#include "NavigationButton.h"
 #include "SystemManager.h"
 #include "pugixml.hpp"
-#include <map>
 #include "SpeechBox.h"
 #include "DynamicTextElement.h"
 #include "ImageElement.h"
 #include "GUI_Area.h"
 #include "Entity.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 #include "Data.h"
 
@@ -40,15 +38,6 @@ bool quit;
 
 int main()
 {
-
-	DataOffset<int> i = 2;
-
-	SimpleData<int> r = 2;
-	SimpleData<int> he = 3;
-	i.add(&r);
-	i.add(&he);
-	int h = i;
-
 	StateManager::start();
 	SDL_Texture* guy = SystemManager::loadTexture("Assets/Sprites/guy.png");
 	SDL_Texture* real = SystemManager::loadTexture("Assets/Sprites/real.png");
@@ -62,7 +51,7 @@ int main()
 	
 	TTF_Font* sans = TTF_OpenFont("Assets/Fonts/comic.ttf", 12);
 	TTF_Font* bigSans = TTF_OpenFont("Assets/Fonts/comic.ttf", 50);
-	pew = AudioManager::loadChunk("Assets/Music/sans.wav");
+	Mix_Chunk* pew = AudioManager::loadChunk("Assets/Music/sans.wav");
 	
 	Environment* environment2 = new Environment("Assets/XML/room.xml");
 	SDL_Color red;
@@ -86,39 +75,35 @@ int main()
 	StateManager::goToEnvironment("first");
 	StateManager::goToRoomInCurrentEnvironment("living room");
 
-	StateManager::currentMenuScreens.back()->handleInput(updatePos, 0, 0, 0);
-
 	SpeechBox* textSpeechBox = new SpeechBox(500, 100, "The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively", NULL, &chars);
+
+	textSpeechBox->setValue<int>("x", 200);
+	textSpeechBox->setValue<int>("y", 200);
 
 	StateManager::currentRoom->add(textSpeechBox);
 	textSpeechBox->clear();
-	for (int i = 0; i < 1; i++)
+	for (unsigned int i = 0; i < 1; i++)
 	{
 		chuck = ObjectManager::generate("Charlie");
 		StateManager::currentRoom->add(chuck);
-		chuck->move(540, 360);
 		VideoManager::player = chuck;
-		VideoManager::xOffsetInitial = 540;
-		VideoManager::yOffsetInitial = 360;
-		VideoManager::xOffset = (int*)chuck->getPointer("x", 4);
-		VideoManager::yOffset = (int*)chuck->getPointer("y", 4);
+		//VideoManager::xOffsetInitial = 540;
+		//VideoManager::yOffsetInitial = 360;
+		//VideoManager::xOffset = (int*)chuck->getPointer("x", 4);
+		//VideoManager::yOffset = (int*)chuck->getPointer("y", 4);
 	}
 
-	chuck = ObjectManager::generate("Fire");
-	StateManager::currentRoom->add(chuck);
-	chuck->move(480, 150);
-	chuck = ObjectManager::generate("Fire");
-	StateManager::currentRoom->add(chuck);
-	chuck->move(350, 500);
-	chuck = ObjectManager::generate("Fire");
-	StateManager::currentRoom->add(chuck);
-	chuck->move(620, 500);
-	chuck = ObjectManager::generate("Fire");
-	StateManager::currentRoom->add(chuck);
-	chuck->move(220, 240);
-	chuck = ObjectManager::generate("Fire");
-	StateManager::currentRoom->add(chuck);
-	chuck->move(750, 240);
+	//chuck = ObjectManager::generate("Fire");
+	//StateManager::currentRoom->add(chuck);
+
+	//chuck = ObjectManager::generate("Fire");
+	//StateManager::currentRoom->add(chuck);
+	//chuck = ObjectManager::generate("Fire");
+	//StateManager::currentRoom->add(chuck);
+	//chuck = ObjectManager::generate("Fire");
+	//StateManager::currentRoom->add(chuck);
+	//chuck = ObjectManager::generate("Fire");
+	//StateManager::currentRoom->add(chuck);
 
 	while (!quit)
 	{

@@ -28,7 +28,7 @@ void QuadTree::checkCollisions()
 	if (subTrees[0] != NULL)
 	{
 		//A parent always puts the child's needs ahead of their own
-		for (int x = 0; x < 4; x++)
+		for (unsigned int x = 0; x < 4; x++)
 		{
 			subTrees[x]->checkCollisions();
 		}
@@ -66,7 +66,7 @@ void QuadTree::checkCollisions()
 
 	if (true)
 	{
-		for (int x = 0; x < 4; x++)
+		for (unsigned int x = 0; x < 4; x++)
 		{
 			//VideoManager::enqueue(new DrawRectCommand(drawRects[x]));
 		}
@@ -89,10 +89,10 @@ void QuadTree::parentCheck(std::vector<Collidable*> objectsToCheck, QuadTree* pa
 //Check all elements in the vector against all other elements in the vector
 void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 {
-	for (int i = 0; i < (int) vectorToCheck.size(); i++)
+	for (unsigned int i = 0; i < (int) vectorToCheck.size(); i++)
 	{
 		Collidable* obj1 = vectorToCheck[i];
-		for (int j = 0; j < (int) vectorToCheck.size(); j++)
+		for (unsigned int j = 0; j < (int) vectorToCheck.size(); j++)
 		{
 			Collidable* obj2 = vectorToCheck[j];
 			
@@ -115,10 +115,10 @@ void QuadTree::selfCheck(std::vector<Collidable*> vectorToCheck)
 
 void QuadTree::checkAgainst(std::vector<Collidable*> v1, std::vector<Collidable*> v2)
 {
-	for (int i = 0; i < (int) v1.size(); i++)
+	for (unsigned int i = 0; i < (int) v1.size(); i++)
 	{
 		Collidable* obj1 = v1[i];
-		for (int j = 0; j < (int) v2.size(); j++)
+		for (unsigned int j = 0; j < (int) v2.size(); j++)
 		{
 			Collidable* obj2 = v2[j];
 			if (i != j)
@@ -145,7 +145,7 @@ void QuadTree::insert(Collidable* objectToAdd)
 {
 	if (subTrees[0] != NULL)
 	{
-		for (int x = 0; x < 4; x++)
+		for (unsigned int x = 0; x < 4; x++)
 		{
 			if (isWithin(objectToAdd->boundingBox, subTrees[x]->frame))
 			{
@@ -160,7 +160,7 @@ void QuadTree::insert(Collidable* objectToAdd)
 //Remove a Collidable from the current QuadTree
 void QuadTree::remove(Collidable* objectToRemove)
 {
-	for (int i = 0; i < (int) objectsInTree.size(); i++)
+	for (unsigned int i = 0; i < (int) objectsInTree.size(); i++)
 	{
 		if (objectsInTree[i] == objectToRemove)
 		{
@@ -185,7 +185,7 @@ void QuadTree::destroyCollidable(Collidable* objectToRemove)
 {
 	if(subTrees[0] != NULL)
 	{
-		for (int i = 0; i < 4; i++)
+		for (unsigned int i = 0; i < 4; i++)
 		{
 			if (isWithin(objectToRemove->boundingBox, subTrees[i]->frame))
 			{
@@ -222,7 +222,7 @@ void QuadTree::split()
 	for (int i = 0; i < objectsInTree.size(); i++)
 	{
 		Collidable* obj = objectsInTree[i];
-		for (int x = 0; x < 4; x++)
+		for (unsigned int x = 0; x < 4; x++)
 		{
 			if (isWithin(obj->boundingBox, subTrees[x]->frame))
 			{
@@ -238,7 +238,7 @@ void QuadTree::split()
 //Send all Collidables in the children to the current node and kill children
 void QuadTree::merge()
 {
-	for (int i = 0; i < 4; i++)
+	for (unsigned int i = 0; i < 4; i++)
 	{
 		for each(Collidable* childObject in subTrees[i]->objectsInTree)
 		{
@@ -263,7 +263,7 @@ int QuadTree::getRecursiveObjectCount()
 
 	if (subTrees[0] != NULL)
 	{
-		for (int i = 0; i < 4; i++)
+		for (unsigned int i = 0; i < 4; i++)
 		{
 			total += subTrees[i]->getRecursiveObjectCount();
 		}

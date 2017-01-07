@@ -20,10 +20,10 @@ private:
 	int dragOriginY;
 
 	//The coordinates of the parent control
-	int* x;
-	int* y;
-	int* w;
-	int* h;
+	DataOffset<int>* x;
+	DataOffset<int>* y;
+	SimpleData<int>* w;
+	SimpleData<int>* h;
 
 	//True if the mouse is currently within the bounds of the control this is assigned to
 	bool mouseIsWithin;

@@ -210,6 +210,24 @@
     <ClInclude Include="Instances\Headers\Data\Data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\ButtonComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuDestination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuLayerAdd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Provider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Definer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Loggables\Loggables.cpp">
@@ -363,6 +381,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Data\Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\ButtonComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuDestination.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuLayerAdd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Definer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Provider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Constant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\NodeParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

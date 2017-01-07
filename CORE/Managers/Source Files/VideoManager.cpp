@@ -205,7 +205,7 @@ void VideoManager::addVisible(Visible* visible)
 void VideoManager::removeDrawable(Drawable* V)
 {
 	if(!currentRoom || !currentRoom->drawVector)
-	for (int x = 0; x < currentRoom->drawVector->size(); x++)
+	for (unsigned int x = 0; x < currentRoom->drawVector->size(); x++)
 	{
 		if ((*currentRoom->drawVector)[x] == V)
 		{
@@ -309,14 +309,13 @@ void VideoManager::getAnimationFromSpriteSheet(int framesX, int framesY, int fra
 {
 	SDL_Surface* mainSurface = IMG_Load(fileName.c_str());
 	SDL_Surface* tempSurface = new SDL_Surface;
-	SDL_Texture* temp;
 	SDL_Rect curFrame = { 0, 0, frameW, frameH };
 	SDL_Rect blitFrame = { 0, 0, frameW, frameH };
 	int totalFramesIndex = 0;
 
-	for (int i = 0; i < framesX; i++)
+	for (unsigned int i = 0; i < framesX; i++)
 	{
-		for (int j = 0; j < framesY; j++)
+		for (unsigned int j = 0; j < framesY; j++)
 		{
 			tempSurface = SDL_CreateRGBSurface(0, frameW, frameH, 32, 0, 0, 0, 0);
 			printf(SDL_GetError());

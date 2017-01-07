@@ -15,6 +15,6 @@ public:
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 protected:
-	int* x;
-	int* y;
+	SimpleData<int>* x;
+	SimpleData<int>* y;
 };

@@ -5,8 +5,9 @@
 #include "Controllable.h"
 #include "Drawable.h"
 #include "BaseObject.h"
+#include "Data.h"
 #include "pugixml.hpp"
-
+#include <type_traits>
 #include <map>
 
 class Room;
@@ -17,55 +18,100 @@ public:
 	Entity(pugi::xml_node node);
 	Entity(Entity& other);
 	Entity();
-
-	//Hashtable of data publicly accessible by components
-	std::map<std::string, void*> data;
-
-	//Maps event codes to vectors of Controllable objects that listen for those events
-	std::map<int, std::vector<Controllable*>*> listeners;
-
-	//The components that make up this object
-	std::vector<Component*> components;
-
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
-
+	
+#pragma region Composition
 	void add(Component* component);
 	void recursiveAdd(Component* component);
+#pragma endregion
 
-	//Listeners
-	int registerListener(int key, Controllable* listener);
-	int deregisterListener(int key, Controllable* listener);
+#pragma region Accessors
 
-	//You HAVE to find a better way
-	//I have
-	int getAbsoluteX();
-	int getAbsoluteY();
+	//Return a pointer to the data of the specified type of the given name
+	//Allocate a new Data of the specified type if it does not exist
+	template <typename T>
+	Data* getCompoundData(std::string name)
+	{
+		Data* ret = NULL;
 
-	//Return a pointer to the data at the specified key, allocating with the specified size if it 
-	//is not already present in the table
-	void* getPointer(std::string key, int size);
-	void getPointer(field& pointer);
+		if (std::is_base_of<Data, T>())
+		{
+			if (dat.find(name) == dat.end())
+			{
+				T* newData = new T;
+				dat[name] = (Data*)newData;
+			}
 
-	void* setPointer(std::string key, int size, void* other);
+			ret = dat[name];
+		}
+
+		else
+		{
+			printf("Unsupported data type for compound data");
+		}
+
+		return ret;
+	}
+
+	//Return a pointer to the data of the given name. Allocate a new SimpleData if not present
+	template <typename T>
+	SimpleData<T>* getData(std::string name)
+	{
+		SimpleData<T>* ret = NULL;
+
+		if (dat.find(name) == dat.end())
+		{
+			dat[name] = new SimpleData<T>;
+		}
+
+		return (SimpleData<T>*) dat[name];
+	}
+
+	//Return a pointer to the data of the given name. Return null if not present
+	Data* peekData(std::string name);
+
+	//Set the data of the given name to the given value
+	template <typename T>
+	void setValue(std::string name, T newValue)
+	{
+		DataImpl<T>* tempData = (DataImpl<T>*) getData<T>(name);
+		*tempData = newValue;
+	}
+
+	//Register the data pointer under the given name in the data map
+	//This could lead to a dangling pointer if the data already exists! think of a solution.
+	//MAybe return the old pointer if it exists, null if it doesn't
+	void setData(std::string name, Data* data);
+
+	//Return the value of the data of the given name
+	template <typename T>
+	T getValue(std::string name)
+	{
+		return get(name);
+	}
+
+#pragma endregion
+
+#pragma region Message Handling
+	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	//Push recursive add down to children
 	virtual void registerSelf(Entity* parent);
 
-	//Return the pointer with the given name, if it exists
-	void* Entity::findPointer(std::string name);
+	//Listeners
+	int addListener(int key, Controllable* listener);
+	int removeListener(int key, Controllable* listener);
+#pragma endregion
 
-	void move(int aX, int aY);
-private:
+protected:
+
+	//Maps event codes to vectors of Controllable objects that listen for those events
+	std::map<int, std::vector<Controllable*>*> listeners;
+
+	//Maps string variable names to Data pointers accissible from the public class interface
+	std::map<std::string, Data*> dat;
+
+	//The components that make up this object
+	std::vector<Component*> components;
+
 	void getArgsFromNode(pugi::xml_node node);
-
-	//
-	std::string type;
-
-	//I don't want this...
-	int* x;
-	int* y;
-
-	//This control's offset from its parent's position
-	int parentXOffset = 0;
-	int parentYOffset = 0;
 };

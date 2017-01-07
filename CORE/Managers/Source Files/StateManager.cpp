@@ -170,6 +170,7 @@ void StateManager::goToEnvironment(std::string environmentName)
 #pragma region GUI transitions
 void StateManager::goToGUI(MenuScreen* gui)
 {
+	currentMenuScreens.clear();
 	currentMenuScreens.push_back(gui);
 }
 
@@ -178,6 +179,14 @@ void StateManager::goToGUIInCurrentMenuSystem(std::string guiName)
 	if (currentMenuSystem != NULL && !guiName.empty())
 	{
 		goToGUI(currentMenuSystem->menus[guiName]);
+	}
+}
+
+void StateManager::addGUILayerFromCurrentMenuSystem(std::string guiName)
+{
+	if (currentMenuSystem != NULL && !guiName.empty())
+	{
+		addMenuScreenLayer(currentMenuSystem->menus[guiName]);
 	}
 }
 

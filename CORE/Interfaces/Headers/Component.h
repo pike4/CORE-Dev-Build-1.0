@@ -1,5 +1,6 @@
 #pragma once
 #include "Controllable.h"
+#include "Data.h"
 #include <stdlib.h>
 #include <vector>
 
@@ -9,7 +10,6 @@ class Entity;
 typedef struct _field
 {
 	std::string name;
-	unsigned char size;
 	void* pointer;
 }field;
 
@@ -18,10 +18,7 @@ class Component : public Controllable
 public:
 	Component();
 
-	void assignPointers(Entity* parent);
-
-	//Search up to the top-level parent for the pointer with the given name
-	void* findAncestorPointer(std::string name) const;
+	virtual void assignPointers(Entity* parent);
 
 	virtual void registerSelf(Entity* newParent);
 
@@ -33,6 +30,7 @@ public:
 
 	virtual Component* spawnCopy();
 protected:
+
 	//ID to *almost certainly* uniquely identify every componenet and entity in order to 
 	//prevent hash collisions between parent and child variables of the same name.
 	std::string ID;

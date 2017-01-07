@@ -14,8 +14,8 @@ public:
 	virtual void handleInput(int key, int upDown = 0, int aX = 0, int aY = 0);
 
 protected:
-	double* xVel;
-	double* yVel;
+	SimpleData<double>* xVel;
+	SimpleData<double>* yVel;
 
 	int* direction;
 };

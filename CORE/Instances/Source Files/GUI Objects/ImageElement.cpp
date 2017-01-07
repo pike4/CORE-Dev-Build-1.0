@@ -23,7 +23,7 @@ ImageElement::ImageElement(ImageElement& copy)
 
 void ImageElement::draw()
 {
-	VideoManager::addDraw( *x + parentOffsetX, *y + parentOffsetY, texture , zIndex);
+	VideoManager::addDraw( *X, *Y, texture , zIndex);
 }
 
 void ImageElement::getArgsFromNode(pugi::xml_node node)

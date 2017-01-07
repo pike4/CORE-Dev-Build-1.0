@@ -1,17 +1,29 @@
 #pragma once
 
-class GenericData
+class Data
 {
+public:
+	
+protected:
+	template<typename T>
+	T get() = 0;
 
+	template<typename T>
+	void set(T other) = 0;
 };
 
 template<typename T>
-class Data : GenericData
+class DataImpl : public Data
 {
 public:
-	Data()
+	DataImpl()
 	{
 		data = new T;
+	}
+
+	virtual operator T&()
+	{
+		return get();
 	}
 
 	virtual void operator =(T value)
@@ -19,45 +31,89 @@ public:
 		set(value);
 	}
 
-	void operator +=(T value)
+	virtual T operator +(DataImpl& other)
 	{
-		T initial = get();
-		initial += value;
-		set(T);
+		return *data + *(other.data);
+	}
+	virtual T operator -(DataImpl& other)
+	{
+		return *data - *(other.data);
+	}
+	virtual T operator *(DataImpl& other)
+	{
+		return *data * *(other.data);
+	}
+	virtual T operator /(DataImpl& other)
+	{
+		return *data + *(other.data);
 	}
 
-	void operator -=(T value)
+	//virtual void operator +=(T value)
+	//{
+	//	*data += value;
+	//	set(value);
+	//}
+
+	//virtual void operator -=(T value)
+	//{
+	//	*data -= value;
+	//	set(value);
+	//}
+
+	virtual void operator++()
 	{
-		T initial = get();
-		initial -= value;
-		set(T);
+		*data++;
 	}
 
-	operator const T&() const
+	virtual void operator--()
 	{
-		return get();
+		*data--;
 	}
 
-	
 
 protected:
 	T* data;
 	virtual void set(T value) = 0;
-	virtual T get() const = 0;
-	virtual void add(Data* other) = 0;
-	virtual void remove(Data* other) = 0;
+	virtual T& get() const = 0;
 };
 
+template <typename T>
+T& operator +=(T& arg1, const DataImpl<T>& data)
+{
+	T arg2 = data;
+
+	arg1 += arg2;
+	return arg1;
+}
+
+//template <typename T>
+//T& operator -=(T& arg1, const DataImpl<T>& data)
+//{
+//	T arg2 = data;
+//
+//	arg1 -= arg2;
+//	return arg1;
+//}
+
+//template <typename S, typename T>
+//S& operator +=(DataImpl<S>& arg1, const DataImpl<T>& data)
+//{
+//	T arg2 = data;
+//	arg1 += arg2;
+//	return arg1;
+//}
+
+
 template<typename T>
-class Dependency : public Data<T>
+class Dependency : public DataImpl<T>
 {
 public:
-	Dependency() : Data()
+	Dependency() : DataImpl()
 	{
-		sources = (Data**)malloc(maxSources * sizeof(Data*));
+		sources = (DataImpl<T>**)malloc(maxSources * sizeof(Data*));
 	}
 
-	virtual void add(Data* other)
+	virtual void addDependency(DataImpl<T>* other)
 	{
 		if (sourceCount >= maxSources)
 		{
@@ -69,11 +125,11 @@ public:
 		sources[sourceCount++] = other;
 	}
 
-	virtual void remove(Data* other)
+	virtual void remove(DataImpl<T>* other)
 	{
 		bool found = false;
 
-		for (int i = 0; i < sourceCount; i++)
+		for (unsigned int i = 0; i < sourceCount; i++)
 		{
 			if (sources[i] == other)
 			{
@@ -90,20 +146,25 @@ public:
 protected:
 	short sourceCount = 0;
 	short maxSources = 2;
-	Data** sources;
+	DataImpl<T>** sources;
 };
 
 template<typename T>
-class SimpleData : public Data<T>
+class SimpleData : public DataImpl<T>
 {
 public:
 
-	SimpleData() : Data() {}
-	SimpleData(T value) : Data() { set(value);}
+	SimpleData() : DataImpl() {}
+	SimpleData(T value) : DataImpl() { set(value);}
 
 	virtual void operator =(T value)
 	{
 		set(value);
+	}
+
+	virtual operator T&()
+	{
+		return get();
 	}
 
 	virtual void set(T value)
@@ -111,12 +172,17 @@ public:
 		*data = value;
 	}
 
-	virtual T get() const
+	virtual T& operator *()
+	{
+		return get();
+	}
+
+	virtual T& get() const
 	{
 		return *data;
 	}
 
-	virtual void add(Data* other)
+	virtual void addDependency(Data* other)
 	{
 		//exception, can't add dependency to this type
 	}
@@ -126,8 +192,6 @@ public:
 		//exception, this type has no dependencies
 	}
 };
-
-
 
 template<typename T>
 class DataSum : public Dependency<T>
@@ -144,6 +208,17 @@ public:
 	{
 		set(value);
 	}
+
+	virtual T& operator *()
+	{
+		return get();
+	}
+
+	virtual operator T&()
+	{
+		return get();
+	}
+
 protected:
 
 	virtual void set(T val) {}//warning: dataSum cannot be set this way
@@ -153,7 +228,7 @@ protected:
 	{
 		T ret = 0;
 
-		for (int i = 0; i < sourceCount; i++)
+		for (unsigned int i = 0; i < sourceCount; i++)
 		{
 			Data* source = sources[i];
 			ret += *source;
@@ -178,6 +253,16 @@ public:
 		set(value);
 	}
 
+	virtual T& operator *()
+	{
+		return get();
+	}
+
+	virtual operator T&()
+	{
+		return get();
+	}
+
 protected:
 	
 	//Set the offset value
@@ -187,13 +272,14 @@ protected:
 	}
 
 	//Offset plus sum of all dependencies
-	virtual T get() const
+	virtual T& get() const
 	{
 		T ret = offset;
 
-		for (int i = 0; i < sourceCount; i++)
+		for (unsigned int i = 0; i < sourceCount; i++)
 		{
-			ret += *sources[i];
+			T temp = *sources[i];
+			ret += temp;
 		}
 
 		return ret;
@@ -231,13 +317,11 @@ protected:
 	{
 		T ret = offset;
 
-		for (int i = 0; i < sourceCount; i++)
+		for (unsigned int i = 0; i < sourceCount; i++)
 		{
 			ret += *sources[i];
 		}
 
 		return ret / sourceCount;
 	}
-
-	T offset;
 };

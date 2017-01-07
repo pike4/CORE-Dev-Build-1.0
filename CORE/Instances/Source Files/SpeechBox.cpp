@@ -3,7 +3,8 @@
 #include "SystemManager.h"
 #include "EventManager.h"
 
-SpeechBox::SpeechBox(int aW, int aH, char* message, SDL_Texture* background, RenderableCharSet* characterSet)
+SpeechBox::SpeechBox(int aW, int aH, char* message, SDL_Texture* background, 
+	RenderableCharSet* characterSet) : Control()
 {
 	w = aW;
 	h = aH;
@@ -146,8 +147,8 @@ void SpeechBox::handleInput(int key, int upDown, int x, int y)
 
 void SpeechBox::draw()
 {
-	int penX = 0;
-	int penY = 0;
+	int penX = *x;
+	int penY = *y;
 
 	for (int i= firstLineIndex; i <= lastLineIndex; i++)
 	{

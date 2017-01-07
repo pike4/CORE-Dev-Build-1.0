@@ -7,11 +7,10 @@
 class VisibleElement : public Drawable, public Component
 {
 public:
-	int parentOffsetX;
-	int parentOffsetY;
+	DataOffset<int>* X;
+	DataOffset<int>* Y;
 
-	int* x;
-	int* y;
+
 	int w;
 	int h;
 
@@ -21,7 +20,7 @@ public:
 	VisibleElement(VisibleElement& copy);
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
-
+	virtual void assignPointers(Entity* aParent);
 	virtual void move(int x, int y);
 
 	virtual Component* spawnCopy() = 0;

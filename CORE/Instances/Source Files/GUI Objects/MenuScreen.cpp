@@ -84,6 +84,7 @@ void MenuScreen::getArgsFromNode(pugi::xml_node node)
 				if (newControl)
 				{
 					controls.push_back(newControl);
+					newControl->registerSelf(this);
 				}
 				controlNode = controlNode.next_sibling();
 			}
@@ -101,7 +102,7 @@ void MenuScreen::checkMousePos(int x, int y)
 
 void MenuScreen::add(Control* controlsToAdd[], int numControls)
 {
-	for (int i = 0; i < numControls; i++)
+	for (unsigned int i = 0; i < numControls; i++)
 	{
 		controls.push_back(controls[i]);
 	}
@@ -124,7 +125,7 @@ void MenuScreen::checkMouseUp(int x, int y)
 
 void MenuScreen::handleInput(int key, int upDown, int x, int y)
 {
-	for (int i = 0; i < controls.size(); i++)
+	for (unsigned int i = 0; i < controls.size(); i++)
 	{
 		if (controls[i] != NULL)
 		{
@@ -135,7 +136,7 @@ void MenuScreen::handleInput(int key, int upDown, int x, int y)
 
 void MenuScreen::draw()
 {
-	for (int i = 0; i < controls.size(); i++)
+	for (unsigned int i = 0; i < controls.size(); i++)
 	{
 		if (controls[i] != NULL)
 		{
@@ -146,7 +147,7 @@ void MenuScreen::draw()
 
 void MenuScreen::update()
 {
-	for (int i = 0; i < controls.size(); i++)
+	for (unsigned int i = 0; i < controls.size(); i++)
 	{
 		if (controls[i] != NULL)
 		{

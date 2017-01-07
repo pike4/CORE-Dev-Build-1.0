@@ -20,11 +20,11 @@ VariableElement::VariableElement(pugi::xml_node node)
 		pugi::xml_node nameNode = tempNode.child("name");
 		elemName = tempNode.name();
 
-
+		//Assign pointers from this to the contained 
 		if (newElement && !elemName.empty())
 		{
-			newElement->x = x;
-			newElement->y = y;
+			newElement->X = X;
+			newElement->Y = Y;
 
 			elements[elemName] = newElement;
 		}
@@ -53,10 +53,10 @@ void VariableElement::draw()
 {
 	if (current)
 	{
-		if (!current->x)
+		if (!current->X)
 		{
-			current->x = x;
-			current->y = y;
+			current->X = X;
+			current->Y = Y;
 		}
 
 		current->draw();

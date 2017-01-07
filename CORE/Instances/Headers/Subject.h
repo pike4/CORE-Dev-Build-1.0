@@ -17,7 +17,7 @@ public:
 	-1: Observer was not present*/
 	int removeObserver(Controllable* observer)
 	{
-		for (int i = 0; i < (int) observers.size(); i++)
+		for (unsigned int i = 0; i < (int) observers.size(); i++)
 		{
 			if (observers[i] == observer)
 			{
@@ -44,7 +44,7 @@ public:
 
 	void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0)
 	{
-		for (int i = 0; i < (int) observers.size(); i++)
+		for (unsigned int i = 0; i < (int) observers.size(); i++)
 		{
 			observers[i]->handleInput(keyCode, upDown, x, y);
 		}

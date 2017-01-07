@@ -4,9 +4,9 @@
 Velocity::Velocity()
 	:Position()
 {
-	pointers.push_back({ "xVel", sizeof(double), &xVel });
-	pointers.push_back({ "yVel", sizeof(double), &yVel });
-	pointers.push_back({ "direction", sizeof(int), &direction });
+	pointers.push_back({ "xVel", &xVel });
+	pointers.push_back({ "yVel", &yVel });
+	pointers.push_back({ "direction", &direction });
 }
 
 Velocity::Velocity(pugi::xml_node node)
@@ -32,8 +32,8 @@ void Velocity::assignPointers(Entity* parent)
 {
 	Position::assignPointers(parent);
 
-	xVel = (double*)parent->getPointer("xVel", sizeof(double));
-	yVel = (double*)parent->getPointer("yVel", sizeof(double));
+	xVel = parent->getData<double>("xVel");
+	yVel = parent->getData<double>("yVel");
 
 	*xVel = 0;
 	*yVel = 0;
@@ -42,7 +42,6 @@ void Velocity::assignPointers(Entity* parent)
 void Velocity::handleInput(int key, int upDown, int aX, int aY)
 {
 	Position::handleInput(key, upDown, aX, aY);
-
 	switch (key)
 	{
 	case updateStep:

@@ -40,7 +40,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\Instances\Headers\Data;.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Managers\Headers;.\PugiXML;$(IncludePath)</IncludePath>
+    <IncludePath>.\Instances\Headers\Data;.\Instances\Headers\File Parsing;.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects\ButtonComponents;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Managers\Headers;.\PugiXML;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)Bin\Debug</OutDir>
   </PropertyGroup>
@@ -82,6 +82,14 @@
   <ItemGroup>
     <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Instances\Source Files\Data\Data.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Constant.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definer.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\NodeParser.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Provider.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Template.cpp" />
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\ButtonComponent.cpp" />
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuDestination.cpp" />
+    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuLayerAdd.cpp" />
     <ClCompile Include="Main\Source Files\Core.cpp" />
     <ClCompile Include="Instances\Source Files\CORE Objects\ManagerArgs.cpp" />
     <ClCompile Include="Instances\Source Files\Elements\Animation.cpp" />
@@ -137,6 +145,9 @@
     <ClInclude Include="Instances\Headers\Elements\Animation.h" />
     <ClInclude Include="Instances\Headers\Elements\VariableElement.h" />
     <ClInclude Include="Instances\Headers\Environment.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\Constant.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\Definer.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\Provider.h" />
     <ClInclude Include="Instances\Headers\Game Objects\I_DrawComponent.h" />
     <ClInclude Include="Instances\Headers\Game Objects\I_VelocityControl.h" />
     <ClInclude Include="Instances\Headers\Game Objects\MouseProcessor.h" />
@@ -145,6 +156,9 @@
     <ClInclude Include="Instances\Headers\Game Objects\Entity.h" />
     <ClInclude Include="Instances\Headers\Game Objects\TriggerZone.h" />
     <ClInclude Include="Instances\Headers\Game Objects\Velocity.h" />
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\ButtonComponent.h" />
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuDestination.h" />
+    <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuLayerAdd.h" />
     <ClInclude Include="Instances\Headers\GUI Objects\CheckBoxButton.h" />
     <ClInclude Include="Instances\Headers\GUI Objects\DragArea.h" />
     <ClInclude Include="Instances\Headers\GUI Objects\GUI_Area.h" />
