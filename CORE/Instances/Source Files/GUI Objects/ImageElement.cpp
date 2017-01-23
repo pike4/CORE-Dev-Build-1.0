@@ -1,6 +1,6 @@
 #include "ImageElement.h"
-#include "VideoManager.h"
-#include "SystemManager.h"
+#include "CORE_Graphics.h"
+#include "CORE_Resources.h"
 
 ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 	:VisibleElement(x, y, w, h)
@@ -8,10 +8,10 @@ ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 	this->texture = texture;
 }
 
-ImageElement::ImageElement(pugi::xml_node node)
-	:VisibleElement(node)
+ImageElement::ImageElement(Definer* definer)
+	:VisibleElement(definer)
 {
-	texture = SystemManager::assignTexture(node.child("Image").first_child().value());
+	texture = CORE_Resources::assignTexture(definer->getVariable("image"));
 }
 
 ImageElement::ImageElement(ImageElement& copy)
@@ -23,15 +23,15 @@ ImageElement::ImageElement(ImageElement& copy)
 
 void ImageElement::draw()
 {
-	VideoManager::addDraw( *X, *Y, texture , zIndex);
+	CORE_Graphics::addDraw( *X, *Y, texture , zIndex);
 }
 
-void ImageElement::getArgsFromNode(pugi::xml_node node)
+void ImageElement::getArgsFromNode(Definer* definer)
 {
-	std::string textureName = node.child("Texture").first_child().value();
+	std::string textureName = definer->getVariable("texture");
 	if (!textureName.empty())
 	{
-		texture = SystemManager::assignTexture(textureName);
+		texture = CORE_Resources::assignTexture(textureName);
 	}
 	
 	if (texture == NULL)

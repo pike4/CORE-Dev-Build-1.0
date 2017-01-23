@@ -12,9 +12,6 @@ VelocityComponent::VelocityComponent(pugi::xml_node node)
 void VelocityComponent::move(int x, int y)
 {}
 
-void VelocityComponent::addTo(Room*)
-{}
-
 void VelocityComponent::updatePos()
 {
 	/*parent->x += xVel;

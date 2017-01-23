@@ -10,7 +10,7 @@ public:
 	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
 
 	DragArea(int x, int y, int w, int h, GUI_Area* owner);
-	DragArea(pugi::xml_node node);
+	DragArea(Definer* definer);
 
 	virtual void registerSelf(Entity* parent);
 

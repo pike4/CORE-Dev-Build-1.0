@@ -1,36 +1,24 @@
 #include "Room.h"
-#include "SystemManager.h"
-#include "StateManager.h"
-#include "ObjectManager.h"
+#include "CORE_Resources.h"
+#include "CORE.h"
+#include "CORE_Factory.h"
 #include "Entity.h"
 
 //Load room from node
-Room::Room(pugi::xml_node node)
+Room::Room(Definer* definer)
 {
-	getArgsFromNode(node);
+	getArgsFromNode(definer);
 }
 
-//Load room from file
+//Load room from file- TODO: DELET file IO is the responsibility of Resources
 Room::Room(std::string fileName)
 {
-	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load(fileName.c_str());
+	Definer* def = CORE_Resources::getFirstNodeFromFile(fileName);
 
-	pugi::xml_node curNode = doc.first_child();
-
-	if (strcmp(curNode.name(), "Room"))
+	if (def)
 	{
-		if (fileName.empty())
-		{
-			fileName = "NO NAME GIVEN";
-		}
-		printf("Attempted to load Room from malformed xml file: %s", fileName);
-		return;
+		getArgsFromNode(def);
 	}
-
-	curNode = curNode.first_child();
-
-	getArgsFromNode(curNode);
 }
 
 #pragma region adders and removers
@@ -39,86 +27,10 @@ void Room::add(Entity* object)
 {
 		controllableVector->push_back(object);
 }
-void Room::add(Updatable* component)
-{
-	updateVector->push_back(component);
-}
-void Room::add(Drawable*component)
-{
-	drawVector->push_back(component);
-}
-void Room::add(BaseObject* component)
-{
-	objectVector->push_back(component);
-}
-void Room::add(Collidable* component)
-{
-	collidableVector->push_back(component);
-}
-void Room::add(Controllable* component)
-{
-	controllableVector->push_back(component);
-}
 
-void Room::remove(Updatable* component)
-{
-	for (int i = 0; i < updateVector->size(); i++)
-	{
-		if ((*updateVector)[i] == component)
-		{
-			updateVector->erase(updateVector->begin() + i, updateVector->begin() + i);
-			return;
-		}
-	}
-
-	//TODO:
-	//Log warning: component not found
-}
-void Room::remove(Drawable* component)
-{
-	for (int i = 0; i < drawVector->size(); i++)
-	{
-		if ((*drawVector)[i] == component)
-		{
-			drawVector->erase(drawVector->begin() + i, drawVector->begin() + i);
-			return;
-		}
-	}
-
-	//TODO:
-	//Log warning: component not found
-}
-void Room::remove(BaseObject* component)
-{
-	for (int i = 0; i < objectVector->size(); i++)
-	{
-		if ((*objectVector)[i] == component)
-		{
-			objectVector->erase(objectVector->begin() + i, objectVector->begin() + i);
-			return;
-		}
-	}
-
-	//TODO:
-	//Log warning: component not found
-}
-void Room::remove(Collidable *component)
-{
-	for (int i = 0; i < collidableVector->size(); i++)
-	{
-		if ((*collidableVector)[i] == component)
-		{
-			collidableVector->erase(collidableVector->begin() + i, collidableVector->begin() + i);
-			return;
-		}
-	}
-
-	//TODO:
-	//Log warning: component not found
-}
 void Room::remove(Controllable* component)
 {
-	for (int i = 0; i < controllableVector->size(); i++)
+	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] == component)
 		{
@@ -140,69 +52,38 @@ void Room::spawn(std::string objectName)
 		return;
 	}
 
-	Entity* newObject = ObjectManager::generate(objectName);
+	Entity* newObject = CORE_Factory::generate(objectName);
 
 	add(newObject);
 }
 
-void Room::getArgsFromNode(pugi::xml_node node)
+void Room::getArgsFromNode(Definer* def)
 {
-	node = node.first_child();
-
-	updateVector = new std::vector<Updatable*>;
-	drawVector = new std::vector<Drawable*>;
-	objectVector = new std::vector<BaseObject*>;
-	collidableVector = new std::vector<Collidable*>;
 	controllableVector = new std::vector<Controllable*>;
 
-	do
+	Definer* controlsParent = def->getChild("objects");
+	if (controlsParent)
 	{
-		if (strcmp(node.name(), "objects") == 0)
+		std::vector<Definer*>* objectsVector = controlsParent->getChildren();
+
+		for (unsigned int i = 0; i < objectsVector->size(); i++)
 		{
-			pugi::xml_node objectsNode = node.first_child();
-			std::string curName = objectsNode.name();
+			Definer* cur = (*objectsVector)[i];
 
-			while (!curName.empty())
-			{
-				ObjectManager::generateGameObject(curName, objectsNode, this);
-				objectsNode = objectsNode.next_sibling();
-				curName = objectsNode.name();
-			}
-		}
-
-		else if (!strcmp(node.name(), "name"))
-		{
-			name = node.first_child().value();
-		}
-
-		else if (!strcmp(node.name(), "w"))
-		{
-			std::string wStr = node.first_child().value();
-
-			w = atoi(wStr.c_str());
-		}
-
-		else if (!strcmp(node.name(), "h"))
-		{
-			h = atoi(node.first_child().value());
-		}
-		node = node.next_sibling();
-	} while (strcmp(node.name(), "") != 0);
-
-	quadTree = new QuadTree(0, 0, 0, w, h, NULL);
-	for (int x = 0; x < collidableVector->size(); x++)
-	{
-		if ((*collidableVector)[x] != NULL)
-		{
-			quadTree->insert((*collidableVector)[x]);
+			Entity* newObject = CORE_Factory::generateGameObject(cur);
+			add(newObject);
 		}
 	}
+
+	name = def->getVariable("name");
+
+	w = stoi(def->getVariable("w"));
+	h = stoi(def->getVariable("h"));
 }
 
-// 7/2016 compliant
 void Room::handleInput(int key, int posOrNeg, int x, int y)
 {
-	for (int i = 0; i < controllableVector->size(); i++)
+	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] != NULL)
 		{
@@ -211,18 +92,9 @@ void Room::handleInput(int key, int posOrNeg, int x, int y)
 	}
 }
 
-//Draw every drawable in the room. 7/2016 compliant
 void Room::draw()
 {
-	for (int i = 0; i < drawVector->size(); i++)
-	{
-		if ((*drawVector)[i] != NULL)
-		{
-			(*drawVector)[i]->draw();
-		}
-	}
-
-	for (int i = 0; i < controllableVector->size(); i++)
+	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] != NULL)
 		{
@@ -230,23 +102,10 @@ void Room::draw()
 		}
 	}
 }
-// 7/2016 compliant
+
 void Room::update()
 {
-	/*for (int i = 0; i < updateVector->size(); i++)
-	{
-		if ((*updateVector)[i] != NULL)
-		{
-			(*updateVector)[i]->update();
-		}
-
-		else
-		{
-			printf("NULL update in room\n");
-		}
-	}*/
-
-	for (int i = 0; i < controllableVector->size(); i++)
+	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] != NULL)
 		{

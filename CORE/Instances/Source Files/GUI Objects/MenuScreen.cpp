@@ -1,17 +1,17 @@
 #include "MenuScreen.h"
-#include "ObjectManager.h"
+#include "CORE_Factory.h"
 #include "pugixml.hpp"
 #include "NavigationButton.h"
-#include "EventManager.h"
+#include "CORE_Devices.h"
 #include <vector>
 
-MenuScreen::MenuScreen(pugi::xml_node node)
-	:Entity(node)
+MenuScreen::MenuScreen(Definer* def)
+	:Entity(def)
 {
-	getArgsFromNode(node);
+	getArgsFromNode(def);
 }
 
-MenuScreen::MenuScreen(pugi::xml_node node, MenuSystem* root) : MenuScreen(node)
+MenuScreen::MenuScreen(Definer* def, MenuSystem* root) : MenuScreen(def)
 {
 }
 
@@ -21,78 +21,41 @@ MenuScreen::MenuScreen(char* fileName)
 	pugi::xml_parse_result result = doc.load_file(fileName);
 	pugi::xml_node node = doc.first_child();
 
-	if (!strcmp("MenuScreen", node.name()))
+	Definer* newMenuDef = CORE_Factory::generateDefiner(node);
+
+	if (newMenuDef->getName() == "MenuScreen")
 	{
-		getArgsFromNode(node);
+		getArgsFromNode(newMenuDef);
 	}
 }
 
-void MenuScreen::getArgsFromNode(pugi::xml_node node, MenuSystem* root)
+void MenuScreen::getArgsFromNode(Definer* def, MenuSystem* root)
 {
-	pugi::xml_node curNode = node.first_child();
+	getArgsFromNode(def);
+}
 
-	char* curName = (char*)curNode.name();
+void MenuScreen::getArgsFromNode(Definer* def)
+{
+	name = def->getVariable("name");
 
-	while (strcmp(curNode.name(), ""))
+	Definer* controlsParent = def->getChild("controls");
+
+	if (controlsParent)
 	{
-		if (!strcmp(curName, "name"))
-		{
-			name = (char*)curNode.first_child().value();
-		}
+		std::vector<Definer*>* controlsVector = controlsParent->getChildren();
 
-		else if (!strcmp(curName, "controls"))
+		for (unsigned int i = 0; i < controlsVector->size(); i++)
 		{
-			pugi::xml_node controlNode = curNode.first_child();
+			Definer* cur = (*controlsVector)[i];
 
-			while (strcmp("", controlNode.name()))
-			{
-				Control* newControl = ObjectManager::generateControl(controlNode.name(), controlNode);
+			Control* newControl = NULL;
 				
-				if (newControl)
-				{
-					controls.push_back(newControl);
-				}
-				controlNode = controlNode.next_sibling();
-			}
-		}
-
-		curNode = curNode.next_sibling();
-		curName = (char*)curNode.name();
-	}
-}
-
-void MenuScreen::getArgsFromNode(pugi::xml_node node)
-{
-	pugi::xml_node curNode = node.first_child();
-	char* curName = (char*) curNode.name();
-	
-	while (strcmp(curNode.name(), "") != 0)
-	{
-		if (!strcmp(curNode.name(), "name"))
-		{
-			name = curNode.first_child().value();
-		}
-
-		else if (!strcmp(curName, "Controls"))
-		{
-			pugi::xml_node controlNode = curNode.first_child();
-
-			while (strcmp("", controlNode.name()))
+			if(newControl = CORE_Factory::generateControl(cur))
 			{
-				Control* newControl = ObjectManager::generateControl(controlNode.name(), controlNode);
-
-				if (newControl)
-				{
-					controls.push_back(newControl);
-					newControl->registerSelf(this);
-				}
-				controlNode = controlNode.next_sibling();
+				components.push_back(newControl);
 			}
 		}
-
-		curNode = curNode.next_sibling();
-		curName = (char*) curNode.name();
-	} 
+	}
 }
 
 void MenuScreen::checkMousePos(int x, int y)
@@ -102,15 +65,15 @@ void MenuScreen::checkMousePos(int x, int y)
 
 void MenuScreen::add(Control* controlsToAdd[], int numControls)
 {
-	for (unsigned int i = 0; i < numControls; i++)
+	for (int i = 0; i < numControls; i++)
 	{
-		controls.push_back(controls[i]);
+		components.push_back(controlsToAdd[i]);
 	}
 }
 
 void MenuScreen::add(Control* controlToAdd)
 {
-	controls.push_back(controlToAdd);
+	components.push_back(controlToAdd);
 }
 
 void MenuScreen::checkMouseDown(int x, int y)
@@ -123,35 +86,24 @@ void MenuScreen::checkMouseUp(int x, int y)
 
 }
 
-void MenuScreen::handleInput(int key, int upDown, int x, int y)
-{
-	for (unsigned int i = 0; i < controls.size(); i++)
-	{
-		if (controls[i] != NULL)
-		{
-			controls[i]->handleInput(key, upDown, x, y);
-		}
-	}
-}
-
 void MenuScreen::draw()
 {
-	for (unsigned int i = 0; i < controls.size(); i++)
+	for (unsigned int i = 0; i < components.size(); i++)
 	{
-		if (controls[i] != NULL)
+		if (components[i] != NULL)
 		{
-			controls[i]->handleInput(drawStep);
+			components[i]->handleInput(drawStep);
 		}
 	}
 }
 
 void MenuScreen::update()
 {
-	for (unsigned int i = 0; i < controls.size(); i++)
+	for (unsigned int i = 0; i < components.size(); i++)
 	{
-		if (controls[i] != NULL)
+		if (components[i] != NULL)
 		{
-			controls[i]->handleInput(updateStep);
+			components[i]->handleInput(updateStep);
 		}
 	}
 }

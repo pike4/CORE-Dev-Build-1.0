@@ -9,7 +9,7 @@ public:
 	virtual void execute() = 0;
 };
 
-#pragma region StateManager commands
+#pragma region CORE commands
 class ChangeStateCommand : public Command
 {
 public:
@@ -25,7 +25,7 @@ public:
 
 #pragma endregion
 
-#pragma region AudioManager commands
+#pragma region CORE_Audio commands
 class PlayCommand : public Command
 {
 public:
@@ -70,19 +70,7 @@ public:
 
 #pragma endregion
 
-#pragma region VideoManager commands
-class FlashCommand : public Command
-{
-public:
-	void execute();
-
-	std::string b;
-
-	FlashCommand(std::string butt)
-	{
-		b = butt;
-	}
-};
+#pragma region CORE_Graphics commands
 
 class DrawRectCommand : public Command
 {
@@ -97,107 +85,4 @@ public:
 	}
 };
 
-#pragma endregion
-
-#pragma region ObjectManager commands
-class walkForwardCommand : public Command
-{
-public:
-	void execute();
-
-	int type;
-
-	walkForwardCommand(int type)
-	{
-		this->type = type;
-	}
-
-};
-
-class walkBackwardCommand : public Command
-{
-public:
-
-	void execute();
-
-	int type;
-
-	walkBackwardCommand(int type)
-	{
-		this->type = type;
-	}
-
-};
-
-class walkLeftCommand : public Command
-{
-public:
-	
-	void execute();
-
-	int type;
-
-	walkLeftCommand(int type)
-	{
-		this->type = type;
-	}
-
-};
-
-class walkRightCommand : public Command
-{
-public:
-	
-	void execute();
-
-	int type;
-
-	walkRightCommand(int type)
-	{
-		this->type = type;
-	}
-
-};
-
-class HandleMouseClickCommand : public Command
-{
-public:
-
-	void execute();
-
-	SDL_Point point;
-
-	HandleMouseClickCommand(int x, int y)
-	{
-		point.x = x;
-		point.y = y;
-	}
-};
-
-class HandleMouseMoveCommand : public Command
-{
-	void execute();
-};
-
-class HandleMouseUpCommand : public Command
-{
-	void execute();
-};
-
-#pragma endregion
-
-#pragma region SystemManagerCommands
-class MouseSendCommand : public Command
-{
-public:
-	SDL_Point point;
-
-	void execute();
-
-	MouseSendCommand(SDL_Point mPoint)
-	{
-		point.x = mPoint.x;
-		point.y = mPoint.y;
-	}
-};
 #pragma endregion

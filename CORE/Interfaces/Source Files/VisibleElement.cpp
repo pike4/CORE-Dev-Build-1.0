@@ -1,10 +1,9 @@
-#include "Drawable.h"
+#include "Component.h"
+#include "VisibleElement.h"
+#include "CORE_Graphics.h"
+
 #include "pugixml.hpp"
 #include "SDL.h"
-#include "RenderableCharSet.h"
-#include "VisibleElement.h"
-#include "VideoManager.h"
-#include "Room.h"
 
 VisibleElement::VisibleElement()
 {
@@ -18,15 +17,15 @@ VisibleElement::VisibleElement(int x, int y, int aW, int aH)
 	h = aH;
 }
 
-VisibleElement::VisibleElement(pugi::xml_node node)
+VisibleElement::VisibleElement(Definer* definer)
 	:VisibleElement()
 {
 	//*X = atoi(node.child("x").first_child().value());
 	//*Y= atoi(node.child("y").first_child().value());
-	w = atoi(node.child("w").first_child().value());
-	h = atoi(node.child("h").first_child().value());
+	w = stoi(definer->getVariable("w"));
+	h = stoi(definer->getVariable("h"));
 
-	zIndex = atoi(node.child("zIndex").first_child().value());
+	zIndex = stoi(definer->getVariable("zIndex"));
 }
 
 
@@ -34,6 +33,16 @@ VisibleElement::VisibleElement(VisibleElement& other)
 	:VisibleElement()
 {
 	zIndex = other.zIndex;
+}
+
+void VisibleElement::handleInput(int key, int upDown, int x, int y)
+{
+	switch (key)
+	{
+	case drawStep:
+		draw();
+		break;
+	}
 }
 
 void VisibleElement::assignPointers(Entity* aParent)
@@ -46,21 +55,3 @@ void VisibleElement::assignPointers(Entity* aParent)
 
 void VisibleElement::move(int x, int y)
 {}
-
-void VisibleElement::addTo(Room* room)
-{
-	if (room != NULL)
-	{
-		room->drawVector->push_back(this);
-	}
-}
-
-void VisibleElement::handleInput(int key, int upDown, int x, int y)
-{
-	switch (key)
-	{
-	case drawStep:
-		draw();
-		break;
-	}
-}

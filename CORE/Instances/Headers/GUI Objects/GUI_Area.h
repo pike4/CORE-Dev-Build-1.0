@@ -7,7 +7,7 @@ class GUI_Area : public Control
 {
 public:
 	GUI_Area(int x, int y, int w, int h);
-	GUI_Area(pugi::xml_node node);
+	GUI_Area(Definer* definer);
 	GUI_Area(GUI_Area& other);
 
 	virtual void update();

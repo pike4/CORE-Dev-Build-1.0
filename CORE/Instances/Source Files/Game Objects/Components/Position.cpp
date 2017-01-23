@@ -1,5 +1,6 @@
 #include "Position.h"
 #include "Entity.h"
+#include "Definer.h"
 
 void Position::assignPointers(Entity* parent)
 {
@@ -30,7 +31,7 @@ Position::Position()
 	pointers.push_back({ "y", &y });
 }
 
-Position::Position(pugi::xml_node node)
+Position::Position(Definer* definer)
 	: Position()
 {}
 

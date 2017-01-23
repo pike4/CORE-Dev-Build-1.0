@@ -1,36 +1,33 @@
-#include "pugixml.hpp"
 #include "MenuSystem.h"
 #include "MenuScreen.h"
-#include "ObjectManager.h"
-#include "StateManager.h"
 
-MenuSystem::MenuSystem(std::string fileName)
+#include "CORE_Resources.h"
+#include "CORE_Factory.h"
+#include "CORE.h"
+
+MenuSystem::MenuSystem(std::string fileName) 
+	: MenuSystem(CORE_Resources::getFirstNodeFromFile(fileName))
+{}
+
+MenuSystem::MenuSystem(Definer* def)
 {
-	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file(fileName.c_str());
-
-	pugi::xml_node cur = doc.first_child().first_child();
-	name = new char;
-	//name = (char*)cur.first_child().value();
 	menus = *(new std::map<std::string, MenuScreen*>);
+	name = def->getVariable("name");
 
-	while (strcmp(cur.name(), ""))
+	Definer* screenChild = def->getChild("menuScreens");
+	
+	std::vector<Definer*>* menuVector = screenChild->getChildren();
+
+	for (int i = 0; i < menuVector->size(); i++)
 	{
-		if (!strcmp(cur.name(), "name"))
-		{
-			name = cur.first_child().value();
-		}
+		Definer* cur = (*menuVector)[i];
+		MenuScreen* newMenu = new MenuScreen(cur);
 
-		else if (!strcmp(cur.name(), "MenuScreen"))
+		if (newMenu)
 		{
-			MenuScreen* MS = new MenuScreen(cur, this);
-			if (MS != NULL)
-			{
-				menus[MS->name] = MS;
-			}
+			newMenu->registerSelf(NULL);
+			menus[cur->getVariable("name")] = newMenu;
 		}
-
-		cur = cur.next_sibling();
 	}
 
 	if (name.empty())
@@ -38,8 +35,7 @@ MenuSystem::MenuSystem(std::string fileName)
 		name = "DEFAULT";
 	}
 
-	StateManager::menuSystems[name] = this;
-	
+	CORE_Resources::menuSystems[name] = this;
 }
 
 MenuScreen* MenuSystem::getMenuScreen(std::string name)
@@ -61,7 +57,7 @@ void MenuSystem::goToMenuScreen(std::string name)
 	if (menus.find(name) != menus.end())
 	{
 		MenuScreen* newLayer = menus[name];
-		StateManager::addMenuScreenLayer(newLayer);
+		CORE::addMenuScreenLayer(newLayer);
 	}
 
 	else

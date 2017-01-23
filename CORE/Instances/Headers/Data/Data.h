@@ -1,5 +1,7 @@
 #pragma once
 
+//Data classes basically need to be componentized
+
 class Data
 {
 public:
@@ -144,8 +146,8 @@ public:
 		}
 	}
 protected:
-	short sourceCount = 0;
-	short maxSources = 2;
+	unsigned short sourceCount = 0;
+	unsigned short maxSources = 2;
 	DataImpl<T>** sources;
 };
 
@@ -276,7 +278,7 @@ protected:
 	{
 		T ret = offset;
 
-		for (unsigned int i = 0; i < sourceCount; i++)
+		for (int i = 0; i < sourceCount; i++)
 		{
 			T temp = *sources[i];
 			ret += temp;

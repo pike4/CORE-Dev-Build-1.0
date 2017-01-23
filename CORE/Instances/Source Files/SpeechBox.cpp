@@ -1,7 +1,9 @@
 #include "SpeechBox.h"
-#include "Subject.h"
-#include "SystemManager.h"
-#include "EventManager.h"
+#include "CORE_Resources.h"
+#include "CORE_Audio.h"
+#include "CORE_Graphics.h"
+
+#include <string>
 
 SpeechBox::SpeechBox(int aW, int aH, char* message, SDL_Texture* background, 
 	RenderableCharSet* characterSet) : Control()
@@ -18,14 +20,11 @@ SpeechBox::SpeechBox(int aW, int aH, char* message, SDL_Texture* background,
 	charToLines(message);
 }
 
-SpeechBox::SpeechBox(pugi::xml_node node)
-	:Control(node)
+SpeechBox::SpeechBox(Definer* def)
+	:Control(def)
 {
-	pugi::xml_node tempNode = node.child("frequency");
-	frequency = atoi(tempNode.first_child().value());
-	tempNode = node.child("variation");
-	variation = atoi(tempNode.first_child().value());
-
+	frequency = stoi(def->getVariable("frequency"));
+	variation = stoi(def->getVariable("variation"));
 }
 
 void SpeechBox::update()
@@ -37,7 +36,7 @@ void SpeechBox::update()
 		if (characterIndex < lines[firstLineIndex].length() - 1)
 		{
 			characterIndex++;
-			AudioManager::playSound(SystemManager::assignSound("Assets/Music/talk_sample_1.wav"));
+			CORE_Audio::playSound(CORE_Resources::assignSound("Assets/Music/talk_sample_1.wav"));
 		}
 
 		else if (lastLineIndex < maxLines - 1)
@@ -91,7 +90,7 @@ void SpeechBox::charToLines(char* message)
 			{
 				lines.push_back("");
 				curLineWidth = 0;
-				for (int i = 0; i < curWord.length(); i++)
+				for (unsigned int i = 0; i < curWord.length(); i++)
 				{
 					lines.back() += curWord[i];
 					curLineWidth += charSet->fontWidth(curWord[i]);
@@ -121,7 +120,7 @@ void SpeechBox::charToLines(char* message)
 
 	words.clear();
 
-	for each (string curString in lines)
+	for each (std::string curString in lines)
 	{
 		printf("%s\n",curString.c_str());
 	}
@@ -152,14 +151,14 @@ void SpeechBox::draw()
 
 	for (int i= firstLineIndex; i <= lastLineIndex; i++)
 	{
-		for (int j = 0; j < lines[i].length(); j++)
+		for (unsigned int j = 0; j < lines[i].length(); j++)
 		{
 			if (i == lastLineIndex && j == characterIndex)
 			{
 				break;
 			}
 			char curChar = lines[i][j];
-			VideoManager::addDraw(penX, penY, (*charSet)[curChar], zIndex );
+			CORE_Graphics::addDraw(penX, penY, (*charSet)[curChar], zIndex );
 			penX += charSet->fontWidth(curChar);
 		}
 		penX = 0;

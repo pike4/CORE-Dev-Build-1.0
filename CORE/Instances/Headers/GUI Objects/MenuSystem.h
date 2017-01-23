@@ -1,4 +1,6 @@
 #pragma once
+#include "Definer.h"
+
 #include <map>
 
 class MenuScreen;
@@ -10,6 +12,7 @@ public:
 	std::string name;
 
 	MenuSystem(std::string fileName);
+	MenuSystem(Definer* def);
 
 	MenuScreen* getMenuScreen(std::string name);
 

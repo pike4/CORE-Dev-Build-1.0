@@ -1,11 +1,8 @@
 #pragma once
 #include "Entity.h"
-#include "Drawable.h"
 #include "SDL.h"
-#include "pugixml.hpp"
 #include "VisibleElement.h"
 
-class Aggregate;
 class MenuScreen;
 
 class Control : public Entity
@@ -18,10 +15,8 @@ public:
 	DataOffset<int>* y;
 
 	Control();
-	Control(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* visibleVector);
-	Control(pugi::xml_node node, Aggregate* parent);
-	Control(pugi::xml_node node, MenuScreen* parent);
-	Control(pugi::xml_node node);
+	Control(Definer* definer, MenuScreen* parent);
+	Control(Definer* definer);
 
 	Control(int x, int y, int w, int h);
 
@@ -38,7 +33,7 @@ public:
 protected:
 	bool isWithin(int x, int y);
 
-	void getArgsFromNode(pugi::xml_node node);
+	void getArgsFromNode(Definer* definer);
 
 	std::vector<VisibleElement*> elements;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "Control.h"
-#include "EventManager.h"
-#include "ObjectManager.h"
+#include "CORE_Devices.h"
+#include "CORE_Factory.h"
 #include "pugixml.hpp"
 
 Control::Control()
@@ -12,7 +12,7 @@ Control::Control()
 	y = (DataOffset<int>*) getCompoundData<DataOffset<int>>("y");
 }
 
-Control::Control(pugi::xml_node node) : Entity(node)
+Control::Control(Definer* definer) : Entity(definer)
 {
 	events = { drawStep, updateStep, updatePos };
 
@@ -22,7 +22,7 @@ Control::Control(pugi::xml_node node) : Entity(node)
 	w = getData<int>("w");
 	h = getData<int>("h");
 
-	getArgsFromNode(node);
+	getArgsFromNode(definer);
 }
 
 //This is marked for death
@@ -32,17 +32,7 @@ void Control::move(int aX, int aY)
 	*y = aY;
 }
 
-Control::Control(pugi::xml_node node, Aggregate* parent) : Control(node)
-{
-
-}
-
-Control::Control(pugi::xml_node node, std::vector<BaseObject*>* objectVector, std::vector<Drawable*>* visibleVector)
-{
-	getArgsFromNode(node);
-}
-
-Control::Control(pugi::xml_node node, MenuScreen* parent) : Control(node)
+Control::Control(Definer* definer, MenuScreen* parent) : Control(definer)
 {
 	
 }
@@ -52,13 +42,12 @@ Control::Control(int aX, int aY, int aW, int aH)
 
 }
 
-void Control::getArgsFromNode(pugi::xml_node node)
+void Control::getArgsFromNode(Definer* definer)
 {
-	*x = atoi(node.child("xOffset").first_child().value());
-	*y = atoi(node.child("yOffset").first_child().value());
-
-	*w = atoi(node.child("w").first_child().value());
-	*h = atoi(node.child("h").first_child().value());
+	*x = stoi(definer->getVariable("xOffset"));
+	*y = stoi(definer->getVariable("yOffset"));
+	*w = stoi(definer->getVariable("w"));
+	*h = stoi(definer->getVariable("h"));
 }
 
 void Control::registerSelf(Entity* parent)

@@ -23,7 +23,7 @@ int Observer::deregisterListener(int key, Controllable* listener)
 
 	std::vector<Controllable*>* list = listeners[key];
 
-	for (int i = 0; i < list->size(); i++)
+	for (unsigned int i = 0; i < list->size(); i++)
 	{
 		if (listener == (*list)[i])
 		{
@@ -48,7 +48,7 @@ void Observer::handleInput(int key, int upDown, int x, int y)
 
 	std::vector<Controllable*> listenerList = *(listeners[key]);
 
-	for (int i = 0; i < listenerList.size(); i++)
+	for (unsigned int i = 0; i < listenerList.size(); i++)
 	{
 		listenerList[i]->handleInput(key, upDown, x, y);
 	}

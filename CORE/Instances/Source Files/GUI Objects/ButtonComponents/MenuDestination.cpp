@@ -1,5 +1,5 @@
 #include "MenuDestination.h"
-#include "StateManager.h"
+#include "CORE.h"
 
 
 MenuDestination::MenuDestination() : Component()
@@ -8,10 +8,9 @@ MenuDestination::MenuDestination() : Component()
 	events.push_back(mouseRelease);
 }
 
-MenuDestination::MenuDestination(pugi::xml_node node) : MenuDestination()
+MenuDestination::MenuDestination(Definer* definer) : MenuDestination()
 {
-	node = node.child("destination");
-	destination = node.first_child().value();
+	destination = definer->getVariable("destination");
 }
 
 void MenuDestination::handleInput(int key, int upDown, int x, int y)
@@ -19,7 +18,7 @@ void MenuDestination::handleInput(int key, int upDown, int x, int y)
 	switch (key)
 	{
 	case mousePress:
-		StateManager::goToGUIInCurrentMenuSystem(destination);
+		CORE::goToGUIInCurrentMenuSystem(destination);
 		break;
 	case mouseRelease:
 		break;

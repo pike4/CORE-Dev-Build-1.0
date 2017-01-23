@@ -1,5 +1,5 @@
 #include "DragArea.h"
-#include "EventManager.h"
+#include "CORE_Devices.h"
 #include "MouseProcessor.h"
 
 DragArea::DragArea(int aX, int aY, int aW, int aH, GUI_Area* owner)
@@ -27,8 +27,8 @@ DragArea::DragArea(int aX, int aY, int aW, int aH, GUI_Area* owner)
 	}
 }
 
-DragArea::DragArea(pugi::xml_node node)
-	:Control(node)
+DragArea::DragArea(Definer* definer)
+	:Control(definer)
 {
 	events.push_back(mouse1Down);
 	events.push_back(mouseMoved);

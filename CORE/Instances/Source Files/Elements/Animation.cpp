@@ -1,21 +1,21 @@
 #include "Animation.h"
-#include "VideoManager.h"
+#include "CORE_Graphics.h"
 
-Animation::Animation(pugi::xml_node node)
- : VisibleElement(node)
+Animation::Animation(Definer* definer)
+ : VisibleElement(definer)
 {
-	std::string fileName = node.child("fileName").first_child().value();
-	millisecondsPerFrame = atoi(node.child("millisecondsPerFrame").first_child().value());
-	int frameH = atoi(node.child("frameH").first_child().value());
-	int frameW = atoi(node.child("frameW").first_child().value());
-	int framesX = atoi(node.child("framesX").first_child().value());
-	int framesY = atoi(node.child("framesY").first_child().value());
-	int seperation = atoi(node.child("seperation").first_child().value());
+	std::string fileName = definer->getVariable("fileName");
+	millisecondsPerFrame = stoi(definer->getVariable("millisecondsPerFrame"));
+	int frameH = stoi(definer->getVariable("frameH"));
+	int frameW = stoi(definer->getVariable("frameW"));
+	int framesX = stoi(definer->getVariable("framesX"));
+	int framesY = stoi(definer->getVariable("framesY"));
+	int seperation = stoi(definer->getVariable("seperation"));
 
 	frames = new VisibleElement*[framesX * framesY];
 	numFrames = framesX * framesY;
 	
-	VideoManager::getAnimationFromSpriteSheet(framesX, framesY, frameW, frameH, seperation, fileName, frames);
+	CORE_Graphics::getAnimationFromSpriteSheet(framesX, framesY, frameW, frameH, seperation, fileName, frames);
 }
 
 Animation::Animation(Animation& other)

@@ -1,63 +1,52 @@
 #include "GUI_Area.h"
 #include "CheckBoxButton.h"
-#include "ObjectManager.h"
+#include "CORE_Factory.h"
 #include "Entity.h"
+#include <string>
 
-GUI_Area::GUI_Area(pugi::xml_node node)
- :Control(node)
+GUI_Area::GUI_Area(Definer* definer)
+ :Control(definer)
 {
 	events.push_back(drawStep);
-	pugi::xml_node tempNode = node.first_child();
-	std::string name = tempNode.name();
 	
-	while (!name.empty())
+	Definer* controlsParent = definer->getChild("controls");
+	if (controlsParent)
 	{
-		if (!name.compare("Controls"))
+		std::vector<Definer*>* controlsVector = controlsParent->getChildren();
+
+		for (unsigned int i = 0; i < controlsVector->size(); i++)
 		{
-			pugi::xml_node node2 = tempNode.first_child();
-			while (strcmp(node2.name(), ""))
+			Definer* cur = (*controlsVector)[i];
+
+			Control* newControl = CORE_Factory::generateControl(cur);
+
+			if (newControl)
 			{
-				Control* newControl = ObjectManager::generateControl(node2.name(), node2);
-
-				if (newControl)
-				{
-					components.push_back(newControl);
-					newControl->parent = this;
-				}
-
-				node2 = node2.next_sibling();
+				components.push_back(newControl);
 			}
 		}
-
-		else if (!name.compare("Elements"))
-		{
-			pugi::xml_node node2 = tempNode.first_child();
-			while (strcmp(node2.name(), ""))
-			{
-				VisibleElement* newElem = ObjectManager::generateVisibleElement
-					(node2.name(), node2);
-
-				if (newElem)
-				{
-					components.push_back(newElem);
-				}
-				node2 = node2.next_sibling();
-			}
-		}
-
-		else if (!name.compare("x"))
-		{
-			*x = atoi(tempNode.first_child().value());
-		}
-
-		else if (!name.compare("y"))
-		{
-			*y = atoi(tempNode.first_child().value());
-		}
-
-		tempNode = tempNode.next_sibling();
-		name = tempNode.name();
 	}
+
+	Definer* elementsParent = definer->getChild("elements");
+	if (controlsParent)
+	{
+		std::vector<Definer*>* controlsVector = controlsParent->getChildren();
+
+		for (unsigned int i = 0; i < controlsVector->size(); i++)
+		{
+			Definer* cur = (*controlsVector)[i];
+
+			VisibleElement* newElement = CORE_Factory::generateVisibleElement(cur);
+
+			if (newElement)
+			{
+				components.push_back(newElement);
+			}
+		}
+	}
+
+	*x = stoi(definer->getVariable("x"));
+	*y = stoi(definer->getVariable("y"));
 }
 
 GUI_Area::GUI_Area(int x, int y, int w, int h)

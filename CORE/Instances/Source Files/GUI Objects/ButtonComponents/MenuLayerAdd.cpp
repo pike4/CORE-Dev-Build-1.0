@@ -1,5 +1,5 @@
 #include "MenuLayerAdd.h"
-#include "StateManager.h"
+#include "CORE.h"
 
 MenuLayerAdd::MenuLayerAdd()
 {
@@ -7,10 +7,9 @@ MenuLayerAdd::MenuLayerAdd()
 	events.push_back(mouseRelease);
 }
 
-MenuLayerAdd::MenuLayerAdd(pugi::xml_node node) : MenuLayerAdd()
+MenuLayerAdd::MenuLayerAdd(Definer* definer) : MenuLayerAdd()
 {
-	node = node.child("source");
-	source = node.first_child().value();
+	source = definer->getVariable("source");
 }
 
 void MenuLayerAdd::handleInput(int key, int upDown, int x, int y)
@@ -18,7 +17,7 @@ void MenuLayerAdd::handleInput(int key, int upDown, int x, int y)
 	switch( key)
 	{
 	case mousePress:
-		StateManager::addGUILayerFromCurrentMenuSystem(source);
+		CORE::addGUILayerFromCurrentMenuSystem(source);
 		break;
 
 	case mouseRelease:

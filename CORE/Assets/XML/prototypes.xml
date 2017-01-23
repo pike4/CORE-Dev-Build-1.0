@@ -1,35 +1,33 @@
 <prototypes>
-  <Entity>
+  <entity>
     <name>Charlie</name>
     <zIndex>5</zIndex>
-    <Components>
-      <x>100</x>
-      <y>20</y>
-      <Data>
-        <Health>100</Health>
-        <Regen>20</Regen>
-      </Data>
-      <I_VelocityControl></I_VelocityControl>
-        <ImageElement>
-          <X_Offset>-20</X_Offset>
-          <Y_Offset>-10</Y_Offset>
-          <x>150</x>
-          <y>10</y>
-          <w>100</w>
-          <h>100</h>
-          <Image>Assets/Sprites/Happy_Cow_Man_Big.png</Image>
-        </ImageElement>
-      <Controllable>true</Controllable>
-      <Updatable>true</Updatable>
-    </Components>
-  </Entity>
+    <x>100</x>
+    <y>20</y>
+    <data>
+      <health>100</health>
+      <regen>20</regen>
+    </data>
+    <components>
+      <iVelocityControl></iVelocityControl>
+      <imageElement>
+        <xOffset>-20</xOffset>
+        <yOffset>-10</yOffset>
+        <x>150</x>
+        <y>10</y>
+        <w>100</w>
+        <h>100</h>
+        <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+      </imageElement>
+    </components>
+  </entity>
 
-  <Entity>
+  <entity>
     <name>Fire</name>
     <zIndex>15</zIndex>
-    <Components>
-      <Position></Position>
-        <Animation>
+    <components>
+      <position></position>
+        <animation>
           <fileName>Assets/Sprites/Fire.png</fileName>
           <frameH>128</frameH>
           <frameW>128</frameW>
@@ -37,7 +35,7 @@
           <framesY>4</framesY>
           <millisecondsPerFrame>30</millisecondsPerFrame>
           <seperation>0</seperation>
-        </Animation>
-    </Components>
-  </Entity>
+        </animation>
+    </components>
+  </entity>
 </prototypes>

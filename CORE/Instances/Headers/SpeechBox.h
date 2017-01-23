@@ -1,16 +1,16 @@
 #pragma once
-#include "Updatable.h"
 #include "Controllable.h"
 #include "Timer.h"
 #include "RenderableCharSet.h"
-#include "Aggregate.h"
+#include "Definer.h"
+#include "Control.h"
 
 class SpeechBox : public Control
 {
 public:
 
 	SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet);
-	SpeechBox(pugi::xml_node node);
+	SpeechBox(Definer* def);
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 

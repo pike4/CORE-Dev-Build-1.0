@@ -1,12 +1,12 @@
 #pragma once
 #include "ButtonComponent.h"
-#include "pugixml.hpp"
+#include "Definer.h"
 
 class MenuDestination : public Component
 {
 public:
 	MenuDestination();
-	MenuDestination(pugi::xml_node node);
+	MenuDestination(Definer* definer);
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 protected:

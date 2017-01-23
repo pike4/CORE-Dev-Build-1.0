@@ -1,13 +1,13 @@
 #pragma once
 #include "Component.h"
 #include "Controllable.h"
-#include "pugixml.hpp"
+#include "Definer.h"
 
-class Position : public Component, public Controllable
+class Position : public Component
 {
 public:
 	Position();
-	Position(pugi::xml_node node);
+	Position(Definer* definer);
 	Position(Position&);
 	virtual Component* spawnCopy();
 	virtual void move(int aX, int aY);

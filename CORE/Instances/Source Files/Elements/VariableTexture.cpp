@@ -1,38 +1,33 @@
 #include "VariableElement.h"
-#include "VideoManager.h"
-#include "ObjectManager.h"
+#include "CORE_Graphics.h"
+#include "CORE_Factory.h"
 
 VariableElement::VariableElement()
 	:VisibleElement()
 {
 }
 
-VariableElement::VariableElement(pugi::xml_node node) 
-	: VariableElement()
+VariableElement::VariableElement(Definer* definer)
+	: VisibleElement(definer)
 {
-	pugi::xml_node tempNode = node.first_child();
-	std::string name = tempNode.name();
-	std::string elemName = "";
+	std::vector<Definer*>* elementsNodes = definer->getChildren();
 
-	while (!name.empty())
+	for (unsigned int i = 0; i < elementsNodes->size(); i++)
 	{
-		VisibleElement* newElement = ObjectManager::generateVisibleElement(name, tempNode);
-		pugi::xml_node nameNode = tempNode.child("name");
-		elemName = tempNode.name();
+		Definer* elem = (*elementsNodes)[i];
+			
+		VisibleElement* newElement = CORE_Factory::generateVisibleElement(elem);
 
 		//Assign pointers from this to the contained 
-		if (newElement && !elemName.empty())
+		if (newElement)
 		{
 			newElement->X = X;
 			newElement->Y = Y;
 
-			elements[elemName] = newElement;
+			elements[elem->getVariable("name")] = newElement;
+			current = newElement;
 		}
-		tempNode = tempNode.next_sibling();
-		name = tempNode.name();
 	}
-
-	current = elements[elemName];
 }
 
 VariableElement::VariableElement(VariableElement& other)
@@ -59,7 +54,7 @@ void VariableElement::draw()
 			current->Y = Y;
 		}
 
-		current->draw();
+		current->handleInput(drawStep);
 	}
 }
 

@@ -1,10 +1,8 @@
 #include "Entity.h"
 #include "Collidable.h"
 #include "Controllable.h"
-#include "I_DrawComponent.h"
 
-#include "ObjectManager.h"
-
+#include "CORE_Factory.h"
 #include "ComponentTypes.h"
 
 #include <cstring>
@@ -14,10 +12,10 @@ Entity::Entity()
 {
 }
 
-Entity::Entity(pugi::xml_node node)
+Entity::Entity(Definer* definer)
 	:Entity()
 {
-	getArgsFromNode(node);
+	getArgsFromNode(definer);
 }
 
 Entity::Entity(Entity& other)
@@ -31,67 +29,47 @@ Entity::Entity(Entity& other)
 	}
 }
 
-void Entity::getArgsFromNode(pugi::xml_node node)
+void Entity::getArgsFromNode(Definer* definer)
 {
-	int tempZ = atoi(node.child("zIndex").first_child().value());
-	zIndex = tempZ;
+	Definer* componentsNode = definer->getChild("components");
 
-
-	pugi::xml_node tempNode = node.child("Components");
-
-	tempNode = tempNode.first_child();
-	std::string tempName = tempNode.name();
-
-	while (!tempName.empty())
+	if (componentsNode)
 	{
-		Component* newComponent = NULL;
+		std::vector<Definer*>* componentsNodes = componentsNode->getChildren();
 
-		if (newComponent = ObjectManager::generateVisibleElement(tempName, tempNode))
+		if (componentsNodes)
 		{
-			components.push_back(newComponent);
-		}
-
-		else if (newComponent = ObjectManager::generateControl(tempName, tempNode))
-		{
-			components.push_back(newComponent);
-		}
-
-		else if (newComponent = ObjectManager::generateComponent(tempName, tempNode))
-		{
-			components.push_back(newComponent);
-		}
-
-		if (newComponent)
-		{
-			newComponent->parent = this;
-		}
-
-		else if (!tempName.compare("Data"))
-		{
-			pugi::xml_node dataNode = tempNode.first_child();
-			std::string dataName = dataNode.name();
-
-			while (!dataName.empty())
+			for (int i = 0; i < componentsNodes->size(); i++)
 			{
-				int size = atoi(dataNode.first_child().value());
+				Definer* curDefiner = (*componentsNodes)[i];
+				Component* newComponent = NULL;
 
-				if (size > 0 && size < 100)
+				if (newComponent = CORE_Factory::generateVisibleElement(curDefiner))
 				{
-					//data[dataName] = malloc(size);
+					components.push_back(newComponent);
 				}
 
-				dataNode = dataNode.next_sibling();
-				dataName = dataNode.name();
+				else if (newComponent = CORE_Factory::generateControl(curDefiner))
+				{
+					components.push_back(newComponent);
+				}
+
+				else if (newComponent = CORE_Factory::generateComponent(curDefiner))
+				{
+					components.push_back(newComponent);
+				}
+
+				if (newComponent)
+				{
+					newComponent->parent = this;
+				}
+
+				else
+				{
+					printf("Undefined object type %s\n", curDefiner->getName().c_str());
+				}
 			}
 		}
-
-		else
-		{
-			printf("Undefined object type: %s", tempName.c_str());
-		}
-
-		tempNode = tempNode.next_sibling();
-		tempName = tempNode.name();
 	}
 }
 
@@ -177,7 +155,10 @@ void Entity::recursiveAdd(Component* component)
 
 void Entity::registerSelf(Entity* parent)
 {
-	Component::registerSelf(parent);
+	if (parent)
+	{
+		Component::registerSelf(parent);
+	}
 
 	for (unsigned int i = 0; i < components.size(); i++)
 	{
@@ -195,7 +176,6 @@ void Entity::registerSelf(Entity* parent)
 //
 //	return data[key];
 //}
-
 //Sets the given pointer and its associated slot in the data table 
 //return the other pointer so it may be assigned to a member pointer
 //void* Entity::setPointer(std::string key, int size, void* other)
@@ -208,7 +188,6 @@ void Entity::registerSelf(Entity* parent)
 //	data[key] = other;
 //	return other;
 //}
-
 //Return the pointer if it exists
 //void* Entity::findPointer(std::string name) 
 //{
@@ -221,7 +200,6 @@ void Entity::registerSelf(Entity* parent)
 //
 //	return ret;
 //}
-
 
 Data* Entity::peekData(std::string name)
 {

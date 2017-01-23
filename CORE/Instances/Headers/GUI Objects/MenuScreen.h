@@ -2,19 +2,15 @@
 #include "MenuSystem.h"
 #include "Entity.h"
 #include "Control.h"
-#include "Drawable.h"
-#include "Updatable.h"
 #include <vector>
 
-class MenuScreen : public Updatable, public Drawable, public Entity
+class MenuScreen : public Entity
 {
 public:
 	MenuScreen() {};
-	MenuScreen(pugi::xml_node node);
-	MenuScreen(pugi::xml_node node, MenuSystem* root);
+	MenuScreen(Definer* def);
+	MenuScreen(Definer* def, MenuSystem* root);
 	MenuScreen(char* fileName);
-
-	std::vector<Control*> controls;
 
 	std::string name;
 
@@ -24,12 +20,11 @@ public:
 
 	virtual void draw();
 	virtual void update();
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	void add(Control* controlsToAdd[], int numButtons);
 	void add(Control* controlToAdd);
 
 private:
-	void getArgsFromNode(pugi::xml_node node);
-	void getArgsFromNode(pugi::xml_node node, MenuSystem* root);
+	void getArgsFromNode(Definer* def);
+	void getArgsFromNode(Definer* def, MenuSystem* root);
 };

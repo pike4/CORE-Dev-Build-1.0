@@ -12,7 +12,7 @@ void Component::registerSelf(Entity* newParent)
 {
 	if (!parent)
 	{
-		printf("NULL parent");
+		printf("NULL parent\n");
 		return;
 	}
 

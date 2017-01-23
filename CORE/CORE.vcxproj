@@ -40,9 +40,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\Instances\Headers\Data;.\Instances\Headers\File Parsing;.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects\ButtonComponents;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Managers\Headers;.\PugiXML;$(IncludePath)</IncludePath>
+    <IncludePath>.\Instances\Headers\Data;.\Instances\Headers\File Parsing;.\Instances\Headers;.\Instances\Headers\Elements;.\Instances\Headers\CORE Objects;.\Instances\Headers\GUI Objects\ButtonComponents;.\Instances\Headers\GUI Objects;.\Instances\Headers\Game Objects;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Interfaces\Headers;.\Assets;.\Main\Headers;.\Subsystems\Headers\;.\PugiXML;.\Subsystems\Headers\Logging;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>$(ProjectDir)Bin\Debug</OutDir>
+    <OutDir>$(ProjectDir)Bin\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\C_Interfaces\Motion;.\H_Interfaces;.\H_Interfaces\Motion;.\H_Instances;.\Assets;.\H_Main;.\H_Managers;.\C_Managers;.\C_Interfaces;.\C_Instances;.\C_Main;$(IncludePath)</IncludePath>
@@ -82,26 +82,27 @@
   <ItemGroup>
     <ClCompile Include="Assets\AssetsManifest.cpp" />
     <ClCompile Include="Instances\Source Files\Data\Data.cpp" />
-    <ClCompile Include="Instances\Source Files\File Parsing\Constant.cpp" />
-    <ClCompile Include="Instances\Source Files\File Parsing\Definer.cpp" />
-    <ClCompile Include="Instances\Source Files\File Parsing\NodeParser.cpp" />
-    <ClCompile Include="Instances\Source Files\File Parsing\Provider.cpp" />
-    <ClCompile Include="Instances\Source Files\File Parsing\Template.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Constant.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Default.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Definer.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\NodeParser.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeMain.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeValue.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Template.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\TemplateDef.cpp" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Variable.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\ButtonComponent.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuDestination.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuLayerAdd.cpp" />
-    <ClCompile Include="Main\Source Files\Core.cpp" />
-    <ClCompile Include="Instances\Source Files\CORE Objects\ManagerArgs.cpp" />
+    <ClCompile Include="Main\Source Files\CORE_Main.cpp" />
     <ClCompile Include="Instances\Source Files\Elements\Animation.cpp" />
     <ClCompile Include="Instances\Source Files\Elements\VariableTexture.cpp" />
     <ClCompile Include="Instances\Source Files\Environment.cpp" />
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\I_DrawComponent.cpp" />
     <ClCompile Include="Instances\Source Files\Game Objects\Components\I_VelocityControl.cpp" />
     <ClCompile Include="Instances\Source Files\Game Objects\Components\MouseProcesor.cpp" />
     <ClCompile Include="Instances\Source Files\Game Objects\Components\Position.cpp" />
     <ClCompile Include="Instances\Source Files\Game Objects\Components\Velocity.cpp" />
     <ClCompile Include="Instances\Source Files\Game Objects\Entity.cpp" />
-    <ClCompile Include="Instances\Source Files\Game Objects\TriggerZone.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\Button.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\CheckBoxButton.cpp" />
     <ClCompile Include="Instances\Source Files\GUI Objects\Control.cpp" />
@@ -116,45 +117,41 @@
     <ClCompile Include="Instances\Source Files\RendereableCharacter.cpp" />
     <ClCompile Include="Instances\Source Files\Room.cpp" />
     <ClCompile Include="Instances\Source Files\SpeechBox.cpp" />
-    <ClCompile Include="Interfaces\Source Files\BaseObject.cpp" />
     <ClCompile Include="Instances\Source Files\QuadTree.cpp" />
-    <ClCompile Include="Instances\Source Files\Subject.cpp" />
     <ClCompile Include="Instances\Source Files\Timer.cpp" />
     <ClCompile Include="Interfaces\Source Files\Collidable.cpp" />
     <ClCompile Include="Interfaces\Source Files\Component.cpp" />
-    <ClCompile Include="Interfaces\Source Files\CompositeDrawable.cpp" />
-    <ClCompile Include="Interfaces\Source Files\Controllable.cpp" />
-    <ClCompile Include="Interfaces\Source Files\Drawable.cpp" />
     <ClCompile Include="Interfaces\Source Files\Motion\VelocityComponent.cpp" />
     <ClCompile Include="Interfaces\Source Files\Observer.cpp" />
-    <ClCompile Include="Interfaces\Source Files\SimpleDrawable.cpp" />
-    <ClCompile Include="Interfaces\Source Files\Updatable.cpp" />
     <ClCompile Include="Interfaces\Source Files\VisibleElement.cpp" />
-    <ClCompile Include="Managers\Source Files\EventManager.cpp" />
-    <ClCompile Include="Managers\Source Files\ObjectManager.cpp" />
-    <ClCompile Include="Managers\Source Files\AudioManager.cpp" />
-    <ClCompile Include="Managers\Source Files\StateManager.cpp" />
-    <ClCompile Include="Managers\Source Files\SystemManager.cpp" />
-    <ClCompile Include="Managers\Source Files\_Manager.cpp" />
-    <ClCompile Include="Managers\Source Files\VideoManager.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_SystemIO.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_Devices.cpp" />
+    <ClCompile Include="Subsystems\Source Files\Logging\LogFileStream.cpp" />
+    <ClCompile Include="Subsystems\Source Files\Logging\LogWindowStream.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_Factory.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_Audio.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_Resources.cpp" />
+    <ClCompile Include="Subsystems\Source Files\CORE_Graphics.cpp" />
     <ClCompile Include="PugiXML\pugixml.cpp" />
     <ClInclude Include="H_Instances\BouncingBall.h" />
     <ClInclude Include="Instances\Headers\CORE Objects\Dependency.h" />
-    <ClInclude Include="Instances\Headers\CORE Objects\ManagerArgs.h" />
     <ClInclude Include="Instances\Headers\Data\Data.h" />
     <ClInclude Include="Instances\Headers\Elements\Animation.h" />
     <ClInclude Include="Instances\Headers\Elements\VariableElement.h" />
     <ClInclude Include="Instances\Headers\Environment.h" />
     <ClInclude Include="Instances\Headers\File Parsing\Constant.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\Default.h" />
     <ClInclude Include="Instances\Headers\File Parsing\Definer.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\NodeMain.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\NodeValue.h" />
     <ClInclude Include="Instances\Headers\File Parsing\Provider.h" />
-    <ClInclude Include="Instances\Headers\Game Objects\I_DrawComponent.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\TemplateDef.h" />
+    <ClInclude Include="Instances\Headers\File Parsing\Variable.h" />
     <ClInclude Include="Instances\Headers\Game Objects\I_VelocityControl.h" />
     <ClInclude Include="Instances\Headers\Game Objects\MouseProcessor.h" />
     <ClInclude Include="Instances\Headers\Game Objects\Position.h" />
-    <ClInclude Include="Instances\Headers\Game Objects\Door.h" />
     <ClInclude Include="Instances\Headers\Game Objects\Entity.h" />
-    <ClInclude Include="Instances\Headers\Game Objects\TriggerZone.h" />
     <ClInclude Include="Instances\Headers\Game Objects\Velocity.h" />
     <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\ButtonComponent.h" />
     <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuDestination.h" />
@@ -173,25 +170,24 @@
     <ClInclude Include="Instances\Headers\RenderableCharacter.h" />
     <ClInclude Include="Instances\Headers\RenderableCharSet.h" />
     <ClInclude Include="Instances\Headers\SpeechBox.h" />
-    <ClInclude Include="Interfaces\Headers\Aggregate.h" />
     <ClInclude Include="Interfaces\Headers\Component.h" />
-    <ClInclude Include="Interfaces\Headers\CompositeDrawable.h" />
     <ClInclude Include="Interfaces\Headers\Control.h" />
     <ClInclude Include="Interfaces\Headers\Controllable.h" />
-    <ClInclude Include="Interfaces\Headers\Drawable.h" />
     <ClInclude Include="Interfaces\Headers\DataBound.h" />
-    <ClCompile Include="Loggables\Loggables.cpp" />
     <ClInclude Include="Interfaces\Headers\MotionAffector.h" />
     <ClInclude Include="Interfaces\Headers\Observer.h" />
     <ClInclude Include="Interfaces\Headers\VelocityComponent.h" />
-    <ClInclude Include="Interfaces\Headers\SimpleDrawable.h" />
-    <ClInclude Include="Interfaces\Headers\UpdatableComponent.h" />
     <ClInclude Include="Interfaces\Headers\VisibleElement.h" />
     <ClInclude Include="Main\Headers\ComponentTypes.h" />
     <ClInclude Include="Main\Headers\ControlTypes.h" />
     <ClInclude Include="Main\Headers\DrawOrder.h" />
     <ClInclude Include="Main\Headers\ElementTypes.h" />
     <ClInclude Include="Main\Headers\Events.h" />
+    <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
+    <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
+    <ClInclude Include="Subsystems\Headers\Logging\LogFileStream.h" />
+    <ClInclude Include="Subsystems\Headers\Logging\LoggingStream.h" />
+    <ClInclude Include="Subsystems\Headers\Logging\LogWindowStream.h" />
     <ClInclude Include="PugiXML\pugiconfig.hpp" />
     <ClInclude Include="PugiXML\pugixml.hpp" />
   </ItemGroup>
@@ -199,22 +195,13 @@
     <ClInclude Include="Assets\AssetsManifest.h" />
     <ClInclude Include="H_Instances\Player.h" />
     <ClInclude Include="H_Instances\Spinner.h" />
-    <ClInclude Include="Instances\Headers\Subject.h" />
     <ClInclude Include="H_Instances\TextObjects.h" />
     <ClInclude Include="Instances\Headers\Timer.h" />
     <ClInclude Include="H_Instances\Room.h" />
-    <ClInclude Include="Interfaces\Headers\BaseObject.h" />
-    <ClInclude Include="Interfaces\Headers\Updatable.h" />
     <ClInclude Include="Interfaces\Headers\Visible.h" />
     <ClInclude Include="Main\Headers\Commands.h" />
-    <ClInclude Include="Managers\Headers\EventManager.h" />
-    <ClInclude Include="Managers\Headers\ObjectManager.h" />
-    <ClInclude Include="Main\Headers\Globals.h" />
-    <ClInclude Include="Managers\Headers\_Manager.h" />
-    <ClInclude Include="Loggables\Loggable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="Subsystems\Headers\CORE_Devices.h" />
+    <ClInclude Include="Subsystems\Headers\CORE_Factory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

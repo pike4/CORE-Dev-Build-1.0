@@ -1,12 +1,13 @@
 #include "I_VelocityControl.h"
 #include "Entity.h"
+#include "Definer.h"
 
 Component* I_VelocityControl::spawnCopy()
 {
 	return new I_VelocityControl(*this);
 }
 
-I_VelocityControl::I_VelocityControl(pugi::xml_node node)
+I_VelocityControl::I_VelocityControl(Definer* node)
 {
 	x = NULL;
 	y = NULL;

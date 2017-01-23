@@ -1,7 +1,7 @@
 #include "QuadTree.h"
 #include "Collidable.h"
-#include "VideoManager.h"
-#include "ObjectManager.h"
+#include "CORE_Graphics.h"
+#include "CORE_Factory.h"
 #include <vector>
 
 QuadTree::QuadTree(int aDepth, int x, int y, int width, int height, QuadTree* aParent)
@@ -68,7 +68,7 @@ void QuadTree::checkCollisions()
 	{
 		for (unsigned int x = 0; x < 4; x++)
 		{
-			//VideoManager::enqueue(new DrawRectCommand(drawRects[x]));
+			//CORE_Graphics::enqueue(new DrawRectCommand(drawRects[x]));
 		}
 	}
 }

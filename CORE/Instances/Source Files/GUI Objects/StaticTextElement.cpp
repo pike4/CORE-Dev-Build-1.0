@@ -1,6 +1,6 @@
 #include "StaticTextElement.h"
-#include "VideoManager.h"
-#include "SystemManager.h"
+#include "CORE_Graphics.h"
+#include "CORE_Resources.h"
 
 StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableCharSet* charSet)
 	:VisibleElement(aX, aY, aW, aH)
@@ -25,10 +25,10 @@ StaticTextElement::StaticTextElement(int aX, int aY, int aW, int aH, RenderableC
 	lineIndex = 0;
 }
 
-StaticTextElement::StaticTextElement(pugi::xml_node node)
-	:VisibleElement(node)
+StaticTextElement::StaticTextElement(Definer* definer)
+	:VisibleElement(definer)
 {
-	getArgsFromNode(node);
+	getArgsFromNode(definer);
 }
 
 StaticTextElement::StaticTextElement(StaticTextElement& copy)
@@ -47,7 +47,7 @@ void StaticTextElement::draw()
 		for (unsigned int j = 0; j < lines[i].length(); j++)
 		{
 			char curChar = lines[i][j];
-			VideoManager::addDraw(penX, penY, (*charSet)[curChar], zIndex);
+			CORE_Graphics::addDraw(penX, penY, (*charSet)[curChar], zIndex);
 			penX += charSet->fontWidth(curChar);
 		}
 
@@ -118,14 +118,14 @@ void StaticTextElement::stringToLines(std::string message)
 	}
 }
 
-void StaticTextElement::getArgsFromNode(pugi::xml_node node)
+void StaticTextElement::getArgsFromNode(Definer* definer)
 {
-	text = node.child("text").first_child().value();
-	std::string charSetName = node.child("CharacterSet").first_child().value();
+	text = definer->getVariable("text");
+	std::string charSetName = definer->getVariable("characterSet");
 
 	if (!charSetName.empty())
 	{
-		charSet = SystemManager::assignCharSet(charSetName);
+		charSet = CORE_Resources::assignCharSet(charSetName);
 	}
 
 	else

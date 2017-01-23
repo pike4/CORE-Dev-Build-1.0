@@ -6,7 +6,7 @@ class DynamicTextElement : public StaticTextElement
 {
 public:
 	DynamicTextElement(int x, int y, int w, int h, RenderableCharSet* charSet);
-	DynamicTextElement(pugi::xml_node node);
+	DynamicTextElement(Definer* definer);
 
 	void setText(std::string newText);
 	void append(std::string addition);

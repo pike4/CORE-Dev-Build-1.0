@@ -1,0 +1,29 @@
+<CORE>
+
+  <imports>
+    <templates.xml></templates.xml>
+    <prototypes.xml></prototypes.xml>
+  </imports>
+
+  <menuSystem>
+    <name>other_system</name>
+    <menuScreens>
+      <menuScreen>
+        <name>fifth</name>
+        <controls>
+          <checkbox>
+            <zIndex>10</zIndex>
+            <xOffset>50</xOffset>
+            <yOffset>20</yOffset>
+            <w>100</w>
+            <h>100</h>
+            <components>
+              <startButton>5</startButton>
+            </components>
+          </checkbox>
+        </controls>
+      </menuScreen>
+    </menuScreens>
+  </menuSystem>
+  
+</CORE>

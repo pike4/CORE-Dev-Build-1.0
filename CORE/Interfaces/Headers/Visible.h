@@ -1,6 +1,5 @@
 #pragma once
 #include "SDL.h"
-#include "BaseObject.h"
 #include "pugixml.hpp"
 #include <vector>
 

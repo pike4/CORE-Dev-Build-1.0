@@ -8,7 +8,7 @@ class VariableElement : public VisibleElement
 {
 public:
 	VariableElement();
-	VariableElement(pugi::xml_node node);
+	VariableElement(Definer* definer);
 	VariableElement(VariableElement&);
 	virtual Component* spawnCopy();
 

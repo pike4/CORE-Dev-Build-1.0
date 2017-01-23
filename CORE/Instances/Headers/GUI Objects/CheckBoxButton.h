@@ -7,7 +7,7 @@
 class CheckBoxButton : public Control, public DataBound
 {
 public:
-	CheckBoxButton(pugi::xml_node node);
+	CheckBoxButton(Definer* definer);
 
 	ImageElement* heldImage_Current;
 	ImageElement* hoverImage_Current;

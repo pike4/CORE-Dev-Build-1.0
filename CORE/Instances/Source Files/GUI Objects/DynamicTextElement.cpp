@@ -7,8 +7,8 @@ DynamicTextElement::DynamicTextElement(int x, int y, int w, int h, RenderableCha
 	currentLineindex = 0;
 }
 
-DynamicTextElement::DynamicTextElement(pugi::xml_node node)
-	: StaticTextElement(node)
+DynamicTextElement::DynamicTextElement(Definer* definer)
+	: StaticTextElement(definer)
 {
 
 }

@@ -11,13 +11,16 @@ public:
 
 	StaticTextElement(int x, int y, int w, int h, RenderableCharSet* charSet);
 	StaticTextElement(int x, int y, int w, int h, RenderableCharSet* charSet, std::string text);
-	StaticTextElement(pugi::xml_node node);
+	StaticTextElement(Definer* definer);
 	StaticTextElement(StaticTextElement& copy);
 
-	virtual void draw();
+	
+
 	void stringToLines(std::string message);
 
 	virtual VisibleElement* spawnCopy();
+
+	virtual void draw();
 
 private:
 	RenderableCharSet* charSet;
@@ -31,5 +34,5 @@ private:
 	//The index of the line to start drawing from
 	int lineIndex;
 
-	void getArgsFromNode(pugi::xml_node);
+	void getArgsFromNode(Definer* definer);
 };

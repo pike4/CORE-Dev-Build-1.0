@@ -1,72 +1,56 @@
 #include "Environment.h"
-#include "StateManager.h"
-#include "pugixml.hpp"
+#include "CORE.h"
+#include "CORE_Resources.h"
+#include "CORE_Factory.h"
 
+
+//Get the fuck rid of this and everything else like it. Services in the namespaces should deal
+//with this
 Environment::Environment(std::string fileName)
 {
-	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file(fileName.c_str());
-
-	pugi::xml_node curNode = doc.first_child();
+	Definer* def = CORE_Resources::getFirstNodeFromFile(fileName);
 
 	//If loading directly from a file, this should be defined in the first node
-	if (strcmp(curNode.name(), "Environment"))
+	if (def->getName() != "environment")
 	{
 		printf("Attempted to load Environment from malformed xml file");
 		return;
 	}
 
-	curNode = curNode.first_child();
-	getArgsFromNode(curNode);
-	StateManager::environments[name] = this;
+	getArgsFromNode(def);
+	CORE_Resources::environments[name] = this;
 
 	if (name.empty())
 	{
 		printf("No environment name detected in file: %s. Consider adding a <name> node to this file\n", fileName.c_str());
-		name = "Default Room";
+		name = "Default Environment";
 	}
 }
 
-Environment::Environment(pugi::xml_node node)
+Environment::Environment(Definer* def)
 {
-	getArgsFromNode(node);
-	StateManager::environments[name] = this;
+	getArgsFromNode(def);
+	CORE_Resources::environments[name] = this;
 }
 
-void Environment::getArgsFromNode(pugi::xml_node node)
+void Environment::getArgsFromNode(Definer* def)
 {
-	std::string curName = node.name();
+	name = def->getVariable("name");
 
-	while (!curName.empty())
+	Definer* roomParent = def->getChild("rooms");
+	std::vector<Definer*>* roomVector = roomParent->getChildren();
+
+	for (unsigned int i = 0; i < roomVector->size(); i++)
 	{
-		if (!curName.compare("name"))
+		Definer* cur = (*roomVector)[i];
+
+		if (cur->getName() != "room")
 		{
-			name = node.first_child().value();
+			continue;
 		}
 
-		else if (!curName.compare("Room"))
-		{
-			Room* roomToAdd = NULL;
+		Room* roomToAdd = new Room(cur);
 
-			if (!strcmp(node.first_child().name(), "file"))
-			{
-				roomToAdd = new Room(node.first_child().value());
-			}
-
-			else
-			{
-				roomToAdd = new Room(node);
-			}
-
-			if (roomToAdd == NULL)
-			{
-				//TODO log error: NULL room added
-			}
-
-			rooms[roomToAdd->name] = roomToAdd;
-		}
-
-		node = node.next_sibling();
-		curName = node.name();
+		rooms[roomToAdd->name] = roomToAdd;
 	}
 }

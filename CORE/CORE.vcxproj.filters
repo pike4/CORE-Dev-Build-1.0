@@ -18,9 +18,6 @@
     <ClInclude Include="H_Instances\Room.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Loggables\Loggable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\AssetsManifest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,25 +60,13 @@
     <ClInclude Include="Instances\Headers\SpeechBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Instances\Headers\Subject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\CORE Objects\ManagerArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Instances\Headers\Elements\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instances\Headers\Elements\VariableElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Instances\Headers\Game Objects\Door.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Instances\Headers\Game Objects\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\Game Objects\I_DrawComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instances\Headers\Game Objects\I_VelocityControl.h">
@@ -91,9 +76,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instances\Headers\Game Objects\Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\Game Objects\TriggerZone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instances\Headers\Game Objects\Velocity.h">
@@ -126,16 +108,7 @@
     <ClInclude Include="Instances\Headers\GUI Objects\StaticTextElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\Headers\Aggregate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces\Headers\BaseObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interfaces\Headers\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces\Headers\CompositeDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\Headers\Control.h">
@@ -147,22 +120,10 @@
     <ClInclude Include="Interfaces\Headers\DataBound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\Headers\Drawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interfaces\Headers\MotionAffector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\Headers\Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces\Headers\SimpleDrawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces\Headers\Updatable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interfaces\Headers\UpdatableComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\Headers\VelocityComponent.h">
@@ -172,15 +133,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\Headers\VisibleElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Headers\_Manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Headers\EventManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Headers\ObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main\Headers\Commands.h">
@@ -199,9 +151,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main\Headers\Events.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Main\Headers\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instances\Headers\CORE Objects\Dependency.h">
@@ -228,11 +177,44 @@
     <ClInclude Include="Instances\Headers\File Parsing\Constant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\TemplateDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Default.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Variable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\NodeValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\NodeMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\Logging\LogFileStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\Logging\LoggingStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\Logging\LogWindowStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\CORE_Devices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\CORE_Factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\CORE_Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Loggables\Loggables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\AssetsManifest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -257,22 +239,13 @@
     <ClCompile Include="Instances\Source Files\SpeechBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Subject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Instances\Source Files\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Instances\Source Files\CORE Objects\ManagerArgs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Elements\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Elements\VariableTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\I_DrawComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Game Objects\Components\I_VelocityControl.cpp">
@@ -288,9 +261,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Game Objects\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\TriggerZone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\GUI Objects\Button.cpp">
@@ -326,58 +296,16 @@
     <ClCompile Include="Interfaces\Source Files\Motion\VelocityComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\BaseObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interfaces\Source Files\Collidable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Interfaces\Source Files\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\CompositeDrawable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Controllable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Drawable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interfaces\Source Files\Observer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\SimpleDrawable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Updatable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interfaces\Source Files\VisibleElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\_Manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\AudioManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\EventManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\ObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\StateManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\SystemManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Source Files\VideoManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\Source Files\Core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instances\Source Files\Data\Data.cpp">
@@ -392,23 +320,62 @@
     <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuLayerAdd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Definer.cpp">
+    <ClCompile Include="Main\Source Files\CORE_Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Provider.cpp">
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Constant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Template.cpp">
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Default.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Constant.cpp">
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\NodeParser.cpp">
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Variable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Definer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\TemplateDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Definers\NodeParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\Logging\LogFileStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\Logging\LogWindowStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_Audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_Devices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_Resources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subsystems\Source Files\CORE_SystemIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

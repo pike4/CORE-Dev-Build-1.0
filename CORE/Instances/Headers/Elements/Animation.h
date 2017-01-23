@@ -6,7 +6,7 @@ class Animation : public VisibleElement
 {
 public:
 	virtual void draw();
-	Animation(pugi::xml_node node);
+	Animation(Definer* definer);
 
 	Animation(Animation& other);
 
@@ -16,7 +16,7 @@ private:
 	VisibleElement** frames;
 
 	//The number of frames in the animation
-	int numFrames;
+	unsigned int numFrames;
 
 	//The index of the current frame being drawn
 	int frameIndex;

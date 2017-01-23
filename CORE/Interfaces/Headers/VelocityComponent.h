@@ -9,7 +9,6 @@ class VelocityComponent
 public:
 	VelocityComponent(pugi::xml_node node);
 
-	virtual void addTo(Room*);
 	virtual void move(int x, int y);
 
 	virtual void updatePos();

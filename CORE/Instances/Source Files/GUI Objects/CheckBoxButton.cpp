@@ -1,13 +1,11 @@
 #include "CheckBoxButton.h"
-#include "EventManager.h"
-#include "pugixml.hpp"
-#include "SystemManager.h"
+#include "CORE_Devices.h"
+#include "CORE_Resources.h"
 
-
-CheckBoxButton::CheckBoxButton(pugi::xml_node node)
-	:Control(node)
+CheckBoxButton::CheckBoxButton(Definer* definer)
+	:Control(definer)
 {
-	realTime = !strcmp(node.child("realTime").first_child().value(), "true");
+	realTime = definer->getVariable("realTime") == "True";
 }
 
 void CheckBoxButton::handleInput(int keyCode, int upDown, int x, int y)

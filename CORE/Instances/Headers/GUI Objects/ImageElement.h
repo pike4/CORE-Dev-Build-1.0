@@ -7,7 +7,7 @@ public:
 	SDL_Texture* texture;
 
 	ImageElement(int x, int y, int w, int h, SDL_Texture* texture);
-	ImageElement(pugi::xml_node node);
+	ImageElement(Definer* definer);
 	ImageElement(ImageElement& copy);
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
@@ -16,5 +16,5 @@ public:
 	virtual void draw();
 
 private:
-	void getArgsFromNode(pugi::xml_node node);
+	void getArgsFromNode(Definer* definer);
 };

@@ -5342,9 +5342,9 @@ namespace pugi
 	{
 		if (!_root) return xml_node();
 
+
 		for (xml_node_struct* i = _root->first_child; i; i = i->next_sibling)
 			if (i->name && impl::strequal(name_, i->name)) return xml_node(i);
-
 		return xml_node();
 	}
 

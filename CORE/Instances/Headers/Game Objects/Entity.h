@@ -1,21 +1,26 @@
 #pragma once
-#include <vector>
+
+#include "Definer.h"
 #include "Component.h"
-#include "Updatable.h"
 #include "Controllable.h"
-#include "Drawable.h"
-#include "BaseObject.h"
 #include "Data.h"
+
 #include "pugixml.hpp"
 #include <type_traits>
 #include <map>
+#include <vector>
 
 class Room;
+
+/*
+	Represents the lowest-level translation unit that can exist in a room in CORE. An entity is
+	any instantiable object that can interact with the game world.
+*/
 
 class Entity : public Component
 {
 public:
-	Entity(pugi::xml_node node);
+	Entity(Definer* definer);
 	Entity(Entity& other);
 	Entity();
 	
@@ -113,5 +118,5 @@ protected:
 	//The components that make up this object
 	std::vector<Component*> components;
 
-	void getArgsFromNode(pugi::xml_node node);
+	void getArgsFromNode(Definer* definer);
 };
