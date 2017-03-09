@@ -1,0 +1,62 @@
+   <CORE>
+   <strings>
+      <DefaultImage>Assets/Sprites/ButtonDefault.png</DefaultImage>
+      <BackgroundImage>Assets/Sprites/bg1.png</BackgroundImage>
+   </strings>
+   <states>
+      <glob>
+         <x value="200"/>
+         <y value="200"/>
+         <w value="400"/>
+         <h value="400"/>
+      </glob>
+   </states>
+  <menuSystem>
+    <name>main</name>
+    <menuScreens>
+      <menuScreen>
+      <name>fourth</name>
+      <controls>
+        <GUI_Area>
+          <data>
+            <x value="200"/>
+            <y value="200"/>
+            <w value="400"/>
+            <h value="400"/>
+          </data>
+          <components>
+            <checkbox>
+              <data>
+                <x value="0" dependence="parent" function="offset"/>
+                <y value="50" dependence="parent" function="offset"/>
+                <zIndex value="10"/>
+                <xOffset value="50"/>
+                <yOffset value="20"/>
+                <w value="100"/>
+                <h value="100"/>
+              </data>
+              <components>
+                <imageElement>
+                  <data>
+                    <x value="0" dependence="parent" function="offset"/>
+                    <y value="0" dependence="parent" function="offset"/>
+                    <zIndex value="2" dependence="parent" function="offset"/>
+                  </data>
+                  <image>$DefaultImage</image>
+                </imageElement>
+              </components>
+            </checkbox>
+            <imageElement>
+              <image>$BackgroundImage</image>
+              <data>
+                <zIndex value="100" dependence="parent" function="offset"/>
+              </data>
+            </imageElement>
+            <dragArea></dragArea>
+          </components>
+        </GUI_Area>
+      </controls>
+    </menuScreen>
+    </menuScreens>
+  </menuSystem>
+</CORE>

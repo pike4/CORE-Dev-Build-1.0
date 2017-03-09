@@ -13,6 +13,8 @@ CORE.opensdf
 *.filters
 *.vcxproj
 ./Release
-./Debug
+./Debug/*
+CORE/Debug
+CORE/Release
 *.opendb
 *.enc

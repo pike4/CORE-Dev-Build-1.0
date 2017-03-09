@@ -1,0 +1,30 @@
+<CORE>
+  <environment>
+    <name>first</name>
+    <rooms>
+      <room>
+        <name>living room</name>
+        <objects>
+          <entity>
+            <data>
+              <x value ="200"/>
+              <y value ="200"/>
+            </data>
+            <components>
+              <iVelocityControl></iVelocityControl>
+              <imageElement>
+                <data>
+                  <x>150</x>
+                  <y>10</y>
+                  <w>100</w>
+                  <h>100</h>
+                </data>
+                <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+              </imageElement>
+            </components>
+          </entity>
+        </objects>
+      </room>
+    </rooms>
+  </environment>
+</CORE>

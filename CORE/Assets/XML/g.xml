@@ -10,21 +10,27 @@
         <name>fourth</name>
         <controls>
           <GUI_Area>
-            <x>200</x>
-            <y>40</y>
-            <w>400</w>
-            <h>400</h>
+            <data>
+              <x>200</x>
+              <y>40</y>
+              <w>400</w>
+              <h>400</h>
+            </data>
             <controls>
               <dragArea>
-                <xOffset>0</xOffset>
-                <yOffset>0</yOffset>
+                <data>
+                  <xOffset>0</xOffset>
+                  <yOffset>0</yOffset>
+                </data>
               </dragArea>
               <checkbox>
-                <zIndex>10</zIndex>
-                <xOffset>50</xOffset>
-                <yOffset>20</yOffset>
-                <w>100</w>
-                <h>100</h>
+                <data>
+                  <zIndex>10</zIndex>
+                  <xOffset>50</xOffset>
+                  <yOffset>20</yOffset>
+                  <w>100</w>
+                  <h>100</h>
+                </data>
                 <components>
                   <mouseProcessor></mouseProcessor>
                   <menuDestination>

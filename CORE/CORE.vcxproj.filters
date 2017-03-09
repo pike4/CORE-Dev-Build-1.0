@@ -36,12 +36,6 @@
     <ClInclude Include="H_Instances\ReflectiveWall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PugiXML\pugiconfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXML\pugixml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Instances\Headers\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -135,9 +129,6 @@
     <ClInclude Include="Interfaces\Headers\VisibleElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Main\Headers\Commands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Main\Headers\ComponentTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -168,28 +159,7 @@
     <ClInclude Include="Instances\Headers\GUI Objects\ButtonComponents\MenuLayerAdd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\Provider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\Definer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\Constant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Instances\Headers\File Parsing\TemplateDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\Default.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\Variable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\NodeValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Instances\Headers\File Parsing\NodeMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Subsystems\Headers\Logging\LogFileStream.h">
@@ -213,168 +183,228 @@
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Transforms\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Transforms\TR_Sum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Transforms\TR_Offset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Transforms\TR_Average.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\Transforms\TR_Simple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\Data\DataSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\Constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\Default.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\NodeMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\NodeValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\Provider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Providers\Variable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Virtual XML Nodes\DefaultNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Virtual XML Nodes\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instances\Headers\File Parsing\Virtual XML Nodes\NodeTemplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Data\State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Data\StateOffsetCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Assets\AssetsManifest.cpp">
+    <ClCompile Include="Source\Main\CORE_Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PugiXML\pugixml.cpp">
+    <ClCompile Include="Source\Data\Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Environment.cpp">
+    <ClCompile Include="Source\Data\DataSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\QuadTree.cpp">
+    <ClCompile Include="Source\Components\Collidable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\RenderableCharSet.cpp">
+    <ClCompile Include="Source\Subsystems\CORE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\RendereableCharacter.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_Audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Room.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_Devices.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\SpeechBox.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_Factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Timer.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Elements\Animation.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_Resources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Elements\VariableTexture.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_SystemIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\I_VelocityControl.cpp">
+    <ClCompile Include="Source\Subsystems\CORE_TypeTraits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\MouseProcesor.cpp">
+    <ClCompile Include="Source\Subsystems\Logging\LogFileStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\Position.cpp">
+    <ClCompile Include="Source\Subsystems\Logging\LogWindowStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Components\Velocity.cpp">
+    <ClCompile Include="Source\Components\Motion\I_VelocityControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Game Objects\Entity.cpp">
+    <ClCompile Include="Source\Components\Motion\Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\Button.cpp">
+    <ClCompile Include="Source\Components\Motion\Velocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\CheckBoxButton.cpp">
+    <ClCompile Include="Source\Components\Motion\VelocityComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\Control.cpp">
+    <ClCompile Include="Source\Entities\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\DragArea.cpp">
+    <ClCompile Include="Source\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\DynamicTextElement.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\CheckBoxButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\GUI_Area.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\Control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\ImageElement.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\GUI_Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\MenuScreen.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\SpeechBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\MenuSystem.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\Containers\MenuScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\StaticTextElement.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\Containers\MenuSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Motion\VelocityComponent.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\ButtonComponents\ButtonComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Collidable.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\ButtonComponents\DragArea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Component.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\ButtonComponents\MenuDestination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\Observer.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\ButtonComponents\MenuLayerAdd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interfaces\Source Files\VisibleElement.cpp">
+    <ClCompile Include="Source\Entities\GUI Objects\ButtonComponents\MouseProcesor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\Data\Data.cpp">
+    <ClCompile Include="..\Libs\PugiXML\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\ButtonComponent.cpp">
+    <ClCompile Include="Source\Other\Observer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuDestination.cpp">
+    <ClCompile Include="Source\Other\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\GUI Objects\ButtonComponents\MenuLayerAdd.cpp">
+    <ClCompile Include="Source\Entities\Game Objects\Containers\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main\Source Files\CORE_Main.cpp">
+    <ClCompile Include="Source\Entities\Game Objects\Containers\QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Constant.cpp">
+    <ClCompile Include="Source\Entities\Game Objects\Containers\Room.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Default.cpp">
+    <ClCompile Include="Source\Entities\Elements\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeValue.cpp">
+    <ClCompile Include="Source\Entities\Elements\DynamicTextElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Providers\Variable.cpp">
+    <ClCompile Include="Source\Entities\Elements\ImageElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Definer.cpp">
+    <ClCompile Include="Source\Entities\Elements\RenderableCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Definers\Template.cpp">
+    <ClCompile Include="Source\Entities\Elements\RenderableCharSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Definers\TemplateDef.cpp">
+    <ClCompile Include="Source\Entities\Elements\StaticTextElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Definers\NodeParser.cpp">
+    <ClCompile Include="Source\Entities\Elements\VariableTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instances\Source Files\File Parsing\Providers\NodeMain.cpp">
+    <ClCompile Include="Source\Entities\Elements\VisibleElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\Logging\LogFileStream.cpp">
+    <ClCompile Include="Source\XML Parsing\Providers\Constant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\Logging\LogWindowStream.cpp">
+    <ClCompile Include="Source\XML Parsing\Providers\Default.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE.cpp">
+    <ClCompile Include="Source\XML Parsing\Providers\NodeMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_Audio.cpp">
+    <ClCompile Include="Source\XML Parsing\Providers\NodeValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_Devices.cpp">
+    <ClCompile Include="Source\XML Parsing\Providers\Variable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_Factory.cpp">
+    <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_Graphics.cpp">
+    <ClCompile Include="Source\XML Parsing\Definers\NodeParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_Resources.cpp">
+    <ClCompile Include="Source\XML Parsing\Definers\NodeTemplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystems\Source Files\CORE_SystemIO.cpp">
+    <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Data\State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Data\StateOffsetCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
