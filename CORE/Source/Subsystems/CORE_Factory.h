@@ -13,8 +13,8 @@
 /*
 CORE_Factory subsystem
    Purpose:
-
-      1. Expose a public API for generating various engine objects 
+      1. Expose a public API for generating various engine objects by name rather than by
+         calling a specific constructor or factory method
       2. Decouple the specific implementations of engine objects from the implementations
          that depend on them
       3. Abstract the XML parsing module away from the rest of the engine

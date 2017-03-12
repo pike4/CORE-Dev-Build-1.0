@@ -11,8 +11,14 @@
 #include <vector>
 
 /*
-	Represents the lowest-level translation unit that can exist in a room in CORE. An entity is
+	Entity Class
+   Represents the lowest-level translation unit that can exist in a room in CORE. An entity is
 	any instantiable object that can interact with the game world.
+
+   Purpose:
+      1. Provide a centralized storage and access location for components belonging to the same object
+      2. Receive and process events and forward them to interested child components
+      3. Allow data sharing between child components by providing an access point to a common state
 */
 
 class Entity : public Component

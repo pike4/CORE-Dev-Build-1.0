@@ -17,6 +17,17 @@ typedef struct _field
 	void* pointer;
 }field;
 
+/*
+   Component class
+
+   Purpose:
+      1. Act as the default translation unit for Entity composition 
+         and 
+      2. Receive and act on events from the parent Entity
+      3. Provide reflection info for what type of object the given component
+         represents
+*/
+
 class Component : public Controllable
 {
 public:
@@ -55,8 +66,10 @@ public:
 	#pragma region Sub-Type Reflection
 	//Determine if this instance can have children
 	virtual bool isBasicComponent();
+   
 	//TODO: something like get heirarchy, and every component would have a static string name and return
 	//its inheiritance heirarchy
+   virtual std::vector<std::string> getHeirarchy();
 	//TODO: something like getCategory, where components would have categories like visibleElement, 
 	//Control etc
 	#pragma endregion

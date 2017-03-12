@@ -4,6 +4,17 @@
 class Data;
 class Node;
 
+/* 
+   Type traits subsystem
+
+   Exposes a public API in order to:
+      1. Get various type info from a given Data object via a simple function call
+      2. Allow verification of the underlying primitive type of Data objects
+      3. Parse type traits from XML nodes and generate more descriptive data structures for them
+      4. Generate Data objects from their defining type traits
+      5. Perform various operations on Data objects such as binding dependencies
+*/
+
 //Methods for obtaining and creating type traits for Data objects
 namespace CORE_TypeTraits
 {

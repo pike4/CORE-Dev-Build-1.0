@@ -23,6 +23,14 @@
 //Functions and data structures to load, store, and free assets and game object definitions
 //Is not responsible for maintaining maps or structures used only by certain subsystems like 
 //CORE_SystemIO::streams;
+
+/*
+   Purpose:
+      1. Provide a global point of access to various constructed resources
+         such as character sets, string variables, and Entity prototypes
+      2. Provide access to global States
+*/
+
 namespace CORE_Resources
 {
 	void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
@@ -137,7 +145,6 @@ namespace CORE_Resources
 
 	Node* getTopNodeFromFile(std::string fileName);
 	Node* getFirstNodeFromFile(std::string fileName);
-
 
    //Find the string variable by name
    std::string resolveVariable(std::string variableName);

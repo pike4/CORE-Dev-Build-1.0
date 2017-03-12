@@ -8,6 +8,16 @@
 
 class TemplateDef;
 
+/*
+   A simple "black box" XML node
+
+   Purpose:
+      1. Define the contents of a single XML node without revealing specifically how those contents are
+         laid out internally
+      2. Allow access to internal variables and child nodes by name
+      3. 
+*/
+
 class Node
 {
 	friend class TemplateDef;
