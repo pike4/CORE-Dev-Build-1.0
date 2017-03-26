@@ -8,8 +8,10 @@
 #include "RenderableCharSet.h"
 #include "Node.h"
 #include "TemplateDef.h"
+#include "EventDef.h"
 #include "State.h"
 #include "StateOffsetCalculator.h"
+#include "EventHandler.h"
 
 #include "SDL.h"
 #include "SDL_Image.h"
@@ -96,7 +98,9 @@ namespace CORE_Resources
 	extern std::map<std::string, RenderableCharSet*> loadedCharSets;
 	extern std::unordered_set<std::string> loadedFiles;
 	extern std::map<std::string, std::string> stringVariables;
-
+   
+   extern std::map<std::string, EventDef> events;
+   extern std::map<std::string, EventHandler*> eventHandlers;
    extern std::map<std::string, StateOffsetCalculator*> stateOffsets;
    extern std::map<std::string, State*> globalStates;
 

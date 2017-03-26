@@ -37,7 +37,6 @@ namespace CORE_SystemIO
 
             streams[name] = new LogWindowStream();
          }
-
       }
    }
 

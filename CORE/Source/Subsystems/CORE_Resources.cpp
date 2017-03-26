@@ -519,6 +519,8 @@ namespace CORE_Resources
 	std::unordered_set<std::string> loadedFiles;
    std::map<std::string, StateOffsetCalculator*> stateOffsets;
    std::map<std::string, State*> globalStates;
+   std::map<std::string, EventDef> events;
+   std::map<std::string, EventHandler*> eventHandlers;
 #pragma endregion
 
 #pragma region Game Object Storage Structures

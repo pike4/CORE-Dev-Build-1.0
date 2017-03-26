@@ -5,6 +5,20 @@
 
 #include <string>
 
+
+/*
+   CORE Audio subsystem
+   Purpose:
+      1. Abstract 3rd party audio APIs away from the rest of the engine
+      2. Expose a public API for:
+         a. Loading and freeing audio files by name
+         b. Managing audio playback channels
+         c. Playing, pausing, and stopping tracks by name on a specified channels
+         d. Advanced playback options for tracks such as fade-in/out, looping certain
+            portions of a track, reverb, and positional audio
+         e. Setting channel attributes such as relative volume
+*/
+
 namespace CORE_Audio
 {
 	//Initialize audio subsytems
@@ -32,14 +46,14 @@ namespace CORE_Audio
 	//
 
 	//TODO: Begin a continuous loop on the sppecified channel
-	//StartLoop(string track, string channel);
+	//startLoop(string track, string channel);
 
    //TODO: Loop the given sound on the given channel, looping back to the given point in time at the 
    //loop's end
-   //StartLoop(string track, string channel, double restartTime);
+   //startLoop(string track, string channel, double restartTime);
 
    //TODO: Loop the given sound, looping back to restartTime when endTime is reached
-   //StartLoop(string track, string channel, double startTime, double endTime);
+   //startLoop(string track, string channel, double startTime, double endTime);
 
 	//TODO: set the volume for the specified track
 	//setVolume(string channel, double volume);
@@ -47,10 +61,8 @@ namespace CORE_Audio
    //TODO: set the master volume and limit all tracks to the given volume
    //setVolume(double volume);
 
-
-
 	//TODO: play the given sound on the given track
-	//PlaySound(string track, string channel);
+	//playSound(string track, string channel);
 
 	void update();
 
@@ -58,6 +70,7 @@ namespace CORE_Audio
 
 
 	//These two belong to CORE_Resources
+   //No it doesn't
 	Mix_Music* loadMusic(char* filename);
 	Mix_Chunk* loadChunk(char* filename);
 

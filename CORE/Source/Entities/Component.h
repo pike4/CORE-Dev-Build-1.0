@@ -69,7 +69,8 @@ public:
    
 	//TODO: something like get heirarchy, and every component would have a static string name and return
 	//its inheiritance heirarchy
-   virtual std::vector<std::string> getHeirarchy();
+   //virtual std::vector<std::string> getHeirarchy();
+
 	//TODO: something like getCategory, where components would have categories like visibleElement, 
 	//Control etc
 	#pragma endregion

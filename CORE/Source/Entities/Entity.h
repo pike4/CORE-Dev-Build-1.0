@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "Controllable.h"
 #include "Data.h"
+#include "EventHandler.h"
 
 #include "pugixml.hpp"
 #include <type_traits>
@@ -103,6 +104,10 @@ public:
 #pragma endregion
 
 #pragma region Message Handling
+   void on(std::string eventName, std::string handlerName);
+
+   void handle(std::string eventName, std::vector<Data> arguments);
+
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 
 	//Push recursive add down to children
@@ -114,6 +119,8 @@ public:
 #pragma endregion
 
 protected:
+   //Maps event names to event handlers that will be called when an event is received
+   std::map<std::string, std::vector<EventHandler*>> eventHandlers;
 
 	//Maps event codes to vectors of Controllable objects that listen for those events
 	std::map<int, std::vector<Controllable*>*> listeners;

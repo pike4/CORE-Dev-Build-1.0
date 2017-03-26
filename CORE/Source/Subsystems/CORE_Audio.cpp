@@ -2,7 +2,6 @@
 #include "SDL_Mixer.h"
 #include <string>
 
-
 namespace CORE_Audio
 {
 	void handleEvent(int eventCode, int posOrNeg, int x, int y)

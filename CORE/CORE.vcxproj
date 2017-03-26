@@ -141,6 +141,8 @@
     <ClInclude Include="Main\Headers\Events.h" />
     <ClInclude Include="Source\Data\State.h" />
     <ClInclude Include="Source\Data\StateOffsetCalculator.h" />
+    <ClInclude Include="Source\Entities\EventDef.h" />
+    <ClInclude Include="Source\Entities\EventHandler.h" />
     <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
     <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="Source\Entities\Elements\VariableTexture.cpp" />
     <ClCompile Include="Source\Entities\Elements\VisibleElement.cpp" />
     <ClCompile Include="Source\Entities\Entity.cpp" />
+    <ClCompile Include="Source\Entities\EventHandler.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Environment.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\QuadTree.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Room.cpp" />

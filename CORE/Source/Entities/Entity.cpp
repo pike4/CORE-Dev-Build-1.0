@@ -2,6 +2,7 @@
 #include "Collidable.h"
 #include "Controllable.h"
 
+#include "CORE_Resources.h"
 #include "CORE_Factory.h"
 #include "ComponentTypes.h"
 
@@ -203,6 +204,35 @@ void Entity::handleInput(int key, int upDown, int x, int y)
 		Controllable* cur = listenerList[i];
 		cur->handleInput(key, upDown, x, y);
 	}
+}
+
+void Entity::on(std::string eventName, std::string handlerName)
+{
+   if (CORE_Resources::eventHandlers.find(handlerName) != CORE_Resources::eventHandlers.end())
+      CORE_SystemIO::error("Event Handler " + handlerName + " does not exist");
+
+   else if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
+      CORE_SystemIO::error("Event " + eventName + " does not exist");
+
+   else if (CORE_Resources::events[eventName].format
+      != CORE_Resources::eventHandlers[handlerName]->format)
+      CORE_SystemIO::error("Event handler " + handlerName + " does not exist");
+
+   else
+      eventHandlers[eventName].push_back(CORE_Resources::eventHandlers[handlerName]);
+}
+
+void Entity::handle(std::string eventName, std::vector<Data> arguments)
+{
+   if(eventHandlers.find(eventName) != eventHandlers.end()) 
+   {
+      std::vector<EventHandler*> handlerVector = eventHandlers[eventName];
+
+      for each(EventHandler* cur in handlerVector)
+      {
+         cur->handleEvent(arguments);
+      }
+   }
 }
 
 //Return a pointer 
