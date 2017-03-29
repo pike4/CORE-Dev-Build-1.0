@@ -222,7 +222,7 @@ void Entity::on(std::string eventName, std::string handlerName)
       eventHandlers[eventName].push_back(CORE_Resources::eventHandlers[handlerName]);
 }
 
-void Entity::handle(std::string eventName, std::vector<Data> arguments)
+void Entity::handle(std::string eventName, std::vector<Data*> arguments)
 {
    if(eventHandlers.find(eventName) != eventHandlers.end()) 
    {

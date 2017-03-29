@@ -43,7 +43,7 @@
 int main()
 {
 	CORE::start();
-
+   CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
 	MenuSystem* newMenuSystem = CORE_Resources::getMenuSystem("main");
 	CORE::currentMenuSystem = newMenuSystem;

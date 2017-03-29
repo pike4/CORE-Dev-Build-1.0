@@ -1,0 +1,9 @@
+<CORE>
+  <events>
+    <mouseClick>
+      <int/>
+      <int/>
+      <bool/>
+    </mouseClick>
+  </events>
+</CORE>

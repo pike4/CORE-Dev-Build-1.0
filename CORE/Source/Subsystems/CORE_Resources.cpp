@@ -65,6 +65,11 @@ namespace CORE_Resources
 				new Environment(topDef);
 			}
 
+         else if (name == "events")
+         {
+             loadEvents(topDef);
+         }
+
 			else if (name == "menuSystem")
 			{
 				new MenuSystem(topDef);
@@ -368,10 +373,18 @@ namespace CORE_Resources
 
 	void loadPrototypes(Node* def)
 	{
+      if (!def)
+      {
+          CORE_SystemIO::error("Null events node!");
+          return;
+      }
+
 		std::string name = def->getName();
 
 		if (name != "prototypes")
 		{
+          CORE_SystemIO::error("loadPrototypes was called with node: "
+              + name + " must be called with prototypes node");
 			return;
 		}
 
@@ -409,6 +422,36 @@ namespace CORE_Resources
 		}
 	}
 #pragma endregion
+
+   void loadEvents(Node* def)
+   {
+       if (!def)
+       {
+           CORE_SystemIO::error("Null events node!");
+           return;
+       }
+
+       std::string name = def->getName();
+
+       std::vector<Node*>* eventNodes = def->getChildren();
+
+       for (unsigned int i = 0; eventNodes && i < eventNodes->size(); i++) 
+       {    
+           Node* cur = (*eventNodes)[i];
+           std::string curName = cur->getName();
+
+           if (events.find(curName) != events.end()) 
+           {
+               CORE_SystemIO::error("Event " + curName + " already defined");
+           }
+
+           else 
+           {
+               EventDef newEvent(cur);
+               events[curName] = newEvent;
+           }
+       }
+   }
 
    std::string resolveVariable(std::string variableName)
    {
@@ -507,7 +550,6 @@ namespace CORE_Resources
 
        return ret;
    }
-
 
 #pragma region Resource Storage Structures
 	std::map<std::string, SDL_Texture*> loadedTextures;

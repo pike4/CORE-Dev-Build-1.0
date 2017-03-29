@@ -3,7 +3,7 @@
 
 #include "CORE_SystemIO.h"
 
-void EventHandler::handleEvent(std::vector<Data> arguments)
+void EventHandler::handleEvent(std::vector<Data*> arguments)
 {
    if (format.size() != arguments.size())
    {

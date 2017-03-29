@@ -147,10 +147,17 @@ namespace CORE_Resources
 	void loadPrototypes(Node* def);
 	void addPrototype(std::string name, Entity* prototype);
 
+   //*****************
+   //Events
+   //*****************
+   void loadEvents(Node* def);
+
 	Node* getTopNodeFromFile(std::string fileName);
 	Node* getFirstNodeFromFile(std::string fileName);
 
-   //Find the string variable by name
+   //*****************
+   //String variables
+   //*****************
    std::string resolveVariable(std::string variableName);
    std::string checkVariable(std::string variableName);
 }

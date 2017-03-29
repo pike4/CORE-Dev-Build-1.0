@@ -27,6 +27,26 @@ void Component::getText(Node* def) {}
 
 void Component::get_data(DataSource* source) {}
 
+//Component gets only the event handlers assigned to it in the file. Subclasses may have handlers baked in
+void getEventHandlers(Node* def)
+{
+    if (!def)
+    {
+        CORE_SystemIO::error("Could not get Event Handlers from null Node*");
+        return;
+    }
+
+    std::vector<Node*>* handlerVector = def->getChildren();
+
+    for (int i = 0; i < handlerVector->size(); i++)
+    {
+        Node* cur = (*handlerVector)[i];
+
+        std::string eventName = cur->getName();
+
+    }
+}
+
 #pragma endregion
 
 #pragma region Type Reflection

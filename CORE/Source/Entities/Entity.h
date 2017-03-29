@@ -106,7 +106,7 @@ public:
 #pragma region Message Handling
    void on(std::string eventName, std::string handlerName);
 
-   void handle(std::string eventName, std::vector<Data> arguments);
+   void handle(std::string eventName, std::vector<Data*> arguments);
 
 	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
 

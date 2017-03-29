@@ -13,7 +13,7 @@ class Entity;
 class EventHandler
 {
 public:
-   void handleEvent(std::vector<Data>);
+   void handleEvent(std::vector<Data*>);
 
    std::vector<PrimitiveType> format;
    std::string name;

@@ -149,6 +149,10 @@ namespace CORE_Factory
 
 			ret->get_data(&currentSource);
 
+         //Set up event handlers
+         Node* eventsNode = def->getChild("eventHandlers");
+
+
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
 
