@@ -54,6 +54,12 @@
             </imageElement>
             <dragArea></dragArea>
           </components>
+           <eventHandlers>
+              <mouseClick>
+                 <a/>
+                 <b/>
+              </mouseClick>
+           </eventHandlers>
         </GUI_Area>
       </controls>
     </menuScreen>

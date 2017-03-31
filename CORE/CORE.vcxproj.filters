@@ -417,4 +417,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\Program Files\lua5.1\lib\dll\lua5.1.dll" />
+  </ItemGroup>
 </Project>

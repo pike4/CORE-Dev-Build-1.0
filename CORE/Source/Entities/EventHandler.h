@@ -15,6 +15,8 @@ class EventHandler
 public:
    void handleEvent(std::vector<Data*>);
 
+   bool matches(EventDef e);
+
    std::vector<PrimitiveType> format;
    std::string name;
 };

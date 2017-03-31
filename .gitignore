@@ -18,3 +18,4 @@ CORE/Debug
 CORE/Release
 *.opendb
 *.enc
+*.vc.db

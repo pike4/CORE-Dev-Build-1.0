@@ -3,6 +3,7 @@
 #include "Data.h"
 #include "Node.h"
 #include "DataSource.h"
+#include "EventHandler.h"
 
 #include <type_traits>
 #include <map>
@@ -91,6 +92,9 @@ protected:
 	//ID to *almost certainly* uniquely identify every componenet and entity in order to 
 	//prevent hash collisions between parent and child variables of the same name.
 	std::string ID;
+
+   //Maps event names to event handlers that will be called when an event is received
+   std::map<std::string, std::vector<EventHandler*>> eventHandlers;
 
 //private:
 	//If we do type reflection for component subtypes when generating, this is probably the way to do it

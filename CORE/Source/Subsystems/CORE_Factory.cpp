@@ -155,6 +155,7 @@ namespace CORE_Factory
 
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
+         ret->getEventHandlers(def->getChild("eventHandlers"));
 
 			#pragma region Child Components
 			//Get the Components node from definer*

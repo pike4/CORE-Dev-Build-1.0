@@ -70,6 +70,11 @@ namespace CORE_Resources
              loadEvents(topDef);
          }
 
+         else if (name == "eventHandlers")
+         {
+            loadEventHandlers(topDef);
+         }
+
 			else if (name == "menuSystem")
 			{
 				new MenuSystem(topDef);
@@ -451,6 +456,44 @@ namespace CORE_Resources
                events[curName] = newEvent;
            }
        }
+   }
+
+   void loadEventHandlers(Node* def)
+   {
+      if (!def)
+      {
+         CORE_SystemIO::error("Null event handlers node!");
+         return;
+      }
+
+      std::vector<Node*>* handlerVector = def->getChildren();
+
+      for (int i = 0; i < handlerVector->size(); i++)
+      {
+         Node* curHandler = (*handlerVector)[i];
+         std::string handlerName = curHandler->getName();
+         std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
+
+         if (eventHandlers.find(handlerName) == eventHandlers.end())
+         {
+            //Parse the format from the format node
+            Node* formatNode = curHandler->getChild("format");
+            if (formatNode)
+            {
+               std::vector<Node*>* formatVector = formatNode->getChildren();
+               for (int j = 0; j < formatVector->size(); j++)
+               {
+                  std::string typeString = (*formatVector)[j]->getName();
+                  handlerFormat.push_back(CORE_TypeTraits::getPrimitiveType(typeString));
+               }
+            }
+
+
+         }
+
+         else
+            CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
+      }
    }
 
    std::string resolveVariable(std::string variableName)

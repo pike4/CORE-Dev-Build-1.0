@@ -119,9 +119,6 @@ public:
 #pragma endregion
 
 protected:
-   //Maps event names to event handlers that will be called when an event is received
-   std::map<std::string, std::vector<EventHandler*>> eventHandlers;
-
 	//Maps event codes to vectors of Controllable objects that listen for those events
 	std::map<int, std::vector<Controllable*>*> listeners;
 

@@ -6,4 +6,13 @@
       <bool/>
     </mouseClick>
   </events>
+   <eventHandlers>
+      <mouseClickHandler>
+         <format>
+            <int/>
+            <int/>
+            <bool/>
+         </format>
+      </mouseClickHandler>
+   </eventHandlers>
 </CORE>

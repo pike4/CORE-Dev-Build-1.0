@@ -151,6 +151,7 @@ namespace CORE_Resources
    //Events
    //*****************
    void loadEvents(Node* def);
+   void loadEventHandlers(Node* def);
 
 	Node* getTopNodeFromFile(std::string fileName);
 	Node* getFirstNodeFromFile(std::string fileName);

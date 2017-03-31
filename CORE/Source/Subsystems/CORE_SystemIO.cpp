@@ -32,7 +32,7 @@ namespace CORE_SystemIO
          
          if(!streams[name]->open())
          {
-            error("Path: " + path + " not accessible. Output stream: " + name + " will default to stdout");
+            error("The path " + path + " not accessible. Output stream: " + name + " will default to stdout");
             delete streams[name];
 
             streams[name] = new LogWindowStream();

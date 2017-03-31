@@ -15,3 +15,8 @@ void EventHandler::handleEvent(std::vector<Data*> arguments)
 
    
 }
+
+bool EventHandler::matches(EventDef e)
+{
+   return (format == e.format);
+}
