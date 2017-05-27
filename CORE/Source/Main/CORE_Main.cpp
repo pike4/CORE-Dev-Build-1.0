@@ -60,20 +60,24 @@ static int printNum(lua_State* L)
    return 0;
 }
 
+
+
 int main()
 {
    //Lua!
    L = lua_open();
    luaL_openlibs(L);
-   lua_register(L, "printNum", printNum);
+   
+   lua_newtable(L);
+   lua_setglobal(L, "x");
+   int tableIndex = lua_gettop(L);
+   lua_pushstring(L, "pos");
+   lua_pushinteger(L, 69);
+   lua_settable(L, tableIndex);
+   tableIndex = lua_gettop(L);
+   
    luaL_dofile(L, "test.lua");
 
-   lua_getglobal(L, "add");
-
-   lua_pushinteger(L, 6);
-   lua_pushinteger(L, 5);
-
-   
    lua_close(L);
 
 	CORE::start();
