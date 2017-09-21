@@ -9,6 +9,8 @@
 #include "DataSource.h"
 #include "NodeTemplate.h"
 #include "DefaultNode.h"
+#include "ScriptEventHandler.h"
+#include "EntityScriptEventHandler.h"
 
 #include <vector>
 #include <map>
@@ -18,8 +20,13 @@ using namespace CORE_TypeTraits;
 namespace CORE_Factory
 {
 #pragma region Object Management
-	//Allocate and return a definer for the current node
-	//Return a NodeTemplate if one exists under the current name, a genereic DefaultNode if it does not
+/**
+   Function: generateNode
+
+   
+   Allocate and return a definer for the current node
+   Return a NodeTemplate if one exists under the current name, a genereic DefaultNode if it does not
+*/
 	Node* generateNode(pugi::xml_node node)
 	{
 		Node* ret = NULL;
@@ -47,23 +54,29 @@ namespace CORE_Factory
 
 		Component* ret = NULL;
 
-		if (name == "iVelocityControl")
-			ret = new I_VelocityControl();
+      if (name == "iVelocityControl")
+         ret = new I_VelocityControl();
 
-		else if (name == "position")
-			ret = new Position(def);
+      else if (name == "position")
+         ret = new Position(def);
 
-		else if (name == "collidable")
-			ret = new Collidable(def);
+      else if (name == "collidable")
+         ret = new Collidable(def);
 
-		else if (name == "mouseProcessor")
-			ret = new MouseProcessor();
+      else if (name == "mouseProcessor")
+         ret = new MouseProcessor();
 
-		else if (name == "menuDestination")
-			ret = new MenuDestination();
+      else if (name == "menuDestination")
+         ret = new MenuDestination();
 
-		else if (name == "menuLayerAdd")
-			ret = new MenuLayerAdd();
+      else if (name == "menuLayerAdd")
+         ret = new MenuLayerAdd();
+
+      else if (name == "BB_Component")
+         ret = new BB_Component();
+
+      else if (name == "CollisionHandler")
+         ret = new CollisionHandler();
 
 		return ret;
 	}
@@ -130,10 +143,45 @@ namespace CORE_Factory
 
 		return ret;
 	}
+
+   EventHandler* constructEventHandler(Node* def)
+   {
+      EventHandler* ret = NULL;
+
+      Node* typeNode = def->getChild("type");
+
+      if (typeNode)
+      {
+         if (typeNode->getMainValue() == "script")
+         {
+            ret = new ScriptEventHandler(def);
+         }
+
+         else if (typeNode->getMainValue() == "entityScript")
+         {
+            ret = new EntityScriptEventHandler(def);
+         }
+
+         //Add new cases as new hard-coded event handlers are added
+      }
+
+      if (!ret)
+      {
+         CORE_SystemIO::error("EventHandler Node \'" + def->getName() + "\' is of an undefined type");
+      }
+
+      return ret;
+   }
 #pragma endregion
 
 #pragma region Game Object Generation
-	//Recursively parse an entity/component and its children from a node
+	
+   /**
+   Function: generateObject
+
+   Purpose:
+      Instantiate and return a copy of an existing prototype
+   */
 	Component* generateObject(Node* def, DataSource* parentData)
 	{
 		Component* ret = constructComponent(def);
@@ -152,10 +200,20 @@ namespace CORE_Factory
          //Set up event handlers
          Node* eventsNode = def->getChild("eventHandlers");
 
+         if (eventsNode)
+         {
+            ret->getEventHandlers(eventsNode);
+         }
 
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
-         ret->getEventHandlers(def->getChild("eventHandlers"));
+         
+         Node* handlerChild = def->getChild("eventHandlers");
+
+         if (handlerChild)
+         {
+            ret->getEventHandlers(handlerChild);
+         }
 
 			#pragma region Child Components
 			//Get the Components node from definer*
@@ -186,8 +244,9 @@ namespace CORE_Factory
 
 				else
 				{
-					//TODO error: definer for object of type def->getName() contains components node, but
-					//type is basic component with no child components. Components will be ignored
+					//TODO error: 
+               CORE_SystemIO::error("Definer for object of type: " +  def->getName() + 
+                  " contains components node, but type is basic component.");
 				}
 			}
 			#pragma endregion
@@ -223,7 +282,12 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	//Return a copy of a preexisting prototype
+   /**
+   Function: generate
+
+   Purpose:
+      Generate an instance of the prototype of the given name
+   */
 	Entity* generate(std::string prototypeName)
 	{
 		//TODO: 
@@ -238,9 +302,7 @@ namespace CORE_Factory
 
 		else
 		{
-			//TODO
-			//throw warning: prototype <prototypeName> does not exist. spawn() returned NULL
-			printf("Warning: prototype %s doesn't exist\n", prototypeName.c_str());
+			CORE_SystemIO::error("Warning: prototype " + prototypeName + " doesn't exist\n");
 			return NULL;
 		}
 	}

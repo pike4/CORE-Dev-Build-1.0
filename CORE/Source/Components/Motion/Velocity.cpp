@@ -28,10 +28,17 @@ void Velocity::move(int aX, int aY)
 	*y = aY;
 }
 
-void Velocity::handleInput(int key, int upDown, int aX, int aY)
+void Velocity::get_data(DataSource* source)
 {
-	Position::handleInput(key, upDown, aX, aY);
-	switch (key)
+   Position::get_data(source);
+   xVel = source->getData<double>("xVel");
+   yVel = source->getData<double>("yVel");
+}
+
+void Velocity::handle(Event e)
+{
+	Position::handle(e);
+	switch (e.opcode)
 	{
 	case updateStep:
 		*x += *xVel;

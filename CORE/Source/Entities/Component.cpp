@@ -28,7 +28,15 @@ void Component::getText(Node* def) {}
 
 void Component::get_data(DataSource* source) {}
 
-//Component gets only the event handlers assigned to it in the file. Subclasses may have handlers baked in
+// Get a trait from this component. Components have no traits by default
+bool Component::getTrait(std::string trait)
+{
+   return false;
+}
+
+
+//Component gets only the event handlers assigned to it in the file. 
+//Subclasses may have handlers baked in
 void Component::getEventHandlers(Node* def)
 {
     if (!def)
@@ -57,30 +65,38 @@ void Component::getEventHandlers(Node* def)
            {
               Node* curHandler = (*handlers)[j];
               std::string handlerName = curHandler->getName();
+              int curEventOpcode = CORE_Resources::getEventCode(eventName);
+              EventHandler* eventHandler = 
+                 CORE_Resources::getEventHandler(handlerName);
 
-              if (CORE_Resources::eventHandlers.find(handlerName) != CORE_Resources::eventHandlers.end())
+              if (eventHandler)
               {
-                 if (CORE_Resources::eventHandlers[handlerName]->
-                    matches(CORE_Resources::events[eventName]))
+                 if (eventHandler->matches(CORE_Resources::events[eventName]))
                  {
-                    eventHandlers[handlerName].push_back(CORE_Resources::eventHandlers[handlerName]);
+                    eventHandlers[curEventOpcode].push_back ( eventHandler );
+                    eventHandler->registerOwner( getContext() );
                  }
 
                  else
+                 {
                     CORE_SystemIO::error("EventHandler \'" + handlerName +
                        "\' does not match EventDef " + eventName);
-                    
+                 }
               }
 
               else
-                 CORE_SystemIO::error("Event handler \'" + handlerName + "\' does not exist");
+              {
+                 CORE_SystemIO::error(
+                    "Event handler \'" + handlerName + "\' does not exist");
+              }
            }
-           
         }
 
         //Handlers can only be assigned for predefined events
         else
+        {
            CORE_SystemIO::error("Event \'" + eventName + "\' does not exist");
+        }
     }
 }
 
@@ -95,6 +111,30 @@ bool Component::isBasicComponent()
 #pragma endregion
 
 #pragma region Parent Registration
+
+/**
+   Function: handle
+
+   Purpose:
+      Handle the given event
+*/
+void Component::handle(Event e)
+{
+   if (eventHandlers.find(e.opcode) != eventHandlers.end())
+   {
+      for (int i = 0; i < eventHandlers[e.opcode].size(); i++)
+      {
+         eventHandlers[e.opcode][i]->handleEvent(e.arguments);
+      }
+   }
+}
+
+/**
+Function: registerEvents
+
+Purpose:
+   Register events 
+*/
 void Component::registerEvents(Entity* newParent)
 {
 	if (!parent)
@@ -108,7 +148,13 @@ void Component::registerEvents(Entity* newParent)
 		parent->addListener(events[i], this);
 	}
 }
+
 #pragma endregion
+
+Entity* Component::getContext()
+{
+   return parent;
+}
 
 //void* Component::findAncestorPointer(std::string name) const
 //{

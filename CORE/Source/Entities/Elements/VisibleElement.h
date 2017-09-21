@@ -20,7 +20,7 @@ public:
 	virtual void get_data(DataSource* source);
 	virtual void getText(Node* def);
 
-	void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   void handle(Event e);
 
 	virtual void move(int x, int y);
 
@@ -28,9 +28,6 @@ public:
 	virtual void draw() = 0;
 
 protected:
-
-
-
 	int w;
 	int h;
 };

@@ -13,7 +13,7 @@ public:
 
 	virtual void update();
 	virtual void draw(SDL_Renderer* renderer);
-	virtual void handleInput(int keyCode, int upDown, int aX, int aY);
+   virtual void handle(Event e);
 
 
 	/*void add(Control* control, int x, int y);

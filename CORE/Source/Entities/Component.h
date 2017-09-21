@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "DataSource.h"
 #include "EventHandler.h"
+#include "Event.h"
 
 #include <type_traits>
 #include <map>
@@ -49,6 +50,12 @@ public:
 	//Finalize the component. Represents the recursive root for finalizing an Entity
 	virtual void finalize();
 
+   //Handle an event
+   virtual void handle(Event e);
+
+   //Return true if this component has a certain trait
+   virtual bool getTrait(std::string trait);
+
 	template <typename T>
 	DataImpl<T>initializeData(std::string name, DataSource* source)
 	{
@@ -70,6 +77,9 @@ public:
 	#pragma region Sub-Type Reflection
 	//Determine if this instance can have children
 	virtual bool isBasicComponent();
+
+   //Return a pointer to the entity context for the component, in most cases, this is the parent entity
+   virtual Entity* getContext();
    
 	//TODO: something like get heirarchy, and every component would have a static string name and return
 	//its inheiritance heirarchy
@@ -94,9 +104,5 @@ protected:
 	std::string ID;
 
    //Maps event names to event handlers that will be called when an event is received
-   std::map<std::string, std::vector<EventHandler*>> eventHandlers;
-
-//private:
-	//If we do type reflection for component subtypes when generating, this is probably the way to do it
-	//static std::string type;
+   std::map<int, std::vector< EventHandler*> > eventHandlers;
 };

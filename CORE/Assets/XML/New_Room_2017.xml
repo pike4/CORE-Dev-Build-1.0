@@ -5,24 +5,49 @@
       <room>
         <name>living room</name>
         <objects>
+           <CollisionHandler/>
           <entity>
             <data>
               <x value ="200"/>
               <y value ="200"/>
+              <w value ="36"/>
+              <h value ="50"/>
             </data>
             <components>
               <iVelocityControl></iVelocityControl>
               <imageElement>
                 <data>
-                  <x>150</x>
-                  <y>10</y>
+                  <x value="100" dependence="parent"/>
+                  <y value="50" dependence="parent"/>
                   <w>100</w>
                   <h>100</h>
                 </data>
                 <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
               </imageElement>
+               <BB_Component/>
             </components>
           </entity>
+
+           <entity>
+              <data>
+                 <x value ="500"/>
+                 <y value ="300"/>
+                 <w value ="36"/>
+                 <h value ="50"/>
+              </data>
+              <components>
+                 <imageElement>
+                    <data>
+                       <x value="100" dependence="parent"/>
+                       <y value="50" dependence="parent"/>
+                       <w>100</w>
+                       <h>100</h>
+                    </data>
+                    <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+                 </imageElement>
+                 <BB_Component/>
+              </components>
+           </entity>
         </objects>
       </room>
     </rooms>

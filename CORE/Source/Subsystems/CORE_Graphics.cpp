@@ -38,7 +38,7 @@ namespace CORE_Graphics
    //TODO: Initialize graphics subsystems with given parameters
    //bool start(VideoManagerArgs* args)
 
-   void handleEvent(int eventCode, int posOrNeg, int x, int y)
+   void handle(Event e)
    {
 
    }
@@ -184,7 +184,6 @@ namespace CORE_Graphics
 		scrRect.w = 480;
 		scrRect.h = 640;
 
-
 		SDL_RenderFillRect(mRenderer, &scrRect);
 	}
 
@@ -230,7 +229,8 @@ namespace CORE_Graphics
 		SDL_RenderCopy(mRenderer, source, &src, &dest);
 	}
 
-	void applyTexture(int x, int y, SDL_Texture* source, double rotation, SDL_RendererFlip flip, SDL_Point point)
+	void applyTexture(int x, int y, SDL_Texture* source, double rotation, 
+      SDL_RendererFlip flip, SDL_Point point)
 	{
 		SDL_Rect dest;
 		SDL_Rect src;
@@ -280,5 +280,4 @@ namespace CORE_Graphics
 	int yOffsetInitial = 0;
 	int state;
 	Entity* player;
-
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "EventDef.h"
+#include "Event.h"
+
 
 #include "CORE_TypeTraits.h"
 
@@ -13,7 +15,11 @@ class Entity;
 class EventHandler
 {
 public:
-   void handleEvent(std::vector<Data*>);
+   virtual void handleEvent(std::vector<EventArg> args);
+
+   virtual void registerOwner(Entity* owner);
+
+   virtual EventHandler* spawnCopy();
 
    bool matches(EventDef e);
 

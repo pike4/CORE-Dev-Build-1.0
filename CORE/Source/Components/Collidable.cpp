@@ -45,7 +45,7 @@ void Collidable::move(int x, int y)
 	boundingBox.y = y;
 }
 
-void Collidable::handleInput(int key, int upDown, int x, int y)
+void Collidable::handle(Event e)
 {
 	
 }

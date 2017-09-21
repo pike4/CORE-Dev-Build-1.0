@@ -36,7 +36,7 @@ namespace CORE
 	void goToMenuSystem(std::string systemName);
 #pragma endregion
 
-	void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+	void handle(Event e);
 
 	extern Environment* currentEnvironment;
 	extern Room* currentRoom;

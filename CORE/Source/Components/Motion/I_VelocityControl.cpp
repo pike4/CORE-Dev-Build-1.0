@@ -22,12 +22,14 @@ I_VelocityControl::I_VelocityControl(I_VelocityControl& other) : I_VelocityContr
 
 }
 
-void I_VelocityControl::handleInput(int key, int upDown, int aX, int aY)
+void I_VelocityControl::handle(Event e)
 {
-	Velocity::handleInput(key, upDown, aX, aY);
-	switch (key)
+	Velocity::handle(e);
+   bool upDown;
+	switch (e.opcode)
 	{
 	case walkBackwardButtonDown:
+      upDown = *((DataImpl<bool>*) e.arguments[0].data);
 		if (upDown)
 		{
 			*yVel += 2;
@@ -39,6 +41,7 @@ void I_VelocityControl::handleInput(int key, int upDown, int aX, int aY)
 		}
 		break;
 	case walkForwardButtonDown:
+      upDown = *((DataImpl<bool>*) e.arguments[0].data);
 		if (upDown)
 		{
 			*yVel -= 2;
@@ -50,6 +53,7 @@ void I_VelocityControl::handleInput(int key, int upDown, int aX, int aY)
 		}
 		break;
 	case walkLeftButtonDown:
+      upDown = *((DataImpl<bool>*) e.arguments[0].data);
 		if (upDown)
 		{
 			*xVel = *xVel - 2;
@@ -61,6 +65,7 @@ void I_VelocityControl::handleInput(int key, int upDown, int aX, int aY)
 		}
 		break;
 	case walkRightButtonDown:
+      upDown = *((DataImpl<bool>*) e.arguments[0].data);
 		if (upDown)
 		{
 			*xVel += 2;

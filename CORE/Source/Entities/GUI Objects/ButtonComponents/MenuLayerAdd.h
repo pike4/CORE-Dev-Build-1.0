@@ -8,7 +8,7 @@ public:
 	MenuLayerAdd();
 	void MenuLayerAdd::getText(Node* def);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 
 protected:
 	std::string source;

@@ -18,6 +18,12 @@
 #include "SDL_TTF.h"
 #include "SDL_Mixer.h"
 
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
+
 #include <map>
 #include <unordered_set>
 #include <string>
@@ -35,7 +41,9 @@
 
 namespace CORE_Resources
 {
-	void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+   extern lua_State* L;
+   void handle(Event e);
+   void start();
 
 	Entity* getPrototype(std::string prototypeName);
 	TemplateDef* getTemplate(std::string name);
@@ -43,6 +51,10 @@ namespace CORE_Resources
 	MenuSystem* getMenuSystem(std::string menuName);
 
    StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables);
+
+   //*******************************
+   //State Management
+   //*******************************
 
    //Get the value of the given variable from the default GLOBAL_STATE state
    template <typename T>
@@ -72,7 +84,8 @@ namespace CORE_Resources
 
    //Set the value of the given variable from the given state
    template <typename T>
-   void setStateValue(std::string stateName, std::string variableName, T newValue)
+   void setStateValue(std::string stateName, std::string variableName,
+      T newValue)
    {
       if (globalStates.find(stateName) != globalStates.end())
       {
@@ -88,8 +101,10 @@ namespace CORE_Resources
       }
    }
 
+   void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format);
+
 	//****************************
-	//Resource Storage Structures
+	//Resources
 	//****************************
 	extern std::map<std::string, SDL_Texture*> loadedTextures;
 	extern std::map<std::string, Mix_Chunk*> loadedSounds;
@@ -99,8 +114,18 @@ namespace CORE_Resources
 	extern std::unordered_set<std::string> loadedFiles;
 	extern std::map<std::string, std::string> stringVariables;
    
+   //****************************
+   //Events
+   //****************************
    extern std::map<std::string, EventDef> events;
    extern std::map<std::string, EventHandler*> eventHandlers;
+   EventHandler* getEventHandler(std::string name);
+   int getEventCode(std::string name);
+
+
+   //****************************
+   //State
+   //****************************
    extern std::map<std::string, StateOffsetCalculator*> stateOffsets;
    extern std::map<std::string, State*> globalStates;
 

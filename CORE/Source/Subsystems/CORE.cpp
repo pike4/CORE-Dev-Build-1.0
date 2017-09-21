@@ -19,6 +19,7 @@ namespace CORE
 			printf("Sound manager failed to start");
 
 		CORE_Devices::start();
+      CORE_Resources::start();
 
 		lag = 0;
 		msPerFrame = 17;
@@ -46,20 +47,20 @@ namespace CORE
 
 	}
 
-	void handleEvent(int eventCode, int posOrNeg, int x, int y)
+	void handle(Event e)
 	{
-		CORE_Graphics::handleEvent(eventCode, posOrNeg, x, y);
-		CORE_Audio::handleEvent(eventCode, posOrNeg, x, y);
-		CORE_Resources::handleEvent(eventCode, posOrNeg, x, y);
+		CORE_Graphics::handle(e);
+		CORE_Audio::handle(e);
+		CORE_Resources::handle(e);
 
 		if (currentRoom != NULL)
 		{
-			currentRoom->handleInput(eventCode, posOrNeg, x, y);
+			currentRoom->handle(e);
 		}
 
 		if (!currentMenuScreens.empty() && currentMenuScreens.back() != NULL)
 		{
-			currentMenuScreens.back()->handleInput(eventCode, posOrNeg, x, y);
+			currentMenuScreens.back()->handle(e);
 		}
 	}
 

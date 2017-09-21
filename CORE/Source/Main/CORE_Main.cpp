@@ -1,7 +1,6 @@
 #pragma warning(disable : 4018)
 #pragma warning(disable : 4244)
 
-
 #include "DragArea.h"
 #include "SpeechBox.h"
 #include "DynamicTextElement.h"
@@ -11,10 +10,8 @@
 #include "Room.h"
 #include "MenuSystem.h"
 #include "Environment.h"
-
-
 #include "Data.h"
-
+#include "ScriptEventHandler.h"
 #include "CORE_Factory.h"
 #include "CORE_SystemIO.h"
 #include "CORE_Graphics.h"
@@ -30,14 +27,6 @@
 #include "SDL_Image.h"
 #include "pugixml.hpp"
 
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-}
-
-lua_State* L;
-
 #include <fstream>
 #include <iostream>
 
@@ -47,13 +36,13 @@ lua_State* L;
 #include <map>
 #undef main
 
-static int printNum(lua_State* L)
+static int printNum(lua_State* q)
 {
-   int numArg = lua_gettop(L);
+   int numArg = lua_gettop(q);
 
    for (int i = 0; i < numArg; i++)
    {
-      int a = lua_tonumber(L, i);
+      int a = lua_tonumber(q, i);
       printf("lua sez: %i\n", a);
    }
 
@@ -65,33 +54,22 @@ static int printNum(lua_State* L)
 int main()
 {
    //Lua!
-   L = lua_open();
-   luaL_openlibs(L);
-   
-   lua_newtable(L);
-   lua_setglobal(L, "x");
-   int tableIndex = lua_gettop(L);
-   lua_pushstring(L, "pos");
-   lua_pushinteger(L, 69);
-   lua_settable(L, tableIndex);
-   tableIndex = lua_gettop(L);
-   
-   luaL_dofile(L, "test.lua");
-
-   lua_close(L);
+   CORE_Resources::L = lua_open();
+   luaL_openlibs(CORE_Resources::L);
 
 	CORE::start();
    CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
+   CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
 	MenuSystem* newMenuSystem = CORE_Resources::getMenuSystem("main");
 	CORE::currentMenuSystem = newMenuSystem;
 	MenuScreen* newMenu = newMenuSystem->getMenuScreen("fourth");
 	CORE::addMenuScreenLayer(newMenu);
 
-   CORE_SystemIO::openLogFile("out", "Asets/logs/out.txt");
+   //CORE_SystemIO::openLogFile("out", "Asets/logs/out.txt");
 
-//	CORE::goToEnvironment("first");
-//	CORE::goToRoomInCurrentEnvironment("living room");
+   CORE::goToEnvironment("first");
+   CORE::goToRoomInCurrentEnvironment("living room");
 
 	while (!CORE::quit)
 	{

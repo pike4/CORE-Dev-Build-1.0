@@ -4,6 +4,7 @@
 #include "CORE_Audio.h"
 #include "CORE_SystemIO.h"
 #include "CORE_Graphics.h"
+#include "CORE_Devices.h"
 #include "MenuScreen.h"
 #include "Node.h"
 #include "TemplateDef.h"
@@ -15,10 +16,48 @@
 
 namespace CORE_Resources
 {
-	void handleEvent(int eventCode, int posOrNeg, int x, int y)
-	{
+   lua_State* L;
+   void handle(Event e)
+   {
 
-	}
+   }
+
+#pragma region Resource Storage Structures
+   std::map<std::string, SDL_Texture*> loadedTextures;
+   std::map<std::string, Mix_Chunk*> loadedSounds;
+   std::map<std::string, Mix_Music*> loadedMusic;
+   std::map<std::string, TTF_Font*> loadedFonts;
+   std::map<std::string, RenderableCharSet*> loadedCharSets;
+   std::map<std::string, std::string> stringVariables;
+   std::unordered_set<std::string> loadedFiles;
+   std::map<std::string, StateOffsetCalculator*> stateOffsets;
+   std::map<std::string, State*> globalStates;
+#pragma endregion
+
+#pragma region Event and Event Handler Storage
+   std::map<std::string, EventDef> events;
+   std::map<std::string, int> eventCodes;
+   std::map<std::string, EventHandler*> eventHandlers;
+#pragma endregion
+
+#pragma region Game Object Storage Structures
+   std::map<std::string, Environment*> environments;
+   std::map<std::string, MenuSystem*> menuSystems;
+   std::map<std::string, Entity*> prototypes;
+   std::map<std::string, TemplateDef*> templates;
+#pragma endregion
+
+   int eventID = 10000;
+
+   void start()
+   {
+      //Define some predefined events
+      predefineEvent(mouse1Down, "mouse1Down", { _integer, _integer });
+      predefineEvent(mouse1Up, "mouse1Up", { _integer, _integer });
+      predefineEvent(mouse2Down, "mouse2Down", { _integer, _integer });
+      predefineEvent(mouse2Up, "mouse2Up", { _integer, _integer });
+      predefineEvent(mouseMoved, "mouseMoved", { _integer, _integer });
+   }
 
 #pragma region XML
 	void loadResourceFile(std::string fileName)
@@ -136,6 +175,12 @@ namespace CORE_Resources
 #pragma endregion
 
 #pragma region Asset Loading
+   /**
+    Function: loadTexture
+
+    Purpose:
+      Load and return the texture of the given file name
+    */
 	SDL_Texture* loadTexture(std::string fileName)
 	{
 		SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
@@ -160,6 +205,12 @@ namespace CORE_Resources
 		return optimizedSurface;
 	}
 
+   /**
+   Function: loadMusic
+
+   Purpose:
+      Load and return a music track of the given file name
+   */
 	Mix_Music* loadMusic(std::string fileName)
 	{
 		Mix_Music* newMusic = Mix_LoadMUS(fileName.c_str());
@@ -177,6 +228,12 @@ namespace CORE_Resources
 		return newMusic;
 	}
 
+   /**
+   Function: loadChunk
+
+   Purpose:
+      Load and return an audio chunk of the given file name
+   */
 	Mix_Chunk* loadChunk(std::string fileName)
 	{
 
@@ -195,6 +252,12 @@ namespace CORE_Resources
 		return newChunk;
 	}
 
+   /**
+   Function: loadFont
+
+   Purpose:
+      
+   */
 	TTF_Font* loadFont(std::string fileName, int size)
 	{
 		TTF_Font* newFont = TTF_OpenFont(fileName.c_str(), size);
@@ -279,7 +342,6 @@ namespace CORE_Resources
 		}
 
 		return loadedCharSets[name];
-
 	}
 
 	RenderableCharSet* assignCharSet(std::string name)
@@ -376,6 +438,12 @@ namespace CORE_Resources
 		loadPrototypes(def);
 	}
 
+   /**
+   Function: loadPrototype
+
+   Purpose:
+      Load entity prototypes from the given node and store for global access
+   */
 	void loadPrototypes(Node* def)
 	{
       if (!def)
@@ -409,6 +477,12 @@ namespace CORE_Resources
 		}
 	}
 
+   /**
+   Function: addPrototype
+
+   Purpose:
+      Store a prototype of the given name for global access
+   */
 	void addPrototype(std::string name, Entity* prototype)
 	{
 		if (prototype && prototypes.find(name) == prototypes.end())
@@ -418,16 +492,41 @@ namespace CORE_Resources
 
 		else if(!prototype)
 		{
-			//TODO: log error cannot add NULL prototype
+         CORE_SystemIO::error("Entity prototype " + name + " is undefined and cannot be added");
 		}
 
 		else
 		{
-			//TODO: log error or warning a prototype of this name already exists
+         CORE_SystemIO::error("a prototype of this name already exists");
 		}
 	}
+
 #pragma endregion
 
+#pragma region Events
+   /**
+      Function: getEventCode
+
+      Purpose:
+         Get the event code for the given event name
+   */
+   int getEventCode(std::string name)
+   {
+      if (eventCodes.find(name) != eventCodes.end())
+      {
+         return eventCodes[name];
+      }
+
+      CORE_SystemIO::error("Event " + name + " not found");
+      return 0;
+   }
+
+   /**
+   Function: getEventCode
+
+   Purpose:
+      Load the event definitions from the given node and store for global access
+   */
    void loadEvents(Node* def)
    {
        if (!def)
@@ -453,11 +552,18 @@ namespace CORE_Resources
            else 
            {
                EventDef newEvent(cur);
+               eventCodes[curName] = eventID++;
                events[curName] = newEvent;
            }
        }
    }
 
+   /**
+   Function: loadEventHandlers
+
+   Purpose:
+      Define event handler prototypes from the given node
+   */
    void loadEventHandlers(Node* def)
    {
       if (!def)
@@ -470,32 +576,65 @@ namespace CORE_Resources
 
       for (int i = 0; i < handlerVector->size(); i++)
       {
-         Node* curHandler = (*handlerVector)[i];
-         std::string handlerName = curHandler->getName();
+         Node* curHandlerNode = (*handlerVector)[i];
+         std::string handlerName = curHandlerNode->getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
          if (eventHandlers.find(handlerName) == eventHandlers.end())
          {
             //Parse the format from the format node
-            Node* formatNode = curHandler->getChild("format");
-            if (formatNode)
+            EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
+
+            if (newHandler)
             {
-               std::vector<Node*>* formatVector = formatNode->getChildren();
-               for (int j = 0; j < formatVector->size(); j++)
-               {
-                  std::string typeString = (*formatVector)[j]->getName();
-                  handlerFormat.push_back(CORE_TypeTraits::getPrimitiveType(typeString));
-               }
+               eventHandlers[handlerName] = newHandler;
             }
-
-
          }
 
          else
+         {
             CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
+         }
       }
    }
 
+   /**
+   Function: getEventHandler
+
+   Purpose:
+      Get an event handler, returning NULL if not available
+   */
+   EventHandler* getEventHandler(std::string name)
+   {
+      if (eventHandlers.find(name) != eventHandlers.end())
+      {
+         return eventHandlers[name]->spawnCopy();
+      }
+
+      return NULL;
+   }
+
+   void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format)
+   {
+      if (eventCodes.find(name) == eventCodes.end() && events.find(name) == events.end())
+      {
+         eventCodes[name] = opCode;
+         events[name] = EventDef(name, format);
+      }
+
+      else
+      {
+         CORE_SystemIO::error("Event " + name + " already defined");
+      }
+   }
+#pragma endregion
+
+   /**
+   Function: resolveVariable
+
+   Purpose:
+      Return the value of the global string variable of the given name
+   */
    std::string resolveVariable(std::string variableName)
    {
        std::string ret = "";
@@ -519,12 +658,20 @@ namespace CORE_Resources
        else
        {
            //TODO make dev error
-           CORE_SystemIO::print("Malformed variable name: " + variableName + "\n");
+           CORE_SystemIO::print("Malformed variable name: " + variableName + 
+              " - Variable names must be lead by $\n");
        }
 
        return ret;
    }
 
+   /**
+   Function: checkVariable
+
+   Purpose:
+      Check if the given string is the name of a defined global variable, returning 
+      the value if defined, the original string otherwise
+   */
    std::string checkVariable(std::string variableName)
    {
        std::string ret = variableName;
@@ -541,6 +688,8 @@ namespace CORE_Resources
 
        return ret;
    }
+
+   //--------------------------------------------------------------------------------------------------
 
    StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables)
    {
@@ -594,26 +743,8 @@ namespace CORE_Resources
        return ret;
    }
 
-#pragma region Resource Storage Structures
-	std::map<std::string, SDL_Texture*> loadedTextures;
-	std::map<std::string, Mix_Chunk*> loadedSounds;
-	std::map<std::string, Mix_Music*> loadedMusic;
-	std::map<std::string, TTF_Font*> loadedFonts;
-	std::map<std::string, RenderableCharSet*> loadedCharSets;
-	std::map<std::string, std::string> stringVariables;
-	std::unordered_set<std::string> loadedFiles;
-   std::map<std::string, StateOffsetCalculator*> stateOffsets;
-   std::map<std::string, State*> globalStates;
-   std::map<std::string, EventDef> events;
-   std::map<std::string, EventHandler*> eventHandlers;
-#pragma endregion
+   //--------------------------------------------------------------------------------------------------
 
-#pragma region Game Object Storage Structures
-	std::map<std::string, Environment*> environments;
-	std::map<std::string, MenuSystem*> menuSystems;
-	std::map<std::string, Entity*> prototypes;
-	std::map<std::string, TemplateDef*> templates;
-#pragma endregion
 
 	Node* getTopNodeFromFile(std::string fileName)
 	{

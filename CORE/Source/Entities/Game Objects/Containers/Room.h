@@ -8,10 +8,12 @@
 class  Entity;
 
 /*
-	Provides a single context for the user to interact with the world. Contains and tracks a set
-	of Entity objects. Rooms behave in a manner analogous to scenes in Unity or GameMake.
-	This is the second level in the interface between CORE and its game objects. No instances of
-	game objects apart from prototypes can exist in CORE outside of a room.
+	Provides a single context for the user to interact with the world. 
+   Contains and tracks a set of Entity objects. Rooms behave similarly 
+   to scenes in Unity and GameMaker.
+	This is the second level in the interface between CORE and its game objects. 
+   No instances of game objects (other than prototypes) can exist in CORE outside 
+   of a room.
 */
 
 class Room : public Controllable
@@ -28,7 +30,7 @@ public:
 
 	std::string name;
 
-	void handleInput(int key, int posOrNeg = 0, int x = 0, int y = 0);
+   void handle(Event e);
 
 	void draw();
 
@@ -40,6 +42,12 @@ public:
 	QuadTree* quadTree;
 
 private:
+   std::vector<Entity*> entityQueue;
+
+   void emptyQueue();
+
+   void insertEntity(Entity* newEntity);
+
 	void getArgsFromNode(Node* def);
 	int w, h;
 };

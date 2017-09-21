@@ -5,14 +5,44 @@
       <int/>
       <bool/>
     </mouseClick>
+     <explosion>
+        <entity/>
+     </explosion>
+     <getBoundingBox>
+        <entity/>
+     </getBoundingBox>
   </events>
    <eventHandlers>
-      <mouseClickHandler>
+      <mouseClickHandler file ="handleMouse.lua">
+         <type>script</type>
+         <argNames>
+            <x/>
+            <y/>
+         </argNames>
          <format>
             <int/>
             <int/>
-            <bool/>
          </format>
       </mouseClickHandler>
+      <explosionHandler file ="runEntity.lua">
+         <type>script</type>
+         <argNames>
+            <E1/>
+         </argNames>
+         <format>
+            <entity/>
+         </format>
+      </explosionHandler>
+      <followHandler file ="runSelf.lua">
+         <type>entityScript</type>
+         <argNames>
+            <x/>
+            <y/>
+         </argNames>
+         <format>
+            <int/>
+            <int/>
+         </format>
+      </followHandler>
    </eventHandlers>
 </CORE>

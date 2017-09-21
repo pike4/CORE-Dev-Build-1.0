@@ -12,7 +12,7 @@ public:
 	SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet);
 	SpeechBox(Node* def);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 
 	virtual void update();
 	virtual void draw();

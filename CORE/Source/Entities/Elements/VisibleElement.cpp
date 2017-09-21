@@ -36,9 +36,9 @@ void VisibleElement::getText(Node* def)
 	h = stoi(def->getVariable("h"));
 }
 
-void VisibleElement::handleInput(int key, int upDown, int x, int y)
+void VisibleElement::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case drawStep:
 		draw();

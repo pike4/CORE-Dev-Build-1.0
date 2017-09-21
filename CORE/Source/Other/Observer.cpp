@@ -37,19 +37,19 @@ int Observer::deregisterListener(int key, Controllable* listener)
 }
 
 //Pass the given event key to all listeners who are listening for it
-void Observer::handleInput(int key, int upDown, int x, int y)
+void Observer::handle(Event e)
 {
-	if (listeners.find(key) == listeners.end())
+	if (listeners.find(e.opcode) == listeners.end())
 	{
 		//TODO
 		//warning: key not found
 		return;
 	}
 
-	std::vector<Controllable*> listenerList = *(listeners[key]);
+	std::vector<Controllable*> listenerList = *(listeners[e.opcode]);
 
 	for (unsigned int i = 0; i < listenerList.size(); i++)
 	{
-		listenerList[i]->handleInput(key, upDown, x, y);
+		listenerList[i]->handle(e);
 	}
 }

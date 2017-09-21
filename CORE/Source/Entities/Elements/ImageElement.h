@@ -11,11 +11,10 @@ public:
 
 	void ImageElement::getText(Node* definer);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 
 	virtual Component* spawnCopy();
 	virtual void draw();
 
 private:
-	void getArgsFromNode(Node* definer);
 };

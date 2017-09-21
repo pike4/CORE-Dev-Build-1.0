@@ -25,7 +25,17 @@ Room::Room(std::string fileName)
 
 void Room::add(Entity* object)
 {
-		controllableVector->push_back(object);
+   entityQueue.push_back(object);
+}
+
+void Room::insertEntity(Entity* newEntity)
+{
+   controllableVector->push_back(newEntity);
+
+   Event newEntityEvent = entity_added;
+   newEntityEvent.arguments.push_back(newEntity);
+
+   handle(newEntityEvent);
 }
 
 void Room::remove(Controllable* component)
@@ -71,6 +81,10 @@ void Room::getArgsFromNode(Node* def)
 			Node* cur = (*objectsVector)[i];
 
 			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
+         if (newObject)
+         {
+            newObject->finalize();
+         }
 			add(newObject);
 		}
 	}
@@ -80,13 +94,13 @@ void Room::getArgsFromNode(Node* def)
 	h = stoi(def->getVariable("h"));
 }
 
-void Room::handleInput(int key, int posOrNeg, int x, int y)
+void Room::handle(Event e)
 {
 	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] != NULL)
 		{
-			(*controllableVector)[i]->handleInput(key, posOrNeg, x, y);
+			(*controllableVector)[i]->handle(e);
 		}
 	}
 }
@@ -97,18 +111,20 @@ void Room::draw()
 	{
 		if ((*controllableVector)[i] != NULL)
 		{
-			(*controllableVector)[i]->handleInput(drawStep);
+			(*controllableVector)[i]->handle(drawStep);
 		}
 	}
 }
 
 void Room::update()
 {
+   emptyQueue();
+
 	for (unsigned int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] != NULL)
 		{
-			(*controllableVector)[i]->handleInput(updateStep);
+			(*controllableVector)[i]->handle(updateStep);
 		}
 
 		else
@@ -116,4 +132,13 @@ void Room::update()
 			printf("NULL update in room\n");
 		}
 	}
+}
+
+void Room::emptyQueue()
+{
+   while(!entityQueue.empty())
+   {
+      insertEntity(entityQueue[ entityQueue.size() - 1 ]);
+      entityQueue.pop_back();
+   }
 }

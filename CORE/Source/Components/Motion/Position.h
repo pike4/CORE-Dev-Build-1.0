@@ -16,7 +16,7 @@ public:
 	virtual Component* spawnCopy();
 	virtual void move(int aX, int aY);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+	virtual void handle(Event e);
 protected:
 	DataImpl<int>* x;
 	DataImpl<int>* y;

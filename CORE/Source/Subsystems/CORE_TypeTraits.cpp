@@ -194,6 +194,9 @@ namespace CORE_TypeTraits
 		case _string:
 			ret = "string";
 			break;
+      case _entity:
+         ret = "entity";
+         break;
 		default:
 			ret = "error type";
 			break;

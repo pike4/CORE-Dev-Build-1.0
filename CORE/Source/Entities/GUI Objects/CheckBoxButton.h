@@ -18,7 +18,7 @@ public:
 	SDL_Texture* defaultImage_Checked;
 	SDL_Texture* defaultImage_Unchecked;
 
-	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 
 protected:
 	bool* dataBinding;

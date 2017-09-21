@@ -10,17 +10,17 @@ void Position::get_data(DataSource* source)
 	y = source->getData<int>("y");
 }
 
-void Position::handleInput(int key, int upDown, int aX, int aY)
+void Position::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
-	case updateStep:
+	//case updateStep:
 
-		break;
-	case updatePos:
-		*x = aX;
-		*y = aY;
-		break;
+	//	break;
+	//case updatePos:
+	//	*x = e[0];
+	//	*y = e.arguments[0];
+	//	break;
 	}
 }
 

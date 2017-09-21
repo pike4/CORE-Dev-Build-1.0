@@ -12,5 +12,5 @@ public:
 	int registerListener(int key, Controllable* controllable);
 	int deregisterListener(int key, Controllable* listener);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 };

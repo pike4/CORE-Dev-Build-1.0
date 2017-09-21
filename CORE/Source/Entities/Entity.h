@@ -10,28 +10,36 @@
 #include <type_traits>
 #include <map>
 #include <vector>
+#include <set>
 
 /*
 	Entity Class
-   Represents the lowest-level translation unit that can exist in a room in CORE. An entity is
+   Represents the lowest-level translation unit that can exist in a room in CORE.
+   An entity is
 	any instantiable object that can interact with the game world.
 
    Purpose:
-      1. Provide a centralized storage and access location for components belonging to the same object
+      1. Provide a centralized storage and access location for components belonging 
+         to the same object
       2. Receive and process events and forward them to interested child components
-      3. Allow data sharing between child components by providing an access point to a common state
-*/
+      3. Allow data sharing between child components by providing an access point 
+         to a common state
 
+   Sub-Components:
+      1. Public state storage and access
+      2. Event handling and transmission
+      3. Instantiation from other entities and XML Nodes
+*/
 class Entity : public Component
 {
 public:
 	Entity();
 	Entity(Entity& other);
 
-
-	virtual void get_data(DataSource* source);
+   virtual Entity* getContext();
 	
-#pragma region Composition
+#pragma region Instantiation
+   virtual void get_data(DataSource* source);
 	virtual void storeChild(Component* component);
 	void finalize();
 #pragma endregion
@@ -64,7 +72,10 @@ public:
 		return ret;
 	}
 
-	//Return a pointer to the data of the given name. Allocate a new SimpleData if not present
+	/**
+      Return a pointer to the data of the given name.
+      Allocate a new SimpleData if not present
+   */
 	template <typename T>
 	DataImpl<T>* getData(std::string name)
 	{
@@ -75,11 +86,56 @@ public:
 			data[name] = new DataImpl<T>;
 		}
 
-		return (DataImpl<T>*) data[name];
+      if (dataIsType<T>(data[name]))
+      {
+         ret = (DataImpl<T>*) data[name];
+      }
+      
+      return ret;
 	}
 
-	//Return a pointer to the data of the given name. Return null if not present
-	Data* peekData(std::string name);
+   //Return the value of the data of the given name
+   template <typename T>
+   T getValue(std::string name)
+   {
+      T ret = 0;
+
+      DataImpl<T>* data = getData<T>(name);
+
+      if (data)
+      {
+         ret = *data;
+      }
+
+      return ret;
+   }
+
+   /**
+   Get a data member of the given name, returning NULL if it does not exist
+   */
+   template <typename T>
+   DataImpl<T>* peekData(std::string name)
+   {
+      DataImpl<T>* ret = NULL;
+
+      if (data.find(name) != data.end())
+      {
+         if (dataIsType<T>(data[name]))
+         {
+            ret = (DataImpl<T>*) data[name];
+         }
+
+         else
+         {
+            CORE_SystemIO::error("Data is different type");
+         }
+      }
+
+      return ret;
+   }
+
+   //Get a vector of all Data pointers contained by this Entity
+   std::vector<std::pair<std::string, Data*>>  getAllData();
 
 	//Set the data of the given name to the given value
 	template <typename T>
@@ -94,21 +150,16 @@ public:
 	//Maybe return the old pointer if it exists, null if it doesn't
 	void setData(std::string name, Data* data);
 
-	//Return the value of the data of the given name
-	template <typename T>
-	T getValue(std::string name)
-	{
-		return get(name);
-	}
+   bool getTrait(std::string trait);
 
 #pragma endregion
 
 #pragma region Message Handling
    void on(std::string eventName, std::string handlerName);
 
-   void handle(std::string eventName, std::vector<Data*> arguments);
+   void handle(Event e);
 
-	virtual void handleInput(int key, int upDown = 0, int x = 0, int y = 0);
+   std::map<std::string, Data*> data;
 
 	//Push recursive add down to children
 	virtual void registerEvents(Entity* parent);
@@ -120,10 +171,11 @@ public:
 
 protected:
 	//Maps event codes to vectors of Controllable objects that listen for those events
-	std::map<int, std::vector<Controllable*>*> listeners;
+	std::map<int, std::vector<Controllable*>> listeners;
 
-	//Maps string variable names to Data pointers accissible from the public class interface
-	std::map<std::string, Data*> data;
+	//Maps string variable names to Data pointers accissible from the 
+   //public class interface
+	/*std::map<std::string, Data*> data;*/
 
 	//The components that make up this object
 	std::vector<Component*> components;

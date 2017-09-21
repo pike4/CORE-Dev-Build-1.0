@@ -77,7 +77,7 @@ namespace CORE_Graphics
 
 	void update();
 
-	void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+	void handle(Event e);
 
    void drawRect(int x, int y, int w, int h, SDL_Color color);
 

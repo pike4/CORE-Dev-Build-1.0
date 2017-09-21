@@ -12,9 +12,9 @@ void MenuLayerAdd::getText(Node* def)
 	source = def->getVariable("source");
 }
 
-void MenuLayerAdd::handleInput(int key, int upDown, int x, int y)
+void MenuLayerAdd::handle(Event e)
 {
-	switch( key)
+	switch( e.opcode )
 	{
 	case mousePress:
 		CORE::addGUILayerFromCurrentMenuSystem(source);

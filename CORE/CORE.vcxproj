@@ -40,12 +40,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\lua5.1\include;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files\lua5.1\include;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities\Events;.\Source\Entities;.\Source\Services\Non-Standard;.\Source\Services;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\lua5.1\lib\dll;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\AppData\Local\Programs\Python\Python35\libs;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)Bin\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Program Files\lua5.1\include;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files\lua5.1\include;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities\Events;.\Source\Entities;.\Source\Services\Non-Standard;.\Source\Services;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\lua5.1\lib\dll;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\AppData\Local\Programs\Python\Python35\libs;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
     <OutDir>$(ProjectDir)Bin/Release</OutDir>
@@ -141,8 +141,16 @@
     <ClInclude Include="Main\Headers\Events.h" />
     <ClInclude Include="Source\Data\State.h" />
     <ClInclude Include="Source\Data\StateOffsetCalculator.h" />
-    <ClInclude Include="Source\Entities\EventDef.h" />
-    <ClInclude Include="Source\Entities\EventHandler.h" />
+    <ClInclude Include="Source\Entities\EntityAPI.h" />
+    <ClInclude Include="Source\Entities\Events\EntityScriptEventHandler.h" />
+    <ClInclude Include="Source\Entities\Events\Event.h" />
+    <ClInclude Include="Source\Entities\Events\EventDef.h" />
+    <ClInclude Include="Source\Entities\Events\EventHandler.h" />
+    <ClInclude Include="Source\Entities\Events\ScriptEventHandler.h" />
+    <ClInclude Include="Source\Services\BoundingBox.h" />
+    <ClInclude Include="Source\Services\Non-Standard\BB_Component.h" />
+    <ClInclude Include="Source\Services\Non-Standard\BoundingBoxAccepter.h" />
+    <ClInclude Include="Source\Services\Non-Standard\CollisionHandler.h" />
     <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
     <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h" />
@@ -182,7 +190,10 @@
     <ClCompile Include="Source\Entities\Elements\VariableTexture.cpp" />
     <ClCompile Include="Source\Entities\Elements\VisibleElement.cpp" />
     <ClCompile Include="Source\Entities\Entity.cpp" />
-    <ClCompile Include="Source\Entities\EventHandler.cpp" />
+    <ClCompile Include="Source\Entities\EntityAPI.cpp" />
+    <ClCompile Include="Source\Entities\Events\EntityScriptEventHandler.cpp" />
+    <ClCompile Include="Source\Entities\Events\eVENT.CPP" />
+    <ClCompile Include="Source\Entities\Events\EventHandler.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Environment.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\QuadTree.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Room.cpp" />
@@ -197,9 +208,12 @@
     <ClCompile Include="Source\Entities\GUI Objects\Control.cpp" />
     <ClCompile Include="Source\Entities\GUI Objects\GUI_Area.cpp" />
     <ClCompile Include="Source\Entities\GUI Objects\SpeechBox.cpp" />
+    <ClCompile Include="Source\Entities\Events\ScriptEventHandler.cpp" />
     <ClCompile Include="Source\Main\CORE_Main.cpp" />
     <ClCompile Include="Source\Other\Observer.cpp" />
     <ClCompile Include="Source\Other\Timer.cpp" />
+    <ClCompile Include="Source\Services\Non-Standard\BB_Component.cpp" />
+    <ClCompile Include="Source\Services\Non-Standard\CollisionHandler.cpp" />
     <ClCompile Include="Source\Subsystems\CORE.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Audio.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Devices.cpp" />

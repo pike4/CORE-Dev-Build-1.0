@@ -14,7 +14,7 @@ public:
 
 	void registerEvents(Entity* parent);
 
-	virtual void handleInput(int keyCode, int upDown = 0, int x = 0, int y = 0);
+   virtual void handle(Event e);
 
 	//Enable or disable the control for drawing
 	void show();

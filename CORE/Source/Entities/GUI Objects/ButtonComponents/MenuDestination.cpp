@@ -13,9 +13,9 @@ void MenuDestination::getText(Node* def)
 	destination = def->getVariable("destination");
 }
 
-void MenuDestination::handleInput(int key, int upDown, int x, int y)
+void MenuDestination::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case mousePress:
 		CORE::goToGUIInCurrentMenuSystem(destination);

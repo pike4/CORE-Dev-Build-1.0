@@ -6,10 +6,10 @@ void CheckBoxButton::getText(Node* def)
 {
 }
 
-void CheckBoxButton::handleInput(int keyCode, int upDown, int x, int y)
+void CheckBoxButton::handle(Event e)
 {
 	this;
-	Control::handleInput(keyCode, upDown, x, y);
+   Control::handle(e);
 }
 
 void CheckBoxButton::mouseEnter()

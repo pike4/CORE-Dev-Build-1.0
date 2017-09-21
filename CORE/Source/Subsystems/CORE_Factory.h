@@ -41,6 +41,7 @@ namespace CORE_Factory
 	VisibleElement* constructVisibleElement(Node* definer);
 	Component* generateComponent(Node* definer);
    Component* constructComponent(Node* def);
+   EventHandler* constructEventHandler(Node* def);
 
    //ObjectGeneration
    Entity* generate(std::string prototypeName);

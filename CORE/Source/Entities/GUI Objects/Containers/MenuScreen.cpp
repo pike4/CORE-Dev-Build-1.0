@@ -90,7 +90,7 @@ void MenuScreen::draw()
 	{
 		if (components[i] != NULL)
 		{
-			components[i]->handleInput(drawStep);
+			components[i]->handle(drawStep);
 		}
 	}
 }
@@ -101,7 +101,7 @@ void MenuScreen::update()
 	{
 		if (components[i] != NULL)
 		{
-			components[i]->handleInput(updateStep);
+			components[i]->handle(updateStep);
 		}
 	}
 }

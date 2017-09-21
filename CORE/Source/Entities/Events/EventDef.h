@@ -17,6 +17,12 @@ struct EventDef
 
    EventDef() {};
 
+   EventDef(std::string nam, std::vector<PrimitiveType> form)
+   {
+      name = nam;
+      format = form;
+   }
+
    EventDef(Node* def)
    {
        if (!def)

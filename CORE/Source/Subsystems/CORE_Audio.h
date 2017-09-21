@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Event.h"
+
 #include "SDL.h"
 #include "SDL_Mixer.h"
 
@@ -66,7 +68,7 @@ namespace CORE_Audio
 
 	void update();
 
-	void handleEvent(int eventCode, int posOrNeg = 0, int x = 0, int y = 0);
+   void handle(Event e);
 
 
 	//These two belong to CORE_Resources

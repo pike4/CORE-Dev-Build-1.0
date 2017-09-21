@@ -59,13 +59,13 @@ void VariableElement::draw()
 			current->y = y;
 		}
 
-		current->handleInput(drawStep);
+		current->handle(drawStep);
 	}
 }
 
-void VariableElement::handleInput(int key, int upDown, int x, int y)
+void VariableElement::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case drawStep:
 		draw();

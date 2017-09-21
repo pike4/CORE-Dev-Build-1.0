@@ -33,6 +33,8 @@ namespace CORE_TypeTraits
         _boolean,
         _string,
         _floatingPoint,
+        _entity,
+        _state,
         _errorType
     };
 

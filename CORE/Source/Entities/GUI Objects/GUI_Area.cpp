@@ -21,7 +21,7 @@ void GUI_Area::update()
 	{
 		if (control != NULL)
 		{
-			control->handleInput(updateStep);
+			control->handle(updateStep);
 		}
 	}
 }
@@ -37,9 +37,9 @@ void GUI_Area::draw(SDL_Renderer* renderer)
 	}
 }
 
-void GUI_Area::handleInput(int keyCode, int upDown, int aX, int aY)
+void GUI_Area::handle(Event e)
 {
-	Control::handleInput(keyCode, upDown, aX, aY);
+	Control::handle(e);
 }
 
 void GUI_Area::mouseEnter(){}

@@ -128,9 +128,9 @@ void SpeechBox::charToLines(char* message)
 	maxLines = lines.size();
 }
 
-void SpeechBox::handleInput(int key, int upDown, int x, int y)
+void SpeechBox::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case interactButtonDown:
 		break;
@@ -140,7 +140,6 @@ void SpeechBox::handleInput(int key, int upDown, int x, int y)
 	case updateStep:
 		update();
 		break;
-
 	}
 }
 

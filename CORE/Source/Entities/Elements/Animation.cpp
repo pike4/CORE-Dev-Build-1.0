@@ -71,9 +71,9 @@ VisibleElement* Animation::spawnCopy()
 	return new Animation(*this);
 }
 
-void Animation::handleInput(int key, int upDown, int x, int y)
+void Animation::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case drawStep:
 		draw();

@@ -1,29 +1,65 @@
 #include "CORE.h"
 #include "CORE_Devices.h"
 #include "CORE_Resources.h"
+#include "CORE_SystemIO.h"
 
 #include "SDL.h"
 
 namespace CORE_Devices
 {
+   // Instantiate mapping from proprietary keycodes to engine keycodes
+   void mapHW()
+   {
+      //Alpha keys
+      hwMap[SDLK_q] = key_q;
+      hwMap[SDLK_w] = key_w;
+      hwMap[SDLK_e] = key_e;
+      hwMap[SDLK_r] = key_r;
+      hwMap[SDLK_t] = key_t;
+      hwMap[SDLK_y] = key_y;
+      hwMap[SDLK_u] = key_u;
+      hwMap[SDLK_i] = key_i;
+      hwMap[SDLK_o] = key_o;
+      hwMap[SDLK_p] = key_p;
+      hwMap[SDLK_a] = key_a;
+      hwMap[SDLK_s] = key_s;
+      hwMap[SDLK_d] = key_d;
+      hwMap[SDLK_f] = key_f;
+      hwMap[SDLK_g] = key_g;
+      hwMap[SDLK_h] = key_h;
+      hwMap[SDLK_j] = key_j;
+      hwMap[SDLK_k] = key_k;
+      hwMap[SDLK_l] = key_l;
+      hwMap[SDLK_z] = key_z;
+      hwMap[SDLK_x] = key_x;
+      hwMap[SDLK_c] = key_c;
+      hwMap[SDLK_v] = key_v;
+      hwMap[SDLK_b] = key_b;
+      hwMap[SDLK_n] = key_n;
+      hwMap[SDLK_m] = key_m;
+
+      hwMap[SDL_MOUSEMOTION] = mouseMoved;
+      hwMap[SDL_MOUSEBUTTONDOWN] = mouse1Down;
+      hwMap[SDL_MOUSEBUTTONUP] = mouse1Up;
+   }
+
 	void start()
 	{
-		keyMap[SDLK_w].push_back(walkForwardButtonDown);
-		keyMap[SDLK_s].push_back(walkBackwardButtonDown);
-		keyMap[SDLK_a].push_back(walkLeftButtonDown);
-		keyMap[SDLK_d].push_back(walkRightButtonDown);
-		keyMap[SDL_MOUSEMOTION].push_back(mouseMoved);
-		keyMap[SDL_MOUSEBUTTONDOWN].push_back(mouse1Down);
-		keyMap[SDL_MOUSEBUTTONUP].push_back(mouse1Up);
+      mapHW();
+
+		keyMap[key_w].push_back(walkForwardButtonDown);
+		keyMap[key_s].push_back(walkBackwardButtonDown);
+		keyMap[key_a].push_back(walkLeftButtonDown);
+		keyMap[key_d].push_back(walkRightButtonDown);
 	}
 
 	void update()
 	{
 		while (SDL_PollEvent(&e))
 		{
-
+         Event newEvent = (0);
 			switch (e.type)
-			{
+			{            
 				case SDL_QUIT:
 				{
 					CORE::quit = true;
@@ -34,13 +70,18 @@ namespace CORE_Devices
 				{
 					if (e.key.repeat)
 						break;
-					notifyStateManager(e.key.keysym.sym, BUTTON_DOWN);
+               newEvent.opcode = getKeyCode(e.key.keysym.sym);
+               newEvent.push(BUTTON_DOWN);
+					notifyStateManager(newEvent);
 					break;
 				}
 
 				case SDL_KEYUP:
 				{
-					notifyStateManager(e.key.keysym.sym, BUTTON_UP);
+               newEvent.opcode = getKeyCode(e.key.keysym.sym);
+               newEvent.push(BUTTON_UP);
+
+					notifyStateManager(newEvent);
 					break;
 				}
 
@@ -48,7 +89,12 @@ namespace CORE_Devices
 				{
 					int x, y;
 					SDL_GetMouseState(&x, &y);
-					notifyStateManager(SDL_MOUSEMOTION, 0, x, y);
+
+               newEvent.opcode = getKeyCode(SDL_MOUSEMOTION);
+               newEvent.push(x);
+               newEvent.push(y);
+
+					notifyStateManager(newEvent);
 					break;
 				}
 
@@ -56,7 +102,13 @@ namespace CORE_Devices
 				{
 					int x, y;
 					SDL_GetMouseState(&x, &y);
-					notifyStateManager(SDL_MOUSEBUTTONDOWN, 1, x, y);
+
+               newEvent.opcode = SDL_MOUSEBUTTONDOWN;
+               newEvent.push(0);
+               newEvent.push(x);
+               newEvent.push(y);
+
+					notifyStateManager(newEvent);
 					break;
 				}
 
@@ -64,13 +116,30 @@ namespace CORE_Devices
 				{
 					int x, y;
 					SDL_GetMouseState(&x, &y);
-					notifyStateManager(SDL_MOUSEBUTTONUP, 0, x, y);
+
+               newEvent.opcode = SDL_MOUSEBUTTONUP;
+               newEvent.push(0);
+               newEvent.push(x);
+               newEvent.push(y);
+
+					notifyStateManager(newEvent);
 					break;
 				}
 			}
 		}
 
 	}
+
+   int getKeyCode(int keyCode)
+   {
+      if (hwMap.find(keyCode) != hwMap.end())
+      {
+         return hwMap[keyCode];
+      }
+
+      CORE_SystemIO::error("CORE_Devices error: keycode not found");
+      return 0;
+   }
 
 	void handleEvent(int eventCode, int posOrNeg, int x, int y)
 	{
@@ -79,18 +148,23 @@ namespace CORE_Devices
 
 	//Maps the current keycode to all of its matching CORE events and passes them to the State
 	//Manager along with some other info as needed
-	void notifyStateManager(int keyCode, int posOrNeg, int x, int y)
+	void notifyStateManager(Event e)
 	{
-		if (keyMap.find(keyCode) != keyMap.end())
+		for (unsigned int i = 0; i < keyMap[e.opcode].size(); i++)
 		{
-			for (unsigned int i = 0; i < keyMap[keyCode].size(); i++)
-			{
-				CORE::handleEvent(keyMap[keyCode][i],  posOrNeg, x, y);
-			}
+         Event keyEvent = e;
+         keyEvent.opcode = keyMap[e.opcode][i];
+
+			CORE::handle(keyEvent);
 		}
+      CORE::handle(e);
+
 	}
 	
 	SDL_Event e;
 	int state;
 	std::map<int, std::vector<int>> keyMap;
+
+   //Maps proprietary hardware event codes to standard CORE event codes
+   std::map<int, int> hwMap;
 }

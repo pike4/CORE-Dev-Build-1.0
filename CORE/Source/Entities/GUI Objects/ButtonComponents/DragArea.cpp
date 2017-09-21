@@ -52,23 +52,28 @@ void DragArea::get_data(DataSource* source)
 	processor->h = h;
 }
 
-void DragArea::handleInput(int keyCode, int upDown, int aX, int aY)
+void DragArea::handle(Event e)
 {
-	switch (keyCode)
+	switch (e.opcode)
 	{
-	case mouseDrag:
+   DataImpl<int>* aX;
+   DataImpl<int>* aY;
+	
+   case mouseDrag:
 		int mouseX = 0;
 		int mouseY = 0;
 
 		SDL_GetMouseState(&mouseX, &mouseY);
-		
-		//parent->handleInput(updatePos, 0, mouseX - aX, mouseY - aY);
-		*x = (mouseX - aX);
-		*y = (mouseY - aY);
+
+      aX = (DataImpl<int>*) e.arguments[0].data;
+      aY = (DataImpl<int>*) e.arguments[1].data;
+
+		*x = (mouseX - *aX);
+		*y = (mouseY - *aY);
 		break;
 	}
-	processor->handleInput(keyCode, upDown, aX, aY);
-	Entity::handleInput(keyCode, upDown, aX, aY);
+	processor->handle(e);
+	Entity::handle(e);
 }
 
 void DragArea::registerEvents(Entity* parent)

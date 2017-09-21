@@ -28,19 +28,19 @@ void ImageElement::draw()
 	CORE_Graphics::addDraw( *x, *y, texture , *zIndex);
 }
 
-void ImageElement::getArgsFromNode(Node* definer)
-{
-	std::string textureName = definer->getVariable("texture");
-	if (!textureName.empty())
-	{
-		texture = CORE_Resources::assignTexture(textureName);
-	}
-	
-	if (texture == NULL)
-	{
-		//TODO: log error
-	}
-}
+//void ImageElement::getArgsFromNode(Node* definer)
+//{
+//	std::string textureName = definer->getVariable("texture");
+//	if (!textureName.empty())
+//	{
+//		texture = CORE_Resources::assignTexture(textureName);
+//	}
+//	
+//	if (texture == NULL)
+//	{
+//		//TODO: log error
+//	}
+//}
 
 Component* ImageElement::spawnCopy()
 {
@@ -48,16 +48,15 @@ Component* ImageElement::spawnCopy()
 	return blargle;
 }
 
-void ImageElement::handleInput(int key, int upDown, int x, int y)
+void ImageElement::handle(Event e)
 {
-	switch (key)
+	switch (e.opcode)
 	{
 	case drawStep:
 		draw();
 		break;
 
 	default:
-
 		break;
 	}
 }

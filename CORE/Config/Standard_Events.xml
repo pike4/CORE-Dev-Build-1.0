@@ -1,0 +1,15 @@
+<CORE>
+   <Events>
+      <UpdateStep></UpdateStep>
+      <DrawStep></DrawStep>
+      <RoomChange>
+         <String/>
+      </RoomChange>
+      <MenuChange>
+         <String/>
+      </MenuChange>
+      <key_w>
+         <bool/>
+      </key_w>
+   </Events>
+</CORE>

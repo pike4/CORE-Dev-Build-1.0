@@ -1,1 +1,2 @@
-print(x)
+print(tab["x"])
+print(tab["y"])

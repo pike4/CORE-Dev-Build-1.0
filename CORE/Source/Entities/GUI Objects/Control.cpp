@@ -12,6 +12,7 @@ Control::Control()
 
 void Control::get_data(DataSource* source)
 {
+   Entity::get_data(source);
 	x = source->getData<int>("x");
 	y = source->getData<int>("y");
 
@@ -29,10 +30,14 @@ bool Control::isWithin(int aX, int aY)
 	return (aX > *x && aX < *x + *w && aY > *y && aY < *y + *h);
 }
 
-void Control::handleInput(int keyCode, int upDown, int aX, int aY)
+void Control::handle(Event e)
 {
-	switch (keyCode)
+   DataImpl<int>* aX;
+   DataImpl<int>* aY;
+
+	switch (e.opcode)
 	{
+
 	case drawStep:
 		if (!hidden)
 		{
@@ -44,7 +49,9 @@ void Control::handleInput(int keyCode, int upDown, int aX, int aY)
 		break;
 
 	case mouseMoved:
-		if (isWithin(aX, aY))
+      aX = (DataImpl<int>*) e.arguments[0].data;
+      aY = (DataImpl<int>*) e.arguments[1].data;
+		if (isWithin(*aX, *aY))
 		{
 			//event mouse hover
 		}
@@ -75,16 +82,18 @@ void Control::handleInput(int keyCode, int upDown, int aX, int aY)
 		break;
 
 	case updatePos:
-		*x = aX;
-		*y = aY;
-		break;
+      aX = (DataImpl<int>*) e.arguments[0].data;
+      aY = (DataImpl<int>*) e.arguments[1].data;
 
+		*x = *aX;
+		*y = *aY;
+		break;
 
 	default:
 		break;
 	}
 	this;
-	Entity::handleInput(keyCode, upDown, aX, aY);
+   Entity::handle(e);
 }
 
 void Control::show()

@@ -60,7 +60,7 @@ TemplateDef::TemplateDef(Node* def)
 
 				else if (providerType == "constant")
 				{
-                std::string value = CORE_Resources::checkVariable(curNode.first_child().value());
+               std::string value = CORE_Resources::checkVariable(curNode.first_child().value());
 					variables[curName] = new Constant(value);
 				}
 

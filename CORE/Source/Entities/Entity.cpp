@@ -10,8 +10,7 @@
 #include <iostream>
 
 Entity::Entity()
-{
-}
+{}
 
 Entity::Entity(Entity& other)
 	: Entity()
@@ -23,14 +22,22 @@ Entity::Entity(Entity& other)
 	}
 }
 
+Entity* Entity::getContext()
+{
+   return this;
+}
+
+/**
+   Retrieve all data pointers from the DataSource and copy to this Entity's data map
+*/
 void Entity::get_data(DataSource* source)
 {
-	//Copy each data into the data map
-	//DataSource needs [] operator or getChildren method
-	//for (std::map<std::string, reflection>::iterator it = dataMap->begin(); it != dataMap->end(); ++it)
-	//{
-	//	data[it->first] = it->second.pointer;
-	//}
+   std::vector<std::pair<std::string, reflection>> srcData = source->getAllData();
+
+	for (int i = 0; i < srcData.size(); i++)
+	{
+		data[srcData[i].first] = srcData[i].second.pointer;
+	}
 }
 
 void Entity::getArgsFromNode(Node* definer)
@@ -85,16 +92,18 @@ int Entity::addListener(int key, Controllable* listener)
 	{
 		ret = 0;
 		//Allocate a vector for the given key
-		listeners[key] = new std::vector<Controllable*>;
+		listeners[key] = std::vector<Controllable*>();
 
-		//Register self with parent for the given key so that the child can receive the event
+		//Register self with parent for the given key so that the child can 
+      //receive the event
 		if (parent)
 		{
 			parent->addListener(key, this);
 		}
 	}
 
-	listeners[key]->push_back(listener);
+   // Add the listener to the list for the given event
+	listeners[key].push_back(listener);
 	
 	return ret;
 }
@@ -107,19 +116,18 @@ int Entity::removeListener(int key, Controllable* listener)
 		return 0;
 	}
 
-	std::vector<Controllable*>* list = listeners[key];
+	std::vector<Controllable*> list = listeners[key];
 
-	for (unsigned int i = 0; i < list->size(); i++)
+	for (unsigned int i = 0; i < list.size(); i++)
 	{
-		if (listener == (*list)[i])
+		if (listener == list[i])
 		{
-			list->erase(list->begin() + i);
+			list.erase(list.begin() + i);
 
 			/*If there are no more listeners for the given event, remove the entry from
 			the map and stop listening for the event*/
-			if (list->empty())
+			if (list.empty())
 			{
-				delete list;
 				listeners.erase(key);
 
 				if (parent)
@@ -134,7 +142,6 @@ int Entity::removeListener(int key, Controllable* listener)
 	return 0;
 }
 
-//continuumspooky - finish this
 void Entity::storeChild(Component* component)
 {
 	if (!component)
@@ -147,7 +154,10 @@ void Entity::storeChild(Component* component)
 	component->parent = this;
 }
 
-//Perform a depth first traversal assigning parent pointers and registering for events
+/**
+   Perform depth-first traversal of child components, assigning parent pointers 
+   and registering for events
+*/
 void Entity::finalize()
 {
 	for (int i = 0; i < components.size(); i++)
@@ -164,6 +174,9 @@ void Entity::finalize()
 	}
 }
 
+/**
+   Register to receive events from parent
+*/
 void Entity::registerEvents(Entity* parent)
 {
 	if (parent)
@@ -172,46 +185,35 @@ void Entity::registerEvents(Entity* parent)
 	}
 }
 
-Data* Entity::peekData(std::string name)
-{
-	Data* ret = NULL;
-
-	if (data.find(name) != data.end())
-	{
-		ret = data[name];
-	}
-
-	return ret;
-}
-
 void Entity::setData(std::string name, Data* newData)
 {
 	data[name] = newData;
 }
 
-void Entity::handleInput(int key, int upDown, int x, int y)
+//
+bool Entity::getTrait(std::string trait)
 {
-	if (listeners.find(key) == listeners.end())
-	{
-		//warning: key not found
-		return;
-	}
+   bool ret = false;
 
-	std::vector<Controllable*> listenerList = *(listeners[key]);
+   DataImpl<bool>* t = peekData<bool>(trait);
 
-	for (unsigned int i = 0; i < listenerList.size(); i++)
-	{
-		Controllable* cur = listenerList[i];
-		cur->handleInput(key, upDown, x, y);
-	}
+   if (t)
+   {
+      ret = *t;
+   }
+
+   return ret;
 }
 
 void Entity::on(std::string eventName, std::string handlerName)
 {
-   if (CORE_Resources::eventHandlers.find(handlerName) != CORE_Resources::eventHandlers.end())
+   EventHandler* handler = CORE_Resources::getEventHandler(handlerName);
+
+
+   if (!handler)
       CORE_SystemIO::error("Event Handler " + handlerName + " does not exist");
 
-   else if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
+   else if (CORE_Resources::events.find(eventName) == CORE_Resources::events.end())
       CORE_SystemIO::error("Event " + eventName + " does not exist");
 
    else if (CORE_Resources::events[eventName].format
@@ -219,53 +221,39 @@ void Entity::on(std::string eventName, std::string handlerName)
       CORE_SystemIO::error("Event handler " + handlerName + " does not exist");
 
    else
-      eventHandlers[eventName].push_back(CORE_Resources::eventHandlers[handlerName]);
+      eventHandlers[CORE_Resources::getEventCode(eventName)].push_back(handler);
 }
 
-void Entity::handle(std::string eventName, std::vector<Data*> arguments)
+void Entity::handle(Event e)
 {
-   if(eventHandlers.find(eventName) != eventHandlers.end()) 
+   if(eventHandlers.find(e.opcode) != eventHandlers.end()) 
    {
-      std::vector<EventHandler*> handlerVector = eventHandlers[eventName];
-
-      for each(EventHandler* cur in handlerVector)
+      for each(EventHandler* cur in eventHandlers[e.opcode])
       {
-         cur->handleEvent(arguments);
+         cur->handleEvent(e.arguments);
+      }
+   }
+
+   if (listeners.find(e.opcode) != listeners.end())
+   {
+      for each(Controllable* cur in listeners[e.opcode])
+      {
+         cur->handle(e);
       }
    }
 }
 
-//Return a pointer 
-//void* Entity::getPointer(std::string key, int size)
-//{
-//	if (data.find(key) == data.end())
-//	{
-//		data[key] = calloc(1, size);
-//	}
-//
-//	return data[key];
-//}
-//Sets the given pointer and its associated slot in the data table 
-//return the other pointer so it may be assigned to a member pointer
-//void* Entity::setPointer(std::string key, int size, void* other)
-//{
-//	if (data.find(key) == data.end())
-//	{
-//		data[key] = calloc(1, size);
-//	}
-//	
-//	data[key] = other;
-//	return other;
-//}
-//Return the pointer if it exists
-//void* Entity::findPointer(std::string name) 
-//{
-//	void* ret = NULL;
-//
-//	if (data.find(name) != data.end())
-//	{
-//		ret = data[name];
-//	}
-//
-//	return ret;
-//}
+/**
+   Get a vector of key-value pairs representing all data members in the entity
+*/
+std::vector<std::pair<std::string, Data*>> Entity::getAllData()
+{
+   std::vector<std::pair<std::string, Data*>>  ret;
+   std::map<std::string, Data*>::iterator iter;
+   for (iter = data.begin(); iter != data.end(); ++iter)
+   {
+      ret.push_back(std::pair<std::string, Data*>(iter->first, iter->second));
+   }
+
+   return ret;
+}

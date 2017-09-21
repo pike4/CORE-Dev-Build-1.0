@@ -1,4 +1,4 @@
-   <CORE>
+<CORE>
    <strings>
       <DefaultImage>Assets/Sprites/ButtonDefault.png</DefaultImage>
       <BackgroundImage>Assets/Sprites/bg1.png</BackgroundImage>
@@ -11,7 +11,7 @@
          <h value="400"/>
       </glob>
    </states>
-  <menuSystem>
+   <menuSystem>
     <name>main</name>
     <menuScreens>
       <menuScreen>
@@ -27,7 +27,7 @@
           <components>
             <checkbox>
               <data>
-                <x value="0" dependence="parent" function="offset"/>
+                <x value="10" dependence="parent" function="offset"/>
                 <y value="50" dependence="parent" function="offset"/>
                 <zIndex value="10"/>
                 <xOffset value="50"/>
@@ -54,12 +54,15 @@
             </imageElement>
             <dragArea></dragArea>
           </components>
-           <eventHandlers>
-              <mouseClick>
-                 <a/>
-                 <b/>
-              </mouseClick>
-           </eventHandlers>
+          <eventHandlers>
+             <mouseMoved>
+                <followHandler/>
+                <mouseClickHandler/>
+             </mouseMoved>
+             <explosion>
+                <explosionHandler/>
+             </explosion>
+          </eventHandlers>
         </GUI_Area>
       </controls>
     </menuScreen>

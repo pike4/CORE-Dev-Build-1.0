@@ -4,7 +4,7 @@
 
 namespace CORE_Audio
 {
-	void handleEvent(int eventCode, int posOrNeg, int x, int y)
+	void handle(Event e)
 	{
 
 	}

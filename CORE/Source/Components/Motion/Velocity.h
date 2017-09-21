@@ -9,8 +9,9 @@ public:
 	Velocity(Velocity&);
 	virtual Component* spawnCopy();
 	virtual void move(int aX, int aY);
+   virtual void get_data(DataSource* source);
 
-	virtual void handleInput(int key, int upDown = 0, int aX = 0, int aY = 0);
+	virtual void handle(Event e);
 
 protected:
 	DataImpl<double>* xVel;
