@@ -54,7 +54,7 @@ static int printNum(lua_State* q)
 int main()
 {
    //Lua!
-   CORE_Resources::L = lua_open();
+   CORE_Resources::L = luaL_newstate();
    luaL_openlibs(CORE_Resources::L);
 
 	CORE::start();

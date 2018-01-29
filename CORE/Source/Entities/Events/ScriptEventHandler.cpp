@@ -91,7 +91,7 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
    }
 
    using CORE_Resources::L;
-   CORE_Resources::L = lua_open();
+   CORE_Resources::L = luaL_newstate();
    luaL_openlibs(CORE_Resources::L);
 
    //Push arguments onto the stack and register global names
