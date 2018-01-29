@@ -40,10 +40,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>W:\Documents\CORE\CORE-dev-build-1.0\Libs\lua-5.3.4\lua-5.3.4\src;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities\Events;.\Source\Entities;.\Source\Services\Non-Standard;.\Source\Services;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Lib\lua 5.3.4;..\Libs\PugiXML;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\include;.\Assets;.\Source\Data;.\Source\Data\Transforms;.\Source\Components;.\Source\Components\Motion;.\Source\Entities\Events;.\Source\Entities;.\Source\Services\Non-Standard;.\Source\Services;.\Source\Main;.\Source\Entities\Elements;.\Source\Entities\Game Objects;C:\Users\Continuum\Documents\Visual Studio 2013\Projects\CORE\CORE\Source\Entities\GUI Objects\Containers;.\Source\Entities\Game Objects\Containers;.\Source\Entities\GUI Objects;.\Source\Entities\GUI Objects\ButtonComponents;.\Source\Entities\GUI Objects\Containers;.\Source\Subsystems;.\Source\Subsystems\Logging;.\Source\XML Parsing;.\Source\XML Parsing\Definers;.\Source\XML Parsing\Providers;.\Source\Other;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libs\SDL 2.0\SDL2-devel-2.0.3-VC\SDL2-2.0.3\lib\x86;..\Libs\SDL 2.0\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;..\Libs\SDL 2.0\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;..\Libs\SDL 2.0\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;C:\Users\Continuum\AppData\Local\Programs\Python\Python35\libs;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)Bin\Debug\</OutDir>
-    <SourcePath>W:\Documents\CORE\CORE-dev-build-1.0\Libs\lua-5.3.4\lua-5.3.4\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(SourcePath)</SourcePath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,6 +136,32 @@
     <ClInclude Include="Interfaces\Headers\Observer.h" />
     <ClInclude Include="Interfaces\Headers\VelocityComponent.h" />
     <ClInclude Include="Interfaces\Headers\VisibleElement.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lapi.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lauxlib.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lcode.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lctype.h" />
+    <ClInclude Include="Lib\lua 5.3.4\ldebug.h" />
+    <ClInclude Include="Lib\lua 5.3.4\ldo.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lfunc.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lgc.h" />
+    <ClInclude Include="Lib\lua 5.3.4\llex.h" />
+    <ClInclude Include="Lib\lua 5.3.4\llimits.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lmem.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lobject.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lopcodes.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lparser.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lprefix.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lstate.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lstring.h" />
+    <ClInclude Include="Lib\lua 5.3.4\ltable.h" />
+    <ClInclude Include="Lib\lua 5.3.4\ltm.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lua.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lua.hpp" />
+    <ClInclude Include="Lib\lua 5.3.4\luaconf.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lualib.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lundump.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lvm.h" />
+    <ClInclude Include="Lib\lua 5.3.4\lzio.h" />
     <ClInclude Include="Main\Headers\ComponentTypes.h" />
     <ClInclude Include="Main\Headers\ControlTypes.h" />
     <ClInclude Include="Main\Headers\DrawOrder.h" />
@@ -173,6 +199,39 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Libs\PugiXML\pugixml.cpp" />
+    <ClCompile Include="Lib\lua 5.3.4\lapi.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lauxlib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lbaselib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lbitlib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lcode.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lcorolib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lctype.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ldblib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ldebug.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ldo.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ldump.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lfunc.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lgc.c" />
+    <ClCompile Include="Lib\lua 5.3.4\linit.c" />
+    <ClCompile Include="Lib\lua 5.3.4\liolib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\llex.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lmathlib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lmem.c" />
+    <ClCompile Include="Lib\lua 5.3.4\loadlib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lobject.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lopcodes.c" />
+    <ClCompile Include="Lib\lua 5.3.4\loslib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lparser.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lstate.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lstring.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lstrlib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ltable.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ltablib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\ltm.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lundump.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lutf8lib.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lvm.c" />
+    <ClCompile Include="Lib\lua 5.3.4\lzio.c" />
     <ClCompile Include="Source\Components\Collidable.cpp" />
     <ClCompile Include="Source\Components\Motion\I_VelocityControl.cpp" />
     <ClCompile Include="Source\Components\Motion\Position.cpp" />
@@ -237,7 +296,7 @@
     <ClCompile Include="Source\XML Parsing\Providers\Variable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\..\..\Program Files\lua5.1\lib\dll\lua5.1.dll" />
+    <None Include="Lib\lua 5.3.4\Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
