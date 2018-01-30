@@ -6,6 +6,7 @@
 #include "ElementTypes.h"
 #include "ComponentTypes.h"
 #include "Entity.h"
+#include "Handler.h"
 #include "DataSource.h"
 #include "NodeTemplate.h"
 #include "DefaultNode.h"
@@ -55,28 +56,28 @@ namespace CORE_Factory
 		Component* ret = NULL;
 
       if (name == "iVelocityControl")
-         ret = new I_VelocityControl();
+          ret = new I_VelocityControl();
 
       else if (name == "position")
-         ret = new Position(def);
+          ret = new Position(def);
 
       else if (name == "collidable")
-         ret = new Collidable(def);
+          ret = new Collidable(def);
 
       else if (name == "mouseProcessor")
-         ret = new MouseProcessor();
+          ret = new MouseProcessor();
 
       else if (name == "menuDestination")
-         ret = new MenuDestination();
+          ret = new MenuDestination();
 
       else if (name == "menuLayerAdd")
-         ret = new MenuLayerAdd();
+          ret = new MenuLayerAdd();
 
       else if (name == "BB_Component")
-         ret = new BB_Component();
+          ret = new BB_Component();
 
       else if (name == "CollisionHandler")
-         ret = new CollisionHandler();
+          ret = new CollisionHandler();
 
 		return ret;
 	}

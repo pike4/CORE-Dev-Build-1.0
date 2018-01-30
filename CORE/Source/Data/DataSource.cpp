@@ -44,16 +44,14 @@ DataSource::DataSource(Node* def, DataSource* newParent)
 
 				if (oldTraits.funcType != curTraits.funcType)
 				{
-					//TODO error: multiple instantiations of variable <name> with conflicting
-					//function types
+                CORE_SystemIO::error("multiple instantiations of variable <name> with conflicting function types");
 					add = false;
 				}
 
 				if (add && (oldTraits.value != curTraits.value))
 				{
-					//TODO warning: multiple instantiations of 
-					//variable <name> with conflicting values. 
-					//New value will override old value.
+					CORE_SystemIO::error("warning: multiple instantiations of variable " + curTraits.name + 
+                   " with conflicting values. New value will override old value.");
 					dataMap[curTraits.name].value = curTraits.value;
 				}
 			}

@@ -137,6 +137,8 @@ public:
    //Get a vector of all Data pointers contained by this Entity
    std::vector<std::pair<std::string, Data*>>  getAllData();
 
+   Data* getRawPtr(std::string name);
+
 	//Set the data of the given name to the given value
 	template <typename T>
 	void setValue(std::string name, T newValue)

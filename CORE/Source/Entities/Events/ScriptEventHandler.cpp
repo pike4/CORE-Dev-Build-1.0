@@ -4,6 +4,9 @@
 
 ScriptEventHandler::ScriptEventHandler(Node* def)
 {
+
+    L = lua_newthread(CORE_Resources::L);
+
    if (!def)
    {
       CORE_SystemIO::error("Could not construct ScriptEventHandler from null Node*");
@@ -86,13 +89,13 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
    if (args.size() != argNames.size())
    {
       CORE_SystemIO::error("Script called with " + std::to_string(args.size()) +
-         "arguments but takes " + std::to_string(argNames.size()));
+         "arguments but takes " + std::to_string( argNames.size() ));
       return;
    }
 
-   using CORE_Resources::L;
-   CORE_Resources::L = luaL_newstate();
-   luaL_openlibs(CORE_Resources::L);
+   //commenting out these two lines gives like a 50,000 % performance boost
+   //L = luaL_newstate();
+   //luaL_openlibs(L);
 
    //Push arguments onto the stack and register global names
    for (int i = 0; i < args.size(); i++)
@@ -107,7 +110,7 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
       else
       {
          pushPrimitive(L, args[i].data);
-         lua_setglobal(CORE_Resources::L, argNames[i].c_str());
+         lua_setglobal(L, argNames[i].c_str());
       }
    }
 
@@ -140,13 +143,13 @@ void ScriptEventHandler::pushPrimitive(lua_State* L, Data* data)
    switch (prim)
    {
    case CORE_TypeTraits::_integer:
-      lua_pushinteger(CORE_Resources::L, *((DataImpl<int>*) data));
+      lua_pushinteger(L, *((DataImpl<int>*) data));
       break;
    case CORE_TypeTraits::_boolean:
-      lua_pushboolean(CORE_Resources::L, *((DataImpl<bool>*) data));
+      lua_pushboolean(L, *((DataImpl<bool>*) data));
       break;
    case CORE_TypeTraits::_floatingPoint:
-      lua_pushnumber(CORE_Resources::L, *((DataImpl<float>*) data));
+      lua_pushnumber(L, *((DataImpl<float>*) data));
       break;
    default:
       lua_pushinteger(L, 0);
@@ -161,7 +164,6 @@ void ScriptEventHandler::pushPrimitive(lua_State* L, Data* data)
 */
 void ScriptEventHandler::popPrimitive(std::string name, Data* dat)
 {
-   using CORE_Resources::L;
    lua_getglobal(L, name.c_str());
    topToPrimitive(dat);
 }
@@ -171,7 +173,6 @@ void ScriptEventHandler::popPrimitive(std::string name, Data* dat)
 */
 void ScriptEventHandler::topToPrimitive(Data* dat)
 {
-   using CORE_Resources::L;
    switch (dat->getType())
    {
    case _integer:
@@ -194,16 +195,16 @@ void ScriptEventHandler::pushEntity(std::string name, Entity* E1)
    std::vector<std::pair<std::string, Data*>> data =
       E1->getAllData();
 
-   lua_newtable(CORE_Resources::L);
+   lua_newtable(L);
    for (int j = 0; j < data.size(); j++)
    {
-      int tI = lua_gettop(CORE_Resources::L);
-      lua_pushstring(CORE_Resources::L, data[j].first.c_str());
-      pushPrimitive(CORE_Resources::L, data[j].second);
+      int tI = lua_gettop(L);
+      lua_pushstring(L, data[j].first.c_str());
+      pushPrimitive(L, data[j].second);
 
-      lua_settable(CORE_Resources::L, tI);
+      lua_settable(L, tI);
    }
-   lua_setglobal(CORE_Resources::L, name.c_str());
+   lua_setglobal(L, name.c_str());
 }
 
 /**
@@ -211,8 +212,6 @@ void ScriptEventHandler::pushEntity(std::string name, Entity* E1)
 */
 void ScriptEventHandler::popEntity(std::string name, Entity* E1)
 {
-   using CORE_Resources::L;
-
    lua_getglobal(L, name.c_str());
    lua_pushnil(L);
 

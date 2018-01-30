@@ -185,6 +185,16 @@ void Entity::registerEvents(Entity* parent)
 	}
 }
 
+Data* Entity::getRawPtr(std::string name)
+{
+    if (data.find(name) != data.end())
+    {
+        return data[name];
+    }
+
+    return NULL;
+}
+
 void Entity::setData(std::string name, Data* newData)
 {
 	data[name] = newData;
@@ -244,8 +254,8 @@ void Entity::handle(Event e)
 }
 
 /**
-   Get a vector of key-value pairs representing all data members in the entity
-*/
+ *  Get a vector of key-value pairs representing all data members in the entity
+ */
 std::vector<std::pair<std::string, Data*>> Entity::getAllData()
 {
    std::vector<std::pair<std::string, Data*>>  ret;

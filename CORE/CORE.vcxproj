@@ -176,6 +176,7 @@
     <ClInclude Include="Source\Entities\Events\EventHandler.h" />
     <ClInclude Include="Source\Entities\Events\ScriptEventHandler.h" />
     <ClInclude Include="Source\Services\BoundingBox.h" />
+    <ClInclude Include="Source\Services\Handler.h" />
     <ClInclude Include="Source\Services\Non-Standard\BB_Component.h" />
     <ClInclude Include="Source\Services\Non-Standard\BoundingBoxAccepter.h" />
     <ClInclude Include="Source\Services\Non-Standard\CollisionHandler.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="Source\Main\CORE_Main.cpp" />
     <ClCompile Include="Source\Other\Observer.cpp" />
     <ClCompile Include="Source\Other\Timer.cpp" />
+    <ClCompile Include="Source\Services\Handler.cpp" />
     <ClCompile Include="Source\Services\Non-Standard\BB_Component.cpp" />
     <ClCompile Include="Source\Services\Non-Standard\CollisionHandler.cpp" />
     <ClCompile Include="Source\Subsystems\CORE.cpp" />

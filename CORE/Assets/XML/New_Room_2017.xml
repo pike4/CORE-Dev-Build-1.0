@@ -6,6 +6,12 @@
         <name>living room</name>
         <objects>
            <CollisionHandler/>
+          <Handler>
+            <format>
+              <x type = "int"/>
+              <y type ="bool"/>
+            </format>
+          </Handler>
           <entity>
             <data>
               <x value ="200"/>
@@ -23,7 +29,7 @@
                   <h>100</h>
                 </data>
                 <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
-              </imageElement>
+               </imageElement>
                <BB_Component/>
             </components>
           </entity>

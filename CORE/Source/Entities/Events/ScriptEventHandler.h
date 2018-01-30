@@ -12,6 +12,8 @@ public:
    virtual void handleEvent(std::vector<EventArg>);
 
 protected:
+    lua_State* L;
+
    std::string scriptName;
    std::vector<std::string> argNames;
 
