@@ -15,6 +15,17 @@ void Handler::getText(Node* node)
 
         format.push_back(curTrait);
     }
+
+	formatChild = node->getChild("traits");
+	formatChildren = formatChild->getChildren();
+
+	for (int i = 0; i < formatChildren->size(); i++)
+	{
+		Node* curNode = (*formatChildren)[i];
+		std::string traitName = curNode->getName();
+
+		requiredTraits.push_back(traitName);
+	}
 }
 
 void Handler::handle(Event e)
@@ -29,6 +40,11 @@ void Handler::handle(Event e)
             add(newEnt);
         }
     }
+}
+
+void Handler::add(Entity* e)
+{
+
 }
 
 bool Handler::entityMatchesFormat(Entity* ent)
@@ -47,4 +63,17 @@ bool Handler::entityMatchesFormat(Entity* ent)
     }
 
     return matches;
+}
+
+bool Handler::entityHasAllTraits(Entity* ent)
+{
+	for (int i = 0; i < requiredTraits.size(); i++)
+	{
+		if (!ent->getTrait(requiredTraits[i]))
+		{
+			return false;
+		}
+	}
+
+	return true;
 }

@@ -79,6 +79,8 @@ namespace CORE_Factory
       else if (name == "CollisionHandler")
           ret = new CollisionHandler();
 
+	  else if (name == "Handler")
+		  ret = new Handler();
 		return ret;
 	}
 

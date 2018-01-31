@@ -11,6 +11,10 @@
               <x type = "int"/>
               <y type ="bool"/>
             </format>
+            <traits>
+              <mobile/>
+              <enemy/>
+            </traits>
           </Handler>
           <entity>
             <data>
