@@ -218,7 +218,7 @@ void ScriptEventHandler::popEntity(std::string name, Entity* E1)
    while (lua_next(L, -2))
    {
       std::string memberName = lua_tostring(L, -2);
-      topToPrimitive(E1->data[memberName]);
+      topToPrimitive(E1->getRawPtr(memberName));
       lua_pop(L, 1);
    }
 }

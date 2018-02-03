@@ -161,8 +161,6 @@ public:
 
    void handle(Event e);
 
-   std::map<std::string, Data*> data;
-
 	//Push recursive add down to children
 	virtual void registerEvents(Entity* parent);
 
@@ -176,8 +174,8 @@ protected:
 	std::map<int, std::vector<Controllable*>> listeners;
 
 	//Maps string variable names to Data pointers accissible from the 
-   //public class interface
-	/*std::map<std::string, Data*> data;*/
+    //public class interface
+	std::map<std::string, Data*> data;
 
 	//The components that make up this object
 	std::vector<Component*> components;

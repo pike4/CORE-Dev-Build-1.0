@@ -12,7 +12,7 @@ protected:
     std::vector<reflection> format;
 
 	// Vector containing names of traits required by this handler
-	std::vector<std::string> requiredTraits;
+	std::vector<std::string> traits;
 
     // Given an entity, add it or get data from it in order to handle it
     virtual void add(Entity* newEntity);
@@ -22,4 +22,10 @@ protected:
 
 	// Check that the given entity has all of the traits needed by this handler
 	bool entityHasAllTraits(Entity* ent);
+
+	// Get the list of traits this Handler requires
+	virtual std::vector<std::string> getTraits();
+
+	// Get the format this Handler requires
+	virtual std::vector< CORE_TypeTraits::reflection > getFormat();
 };

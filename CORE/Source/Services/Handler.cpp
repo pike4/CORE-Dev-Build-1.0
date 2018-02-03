@@ -3,6 +3,7 @@
 
 void Handler::getText(Node* node)
 {
+	// Get required format
     Node* formatChild = node->getChild("format");
     std::vector<Node*>* formatChildren = formatChild->getChildren();
 
@@ -16,6 +17,7 @@ void Handler::getText(Node* node)
         format.push_back(curTrait);
     }
 
+	// Get all traits
 	formatChild = node->getChild("traits");
 	formatChildren = formatChild->getChildren();
 
@@ -24,7 +26,7 @@ void Handler::getText(Node* node)
 		Node* curNode = (*formatChildren)[i];
 		std::string traitName = curNode->getName();
 
-		requiredTraits.push_back(traitName);
+		traits.push_back(traitName);
 	}
 }
 
@@ -44,18 +46,19 @@ void Handler::handle(Event e)
 
 void Handler::add(Entity* e)
 {
-
+	// Must be implemented
 }
 
 bool Handler::entityMatchesFormat(Entity* ent)
 {
     bool matches = true;
+	std::vector<CORE_TypeTraits::reflection> form = getFormat();
 
-    for (int i = 0; i < format.size(); i++)
+    for (int i = 0; i < form.size(); i++)
     {
-        Data* curData = ent->getRawPtr(format[i].name);
+        Data* curData = ent->getRawPtr(form[i].name);
 
-        if ( !(curData && curData->getType() == format[i].primitiveType) )
+        if ( !(curData && curData->getType() == form[i].primitiveType) )
         {
             matches = false;
             break;
@@ -67,13 +70,25 @@ bool Handler::entityMatchesFormat(Entity* ent)
 
 bool Handler::entityHasAllTraits(Entity* ent)
 {
-	for (int i = 0; i < requiredTraits.size(); i++)
+	std::vector<std::string> reqdTraits = getTraits();
+
+	for (int i = 0; i < reqdTraits.size(); i++)
 	{
-		if (!ent->getTrait(requiredTraits[i]))
+		if (!ent->getTrait(reqdTraits[i]))
 		{
 			return false;
 		}
 	}
 
 	return true;
+}
+
+std::vector<std::string> Handler::getTraits()
+{
+	return traits;
+}
+
+std::vector< CORE_TypeTraits::reflection > Handler::getFormat()
+{
+	return format;
 }

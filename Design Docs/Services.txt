@@ -1,0 +1,34 @@
+CORE implements services that can perform various operations on specific subsets of objects in a room. 
+
+A properly implemented service has:
+	A defined set of required name-type pairs for the fields an entity must have to be added to the service
+	An optional set of trait names an entity must have to be added to the service
+
+	An implementation for the pure virtual add() method. This should request pointers to the needed fields and store them in a format that the service can make use of
+
+	An overload for the handle() method to handle events as needed
+
+
+For example, CollisionHandler stores a list of entities and checks them against each other for collisions with each update step. It requires the data fields 
+"x : Int", "y : Int", "w : Int", and "h : Int", and the trait "collisionBox" from any entities it adds.
+
+CollisionHandler's source file defines the struct:
+
+BoundingBox
+{
+	Entity* e;
+	Data<Int>* x;
+	Data<Int>* y;
+	Data<Int>* w;
+	Data<Int>* h;
+}
+
+To add an entity, CollisionHandler requests each of the needed pointers, then stores the results in a BoundingBox.
+
+CollisionHandler overrides the handle() method to handle updateStep events. On receiving an updateStep, CollisionHandler checks each pair for collisions, and sends an event
+to each entity involved.
+
+
+How to implement:
+	run the GenerateService script in the tools folder, and enter a name. The script will generate new files and add the necessary changes to 
+	generate an instance of the service from XML. Open resulting files and implement or remove the empty methods.

@@ -1,0 +1,1 @@
+This folder contains scripts used for automating various tasks in the engine. It is recommended to run these scripts rather than implementing new classes by hand.

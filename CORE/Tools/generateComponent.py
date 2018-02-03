@@ -1,4 +1,8 @@
 import os
+import sys
+
+sys.path.insert(0, "./Helpers")
+
 from addIncludeEntry import addInclude
 from addFactoryEntry import addFactory
 from generateComponentClassDefinition import genCompClassDef
