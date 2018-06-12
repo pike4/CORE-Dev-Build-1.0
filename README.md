@@ -69,15 +69,15 @@ Using the Engine: (Move to another file and link from here)
 Templates can be defined to allow less verbose instantiations of certain object types
 
 Take for example the following imageElement:
-
+```XML
 <ImageElement>
   <xOffset>200</x>
   <yOffset>100</y>
   <image>sprites/foo.png</image>
 </ImageElement>
-
+```
 If there are many instances of ImageElemtent used in a project, adding all of these instances to the XML could become extremely tiresome. Fortunately, a template can be used to simplify this process:
-
+```XML
 <templates>
   <ImageElement name="foo">
     <xOffset type="constant">200</xOffset>
@@ -85,8 +85,9 @@ If there are many instances of ImageElemtent used in a project, adding all of th
     <image type="main"/>
   </ImageElement>
 </templates>
-
+```
 Using this template, the XML needed to instantiate the above ImageElement is now simply:
+```XML
 <foo>sprites/foo.png</foo>
-
+```
 ## Using XML templating
