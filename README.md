@@ -65,7 +65,7 @@ Using the Engine: (Move to another file and link from here)
 
 # XML
 
-# Templating
+## Templating
 Templates can be defined to allow less verbose instantiations of certain object types
 
 Take for example the following imageElement:
@@ -76,7 +76,7 @@ Take for example the following imageElement:
   <image>sprites/foo.png</image>
 </ImageElement>
 ```
-If there are many instances of ImageElemtent used in a project, adding all of these instances to the XML could become extremely tiresome. Fortunately, a template can be used to simplify this process:
+If there are many similar instances of ImageElemtent used in a project, adding all of these instances to the XML could become extremely tiresome. Fortunately, a template can be used to simplify this process:
 ```XML
 <templates>
   <ImageElement name="foo">
@@ -90,4 +90,94 @@ Using this template, the XML needed to instantiate the above ImageElement is now
 ```XML
 <foo>sprites/foo.png</foo>
 ```
-## Using XML templating
+### Using XML templating
+All XML templates must be enclosed in a set of 
+```XML 
+<templates>
+```
+tags. The XML node title is the name of the class that the template will be used to instantiate. The "name" variable in the main header is the template's global name, which will take the place of the class name in any instantiations of this template.
+
+### Template Variables
+
+Templates are used to provide various shorthands for instantiating the variables of a given class. To define a shoirthand for a variable, simply place the variable within the template definition and give it a "type" variable. The use cases for the various type values are enumerated below:
+
+#### Main
+
+The given variable in any instantiation of the template will be gotten from the main value of the node. For example,
+```XML
+<ImageElement name="bar">
+  <image type=main/>
+</ImageElement>
+```
+becomes:
+```XML
+<bar>sprites/a.png</bar>
+```
+
+Since this takes up the entire tag, each template can only have one main value, and any other variables must either be constant, or given their values inside the actual tag, as in:
+```XML
+<bar x=200, y=200>sprites/a.png</bar>
+```
+
+#### Default
+
+The given variable will have a default value that can be overriden:
+```XML
+<ImageElement name="foo">
+  <image type="default">sprites/bar.png</image>
+</ImageElement>
+```
+
+We can instantiate the above template in one of two ways:
+```XML
+<foo name="x1"></foo>
+
+<foo name="x2">
+  <image type="default">sprites/buzz.png</image>
+</foo>
+```
+
+For x1, the value of image will default to sprites/bar.png. x2 overrides this value and takes sprites/buzz.png instead.
+  
+
+#### Constant
+
+The given variable is constant and cannot be overriden. An error will be thrown if the user attempts to override it in the instantitation
+
+#### Alias
+
+This allows variable names to be renamed or grouped together. For example:
+```XML
+<ImageElement name="foo">
+  <alias name ="xy">
+    <x/>
+    <y/>
+  </alias>
+  <alias name="i">
+    <image/>
+  </alias>
+</ImageElement>
+```
+Becomes:
+```XML
+<foo>
+  <xy>100,200</xy>
+  <i>sprites/bar.png</i>
+</foo>
+```
+
+This new instance will have x=100, y=200, and image=sprites/bar.png
+
+If the title "main" is given to an alias, it will take the place of the main value, assuming there is no main variable already assigned:
+
+```XML
+<ImageElement name="foo">
+  <alias name="main">
+    <x/><y/><image/>
+  </alias>
+</ImageElement>
+```
+Can be instantiated with:
+```XML
+<foo>100,200,sprites/bar.png</foo>
+```
