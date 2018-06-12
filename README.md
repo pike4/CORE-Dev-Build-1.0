@@ -63,9 +63,9 @@ There is more coupling than I would like between implementation specific functio
 Using the Engine: (Move to another file and link from here)
 
 
-#XML
+# XML
 
-#Templating
+# Templating
 Templates can be defined to allow less verbose instantiations of certain object types
 
 Take for example the following imageElement:
@@ -89,4 +89,4 @@ If there are many instances of ImageElemtent used in a project, adding all of th
 Using this template, the XML needed to instantiate the above ImageElement is now simply:
 <foo>sprites/foo.png</foo>
 
-##Using XML templating
+## Using XML templating
