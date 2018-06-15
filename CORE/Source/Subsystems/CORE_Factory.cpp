@@ -55,29 +55,26 @@ namespace CORE_Factory
 
 		Component* ret = NULL;
 
-      if (name == "iVelocityControl")
-          ret = new I_VelocityControl();
+		if (name == "iVelocityControl")
+			ret = new I_VelocityControl();
 
-      else if (name == "position")
-          ret = new Position(def);
+		else if (name == "position")
+			ret = new Position(def);
 
-      else if (name == "collidable")
-          ret = new Collidable(def);
+		else if (name == "collidable")
+			ret = new Collidable(def);
 
-      else if (name == "mouseProcessor")
-          ret = new MouseProcessor();
+		else if (name == "mouseProcessor")
+			ret = new MouseProcessor();
 
-      else if (name == "menuDestination")
-          ret = new MenuDestination();
+		else if (name == "menuDestination")
+			ret = new MenuDestination();
 
-      else if (name == "menuLayerAdd")
-          ret = new MenuLayerAdd();
+		else if (name == "menuLayerAdd")
+			ret = new MenuLayerAdd();
 
-      else if (name == "BB_Component")
-          ret = new BB_Component();
-
-      else if (name == "CollisionHandler")
-          ret = new CollisionHandler();
+		else if (name == "StandardCollision")
+			ret = new StandardCollision();
 
 	  else if (name == "Handler")
 		  ret = new Handler();
@@ -325,4 +322,10 @@ namespace CORE_Factory
       return ret;
    }
 #pragma endregion
+
+
+   Node* parseXML(pugi::xml_node node)
+   {
+
+   }
 }

@@ -35,7 +35,7 @@ namespace CORE_TypeTraits
 	{
 		ret->name = def->getName();
 		ret->value = def->getVariable("value");
-		ret->dependenceType = getDependenceType(def->getVariable("dependence"));
+		ret->dependenceType = getDependenceType(def->getVariable("link"));
 		ret->funcType = getFunctionType(def->getVariable("function"));
 		ret->primitiveType = getPrimitiveType(def->getVariable("type"));
 		ret->good = true;
@@ -81,7 +81,6 @@ namespace CORE_TypeTraits
 
 		if (child->good)
 		{
-
 			if (thisDependsOnParent && !parentDependsOnThis)
 			{
 				//Add dependency to child
@@ -175,7 +174,6 @@ namespace CORE_TypeTraits
 	}
 #pragma endregion
 
-
 #pragma region Get trait names
 	std::string getPrimitiveTypeName(PrimitiveType type)
 	{
@@ -245,7 +243,7 @@ namespace CORE_TypeTraits
 			ret = "children";
 			break;
 		default:
-			ret = "undefined dependence type";
+			ret = "undefined link type";
 			break;
 		}
 

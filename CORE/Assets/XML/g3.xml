@@ -2,9 +2,8 @@
   <MenuScreenDec>main</MenuScreenDec>
   <MenuScreenDec>other</MenuScreenDec>
   <MenuScreenDec>options</MenuScreenDec>
-  
+
   <name>Pause Menu</name>
-    
 
   <MenuScreen>
     <name>main</name>

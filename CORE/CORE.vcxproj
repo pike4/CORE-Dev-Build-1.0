@@ -177,9 +177,8 @@
     <ClInclude Include="Source\Entities\Events\ScriptEventHandler.h" />
     <ClInclude Include="Source\Services\BoundingBox.h" />
     <ClInclude Include="Source\Services\Handler.h" />
-    <ClInclude Include="Source\Services\Non-Standard\BB_Component.h" />
-    <ClInclude Include="Source\Services\Non-Standard\BoundingBoxAccepter.h" />
-    <ClInclude Include="Source\Services\Non-Standard\CollisionHandler.h" />
+    <ClInclude Include="Source\Services\StandardCollision.h" />
+    <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h" />
     <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
     <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h" />
@@ -275,8 +274,7 @@
     <ClCompile Include="Source\Other\Observer.cpp" />
     <ClCompile Include="Source\Other\Timer.cpp" />
     <ClCompile Include="Source\Services\Handler.cpp" />
-    <ClCompile Include="Source\Services\Non-Standard\BB_Component.cpp" />
-    <ClCompile Include="Source\Services\Non-Standard\CollisionHandler.cpp" />
+    <ClCompile Include="Source\Services\StandardCollision.cpp" />
     <ClCompile Include="Source\Subsystems\CORE.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Audio.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Devices.cpp" />
@@ -288,7 +286,7 @@
     <ClCompile Include="Source\Subsystems\Logging\LogFileStream.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogWindowStream.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp" />
-    <ClCompile Include="Source\XML Parsing\Definers\NodeParser.cpp" />
+    <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\NodeTemplate.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Constant.cpp" />

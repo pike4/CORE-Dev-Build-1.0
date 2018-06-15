@@ -5,17 +5,6 @@
       <room>
         <name>living room</name>
         <objects>
-           <CollisionHandler/>
-          <Handler>
-            <format>
-              <x type = "int"/>
-              <y type ="bool"/>
-            </format>
-            <traits>
-              <mobile/>
-              <enemy/>
-            </traits>
-          </Handler>
           <entity>
             <data>
               <x value ="200"/>
@@ -27,18 +16,16 @@
               <iVelocityControl></iVelocityControl>
               <imageElement>
                 <data>
-                  <x value="100" dependence="parent"/>
-                  <y value="50" dependence="parent"/>
+                  <x value="100" link="parent"/>
+                  <y value="50" link="parent"/>
                   <w>100</w>
                   <h>100</h>
                 </data>
                 <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
                </imageElement>
-               <BB_Component/>
             </components>
           </entity>
-
-           <entity>
+          <entity>
               <data>
                  <x value ="500"/>
                  <y value ="300"/>
@@ -48,16 +35,23 @@
               <components>
                  <imageElement>
                     <data>
-                       <x value="100" dependence="parent"/>
-                       <y value="50" dependence="parent"/>
+                       <x value="100" link="parent"/>
+                       <y value="50" link="parent"/>
                        <w>100</w>
                        <h>100</h>
                     </data>
                     <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
                  </imageElement>
-                 <BB_Component/>
               </components>
            </entity>
+          <StandardCollision>
+            <format>
+              <x type="int"/>
+              <y type="int"/>
+              <w type="int"/>
+              <h type="int"/>
+            </format>
+          </StandardCollision>
         </objects>
       </room>
     </rooms>

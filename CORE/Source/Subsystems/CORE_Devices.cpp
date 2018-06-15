@@ -70,8 +70,8 @@ namespace CORE_Devices
 				{
 					if (e.key.repeat)
 						break;
-               newEvent.opcode = getKeyCode(e.key.keysym.sym);
-               newEvent.push(BUTTON_DOWN);
+					newEvent.opcode = getKeyCode(e.key.keysym.sym);
+					newEvent.push(BUTTON_DOWN);
 					notifyStateManager(newEvent);
 					break;
 				}

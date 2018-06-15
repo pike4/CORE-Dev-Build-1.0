@@ -19,14 +19,18 @@ void Handler::getText(Node* node)
 
 	// Get all traits
 	formatChild = node->getChild("traits");
-	formatChildren = formatChild->getChildren();
 
-	for (int i = 0; i < formatChildren->size(); i++)
+	if (formatChild)
 	{
-		Node* curNode = (*formatChildren)[i];
-		std::string traitName = curNode->getName();
+		formatChildren = formatChild->getChildren();
 
-		traits.push_back(traitName);
+		for (int i = 0; i < formatChildren->size(); i++)
+		{
+			Node* curNode = (*formatChildren)[i];
+			std::string traitName = curNode->getName();
+
+			traits.push_back(traitName);
+		}
 	}
 }
 

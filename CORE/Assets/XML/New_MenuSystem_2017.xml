@@ -27,8 +27,8 @@
           <components>
             <checkbox>
               <data>
-                <x value="10" dependence="parent" function="offset"/>
-                <y value="50" dependence="parent" function="offset"/>
+                <x value="10" link="parent" function="offset"/>
+                <y value="50" link="parent" function="offset"/>
                 <zIndex value="10"/>
                 <xOffset value="50"/>
                 <yOffset value="20"/>
@@ -38,9 +38,9 @@
               <components>
                 <imageElement>
                   <data>
-                    <x value="0" dependence="parent" function="offset"/>
-                    <y value="0" dependence="parent" function="offset"/>
-                    <zIndex value="2" dependence="parent" function="offset"/>
+                    <x value="0" link="parent" function="offset"/>
+                    <y value="0" link="parent" function="offset"/>
+                    <zIndex value="2" link="parent" function="offset"/>
                   </data>
                   <image>$DefaultImage</image>
                 </imageElement>
@@ -49,7 +49,7 @@
             <imageElement>
               <image>$BackgroundImage</image>
               <data>
-                <zIndex value="100" dependence="parent" function="offset"/>
+                <zIndex value="100" link="parent" function="offset"/>
               </data>
             </imageElement>
             <dragArea></dragArea>

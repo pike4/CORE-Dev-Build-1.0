@@ -255,16 +255,7 @@
     <ClInclude Include="Source\Entities\Events\EntityScriptEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Services\Non-Standard\BoundingBoxAccepter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Services\BoundingBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Services\Non-Standard\CollisionHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Services\Non-Standard\BB_Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lib\lua 5.3.4\lapi.h">
@@ -346,6 +337,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Services\Handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Services\StandardCollision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -503,9 +500,6 @@
     <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\XML Parsing\Definers\NodeParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\XML Parsing\Definers\NodeTemplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -531,12 +525,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entities\Events\EntityScriptEventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Services\Non-Standard\CollisionHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Services\Non-Standard\BB_Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lib\lua 5.3.4\lapi.c">
@@ -639,6 +627,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Services\Handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Services\StandardCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
