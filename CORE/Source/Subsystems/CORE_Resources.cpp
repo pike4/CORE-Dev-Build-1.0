@@ -104,15 +104,15 @@ namespace CORE_Resources
 				new Environment(topDef);
 			}
 
-         else if (name == "events")
-         {
-             loadEvents(topDef);
-         }
+			else if (name == "events")
+			{
+				loadEvents(topDef);
+			}
 
-         else if (name == "eventHandlers")
-         {
-            loadEventHandlers(topDef);
-         }
+			else if (name == "eventHandlers")
+			{
+			   loadEventHandlers(topDef);
+			}
 
 			else if (name == "menuSystem")
 			{
@@ -147,7 +147,7 @@ namespace CORE_Resources
 				}
 			}
 
-         else if (name == "states")
+			else if (name == "states")
          {
             std::vector<Node*>* stateChildren = topDef->getChildren();
 
@@ -446,11 +446,11 @@ namespace CORE_Resources
    */
 	void loadPrototypes(Node* def)
 	{
-      if (!def)
-      {
-          CORE_SystemIO::error("Null events node!");
-          return;
-      }
+		if (!def)
+		{
+		    CORE_SystemIO::error("Null events node!");
+		    return;
+		}
 
 		std::string name = def->getName();
 

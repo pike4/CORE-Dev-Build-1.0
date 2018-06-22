@@ -49,9 +49,9 @@ public:
 				}
 
 				else
-            {
+				{
 					//Pedantic warning: child data is of differing type from parent
-			   }
+				}
 			}
 		}
 

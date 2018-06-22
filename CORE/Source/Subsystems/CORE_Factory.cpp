@@ -322,10 +322,4 @@ namespace CORE_Factory
       return ret;
    }
 #pragma endregion
-
-
-   Node* parseXML(pugi::xml_node node)
-   {
-
-   }
 }

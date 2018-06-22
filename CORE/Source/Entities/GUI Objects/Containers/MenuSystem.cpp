@@ -32,6 +32,7 @@ MenuSystem::MenuSystem(Node* def)
 
 	if (name.empty())
 	{
+		// Log error
 		name = "DEFAULT";
 	}
 

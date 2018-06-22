@@ -7,7 +7,7 @@
 
 NodeTemplate::NodeTemplate(pugi::xml_node myNode, TemplateDef* definition)
 {
-	node = *(new pugi::xml_node(myNode));
+	node = pugi::xml_node(myNode);
 	def = definition;
 }
 

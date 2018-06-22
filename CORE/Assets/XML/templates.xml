@@ -3,6 +3,5 @@
     <zIndex type="constant">20</zIndex>
     <name type ="main"></name>
     <image type ="default">Assets/Sprites/ButtonHover.png</image>
-  </imageElement>
-  
+  </imageElement>  
 </templates>
