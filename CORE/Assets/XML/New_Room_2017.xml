@@ -1,4 +1,11 @@
 <CORE>
+  <templates>
+    <entity name="man">
+      <sources>
+        <xyz>x,y,z</xyz>
+      </sources>
+    </entity>
+  </templates>
   <environment>
     <name>first</name>
     <rooms>

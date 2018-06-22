@@ -172,6 +172,15 @@
     <ClInclude Include="Source\Data\State.h" />
     <ClInclude Include="Source\Data\StateOffsetCalculator.h" />
     <ClInclude Include="Source\Entities\Component.h" />
+    <ClInclude Include="Source\Entities\Elements\Animation.h" />
+    <ClInclude Include="Source\Entities\Elements\DynamicTextElement.h" />
+    <ClInclude Include="Source\Entities\Elements\ImageElement.h" />
+    <ClInclude Include="Source\Entities\Elements\RenderableCharacter.h" />
+    <ClInclude Include="Source\Entities\Elements\RenderableCharSet.h" />
+    <ClInclude Include="Source\Entities\Elements\StaticTextElement.h" />
+    <ClInclude Include="Source\Entities\Elements\VariableElement.h" />
+    <ClInclude Include="Source\Entities\Elements\Visible.h" />
+    <ClInclude Include="Source\Entities\Elements\VisibleElement.h" />
     <ClInclude Include="Source\Entities\Entity.h" />
     <ClInclude Include="Source\Entities\EntityAPI.h" />
     <ClInclude Include="Source\Entities\Events\EntityScriptEventHandler.h" />
@@ -182,6 +191,14 @@
     <ClInclude Include="Source\Entities\Game Objects\Containers\Environment.h" />
     <ClInclude Include="Source\Entities\Game Objects\Containers\QuadTree.h" />
     <ClInclude Include="Source\Entities\Game Objects\Containers\Room.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\ButtonComponents\ButtonComponent.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\ButtonComponents\DragArea.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\ButtonComponents\MenuDestination.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\ButtonComponents\MenuLayerAdd.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\ButtonComponents\MouseProcessor.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\CheckBoxButton.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\Containers\MenuScreen.h" />
+    <ClInclude Include="Source\Entities\GUI Objects\Containers\MenuSystem.h" />
     <ClInclude Include="Source\Entities\GUI Objects\Control.h" />
     <ClInclude Include="Source\Entities\GUI Objects\GUI_Area.h" />
     <ClInclude Include="Source\Entities\GUI Objects\SpeechBox.h" />
@@ -203,16 +220,21 @@
     <ClInclude Include="Source\Subsystems\CORE_Graphics.h" />
     <ClInclude Include="Source\Subsystems\CORE_Resources.h" />
     <ClInclude Include="Source\Subsystems\CORE_SystemIO.h" />
+    <ClInclude Include="Source\Subsystems\Logging\LogFileStream.h" />
+    <ClInclude Include="Source\Subsystems\Logging\LoggingStream.h" />
+    <ClInclude Include="Source\Subsystems\Logging\LogWindowStream.h" />
     <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h" />
     <ClInclude Include="Source\XML Parsing\Definers\Node.h" />
     <ClInclude Include="Source\XML Parsing\Definers\NodeTemplate.h" />
     <ClInclude Include="Source\XML Parsing\Definers\TemplateDef.h" />
+    <ClInclude Include="Source\XML Parsing\Definers\UnexpandedNode.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Constant.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Default.h" />
     <ClInclude Include="Source\XML Parsing\Providers\NodeMain.h" />
     <ClInclude Include="Source\XML Parsing\Providers\NodeValue.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Provider.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Variable.h" />
+    <ClInclude Include="Source\XML Parsing\Providers\VariableGetter.h" />
     <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
     <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h" />
@@ -323,11 +345,13 @@
     <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\NodeTemplate.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp" />
+    <ClCompile Include="Source\XML Parsing\Definers\UnexpandedNode.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Constant.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Default.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\NodeMain.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\NodeValue.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Variable.cpp" />
+    <ClCompile Include="Source\XML Parsing\Providers\VariableGetter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\lua 5.3.4\Makefile" />

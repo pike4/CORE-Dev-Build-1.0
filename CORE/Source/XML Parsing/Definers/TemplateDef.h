@@ -7,6 +7,8 @@
 #include "Variable.h"
 #include "Constant.h"
 
+#include "UnexpandedNode.h"
+
 #include "pugixml.hpp"
 
 #include <map>
@@ -14,11 +16,19 @@
 #include <sstream>
 #include <iostream>
 
+struct StringAddress
+{
+	std::string varName;
+	int index;
+};
+
 class TemplateDef
 {
 public:
 	TemplateDef(Node* def);
 	std::string getVariable(pugi::xml_node node, std::string name);
+	Node* readNode(pugi::xml_node node);
+	Node* invoke(Node* invoker);
 	
 	//Name used to refer to this template
 	std::string name;
@@ -28,4 +38,8 @@ public:
 
 protected:
 	std::map<std::string, Provider*> variables;
+
+	std::map<std::string, StringAddress> addresses;
+
+	UnexpandedNode definer;
 };
