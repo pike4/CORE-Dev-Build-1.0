@@ -18,7 +18,7 @@ void VariableElement::getText(Node* definer)
 
 		for (unsigned int i = 0; i < elementsNodes->size(); i++)
 		{
-			Node* elem = (*elementsNodes)[i];
+			DefaultNode* elem = (DefaultNode*) (*elementsNodes)[i];
 
 			VisibleElement* newElement = CORE_Factory::constructVisibleElement(elem);
 

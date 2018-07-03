@@ -38,35 +38,57 @@ void UnexpandedNode::readNode(pugi::xml_node curNode)
 
     pugi::xml_node childNode = curNode.first_child();
 
-    while (childNode.name() != "")
-    {
-        if (childNode.name() == "sources")
-        {
-            childNode = childNode.next_sibling();
-            continue;
-        }
+	if (childNode.name() == "" && childNode.value() != "")
+	{
+		// Add a variable getter
+		if (childNode.value()[0] == '?')
+		{
+			mainValue = new VariableGetter(templateDef->getAddress(childNode.value() + 1));
+		}
 
-        children.push_back(UnexpandedNode(childNode, templateDef));
-        childNode = childNode.next_sibling();
-    }
+		// Add a const
+		else
+		{
+			mainValue =  new Constant(childNode.value());
+		}
+	}
+
+	else
+	{
+		while (childNode.name() != "")
+		{
+			if (!strcmp(childNode.name(), "sources"))
+			{
+				childNode = childNode.next_sibling();
+				continue;
+			}
+
+			children.push_back(UnexpandedNode(childNode, templateDef));
+			childNode = childNode.next_sibling();
+		}
+	}
 }
 
-pugi::xml_node UnexpandedNode::expand(pugi::xml_node node)
+DefaultNode UnexpandedNode::expand(pugi::xml_node node)
 {
-    pugi::xml_node ret;
+	DefaultNode ret;
 
     for (int i = 0; i < attributes.size(); i++)
     {
-        ret.append_attribute(attributes[i].first.c_str()) = attributes[i].second->getValue(node).c_str();
+        ret.addAttribute(attributes[i].first, attributes[i].second->getValue(node));
     }
 
     for (int i = 0; i < children.size(); i++)
     {
-        pugi::xml_node child = children[i].expand(node);
+		DefaultNode child = children[i].expand(node);
 
-        ret.append_child(child.name());
-        ret.child(child.name()) = child;
+        ret.addChild(child);
     }
+
+	if (children.size() == 0 && mainValue)
+	{
+		ret.setValue(mainValue->getValue(node));
+	}
 
     return ret;
 }

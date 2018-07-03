@@ -44,7 +44,7 @@ void MenuScreen::getArgsFromNode(Node* def)
 
 		for (unsigned int i = 0; i < controlsVector->size(); i++)
 		{
-			Node* cur = (*controlsVector)[i];
+			DefaultNode* cur = (DefaultNode*)(*controlsVector)[i];
 
 			Component* newControl = NULL;
 				

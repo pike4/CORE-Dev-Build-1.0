@@ -6,6 +6,7 @@
 #include "NodeMain.h"
 #include "Variable.h"
 #include "Constant.h"
+#include "DefaultNode.h"
 
 #include "UnexpandedNode.h"
 
@@ -27,10 +28,9 @@ class TemplateDef
 public:
 	TemplateDef(Node* def);
 	std::string getVariable(pugi::xml_node node, std::string name);
-   StringAddress getAddress(std::string name);
+	StringAddress getAddress(std::string name);
 
-	Node* readNode(pugi::xml_node node);
-	pugi::xml_node invoke(pugi::xml_node invoker);
+	DefaultNode invoke(pugi::xml_node invoker);
 	
 	//Name used to refer to this template
 	std::string name;

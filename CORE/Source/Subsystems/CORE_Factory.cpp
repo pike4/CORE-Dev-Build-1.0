@@ -8,7 +8,6 @@
 #include "Entity.h"
 #include "Handler.h"
 #include "DataSource.h"
-#include "NodeTemplate.h"
 #include "DefaultNode.h"
 #include "ScriptEventHandler.h"
 #include "EntityScriptEventHandler.h"
@@ -28,9 +27,9 @@ namespace CORE_Factory
    Allocate and return a definer for the current node
    Return a NodeTemplate if one exists under the current name, a genereic DefaultNode if it does not
 */
-	Node* generateNode(pugi::xml_node node)
+	DefaultNode* generateNode(pugi::xml_node node)
 	{
-		Node* ret = NULL;
+		DefaultNode* ret = NULL;
 		std::string nodeName = node.name();
 
 		TemplateDef* templ = CORE_Resources::getTemplate(nodeName);
@@ -81,7 +80,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Control* constructControl(Node* def)
+	Control* constructControl(DefaultNode* def)
 	{
 		std::string name = def->getName();
 
@@ -99,7 +98,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	VisibleElement* constructVisibleElement(Node* def)
+	VisibleElement* constructVisibleElement(DefaultNode* def)
 	{
 		std::string name = def->getName();
 
@@ -128,7 +127,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Component* constructComponent(Node* def)
+	Component* constructComponent(DefaultNode* def)
 	{
 		Component* ret = NULL;
 
@@ -144,7 +143,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-   EventHandler* constructEventHandler(Node* def)
+   EventHandler* constructEventHandler(DefaultNode* def)
    {
       EventHandler* ret = NULL;
 
@@ -182,7 +181,7 @@ namespace CORE_Factory
    Purpose:
       Instantiate and return a copy of an existing prototype
    */
-	Component* generateObject(Node* def, DataSource* parentData)
+	Component* generateObject(DefaultNode* def, DataSource* parentData)
 	{
 		Component* ret = constructComponent(def);
 
@@ -227,7 +226,7 @@ namespace CORE_Factory
 					std::vector<Node*>* componentsVector = componentsParent->getChildren();
 					for (unsigned int i = 0; i < componentsVector->size(); i++)
 					{
-						Node* curComponentDef = (*componentsVector)[i];
+						DefaultNode* curComponentDef = (DefaultNode*)(*componentsVector)[i];
 						Component* newComponent = constructComponent(curComponentDef);
 						
 						newComponent->parent = (Entity*) ret;

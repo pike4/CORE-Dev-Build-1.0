@@ -5,6 +5,7 @@
 #include "Room.h"
 #include "State.h"
 #include "DataSource.h"
+#include "DefaultNode.h"
 
 #include <stdlib.h>
 #include <vector>
@@ -33,18 +34,17 @@ XML Parser, currently part of CORE_Factory implementation
 namespace CORE_Factory
 {
 	//Generation helpers
-	Node* generateNode(pugi::xml_node node);
-   Data* generateDataFromReflection(CORE_TypeTraits::reflection a);
+	DefaultNode* generateNode(pugi::xml_node node);
 
    //Constructor mapping
-	Control* constructControl(Node* definer);
-	VisibleElement* constructVisibleElement(Node* definer);
+	Control* constructControl(DefaultNode* definer);
+	VisibleElement* constructVisibleElement(DefaultNode* definer);
 	Component* generateComponent(Node* definer);
-   Component* constructComponent(Node* def);
-   EventHandler* constructEventHandler(Node* def);
+   Component* constructComponent(DefaultNode* def);
+   EventHandler* constructEventHandler(DefaultNode* def);
 
    //ObjectGeneration
    Entity* generate(std::string prototypeName);
    State* generateState(Node* definer);
-   Component* generateObject(Node* definer, DataSource* parentData = NULL);
+   Component* generateObject(DefaultNode* definer, DataSource* parentData = NULL);
 };

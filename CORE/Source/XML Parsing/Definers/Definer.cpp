@@ -31,13 +31,3 @@ Node* Node::getChild(std::string name)
 
 	return ret;
 }
-
-std::string Node::getName()
-{
-	return node.name();
-}
-
-std::string Node::getMainValue()
-{
-	return node.first_child().value();
-}

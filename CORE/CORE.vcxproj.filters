@@ -396,9 +396,6 @@
     <ClInclude Include="Source\XML Parsing\Definers\TemplateDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XML Parsing\Definers\NodeTemplate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\XML Parsing\Definers\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -666,9 +663,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\XML Parsing\Definers\NodeTemplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp">

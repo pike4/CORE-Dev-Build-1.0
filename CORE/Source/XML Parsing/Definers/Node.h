@@ -26,8 +26,8 @@ public:
 	virtual std::string getVariable(std::string name) = 0;
 	virtual Node* getChild(std::string name);
 	virtual std::vector<Node*>* getChildren();
-	virtual std::string getName();
-	virtual std::string getMainValue();
+	virtual std::string getName() = 0;
+	virtual std::string getMainValue() = 0;
 
 	//TODO: getMainValue() - return the top node value of the node, "" by default
 	//TODO: getAttribute(std::string name) - return the attribute of the given name

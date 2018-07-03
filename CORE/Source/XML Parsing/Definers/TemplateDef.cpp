@@ -1,4 +1,5 @@
 #include "TemplateDef.h"
+#include "DefaultNode.h"
 #include "CORE_Resources.h"
 
 std::vector<std::string> tokenize(std::string src, char delim)
@@ -87,7 +88,7 @@ StringAddress TemplateDef::getAddress(std::string name)
 }
 
 // Return an instance of the template given an invoker node
-pugi::xml_node TemplateDef::invoke(pugi::xml_node invoker)
+DefaultNode TemplateDef::invoke(pugi::xml_node invoker)
 {
     return definer.expand(invoker);
 }

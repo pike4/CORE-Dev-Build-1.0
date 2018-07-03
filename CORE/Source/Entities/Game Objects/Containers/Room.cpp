@@ -78,7 +78,7 @@ void Room::getArgsFromNode(Node* def)
 
 		for (unsigned int i = 0; i < objectsVector->size(); i++)
 		{
-			Node* cur = (*objectsVector)[i];
+			DefaultNode* cur = (DefaultNode*)(*objectsVector)[i];
 
 			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
          if (newObject)

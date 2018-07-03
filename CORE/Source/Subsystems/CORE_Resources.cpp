@@ -74,7 +74,7 @@ namespace CORE_Resources
 
 		while (node)
 		{
-			Node* topDef = CORE_Factory::generateNode(node);
+			DefaultNode* topDef = CORE_Factory::generateNode(node);
 			std::string name = topDef->getName();
 
 			if (name == "imports")
@@ -409,11 +409,11 @@ namespace CORE_Resources
 #pragma region XML Templating
 	void loadTemplates(std::string fileName)
 	{
-		Node* def = getFirstNodeFromFile(fileName);
+		DefaultNode* def = getFirstNodeFromFile(fileName);
 		loadTemplates(def);
 	}
 
-	void loadTemplates(Node* def)
+	void loadTemplates(DefaultNode* def)
 	{
 		if (def->getName() == "templates")
 		{
@@ -434,7 +434,7 @@ namespace CORE_Resources
 #pragma region Prototyping
 	void loadPrototypes(std::string fileName)
 	{
-		Node* def = getFirstNodeFromFile(fileName);
+		DefaultNode* def = getFirstNodeFromFile(fileName);
 		loadPrototypes(def);
 	}
 
@@ -465,7 +465,7 @@ namespace CORE_Resources
 
 		for (unsigned int i = 0; i < prototypeVector->size(); i++)
 		{
-			Node* tempDef = (*prototypeVector)[i];
+			DefaultNode* tempDef = (DefaultNode*)(*prototypeVector)[i];
 
 			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
 			std::string prototypeName = tempDef->getVariable("name");
@@ -527,7 +527,7 @@ namespace CORE_Resources
    Purpose:
       Load the event definitions from the given node and store for global access
    */
-   void loadEvents(Node* def)
+   void loadEvents(DefaultNode* def)
    {
        if (!def)
        {
@@ -564,7 +564,7 @@ namespace CORE_Resources
    Purpose:
       Define event handler prototypes from the given node
    */
-   void loadEventHandlers(Node* def)
+   void loadEventHandlers(DefaultNode* def)
    {
       if (!def)
       {
@@ -576,7 +576,7 @@ namespace CORE_Resources
 
       for (int i = 0; i < handlerVector->size(); i++)
       {
-         Node* curHandlerNode = (*handlerVector)[i];
+         DefaultNode* curHandlerNode = (DefaultNode*)(*handlerVector)[i];
          std::string handlerName = curHandlerNode->getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
@@ -745,13 +745,7 @@ namespace CORE_Resources
 
    //--------------------------------------------------------------------------------------------------
 
-
-	Node* getTopNodeFromFile(std::string fileName)
-	{
-		return NULL;
-	}
-
-	Node* getFirstNodeFromFile(std::string fileName)
+	DefaultNode* getFirstNodeFromFile(std::string fileName)
 	{
 		pugi::xml_document* doc = new pugi::xml_document();
 		pugi::xml_parse_result* result = new pugi::xml_parse_result(
