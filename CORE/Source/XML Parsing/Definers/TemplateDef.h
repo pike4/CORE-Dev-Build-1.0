@@ -27,8 +27,10 @@ class TemplateDef
 public:
 	TemplateDef(Node* def);
 	std::string getVariable(pugi::xml_node node, std::string name);
+   StringAddress getAddress(std::string name);
+
 	Node* readNode(pugi::xml_node node);
-	Node* invoke(Node* invoker);
+	pugi::xml_node invoke(pugi::xml_node invoker);
 	
 	//Name used to refer to this template
 	std::string name;
@@ -43,3 +45,5 @@ protected:
 
 	UnexpandedNode definer;
 };
+
+std::vector<std::string> tokenize(std::string src, char delim);

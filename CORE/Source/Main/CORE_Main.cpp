@@ -63,8 +63,8 @@ int main()
    CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
 	MenuSystem* newMenuSystem = CORE_Resources::getMenuSystem("main");
 	CORE::currentMenuSystem = newMenuSystem;
-	MenuScreen* newMenu = newMenuSystem->getMenuScreen("fourth");
-	CORE::addMenuScreenLayer(newMenu);
+//	MenuScreen* newMenu = newMenuSystem->getMenuScreen("fourth");
+//	CORE::addMenuScreenLayer(newMenu);
 
    //CORE_SystemIO::openLogFile("out", "Asets/logs/out.txt");
 

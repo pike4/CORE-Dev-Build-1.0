@@ -3,6 +3,8 @@
 
 #include "CORE_Resources.h"
 
+DefaultNode::DefaultNode() {}
+
 DefaultNode::DefaultNode(pugi::xml_node myNode)
 {
 	node = myNode;
@@ -15,10 +17,10 @@ std::string DefaultNode::getVariable(std::string name)
 
 	bool found = false;
 
-	if (child)
+	if (child.name() != "")
 	{
 		child = child.first_child();
-		if (child)
+		if (child.name() != "")
 		{
 			ret = child.value();
 			found = true;

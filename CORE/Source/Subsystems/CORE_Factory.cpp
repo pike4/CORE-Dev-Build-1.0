@@ -37,7 +37,7 @@ namespace CORE_Factory
 
 		if (templ)
 		{
-			ret = new NodeTemplate(node, templ);
+          ret = new DefaultNode(templ->invoke(node));
 		}
 
 		else

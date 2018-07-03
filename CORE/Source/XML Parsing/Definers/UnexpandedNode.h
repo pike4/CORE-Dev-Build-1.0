@@ -8,12 +8,18 @@ class UnexpandedNode
 {
 public:
 	std::string name;
-	UnexpandedNode(pugi::xml_node node);
+	UnexpandedNode(pugi::xml_node node, TemplateDef* temp);
+   UnexpandedNode();
 
-	Node* expand();
+   // TODO implement expansions
+   pugi::xml_node expand(pugi::xml_node node);
 
 private:
-	std::vector<std::pair<std::string, Provider*>> attributes;
-	std::vector<UnexpandedNode> children;
+    
+    void readNode(pugi::xml_node);
+    TemplateDef* templateDef;
+
+    std::vector<std::pair<std::string, Provider*>> attributes;
+    std::vector<UnexpandedNode> children;
 
 };

@@ -2,8 +2,19 @@
   <templates>
     <entity name="man">
       <sources>
-        <xyz>x,y,z</xyz>
+        <x>xType, xLink, xVal</x>
+        <image>img</image>
       </sources>
+
+      <imageElement>
+        <image>?img</image>
+        <zIndex>20</zIndex>
+      </imageElement>
+      <data>
+        <x type="?xType" link="?xLink">?xVal</x>
+        <y type="int" link="parent=">20</y>
+      </data>
+      <name>$manName</name>
     </entity>
   </templates>
   <environment>
@@ -12,6 +23,10 @@
       <room>
         <name>living room</name>
         <objects>
+          <man>
+            <x>int, parent, 200</x>
+            <image>Assets/Sprites/Happy_Cow_Man.png</image>
+          </man>
           <entity>
             <data>
               <x value ="200"/>
