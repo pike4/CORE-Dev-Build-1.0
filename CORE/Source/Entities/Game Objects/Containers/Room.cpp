@@ -13,7 +13,7 @@ Room::Room(Node* definer)
 //Load room from file- TODO: DELET file IO is the responsibility of Resources
 Room::Room(std::string fileName)
 {
-	Node* def = CORE_Resources::getFirstNodeFromFile(fileName);
+	DefaultNode* def = CORE_Resources::getFirstNodeFromFile(fileName);
 
 	if (def)
 	{
@@ -81,10 +81,12 @@ void Room::getArgsFromNode(Node* def)
 			DefaultNode* cur = (DefaultNode*)(*objectsVector)[i];
 
 			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
-         if (newObject)
-         {
-            newObject->finalize();
-         }
+
+			if (newObject)
+			{
+				newObject->finalize();
+			}
+
 			add(newObject);
 		}
 	}

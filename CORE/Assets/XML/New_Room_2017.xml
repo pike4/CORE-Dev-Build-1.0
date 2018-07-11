@@ -5,14 +5,23 @@
         <x>xType, xLink, xVal</x>
         <image>img</image>
       </sources>
-
-      <imageElement>
-        <image>?img</image>
-        <zIndex>20</zIndex>
-      </imageElement>
+      <components>
+        <imageElement>
+          <data>
+            <x value="100" link="parent"/>
+            <y value="50" link="parent"/>
+            <w>100</w>
+            <h>100</h>
+          </data>
+          <image>?img</image>
+          <zIndex>20</zIndex>
+        </imageElement>
+      </components>
       <data>
-        <x type="?xType" link="?xLink">?xVal</x>
-        <y type="int" link="parent=">20</y>
+        <x type="?xType" value="?xVal"/>
+        <y type="int" value="20"/>
+        <w value ="36"/>
+        <h value ="50"/>
       </data>
       <name>$manName</name>
     </entity>
@@ -24,7 +33,7 @@
         <name>living room</name>
         <objects>
           <man>
-            <x>int, parent, 200</x>
+            <x>int, self, 200</x>
             <image>Assets/Sprites/Happy_Cow_Man.png</image>
           </man>
           <entity>

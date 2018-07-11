@@ -444,7 +444,7 @@ namespace CORE_Resources
    Purpose:
       Load entity prototypes from the given node and store for global access
    */
-	void loadPrototypes(Node* def)
+	void loadPrototypes(DefaultNode* def)
 	{
 		if (!def)
 		{

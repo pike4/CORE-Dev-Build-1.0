@@ -13,6 +13,7 @@ UnexpandedNode::UnexpandedNode(pugi::xml_node node, TemplateDef* temp)
 void UnexpandedNode::readNode(pugi::xml_node curNode)
 {
     name = curNode.name();
+	mainValue = NULL;
 
     pugi::xml_attribute attr = curNode.first_attribute();
 
@@ -72,6 +73,8 @@ void UnexpandedNode::readNode(pugi::xml_node curNode)
 DefaultNode UnexpandedNode::expand(pugi::xml_node node)
 {
 	DefaultNode ret;
+
+	ret.setName(name);
 
     for (int i = 0; i < attributes.size(); i++)
     {

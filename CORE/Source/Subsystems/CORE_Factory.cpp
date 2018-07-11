@@ -36,7 +36,7 @@ namespace CORE_Factory
 
 		if (templ)
 		{
-          ret = new DefaultNode(templ->invoke(node));
+			ret = new DefaultNode(templ->invoke(node));
 		}
 
 		else
@@ -196,23 +196,23 @@ namespace CORE_Factory
 
 			ret->get_data(&currentSource);
 
-         //Set up event handlers
-         Node* eventsNode = def->getChild("eventHandlers");
+			//Set up event handlers
+			Node* eventsNode = def->getChild("eventHandlers");
 
-         if (eventsNode)
-         {
-            ret->getEventHandlers(eventsNode);
-         }
+			if (eventsNode)
+			{
+				ret->getEventHandlers(eventsNode);
+			}
 
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-         Node* handlerChild = def->getChild("eventHandlers");
+			Node* handlerChild = def->getChild("eventHandlers");
 
-         if (handlerChild)
-         {
-            ret->getEventHandlers(handlerChild);
-         }
+			if (handlerChild)
+			{
+			ret->getEventHandlers(handlerChild);
+			}
 
 			#pragma region Child Components
 			//Get the Components node from definer*

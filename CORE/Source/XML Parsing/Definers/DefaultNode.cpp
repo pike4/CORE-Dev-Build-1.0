@@ -2,6 +2,7 @@
 #include "DefaultNode.h"
 
 #include "CORE_Resources.h"
+#include "CORE_Factory.h"
 
 DefaultNode::DefaultNode() {}
 
@@ -35,7 +36,7 @@ void DefaultNode::readChildren(pugi::xml_node myNode)
 
 	while (child.name() != "")
 	{
-		addChild(DefaultNode(child));
+		addChild(*CORE_Factory::generateNode(child));
 		child = child.next_sibling();
 	}
 }
@@ -89,7 +90,7 @@ std::string DefaultNode::getMainValue()
 
 void DefaultNode::addChild(DefaultNode child)
 {
-	children[child.getName()] = child;
+	children.push_back(child);
 }
 
 void DefaultNode::addAttribute(std::string name, std::string value)
@@ -100,4 +101,37 @@ void DefaultNode::addAttribute(std::string name, std::string value)
 void DefaultNode::setValue(std::string val)
 {
 	value = val;
+}
+
+void DefaultNode::setName(std::string newName)
+{
+	name = newName;
+}
+
+Node* DefaultNode::getChild(std::string name)
+{
+	Node* ret = NULL;
+
+	for (unsigned int i = 0; i < children.size(); i++)
+	{
+		if (children[i].getName() == name)
+		{
+			ret = &children[i];
+			break;
+		}
+	}
+
+	return ret;
+}
+
+std::vector<Node*>* DefaultNode::getChildren()
+{
+	std::vector<Node*>* ret = new std::vector<Node*>();
+
+	for (unsigned int i = 0; i < children.size(); i++)
+	{
+		ret->push_back(&children[i]);
+	}
+
+	return ret;
 }
