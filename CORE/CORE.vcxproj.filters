@@ -806,9 +806,6 @@
     <ClCompile Include="Source\Services\Handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Services\StandardCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -818,7 +815,10 @@
     <ClCompile Include="Source\XML Parsing\Providers\VariableGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Entities\Events\eVET.CPP">
+    <ClCompile Include="Source\XML Parsing\Definers\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entities\Events\Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

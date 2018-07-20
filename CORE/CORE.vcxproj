@@ -315,7 +315,7 @@
     <ClCompile Include="Source\Entities\Entity.cpp" />
     <ClCompile Include="Source\Entities\EntityAPI.cpp" />
     <ClCompile Include="Source\Entities\Events\EntityScriptEventHandler.cpp" />
-    <ClCompile Include="Source\Entities\Events\eVET.CPP" />
+    <ClCompile Include="Source\Entities\Events\Event.cpp" />
     <ClCompile Include="Source\Entities\Events\EventHandler.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Environment.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\QuadTree.cpp" />
@@ -347,7 +347,7 @@
     <ClCompile Include="Source\Subsystems\CORE_TypeTraits.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogFileStream.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogWindowStream.cpp" />
-    <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp" />
+    <ClCompile Include="Source\XML Parsing\Definers\Node.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\UnexpandedNode.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Constant.cpp" />
