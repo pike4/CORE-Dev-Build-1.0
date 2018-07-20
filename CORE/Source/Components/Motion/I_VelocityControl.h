@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Velocity.h"
-#include "Node.h"
+#include "DefaultNode.h"
 
 ////////////////////////
 //Should stay in 

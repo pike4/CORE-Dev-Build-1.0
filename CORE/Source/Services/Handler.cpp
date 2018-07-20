@@ -1,15 +1,15 @@
 #include "Handler.h"
 #include "CORE_Resources.h"
 
-void Handler::getText(Node* node)
+void Handler::getText(DefaultNode* node)
 {
 	// Get required format
-    Node* formatChild = node->getChild("format");
-    std::vector<Node*>* formatChildren = formatChild->getChildren();
+    DefaultNode* formatChild = node->getChild("format");
+    std::vector<DefaultNode*>* formatChildren = formatChild->getChildren();
 
     for (int i = 0; i < formatChildren->size(); i++)
     {
-        Node* curNode = (*formatChildren)[i];
+        DefaultNode* curNode = (*formatChildren)[i];
 
         CORE_TypeTraits::reflection curTrait;
         CORE_TypeTraits::parseReflectionTraits(curNode, &curTrait);
@@ -26,7 +26,7 @@ void Handler::getText(Node* node)
 
 		for (int i = 0; i < formatChildren->size(); i++)
 		{
-			Node* curNode = (*formatChildren)[i];
+			DefaultNode* curNode = (*formatChildren)[i];
 			std::string traitName = curNode->getName();
 
 			traits.push_back(traitName);

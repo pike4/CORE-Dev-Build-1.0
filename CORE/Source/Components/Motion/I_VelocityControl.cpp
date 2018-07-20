@@ -1,6 +1,6 @@
 #include "I_VelocityControl.h"
 #include "Entity.h"
-#include "Node.h"
+#include "DefaultNode.h"
 
 Component* I_VelocityControl::spawnCopy()
 {

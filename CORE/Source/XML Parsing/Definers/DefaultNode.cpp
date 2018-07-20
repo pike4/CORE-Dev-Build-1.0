@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "DefaultNode.h"
 #include "DefaultNode.h"
 
 #include "CORE_Resources.h"
@@ -57,16 +57,12 @@ std::string DefaultNode::getVariable(std::string name)
 
 	if (!found)
 	{
-		pugi::xml_node child = node.child(name.c_str());
+		DefaultNode* child = (DefaultNode*) getChild(name);
 
-		if (child != NULL)
+		if (child)
 		{
-			child = child.first_child();
-			if (child != NULL)
-			{
-				ret = child.value();
-				found = true;
-			}
+			DefaultNode* d = (DefaultNode*) child;
+			ret = d->getMainValue();
 		}
 	}
 
@@ -108,9 +104,9 @@ void DefaultNode::setName(std::string newName)
 	name = newName;
 }
 
-Node* DefaultNode::getChild(std::string name)
+DefaultNode* DefaultNode::getChild(std::string name)
 {
-	Node* ret = NULL;
+	DefaultNode* ret = NULL;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
@@ -124,9 +120,9 @@ Node* DefaultNode::getChild(std::string name)
 	return ret;
 }
 
-std::vector<Node*>* DefaultNode::getChildren()
+std::vector<DefaultNode*>* DefaultNode::getChildren()
 {
-	std::vector<Node*>* ret = new std::vector<Node*>();
+	std::vector<DefaultNode*>* ret = new std::vector<DefaultNode*>();
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{

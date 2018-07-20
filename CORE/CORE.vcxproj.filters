@@ -396,9 +396,6 @@
     <ClInclude Include="Source\XML Parsing\Definers\TemplateDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XML Parsing\Definers\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Subsystems\CORE_Audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>

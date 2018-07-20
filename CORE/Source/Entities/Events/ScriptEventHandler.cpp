@@ -2,27 +2,27 @@
 #include "EventDef.h"
 #include "Core_Resources.h"
 
-ScriptEventHandler::ScriptEventHandler(Node* def)
+ScriptEventHandler::ScriptEventHandler(DefaultNode* def)
 {
 
     L = lua_newthread(CORE_Resources::L);
 
    if (!def)
    {
-      CORE_SystemIO::error("Could not construct ScriptEventHandler from null Node*");
+      CORE_SystemIO::error("Could not construct ScriptEventHandler from null DefaultNode*");
       return;
    }
 
    scriptName = def->getVariable("file");
    std::string defName = def->getVariable("format");
-   Node* argNamesNode = def->getChild("argNames");
+   DefaultNode* argNamesNode = (DefaultNode*) def->getChild("argNames");
   
    //Event format is defined elsewhere
    if (defName == "")
    {
-      Node* eventDefNode = def->getChild("format");
+      DefaultNode* eventDefNode = (DefaultNode*) def->getChild("format");
 
-      std::vector<Node*>* eventDefChildren = eventDefNode->getChildren();
+      std::vector<DefaultNode*>* eventDefChildren = (std::vector<DefaultNode*>*) eventDefNode->getChildren();
 
       EventDef newDef = EventDef(eventDefNode);
       format = newDef.format;
@@ -45,7 +45,7 @@ ScriptEventHandler::ScriptEventHandler(Node* def)
 
    if (argNamesNode)
    {
-      std::vector<Node*>* argNamesChildren = argNamesNode->getChildren();
+      std::vector<DefaultNode*>* argNamesChildren = (std::vector<DefaultNode*>*) argNamesNode->getChildren();
 
       if (argNamesChildren->size() != format.size())
       {

@@ -24,7 +24,7 @@ Component* Component::spawnCopy()
 void Component::finalize() {}
 
 //Component gets no data or text by default
-void Component::getText(Node* def) {}
+void Component::getText(DefaultNode* def) {}
 
 void Component::get_data(DataSource* source) {}
 
@@ -37,20 +37,20 @@ bool Component::getTrait(std::string trait)
 
 //Component gets only the event handlers assigned to it in the file. 
 //Subclasses may have handlers baked in
-void Component::getEventHandlers(Node* def)
+void Component::getEventHandlers(DefaultNode* def)
 {
     if (!def)
     {
-        CORE_SystemIO::error("Could not get Event Handlers from null Node*");
+        CORE_SystemIO::error("Could not get Event Handlers from null DefaultNode*");
         return;
     }
 
-    std::vector<Node*>* handlerVector = def->getChildren();
+    std::vector<DefaultNode*>* handlerVector = (std::vector<DefaultNode*>*) def->getChildren();
    
     //Iterate over each event definition in the node
     for (int i = 0; i < handlerVector->size(); i++)
     {
-        Node* cur = (*handlerVector)[i];
+		DefaultNode* cur = (DefaultNode*) (*handlerVector)[i];
 
         std::string eventName = cur->getName();
         EventDef curDef;
@@ -58,12 +58,12 @@ void Component::getEventHandlers(Node* def)
         if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
         {
            curDef = CORE_Resources::events[eventName];
-           std::vector<Node*>* handlers = cur->getChildren();
+           std::vector<DefaultNode*>* handlers = (std::vector<DefaultNode*>*) cur->getChildren();
 
            //Add a handler for each entry in the event node
            for (int j = 0; j < handlers->size(); j++)
            {
-              Node* curHandler = (*handlers)[j];
+              DefaultNode* curHandler = (DefaultNode*) (*handlers)[j];
               std::string handlerName = curHandler->getName();
               int curEventOpcode = CORE_Resources::getEventCode(eventName);
               EventHandler* eventHandler = 

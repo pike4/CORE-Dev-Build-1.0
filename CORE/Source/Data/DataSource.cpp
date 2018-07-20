@@ -1,11 +1,11 @@
 #include "DataSource.h"
-#include "Node.h"
+#include "DefaultNode.h"
 
 #include <vector>
 using namespace CORE_TypeTraits;
 
 //Reads trait info from Node, binds dependencies between own data and parent data
-DataSource::DataSource(Node* def, DataSource* newParent)
+DataSource::DataSource(DefaultNode* def, DataSource* newParent)
 {
 	if (!(def || newParent))
 	{
@@ -17,11 +17,11 @@ DataSource::DataSource(Node* def, DataSource* newParent)
 	parent = newParent;
 	if (def)
 	{
-		std::vector<Node*>* dataNodes = def->getChildren();
+		std::vector<DefaultNode*>* dataNodes = (std::vector<DefaultNode*>*) def->getChildren();
 
 		for (unsigned int i = 0; i < dataNodes->size(); i++)
 		{
-			Node* curNode = (*dataNodes)[i];
+			DefaultNode* curNode = (*dataNodes)[i];
 
 			CORE_TypeTraits::reflection curTraits;
 			CORE_TypeTraits::parseReflectionTraits(curNode, &curTraits);

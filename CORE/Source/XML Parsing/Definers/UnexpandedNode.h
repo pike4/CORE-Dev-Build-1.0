@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Node.h"
-#include "Provider.h"
 #include "DefaultNode.h"
+#include "Provider.h"
 #include <vector>
+
+class TemplateDef;
 
 class UnexpandedNode
 {

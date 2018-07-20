@@ -2,7 +2,7 @@
 #include "CORE_Devices.h"
 #include "CORE_Resources.h"
 
-void CheckBoxButton::getText(Node* def)
+void CheckBoxButton::getText(DefaultNode* def)
 {
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Node.h"
+#include "DefaultNode.h"
 #include "Provider.h"
 #include "Default.h"
 #include "NodeValue.h"
@@ -26,7 +26,7 @@ struct StringAddress
 class TemplateDef
 {
 public:
-	TemplateDef(Node* def);
+	TemplateDef(DefaultNode* def);
 	std::string getVariable(pugi::xml_node node, std::string name);
 	StringAddress getAddress(std::string name);
 

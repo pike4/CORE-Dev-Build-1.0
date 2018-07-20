@@ -39,12 +39,12 @@ namespace CORE_Factory
    //Constructor mapping
 	Control* constructControl(DefaultNode* definer);
 	VisibleElement* constructVisibleElement(DefaultNode* definer);
-	Component* generateComponent(Node* definer);
+	Component* generateComponent(DefaultNode* definer);
    Component* constructComponent(DefaultNode* def);
    EventHandler* constructEventHandler(DefaultNode* def);
 
    //ObjectGeneration
    Entity* generate(std::string prototypeName);
-   State* generateState(Node* definer);
+   State* generateState(DefaultNode* definer);
    Component* generateObject(DefaultNode* definer, DataSource* parentData = NULL);
 };

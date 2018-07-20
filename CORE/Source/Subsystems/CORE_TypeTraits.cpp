@@ -1,6 +1,6 @@
 #include "Core_TypeTraits.h"
 #include "Data.h"
-#include "Node.h"
+#include "DefaultNode.h"
 #include "DataSource.h"
 
 #include <type_traits>
@@ -31,7 +31,7 @@ namespace CORE_TypeTraits
 		return ret;
 	}
 
-	void parseReflectionTraits(Node* def, reflection* ret)
+	void parseReflectionTraits(DefaultNode* def, reflection* ret)
 	{
 		ret->name = def->getName();
 		ret->value = def->getVariable("value");

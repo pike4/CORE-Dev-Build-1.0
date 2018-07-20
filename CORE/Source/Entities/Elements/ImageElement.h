@@ -9,7 +9,7 @@ public:
 	ImageElement(int x, int y, int w, int h, SDL_Texture* texture);
 	ImageElement(ImageElement& copy);
 
-	void ImageElement::getText(Node* definer);
+	void ImageElement::getText(DefaultNode* definer);
 
    virtual void handle(Event e);
 

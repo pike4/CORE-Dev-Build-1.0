@@ -1,5 +1,5 @@
 #pragma once
-#include "Node.h"
+#include "DefaultNode.h"
 
 #include <map>
 
@@ -12,7 +12,7 @@ public:
 	std::string name;
 
 	MenuSystem(std::string fileName);
-	MenuSystem(Node* def);
+	MenuSystem(DefaultNode* def);
 
 	MenuScreen* getMenuScreen(std::string name);
 

@@ -5,7 +5,7 @@
 #include "Entity.h"
 
 //Load room from node
-Room::Room(Node* definer)
+Room::Room(DefaultNode* definer)
 {
 	getArgsFromNode(definer);
 }
@@ -67,14 +67,14 @@ void Room::spawn(std::string objectName)
 	add(newObject);
 }
 
-void Room::getArgsFromNode(Node* def)
+void Room::getArgsFromNode(DefaultNode* def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	Node* controlsParent = def->getChild("objects");
+	DefaultNode* controlsParent = (DefaultNode*) def->getChild("objects");
 	if (controlsParent)
 	{
-		std::vector<Node*>* objectsVector = controlsParent->getChildren();
+		std::vector<DefaultNode*>* objectsVector = (std::vector<DefaultNode*>*) controlsParent->getChildren();
 
 		for (unsigned int i = 0; i < objectsVector->size(); i++)
 		{

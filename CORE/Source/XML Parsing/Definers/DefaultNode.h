@@ -1,7 +1,11 @@
 #pragma once
-#include "Node.h"
+#include <string>
+#include <vector>
+#include <map>
 
-class DefaultNode : public Node
+#include "pugixml.hpp"
+
+class DefaultNode
 {
 public:
 	DefaultNode(pugi::xml_node myNode);
@@ -15,13 +19,16 @@ public:
 	virtual std::string getName();
 	virtual std::string getMainValue();
 
-	virtual Node* getChild(std::string name);
-	virtual std::vector<Node*>* getChildren();
+	virtual DefaultNode* getChild(std::string name);
+	virtual std::vector<DefaultNode*>* getChildren();
 
 	void addChild(DefaultNode child);
 	void addAttribute(std::string name, std::string value);
 	void setValue(std::string value);
 	void setName(std::string name);
+
+
+	pugi::xml_node node;
 
 protected:
 
@@ -29,4 +36,5 @@ protected:
 	std::map<std::string, std::string> attributes;
 	std::string value;
 	std::string name;
+
 };

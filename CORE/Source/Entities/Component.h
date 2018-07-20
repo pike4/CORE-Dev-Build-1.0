@@ -1,7 +1,7 @@
 #pragma once
 #include "Controllable.h"
 #include "Data.h"
-#include "Node.h"
+#include "DefaultNode.h"
 #include "DataSource.h"
 #include "EventHandler.h"
 #include "Event.h"
@@ -36,13 +36,13 @@ public:
 	#pragma region Creational
 	Component();
 	//Get private data from the given Node
-	virtual void getText(Node* def);
+	virtual void getText(DefaultNode* def);
 
 	//Get public Data objects from the given map
 	virtual void get_data(DataSource* source);
 
    //Get event handlers from the given Node
-   virtual void getEventHandlers(Node* def);
+   virtual void getEventHandlers(DefaultNode* def);
 
 	//Store the child without registering it. Basic components can't have children
 	virtual void storeChild(Component* child);

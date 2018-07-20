@@ -14,7 +14,7 @@ void EntityScriptEventHandler::handleEvent(std::vector<EventArg> args)
    popEntity("me", owner);
 }
 
-EntityScriptEventHandler::EntityScriptEventHandler(Node* def)
+EntityScriptEventHandler::EntityScriptEventHandler(DefaultNode* def)
    : ScriptEventHandler(def)
 {
    argNames.push_back("me");

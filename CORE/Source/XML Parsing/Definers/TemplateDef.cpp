@@ -31,7 +31,7 @@ std::vector<std::string> tokenize(std::string src, char delim)
 }
 
 //node	-	pugi node that defines the form of the NodeTemplate
-TemplateDef::TemplateDef(Node* def)
+TemplateDef::TemplateDef(DefaultNode* def)
 {
     name = def->getVariable("name");
     pugi::xml_node curNode = def->node;

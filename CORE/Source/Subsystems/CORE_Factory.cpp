@@ -48,7 +48,7 @@ namespace CORE_Factory
 	}
 
 #pragma region Component Constructor Mapping
-	Component* generateComponent(Node* def)
+	Component* generateComponent(DefaultNode* def)
 	{
 		std::string name = def->getName();
 
@@ -147,7 +147,7 @@ namespace CORE_Factory
    {
       EventHandler* ret = NULL;
 
-      Node* typeNode = def->getChild("type");
+	  DefaultNode* typeNode = (DefaultNode*) def->getChild("type");
 
       if (typeNode)
       {
@@ -191,13 +191,13 @@ namespace CORE_Factory
 			bool good = true;
 
 			//Get the 'data' node and generate a DataSource from it for the current component parse
-			Node* dataNode = def->getChild("data");
+			DefaultNode* dataNode = (DefaultNode*) def->getChild("data");
 			DataSource currentSource = DataSource(dataNode, parentData);
 
 			ret->get_data(&currentSource);
 
 			//Set up event handlers
-			Node* eventsNode = def->getChild("eventHandlers");
+			DefaultNode* eventsNode = (DefaultNode*) def->getChild("eventHandlers");
 
 			if (eventsNode)
 			{
@@ -207,7 +207,7 @@ namespace CORE_Factory
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			Node* handlerChild = def->getChild("eventHandlers");
+			DefaultNode* handlerChild = (DefaultNode*) def->getChild("eventHandlers");
 
 			if (handlerChild)
 			{
@@ -216,14 +216,14 @@ namespace CORE_Factory
 
 			#pragma region Child Components
 			//Get the Components node from definer*
-			Node* componentsParent = def->getChild("components");
+			DefaultNode* componentsParent = (DefaultNode*) def->getChild("components");
 
 			//Generate components from the components node
 			if (componentsParent)
 			{
 				if (!ret->isBasicComponent())
 				{
-					std::vector<Node*>* componentsVector = componentsParent->getChildren();
+					std::vector<DefaultNode*>* componentsVector = (std::vector<DefaultNode*>*) componentsParent->getChildren();
 					for (unsigned int i = 0; i < componentsVector->size(); i++)
 					{
 						DefaultNode* curComponentDef = (DefaultNode*)(*componentsVector)[i];
@@ -307,7 +307,7 @@ namespace CORE_Factory
 	}
 
    //
-   State* generateState(Node* definer)
+   State* generateState(DefaultNode* definer)
    {
       State* ret = new State();
       DataSource source = DataSource(definer, NULL);

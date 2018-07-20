@@ -14,7 +14,7 @@ public:
 	StaticTextElement();
 	StaticTextElement(StaticTextElement& copy);
 
-	void getText(Node* definer);
+	void getText(DefaultNode* definer);
 
 	void stringToLines(std::string message);
 

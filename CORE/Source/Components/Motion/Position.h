@@ -1,16 +1,16 @@
 #pragma once
 #include "Component.h"
 #include "Controllable.h"
-#include "Node.h"
+#include "DefaultNode.h"
 
 class Position : public Component
 {
 public:
 	Position();
-	Position(Node* definer); // must go
+	Position(DefaultNode* definer); // must go
 	Position(Position&);
 
-	virtual void getText(Node* def);
+	virtual void getText(DefaultNode* def);
 	virtual void get_data(DataSource* source);
 
 	virtual Component* spawnCopy();

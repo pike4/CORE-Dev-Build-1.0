@@ -30,7 +30,7 @@ void VisibleElement::get_data(DataSource* source)
 	zIndex = source->getData<int>("zIndex");
 }
 
-void VisibleElement::getText(Node* def)
+void VisibleElement::getText(DefaultNode* def)
 {
 	w = stoi(def->getVariable("w"));
 	h = stoi(def->getVariable("h"));

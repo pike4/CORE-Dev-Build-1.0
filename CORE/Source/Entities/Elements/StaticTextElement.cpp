@@ -117,7 +117,7 @@ void StaticTextElement::stringToLines(std::string message)
 	}
 }
 
-void StaticTextElement::getText(Node* definer)
+void StaticTextElement::getText(DefaultNode* definer)
 {
 	text = definer->getVariable("text");
 	std::string charSetName = definer->getVariable("characterSet");

@@ -8,7 +8,7 @@
 //with this
 Environment::Environment(std::string fileName)
 {
-	Node* def = CORE_Resources::getFirstNodeFromFile(fileName);
+	DefaultNode* def = CORE_Resources::getFirstNodeFromFile(fileName);
 
 	//If loading directly from a file, this should be defined in the first node
 	if (def->getName() != "environment")
@@ -27,22 +27,22 @@ Environment::Environment(std::string fileName)
 	}
 }
 
-Environment::Environment(Node* def)
+Environment::Environment(DefaultNode* def)
 {
 	getArgsFromNode(def);
 	CORE_Resources::environments[name] = this;
 }
 
-void Environment::getArgsFromNode(Node* def)
+void Environment::getArgsFromNode(DefaultNode* def)
 {
 	name = def->getVariable("name");
 
-	Node* roomParent = def->getChild("rooms");
-	std::vector<Node*>* roomVector = roomParent->getChildren();
+	DefaultNode* roomParent = (DefaultNode*) def->getChild("rooms");
+	std::vector<DefaultNode*>* roomVector = (std::vector<DefaultNode*>* ) roomParent->getChildren();
 
 	for (unsigned int i = 0; i < roomVector->size(); i++)
 	{
-		Node* cur = (*roomVector)[i];
+		DefaultNode* cur = (*roomVector)[i];
 
 		if (cur->getName() != "room")
 		{

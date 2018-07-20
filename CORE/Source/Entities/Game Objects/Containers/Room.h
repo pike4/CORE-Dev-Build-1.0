@@ -2,6 +2,7 @@
 #include "Collidable.h"
 #include "QuadTree.h"
 #include "Controllable.h"
+#include "DefaultNode.h"
 
 #include <vector>
 
@@ -36,7 +37,7 @@ public:
 
 	void update();
 
-	Room(Node* def);
+	Room(DefaultNode* def);
 	Room(std::string fileName);
 
 	QuadTree* quadTree;
@@ -48,6 +49,6 @@ private:
 
    void insertEntity(Entity* newEntity);
 
-	void getArgsFromNode(Node* def);
+	void getArgsFromNode(DefaultNode* def);
 	int w, h;
 };

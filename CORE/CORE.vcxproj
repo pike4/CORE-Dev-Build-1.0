@@ -224,7 +224,6 @@
     <ClInclude Include="Source\Subsystems\Logging\LoggingStream.h" />
     <ClInclude Include="Source\Subsystems\Logging\LogWindowStream.h" />
     <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h" />
-    <ClInclude Include="Source\XML Parsing\Definers\Node.h" />
     <ClInclude Include="Source\XML Parsing\Definers\TemplateDef.h" />
     <ClInclude Include="Source\XML Parsing\Definers\UnexpandedNode.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Constant.h" />

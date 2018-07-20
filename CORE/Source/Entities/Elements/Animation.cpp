@@ -3,7 +3,7 @@
 
 Animation::Animation() {}
 
-void Animation::getText(Node* definer)
+void Animation::getText(DefaultNode* definer)
 
 {
 	VisibleElement::getText(definer);

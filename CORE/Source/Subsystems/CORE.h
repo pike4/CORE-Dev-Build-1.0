@@ -2,7 +2,7 @@
 #include "Room.h"
 #include "Environment.h"
 #include "MenuSystem.h"
-#include "Node.h"
+#include "DefaultNode.h"
 
 #include <vector>
 #pragma once

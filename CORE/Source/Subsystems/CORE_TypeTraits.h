@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "DefaultNode.h"
 
 class Data;
 class Node;
@@ -151,7 +152,7 @@ namespace CORE_TypeTraits
 	void bindDependencies(reflection* child, reflection* parent);
 
 	//Parse out the type traits of a Data object from a Node
-	void parseReflectionTraits(Node* def, reflection* ret);
+	void parseReflectionTraits(DefaultNode* def, reflection* ret);
 
 	//Generate a new Data object from given type traits
 	Data* generateDataFromReflection(reflection datum);

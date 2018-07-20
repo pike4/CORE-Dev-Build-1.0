@@ -6,7 +6,7 @@
 
 //Resource Includes
 #include "RenderableCharSet.h"
-#include "Node.h"
+#include "DefaultNode.h"
 #include "TemplateDef.h"
 #include "EventDef.h"
 #include "State.h"

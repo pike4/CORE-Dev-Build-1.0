@@ -1,5 +1,5 @@
 #pragma once
-#include "Node.h"
+#include "DefaultNode.h"
 #include "Component.h"
 #include "RenderableCharSet.h"
 
@@ -18,7 +18,7 @@ public:
 	VisibleElement(VisibleElement& copy);
 
 	virtual void get_data(DataSource* source);
-	virtual void getText(Node* def);
+	virtual void getText(DefaultNode* def);
 
    void handle(Event e);
 

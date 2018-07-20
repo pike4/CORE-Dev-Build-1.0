@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Node.h"
+#include "DefaultNode.h"
 #include "Component.h"
 #include "Controllable.h"
 #include "Data.h"
@@ -180,5 +180,5 @@ protected:
 	//The components that make up this object
 	std::vector<Component*> components;
 
-	void getArgsFromNode(Node* definer);
+	void getArgsFromNode(DefaultNode* definer);
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "Component.h"
-#include "Node.h"
+#include "DefaultNode.h"
 #include <vector>
 
 class Room;
@@ -19,9 +19,9 @@ public:
 	SDL_Rect boundingBox;
 	SDL_Rect movementVector;
 
-	Collidable::Collidable(Node* definer);
+	Collidable::Collidable(DefaultNode* definer);
 	Collidable(int, int, int, int);
-	Collidable(Node* definer, std::vector<Collidable*>* collidableVector);
+	Collidable(DefaultNode* definer, std::vector<Collidable*>* collidableVector);
 	Collidable(Collidable&);
 
 	Collidable* spawnCopy();
