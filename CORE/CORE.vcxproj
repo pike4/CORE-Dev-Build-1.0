@@ -167,6 +167,13 @@
     <ClInclude Include="Main\Headers\DrawOrder.h" />
     <ClInclude Include="Main\Headers\ElementTypes.h" />
     <ClInclude Include="Main\Headers\Events.h" />
+    <ClInclude Include="Source\Components\Collidable.h" />
+    <ClInclude Include="Source\Components\Controllable.h" />
+    <ClInclude Include="Source\Components\Motion\I_VelocityControl.h" />
+    <ClInclude Include="Source\Components\Motion\MotionAffector.h" />
+    <ClInclude Include="Source\Components\Motion\Position.h" />
+    <ClInclude Include="Source\Components\Motion\Velocity.h" />
+    <ClInclude Include="Source\Components\Motion\VelocityComponent.h" />
     <ClInclude Include="Source\Data\Data.h" />
     <ClInclude Include="Source\Data\DataSource.h" />
     <ClInclude Include="Source\Data\State.h" />
@@ -220,10 +227,11 @@
     <ClInclude Include="Source\Subsystems\CORE_Graphics.h" />
     <ClInclude Include="Source\Subsystems\CORE_Resources.h" />
     <ClInclude Include="Source\Subsystems\CORE_SystemIO.h" />
+    <ClInclude Include="Source\Subsystems\CORE_TypeTraits.h" />
     <ClInclude Include="Source\Subsystems\Logging\LogFileStream.h" />
     <ClInclude Include="Source\Subsystems\Logging\LoggingStream.h" />
     <ClInclude Include="Source\Subsystems\Logging\LogWindowStream.h" />
-    <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h" />
+    <ClInclude Include="Source\XML Parsing\Definers\Node.h" />
     <ClInclude Include="Source\XML Parsing\Definers\TemplateDef.h" />
     <ClInclude Include="Source\XML Parsing\Definers\UnexpandedNode.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Constant.h" />
@@ -307,7 +315,7 @@
     <ClCompile Include="Source\Entities\Entity.cpp" />
     <ClCompile Include="Source\Entities\EntityAPI.cpp" />
     <ClCompile Include="Source\Entities\Events\EntityScriptEventHandler.cpp" />
-    <ClCompile Include="Source\Entities\Events\eVENT.CPP" />
+    <ClCompile Include="Source\Entities\Events\eVET.CPP" />
     <ClCompile Include="Source\Entities\Events\EventHandler.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\Environment.cpp" />
     <ClCompile Include="Source\Entities\Game Objects\Containers\QuadTree.cpp" />
@@ -339,7 +347,6 @@
     <ClCompile Include="Source\Subsystems\CORE_TypeTraits.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogFileStream.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogWindowStream.cpp" />
-    <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\DefaultNode.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\UnexpandedNode.cpp" />

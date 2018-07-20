@@ -6,7 +6,7 @@
 #include "CORE_Graphics.h"
 #include "CORE_Devices.h"
 #include "MenuScreen.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "TemplateDef.h"
 #include "Entity.h"
 
@@ -74,16 +74,16 @@ namespace CORE_Resources
 
 		while (node)
 		{
-			DefaultNode* topDef = CORE_Factory::generateNode(node);
+			Node* topDef = CORE_Factory::generateNode(node);
 			std::string name = topDef->getName();
 
 			if (name == "imports")
 			{
-				std::vector<DefaultNode*>* curChildren = (std::vector<DefaultNode*>*) topDef->getChildren();
+				std::vector<Node*>* curChildren = (std::vector<Node*>*) topDef->getChildren();
 
 				for (unsigned int i = 0; i < curChildren->size(); i++)
 				{
-					DefaultNode* curImportDef = (*curChildren)[i];
+					Node* curImportDef = (*curChildren)[i];
 					std::string importName = curImportDef->getName();
 					loadResourceFile(importName);
 				}
@@ -121,11 +121,11 @@ namespace CORE_Resources
 
 			else if (name == "strings")
 			{
-				std::vector<DefaultNode*>* variableNodes = (std::vector<DefaultNode*>*) topDef->getChildren();
+				std::vector<Node*>* variableNodes = (std::vector<Node*>*) topDef->getChildren();
 
 				for (int i = 0; i < variableNodes->size(); i++)
 				{
-					DefaultNode* curNode = (*variableNodes)[i];
+					Node* curNode = (*variableNodes)[i];
 
 					std::string variableName = curNode->getName();
 					std::string newStringVariable = curNode->getMainValue();
@@ -149,11 +149,11 @@ namespace CORE_Resources
 
 			else if (name == "states")
 			{
-				std::vector<DefaultNode*>* stateChildren = (std::vector<DefaultNode*>*) topDef->getChildren();
+				std::vector<Node*>* stateChildren = (std::vector<Node*>*) topDef->getChildren();
 
 				for (int i = 0; i < stateChildren->size(); i++)
 				{
-					DefaultNode* curNode = (*stateChildren)[i];
+					Node* curNode = (*stateChildren)[i];
 					std::string name = curNode->getName();
 					
 					State* newState = CORE_Factory::generateState(curNode);
@@ -409,19 +409,19 @@ namespace CORE_Resources
 #pragma region XML Templating
 	void loadTemplates(std::string fileName)
 	{
-		DefaultNode* def = getFirstNodeFromFile(fileName);
+		Node* def = getFirstNodeFromFile(fileName);
 		loadTemplates(def);
 	}
 
-	void loadTemplates(DefaultNode* def)
+	void loadTemplates(Node* def)
 	{
 		if (def->getName() == "templates")
 		{
-			std::vector<DefaultNode*>* templateVector = (std::vector<DefaultNode*>*) def->getChildren();
+			std::vector<Node*>* templateVector = (std::vector<Node*>*) def->getChildren();
 
 			for (unsigned int i = 0; i < templateVector->size(); i++)
 			{
-				DefaultNode* curDefiner = (*templateVector)[i];
+				Node* curDefiner = (*templateVector)[i];
 
 				TemplateDef* newTemplate = new TemplateDef(curDefiner);
 
@@ -434,7 +434,7 @@ namespace CORE_Resources
 #pragma region Prototyping
 	void loadPrototypes(std::string fileName)
 	{
-		DefaultNode* def = getFirstNodeFromFile(fileName);
+		Node* def = getFirstNodeFromFile(fileName);
 		loadPrototypes(def);
 	}
 
@@ -444,7 +444,7 @@ namespace CORE_Resources
 	Purpose:
 		Load entity prototypes from the given node and store for global access
 	*/
-	void loadPrototypes(DefaultNode* def)
+	void loadPrototypes(Node* def)
 	{
 		if (!def)
 		{
@@ -461,11 +461,11 @@ namespace CORE_Resources
 			return;
 		}
 
-		std::vector<DefaultNode*>* prototypeVector = (std::vector<DefaultNode*>* ) def->getChildren();
+		std::vector<Node*>* prototypeVector = (std::vector<Node*>* ) def->getChildren();
 
 		for (unsigned int i = 0; i < prototypeVector->size(); i++)
 		{
-			DefaultNode* tempDef = (DefaultNode*)(*prototypeVector)[i];
+			Node* tempDef = (Node*)(*prototypeVector)[i];
 
 			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
 			std::string prototypeName = tempDef->getVariable("name");
@@ -527,7 +527,7 @@ namespace CORE_Resources
    Purpose:
       Load the event definitions from the given node and store for global access
    */
-   void loadEvents(DefaultNode* def)
+   void loadEvents(Node* def)
    {
        if (!def)
        {
@@ -537,11 +537,11 @@ namespace CORE_Resources
 
        std::string name = def->getName();
 
-	   std::vector<DefaultNode*>*  eventNodes = (std::vector<DefaultNode*>* ) def->getChildren();
+	   std::vector<Node*>*  eventNodes = (std::vector<Node*>* ) def->getChildren();
 
        for (unsigned int i = 0; eventNodes && i < eventNodes->size(); i++) 
        {    
-           DefaultNode* cur = (*eventNodes)[i];
+           Node* cur = (*eventNodes)[i];
            std::string curName = cur->getName();
 
            if (events.find(curName) != events.end()) 
@@ -564,7 +564,7 @@ namespace CORE_Resources
    Purpose:
       Define event handler prototypes from the given node
    */
-   void loadEventHandlers(DefaultNode* def)
+   void loadEventHandlers(Node* def)
    {
       if (!def)
       {
@@ -572,11 +572,11 @@ namespace CORE_Resources
          return;
       }
 
-      std::vector<DefaultNode*>* handlerVector = (std::vector<DefaultNode*>*) def->getChildren();
+      std::vector<Node*>* handlerVector = (std::vector<Node*>*) def->getChildren();
 
       for (int i = 0; i < handlerVector->size(); i++)
       {
-         DefaultNode* curHandlerNode = (DefaultNode*)(*handlerVector)[i];
+         Node* curHandlerNode = (Node*)(*handlerVector)[i];
          std::string handlerName = curHandlerNode->getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
@@ -745,7 +745,7 @@ namespace CORE_Resources
 
    //--------------------------------------------------------------------------------------------------
 
-	DefaultNode* getFirstNodeFromFile(std::string fileName)
+	Node* getFirstNodeFromFile(std::string fileName)
 	{
 		pugi::xml_document* doc = new pugi::xml_document();
 		pugi::xml_parse_result* result = new pugi::xml_parse_result(

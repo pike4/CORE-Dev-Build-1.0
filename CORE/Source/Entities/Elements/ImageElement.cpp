@@ -10,7 +10,7 @@ ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 	this->texture = texture;
 }
 
-void ImageElement::getText(DefaultNode* definer)
+void ImageElement::getText(Node* definer)
 {
 	VisibleElement::getText(definer);
 	texture = CORE_Resources::assignTexture(definer->getVariable("image"));
@@ -28,7 +28,7 @@ void ImageElement::draw()
 	CORE_Graphics::addDraw( *x, *y, texture , *zIndex);
 }
 
-//void ImageElement::getArgsFromNode(DefaultNode* definer)
+//void ImageElement::getArgsFromNode(Node* definer)
 //{
 //	std::string textureName = definer->getVariable("texture");
 //	if (!textureName.empty())

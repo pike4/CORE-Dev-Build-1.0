@@ -1,5 +1,5 @@
 #include "UnexpandedNode.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "VariableGetter.h"
 #include "Constant.h"
 
@@ -70,9 +70,9 @@ void UnexpandedNode::readNode(pugi::xml_node curNode)
 	}
 }
 
-DefaultNode UnexpandedNode::expand(pugi::xml_node node)
+Node UnexpandedNode::expand(pugi::xml_node node)
 {
-	DefaultNode ret;
+	Node ret;
 
 	ret.setName(name);
 
@@ -83,7 +83,7 @@ DefaultNode UnexpandedNode::expand(pugi::xml_node node)
 
     for (int i = 0; i < children.size(); i++)
     {
-		DefaultNode child = children[i].expand(node);
+		Node child = children[i].expand(node);
 
         ret.addChild(child);
     }

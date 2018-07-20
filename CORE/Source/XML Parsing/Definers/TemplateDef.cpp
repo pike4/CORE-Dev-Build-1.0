@@ -1,5 +1,5 @@
 #include "TemplateDef.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "CORE_Resources.h"
 
 std::vector<std::string> tokenize(std::string src, char delim)
@@ -31,7 +31,7 @@ std::vector<std::string> tokenize(std::string src, char delim)
 }
 
 //node	-	pugi node that defines the form of the NodeTemplate
-TemplateDef::TemplateDef(DefaultNode* def)
+TemplateDef::TemplateDef(Node* def)
 {
     name = def->getVariable("name");
     pugi::xml_node curNode = def->node;
@@ -88,7 +88,7 @@ StringAddress TemplateDef::getAddress(std::string name)
 }
 
 // Return an instance of the template given an invoker node
-DefaultNode TemplateDef::invoke(pugi::xml_node invoker)
+Node TemplateDef::invoke(pugi::xml_node invoker)
 {
     return definer.expand(invoker);
 }

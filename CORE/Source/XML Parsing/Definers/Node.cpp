@@ -1,12 +1,12 @@
-#include "DefaultNode.h"
-#include "DefaultNode.h"
+#include "Node.h"
+#include "Node.h"
 
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"
 
-DefaultNode::DefaultNode() {}
+Node::Node() {}
 
-DefaultNode::DefaultNode(pugi::xml_node myNode)
+Node::Node(pugi::xml_node myNode)
 {
 	node = myNode;
 	name = node.name();
@@ -19,7 +19,7 @@ DefaultNode::DefaultNode(pugi::xml_node myNode)
 	}
 }
 
-void DefaultNode::readAttributes(pugi::xml_node myNode)
+void Node::readAttributes(pugi::xml_node myNode)
 {
 	pugi::xml_attribute attr = myNode.first_attribute();
 
@@ -30,7 +30,7 @@ void DefaultNode::readAttributes(pugi::xml_node myNode)
 	}
 }
 
-void DefaultNode::readChildren(pugi::xml_node myNode)
+void Node::readChildren(pugi::xml_node myNode)
 {
 	pugi::xml_node child = myNode.first_child();
 
@@ -41,7 +41,7 @@ void DefaultNode::readChildren(pugi::xml_node myNode)
 	}
 }
 
-std::string DefaultNode::getVariable(std::string name)
+std::string Node::getVariable(std::string name)
 {
 	std::string ret = "0";
 
@@ -55,11 +55,11 @@ std::string DefaultNode::getVariable(std::string name)
 
 	if ( !found )
 	{
-		DefaultNode* child = (DefaultNode*) getChild(name);
+		Node* child = (Node*) getChild(name);
 
 		if ( child )
 		{
-			DefaultNode* d = (DefaultNode*) child;
+			Node* d = (Node*) child;
 			ret = d->getMainValue();
 		}
 	}
@@ -72,39 +72,39 @@ std::string DefaultNode::getVariable(std::string name)
 	return ret;
 }
 
-std::string DefaultNode::getName()
+std::string Node::getName()
 {
 	return name;
 }
 
-std::string DefaultNode::getMainValue()
+std::string Node::getMainValue()
 {
 	return value;
 }
 
-void DefaultNode::addChild(DefaultNode child)
+void Node::addChild(Node child)
 {
 	children.push_back(child);
 }
 
-void DefaultNode::addAttribute(std::string name, std::string value)
+void Node::addAttribute(std::string name, std::string value)
 {
 	attributes[name] = value;
 }
 
-void DefaultNode::setValue(std::string val)
+void Node::setValue(std::string val)
 {
 	value = val;
 }
 
-void DefaultNode::setName(std::string newName)
+void Node::setName(std::string newName)
 {
 	name = newName;
 }
 
-DefaultNode* DefaultNode::getChild(std::string name)
+Node* Node::getChild(std::string name)
 {
-	DefaultNode* ret = NULL;
+	Node* ret = NULL;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
@@ -118,9 +118,9 @@ DefaultNode* DefaultNode::getChild(std::string name)
 	return ret;
 }
 
-std::vector<DefaultNode*>* DefaultNode::getChildren()
+std::vector<Node*>* Node::getChildren()
 {
-	std::vector<DefaultNode*>* ret = new std::vector<DefaultNode*>();
+	std::vector<Node*>* ret = new std::vector<Node*>();
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{

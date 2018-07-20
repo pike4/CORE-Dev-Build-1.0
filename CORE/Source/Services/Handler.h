@@ -5,7 +5,7 @@
 class Handler : public Entity
 {
 public:
-    virtual void getText(DefaultNode* node);
+    virtual void getText(Node* node);
     virtual void handle(Event e);
 protected:
     // Vector containing the names and types of data members to request when a new 

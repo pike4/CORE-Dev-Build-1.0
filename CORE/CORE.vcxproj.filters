@@ -339,9 +339,6 @@
     <ClInclude Include="Source\Services\Handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XML Parsing\Definers\DefaultNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Services\StandardCollision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -507,6 +504,33 @@
     <ClInclude Include="Source\XML Parsing\Providers\VariableGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\XML Parsing\Definers\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Subsystems\CORE_TypeTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Controllable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Collidable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Motion\MotionAffector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Motion\I_VelocityControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Motion\Velocity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Motion\Position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\Motion\VelocityComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main\CORE_Main.cpp">
@@ -659,9 +683,6 @@
     <ClCompile Include="Source\XML Parsing\Providers\Variable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\XML Parsing\Definers\Definer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\XML Parsing\Definers\TemplateDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -672,9 +693,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entities\EntityAPI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entities\Events\eVENT.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entities\Events\EventHandler.cpp">
@@ -798,6 +816,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\XML Parsing\Providers\VariableGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entities\Events\eVET.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

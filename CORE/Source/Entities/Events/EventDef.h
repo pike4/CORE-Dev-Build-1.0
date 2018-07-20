@@ -1,5 +1,5 @@
 #pragma once
-#include "DefaultNode.h"
+#include "Node.h"
 
 #include "CORE_TypeTraits.h"
 #include "CORE_SystemIO.h"
@@ -23,21 +23,21 @@ struct EventDef
       format = form;
    }
 
-   EventDef(DefaultNode* def)
+   EventDef(Node* def)
    {
        if (!def)
        {
-           CORE_SystemIO::error("Could not construct EventDef from null DefaultNode*");
+           CORE_SystemIO::error("Could not construct EventDef from null Node*");
            return;
        }
 
        name = def->getName();
 
-       std::vector<DefaultNode*>* newFormat = (std::vector<DefaultNode*>*) def->getChildren();
+       std::vector<Node*>* newFormat = (std::vector<Node*>*) def->getChildren();
 
        for (int i = 0; i < newFormat->size(); i++)
        {
-           DefaultNode* cur = (*newFormat)[i];
+           Node* cur = (*newFormat)[i];
 
            PrimitiveType newType = CORE_TypeTraits::getPrimitiveType(cur->getName());
 

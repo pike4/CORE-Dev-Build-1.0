@@ -1,12 +1,12 @@
 #pragma once
-#include "DefaultNode.h"
+#include "Node.h"
 #include "Provider.h"
 #include "Default.h"
 #include "NodeValue.h"
 #include "NodeMain.h"
 #include "Variable.h"
 #include "Constant.h"
-#include "DefaultNode.h"
+#include "Node.h"
 
 #include "UnexpandedNode.h"
 
@@ -26,11 +26,11 @@ struct StringAddress
 class TemplateDef
 {
 public:
-	TemplateDef(DefaultNode* def);
+	TemplateDef(Node* def);
 	std::string getVariable(pugi::xml_node node, std::string name);
 	StringAddress getAddress(std::string name);
 
-	DefaultNode invoke(pugi::xml_node invoker);
+	Node invoke(pugi::xml_node invoker);
 	
 	//Name used to refer to this template
 	std::string name;

@@ -1,7 +1,7 @@
 #include "Collidable.h"
 #include "CORE_Factory.h"
 #include "stdio.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "Room.h"
 
 #include <vector>
@@ -14,7 +14,7 @@ Collidable::Collidable(int x, int y, int w, int h)
 	boundingBox.h = h;
 }
 
-Collidable::Collidable(DefaultNode* definer)
+Collidable::Collidable(Node* definer)
 {
 	boundingBox.x = stoi(definer->getVariable("x"));
 	boundingBox.y = stoi(definer->getVariable("y"));
@@ -22,7 +22,7 @@ Collidable::Collidable(DefaultNode* definer)
 	boundingBox.h = stoi(definer->getVariable("h"));
 }
 
-Collidable::Collidable(DefaultNode* definer, std::vector<Collidable*>* collidableVector)
+Collidable::Collidable(Node* definer, std::vector<Collidable*>* collidableVector)
 	:Collidable(definer)
 {
 	collidableVector->push_back(this);

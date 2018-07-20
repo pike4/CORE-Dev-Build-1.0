@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DefaultNode.h"
+#include "Node.h"
 #include "Provider.h"
 #include <vector>
 
@@ -14,7 +14,7 @@ public:
 	UnexpandedNode();
 
 	// TODO implement expansions
-	DefaultNode expand(pugi::xml_node node);
+	Node expand(pugi::xml_node node);
 
 private:
     void readNode(pugi::xml_node);

@@ -6,7 +6,7 @@
 
 //Resource Includes
 #include "RenderableCharSet.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "TemplateDef.h"
 #include "EventDef.h"
 #include "State.h"
@@ -163,22 +163,22 @@ namespace CORE_Resources
 	//Templating
 	//*****************
 	void loadTemplates(std::string fileName);
-	void loadTemplates(DefaultNode* definer);
+	void loadTemplates(Node* definer);
 
 	//*****************
 	//Prototyping
 	//*****************
 	void loadPrototypes(std::string fileName);
-	void loadPrototypes(DefaultNode* def);
+	void loadPrototypes(Node* def);
 	void addPrototype(std::string name, Entity* prototype);
 
    //*****************
    //Events
    //*****************
-   void loadEvents(DefaultNode* def);
-   void loadEventHandlers(DefaultNode* def);
+   void loadEvents(Node* def);
+   void loadEventHandlers(Node* def);
 
-   DefaultNode* getFirstNodeFromFile(std::string fileName);
+   Node* getFirstNodeFromFile(std::string fileName);
 
    //*****************
    //String variables

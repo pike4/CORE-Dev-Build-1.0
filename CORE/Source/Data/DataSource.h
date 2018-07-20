@@ -1,7 +1,7 @@
 #pragma once
 #include "CORE_TypeTraits.h"
 #include "Data.h"
-#include "DefaultNode.h"
+#include "Node.h"
 
 #include <string>
 #include <map>
@@ -11,7 +11,7 @@ typedef std::map<std::string, CORE_TypeTraits::reflection> TypeTraitMap;
 class DataSource
 {
 public:
-   DataSource(DefaultNode* ownNode, DataSource* newParent);
+   DataSource(Node* ownNode, DataSource* newParent);
 
 	//Return a fully formed and linked Data object to the requestor
 	template<typename T>
@@ -73,7 +73,7 @@ public:
 
 private:
 	//Node defining
-	DefaultNode* node;
+	Node* node;
 
 	//Map of type information for data belonging to requestor
 	TypeTraitMap dataMap;	

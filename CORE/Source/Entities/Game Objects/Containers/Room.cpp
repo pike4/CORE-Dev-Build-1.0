@@ -5,7 +5,7 @@
 #include "Entity.h"
 
 //Load room from node
-Room::Room(DefaultNode* definer)
+Room::Room(Node* definer)
 {
 	getArgsFromNode(definer);
 }
@@ -13,7 +13,7 @@ Room::Room(DefaultNode* definer)
 //Load room from file- TODO: DELET file IO is the responsibility of Resources
 Room::Room(std::string fileName)
 {
-	DefaultNode* def = CORE_Resources::getFirstNodeFromFile(fileName);
+	Node* def = CORE_Resources::getFirstNodeFromFile(fileName);
 
 	if (def)
 	{
@@ -67,18 +67,18 @@ void Room::spawn(std::string objectName)
 	add(newObject);
 }
 
-void Room::getArgsFromNode(DefaultNode* def)
+void Room::getArgsFromNode(Node* def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	DefaultNode* controlsParent = (DefaultNode*) def->getChild("objects");
+	Node* controlsParent = (Node*) def->getChild("objects");
 	if (controlsParent)
 	{
-		std::vector<DefaultNode*>* objectsVector = (std::vector<DefaultNode*>*) controlsParent->getChildren();
+		std::vector<Node*>* objectsVector = (std::vector<Node*>*) controlsParent->getChildren();
 
 		for (unsigned int i = 0; i < objectsVector->size(); i++)
 		{
-			DefaultNode* cur = (DefaultNode*)(*objectsVector)[i];
+			Node* cur = (Node*)(*objectsVector)[i];
 
 			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
 

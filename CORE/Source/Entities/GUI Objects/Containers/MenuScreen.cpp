@@ -4,12 +4,12 @@
 
 #include <vector>
 
-MenuScreen::MenuScreen(DefaultNode* def)
+MenuScreen::MenuScreen(Node* def)
 {
 	getArgsFromNode(def);
 }
 
-MenuScreen::MenuScreen(DefaultNode* def, MenuSystem* root) : MenuScreen(def)
+MenuScreen::MenuScreen(Node* def, MenuSystem* root) : MenuScreen(def)
 {
 }
 
@@ -19,7 +19,7 @@ MenuScreen::MenuScreen(char* fileName)
 	pugi::xml_parse_result result = doc.load_file(fileName);
 	pugi::xml_node node = doc.first_child();
 
-	DefaultNode* newMenuDef = CORE_Factory::generateNode(node);
+	Node* newMenuDef = CORE_Factory::generateNode(node);
 
 	if (newMenuDef->getName() == "MenuScreen")
 	{
@@ -27,24 +27,24 @@ MenuScreen::MenuScreen(char* fileName)
 	}
 }
 
-void MenuScreen::getArgsFromNode(DefaultNode* def, MenuSystem* root)
+void MenuScreen::getArgsFromNode(Node* def, MenuSystem* root)
 {
 	getArgsFromNode(def);
 }
 
-void MenuScreen::getArgsFromNode(DefaultNode* def)
+void MenuScreen::getArgsFromNode(Node* def)
 {
 	name = def->getVariable("name");
 
-	DefaultNode* controlsParent = (DefaultNode*) def->getChild("controls");
+	Node* controlsParent = (Node*) def->getChild("controls");
 
 	if (controlsParent)
 	{
-		std::vector<DefaultNode*>* controlsVector = (std::vector<DefaultNode*>*) controlsParent->getChildren();
+		std::vector<Node*>* controlsVector = (std::vector<Node*>*) controlsParent->getChildren();
 
 		for (unsigned int i = 0; i < controlsVector->size(); i++)
 		{
-			DefaultNode* cur = (DefaultNode*)(*controlsVector)[i];
+			Node* cur = (Node*)(*controlsVector)[i];
 
 			Component* newControl = NULL;
 				

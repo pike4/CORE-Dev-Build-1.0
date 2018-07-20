@@ -2,7 +2,7 @@
 #include "Controllable.h"
 #include "Timer.h"
 #include "RenderableCharSet.h"
-#include "DefaultNode.h"
+#include "Node.h"
 #include "Control.h"
 
 class SpeechBox : public Control
@@ -10,7 +10,7 @@ class SpeechBox : public Control
 public:
 
 	SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet);
-	SpeechBox(DefaultNode* def);
+	SpeechBox(Node* def);
 
    virtual void handle(Event e);
 

@@ -40,19 +40,19 @@ void Entity::get_data(DataSource* source)
 	}
 }
 
-void Entity::getArgsFromNode(DefaultNode* definer)
+void Entity::getArgsFromNode(Node* definer)
 {
-	//DefaultNode* componentsNode = definer->getChild("components");
+	//Node* componentsNode = definer->getChild("components");
 
 	//if (componentsNode)
 	//{
-	//	std::vector<DefaultNode*>* componentsNodes = componentsNode->getChildren();
+	//	std::vector<Node*>* componentsNodes = componentsNode->getChildren();
 
 	//	if (componentsNodes)
 	//	{
 	//		for (unsigned int i = 0; i < componentsNodes->size(); i++)
 	//		{
-	//			DefaultNode* curDefiner = (*componentsNodes)[i];
+	//			Node* curDefiner = (*componentsNodes)[i];
 	//			Component* newComponent = NULL;
 
 	//			if (newComponent = CORE_Factory::constructVisibleElement(curDefiner))

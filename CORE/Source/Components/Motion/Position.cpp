@@ -1,8 +1,8 @@
 #include "Position.h"
 #include "Entity.h"
-#include "DefaultNode.h"
+#include "Node.h"
 
-void Position::getText(DefaultNode* def) {}
+void Position::getText(Node* def) {}
 
 void Position::get_data(DataSource* source)
 {
@@ -30,7 +30,7 @@ Position::Position()
 	pointers.push_back({ "y", &y });
 }
 
-Position::Position(DefaultNode* definer)
+Position::Position(Node* definer)
 	: Position()
 {}
 

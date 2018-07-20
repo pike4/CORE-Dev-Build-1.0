@@ -1,13 +1,13 @@
 #pragma once
 #include "ButtonComponent.h"
-#include "DefaultNode.h"
+#include "Node.h"
 
 class MenuDestination : public Component
 {
 public:
 	MenuDestination();
 
-	virtual void getText(DefaultNode* def);
+	virtual void getText(Node* def);
 
    virtual void handle(Event e);
 
