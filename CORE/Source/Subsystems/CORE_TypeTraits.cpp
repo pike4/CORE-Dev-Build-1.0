@@ -135,8 +135,10 @@ namespace CORE_TypeTraits
 			return _floatingPoint;
 		if (type == "string")
 			return _string;
-		else
-			return _errorType;
+		if (type == "entity")
+			return _entity;
+		
+		return _errorType;
 	}
 
 	DependenceType getDependenceType(std::string type)

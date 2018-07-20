@@ -47,26 +47,24 @@ std::string DefaultNode::getVariable(std::string name)
 
 	bool found = false;
 
-	pugi::xml_attribute searchAttribute = node.attribute(name.c_str());
-
-	if (searchAttribute)
+	if ( attributes.find(name) != attributes.end() )
 	{
-		ret = searchAttribute.value();
+		ret = attributes[name];
 		found = true;
 	}
 
-	if (!found)
+	if ( !found )
 	{
 		DefaultNode* child = (DefaultNode*) getChild(name);
 
-		if (child)
+		if ( child )
 		{
 			DefaultNode* d = (DefaultNode*) child;
 			ret = d->getMainValue();
 		}
 	}
 
-	if (ret[0] == '$')
+	if ( !ret.empty() && ret[0] == '$' )
 	{
 		ret = CORE_Resources::resolveVariable(ret);
 	}

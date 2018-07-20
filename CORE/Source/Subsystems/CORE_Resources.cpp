@@ -141,33 +141,33 @@ namespace CORE_Resources
 					else
 					{
 						//TODO dev output instead
-						CORE_SystemIO::print("Multiple instantiations of string variable \'" + 
-                      variableName + "\'");
+						CORE_SystemIO::print("Multiple instantiations of string variable \'" +
+							variableName + "\'");
 					}
 				}
 			}
 
 			else if (name == "states")
-         {
-			std::vector<DefaultNode*>* stateChildren = (std::vector<DefaultNode*>*) topDef->getChildren();
+			{
+				std::vector<DefaultNode*>* stateChildren = (std::vector<DefaultNode*>*) topDef->getChildren();
 
-            for (int i = 0; i < stateChildren->size(); i++)
-            {
-               DefaultNode* curNode = (*stateChildren)[i];
-               std::string name = curNode->getName();
-
-               State* newState = CORE_Factory::generateState(curNode);
-               if (globalStates.find(name) == globalStates.end())
-               {
-                  globalStates[name] = newState;
-               }
-
-               else
-               {
-                  CORE_SystemIO::error("State: " + name + "already exists");
-               }
-            }
-         }
+				for (int i = 0; i < stateChildren->size(); i++)
+				{
+					DefaultNode* curNode = (*stateChildren)[i];
+					std::string name = curNode->getName();
+					
+					State* newState = CORE_Factory::generateState(curNode);
+					if (globalStates.find(name) == globalStates.end())
+					{
+						globalStates[name] = newState;
+					}
+				
+					else
+					{
+						CORE_SystemIO::error("State: " + name + "already exists");
+					}
+				}
+			}
 
 			node = node.next_sibling();
 		}
@@ -228,12 +228,12 @@ namespace CORE_Resources
 		return newMusic;
 	}
 
-   /**
-   Function: loadChunk
+	/**
+	Function: loadChunk
 
-   Purpose:
-      Load and return an audio chunk of the given file name
-   */
+	Purpose:
+		Load and return an audio chunk of the given file name
+	*/
 	Mix_Chunk* loadChunk(std::string fileName)
 	{
 
@@ -438,12 +438,12 @@ namespace CORE_Resources
 		loadPrototypes(def);
 	}
 
-   /**
-   Function: loadPrototype
+	/**
+	Function: loadPrototype
 
-   Purpose:
-      Load entity prototypes from the given node and store for global access
-   */
+	Purpose:
+		Load entity prototypes from the given node and store for global access
+	*/
 	void loadPrototypes(DefaultNode* def)
 	{
 		if (!def)
