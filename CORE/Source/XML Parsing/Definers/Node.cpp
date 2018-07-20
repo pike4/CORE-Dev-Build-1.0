@@ -55,11 +55,11 @@ std::string Node::getVariable(std::string name)
 
 	if ( !found )
 	{
-		Node* child = (Node*) getChild(name);
+		Node* child = getChild(name);
 
 		if ( child )
 		{
-			Node* d = (Node*) child;
+			Node* d = child;
 			ret = d->getMainValue();
 		}
 	}
@@ -118,13 +118,13 @@ Node* Node::getChild(std::string name)
 	return ret;
 }
 
-std::vector<Node*>* Node::getChildren()
+std::vector<Node*> Node::getChildren()
 {
-	std::vector<Node*>* ret = new std::vector<Node*>();
+	std::vector<Node*> ret;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
-		ret->push_back(&children[i]);
+		ret.push_back(&children[i]);
 	}
 
 	return ret;

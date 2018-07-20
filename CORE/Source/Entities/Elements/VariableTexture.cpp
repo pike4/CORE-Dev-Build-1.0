@@ -10,15 +10,15 @@ VariableElement::VariableElement()
 void VariableElement::getText(Node* definer)
 {
 	VisibleElement::getText(definer);
-	Node* elemParent = (Node*) definer->getChild("elements");
+	Node* elemParent = definer->getChild("elements");
 
 	if (elemParent)
 	{
-		std::vector<Node*>* elementsNodes = (std::vector<Node*>*) elemParent->getChildren();
+		std::vector<Node*> elementsNodes = elemParent->getChildren();
 
-		for (unsigned int i = 0; i < elementsNodes->size(); i++)
+		for (unsigned int i = 0; i < elementsNodes.size(); i++)
 		{
-			Node* elem = (Node*) (*elementsNodes)[i];
+			Node* elem = elementsNodes[i];
 
 			VisibleElement* newElement = CORE_Factory::constructVisibleElement(elem);
 

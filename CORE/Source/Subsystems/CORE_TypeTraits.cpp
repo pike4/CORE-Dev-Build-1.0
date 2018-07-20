@@ -31,13 +31,13 @@ namespace CORE_TypeTraits
 		return ret;
 	}
 
-	void parseReflectionTraits(Node* def, reflection* ret)
+	void parseReflectionTraits(Node def, reflection* ret)
 	{
-		ret->name = def->getName();
-		ret->value = def->getVariable("value");
-		ret->dependenceType = getDependenceType(def->getVariable("link"));
-		ret->funcType = getFunctionType(def->getVariable("function"));
-		ret->primitiveType = getPrimitiveType(def->getVariable("type"));
+		ret->name = def.getName();
+		ret->value = def.getVariable("value");
+		ret->dependenceType = getDependenceType(def.getVariable("link"));
+		ret->funcType = getFunctionType(def.getVariable("function"));
+		ret->primitiveType = getPrimitiveType(def.getVariable("type"));
 		ret->good = true;
 
 

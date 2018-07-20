@@ -71,14 +71,14 @@ void Room::getArgsFromNode(Node* def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	Node* controlsParent = (Node*) def->getChild("objects");
+	Node* controlsParent = def->getChild("objects");
 	if (controlsParent)
 	{
-		std::vector<Node*>* objectsVector = (std::vector<Node*>*) controlsParent->getChildren();
+		std::vector<Node*> objectsVector = controlsParent->getChildren();
 
-		for (unsigned int i = 0; i < objectsVector->size(); i++)
+		for (unsigned int i = 0; i < objectsVector.size(); i++)
 		{
-			Node* cur = (Node*)(*objectsVector)[i];
+			Node* cur = objectsVector[i];
 
 			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
 

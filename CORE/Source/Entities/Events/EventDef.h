@@ -33,11 +33,11 @@ struct EventDef
 
        name = def->getName();
 
-       std::vector<Node*>* newFormat = (std::vector<Node*>*) def->getChildren();
+       std::vector<Node*> newFormat = def->getChildren();
 
-       for (int i = 0; i < newFormat->size(); i++)
+       for (int i = 0; i < newFormat.size(); i++)
        {
-           Node* cur = (*newFormat)[i];
+           Node* cur = newFormat[i];
 
            PrimitiveType newType = CORE_TypeTraits::getPrimitiveType(cur->getName());
 

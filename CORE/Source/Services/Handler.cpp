@@ -5,14 +5,14 @@ void Handler::getText(Node* node)
 {
 	// Get required format
     Node* formatChild = node->getChild("format");
-    std::vector<Node*>* formatChildren = formatChild->getChildren();
+    std::vector<Node*> formatChildren = formatChild->getChildren();
 
-    for (int i = 0; i < formatChildren->size(); i++)
+    for (int i = 0; i < formatChildren.size(); i++)
     {
-        Node* curNode = (*formatChildren)[i];
+        Node* curNode = formatChildren[i];
 
         CORE_TypeTraits::reflection curTrait;
-        CORE_TypeTraits::parseReflectionTraits(curNode, &curTrait);
+        CORE_TypeTraits::parseReflectionTraits(*curNode, &curTrait);
 
         format.push_back(curTrait);
     }
@@ -24,9 +24,9 @@ void Handler::getText(Node* node)
 	{
 		formatChildren = formatChild->getChildren();
 
-		for (int i = 0; i < formatChildren->size(); i++)
+		for (int i = 0; i < formatChildren.size(); i++)
 		{
-			Node* curNode = (*formatChildren)[i];
+			Node* curNode = formatChildren[i];
 			std::string traitName = curNode->getName();
 
 			traits.push_back(traitName);

@@ -45,12 +45,12 @@ void Component::getEventHandlers(Node* def)
         return;
     }
 
-    std::vector<Node*>* handlerVector = (std::vector<Node*>*) def->getChildren();
+    std::vector<Node*> handlerVector = def->getChildren();
    
     //Iterate over each event definition in the node
-    for (int i = 0; i < handlerVector->size(); i++)
+    for (int i = 0; i < handlerVector.size(); i++)
     {
-		Node* cur = (Node*) (*handlerVector)[i];
+		Node* cur = handlerVector[i];
 
         std::string eventName = cur->getName();
         EventDef curDef;
@@ -58,12 +58,12 @@ void Component::getEventHandlers(Node* def)
         if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
         {
            curDef = CORE_Resources::events[eventName];
-           std::vector<Node*>* handlers = (std::vector<Node*>*) cur->getChildren();
+           std::vector<Node*> handlers = cur->getChildren();
 
            //Add a handler for each entry in the event node
-           for (int j = 0; j < handlers->size(); j++)
+           for (int j = 0; j < handlers.size(); j++)
            {
-              Node* curHandler = (Node*) (*handlers)[j];
+              Node* curHandler = handlers[j];
               std::string handlerName = curHandler->getName();
               int curEventOpcode = CORE_Resources::getEventCode(eventName);
               EventHandler* eventHandler = 

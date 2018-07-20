@@ -37,12 +37,12 @@ void Environment::getArgsFromNode(Node* def)
 {
 	name = def->getVariable("name");
 
-	Node* roomParent = (Node*) def->getChild("rooms");
-	std::vector<Node*>* roomVector = (std::vector<Node*>* ) roomParent->getChildren();
+	Node* roomParent = def->getChild("rooms");
+	std::vector<Node*> roomVector = roomParent->getChildren();
 
-	for (unsigned int i = 0; i < roomVector->size(); i++)
+	for (unsigned int i = 0; i < roomVector.size(); i++)
 	{
-		Node* cur = (*roomVector)[i];
+		Node* cur = roomVector[i];
 
 		if (cur->getName() != "room")
 		{

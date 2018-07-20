@@ -36,15 +36,15 @@ void MenuScreen::getArgsFromNode(Node* def)
 {
 	name = def->getVariable("name");
 
-	Node* controlsParent = (Node*) def->getChild("controls");
+	Node* controlsParent = def->getChild("controls");
 
 	if (controlsParent)
 	{
-		std::vector<Node*>* controlsVector = (std::vector<Node*>*) controlsParent->getChildren();
+		std::vector<Node*> controlsVector = controlsParent->getChildren();
 
-		for (unsigned int i = 0; i < controlsVector->size(); i++)
+		for (unsigned int i = 0; i < controlsVector.size(); i++)
 		{
-			Node* cur = (Node*)(*controlsVector)[i];
+			Node* cur = controlsVector[i];
 
 			Component* newControl = NULL;
 				

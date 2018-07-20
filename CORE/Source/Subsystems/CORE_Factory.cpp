@@ -147,7 +147,7 @@ namespace CORE_Factory
    {
       EventHandler* ret = NULL;
 
-	  Node* typeNode = (Node*) def->getChild("type");
+	  Node* typeNode =  def->getChild("type");
 
       if (typeNode)
       {
@@ -191,13 +191,13 @@ namespace CORE_Factory
 			bool good = true;
 
 			//Get the 'data' node and generate a DataSource from it for the current component parse
-			Node* dataNode = (Node*) def->getChild("data");
+			Node* dataNode = def->getChild("data");
 			DataSource currentSource = DataSource(dataNode, parentData);
 
 			ret->get_data(&currentSource);
 
 			//Set up event handlers
-			Node* eventsNode = (Node*) def->getChild("eventHandlers");
+			Node* eventsNode = def->getChild("eventHandlers");
 
 			if (eventsNode)
 			{
@@ -207,7 +207,7 @@ namespace CORE_Factory
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			Node* handlerChild = (Node*) def->getChild("eventHandlers");
+			Node* handlerChild = def->getChild("eventHandlers");
 
 			if (handlerChild)
 			{
@@ -216,17 +216,17 @@ namespace CORE_Factory
 
 			#pragma region Child Components
 			//Get the Components node from definer*
-			Node* componentsParent = (Node*) def->getChild("components");
+			Node* componentsParent = def->getChild("components");
 
 			//Generate components from the components node
 			if (componentsParent)
 			{
 				if (!ret->isBasicComponent())
 				{
-					std::vector<Node*>* componentsVector = (std::vector<Node*>*) componentsParent->getChildren();
-					for (unsigned int i = 0; i < componentsVector->size(); i++)
+					std::vector<Node*> componentsVector = componentsParent->getChildren();
+					for (unsigned int i = 0; i < componentsVector.size(); i++)
 					{
-						Node* curComponentDef = (Node*)(*componentsVector)[i];
+						Node* curComponentDef = componentsVector[i];
 						Component* newComponent = constructComponent(curComponentDef);
 						
 						newComponent->parent = (Entity*) ret;

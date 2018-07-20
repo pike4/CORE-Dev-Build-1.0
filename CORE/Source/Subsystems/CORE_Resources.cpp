@@ -79,11 +79,11 @@ namespace CORE_Resources
 
 			if (name == "imports")
 			{
-				std::vector<Node*>* curChildren = (std::vector<Node*>*) topDef->getChildren();
+				std::vector<Node*> curChildren = topDef->getChildren();
 
-				for (unsigned int i = 0; i < curChildren->size(); i++)
+				for (unsigned int i = 0; i < curChildren.size(); i++)
 				{
-					Node* curImportDef = (*curChildren)[i];
+					Node* curImportDef = curChildren[i];
 					std::string importName = curImportDef->getName();
 					loadResourceFile(importName);
 				}
@@ -121,11 +121,11 @@ namespace CORE_Resources
 
 			else if (name == "strings")
 			{
-				std::vector<Node*>* variableNodes = (std::vector<Node*>*) topDef->getChildren();
+				std::vector<Node*> variableNodes = topDef->getChildren();
 
-				for (int i = 0; i < variableNodes->size(); i++)
+				for (int i = 0; i < variableNodes.size(); i++)
 				{
-					Node* curNode = (*variableNodes)[i];
+					Node* curNode = variableNodes[i];
 
 					std::string variableName = curNode->getName();
 					std::string newStringVariable = curNode->getMainValue();
@@ -149,11 +149,11 @@ namespace CORE_Resources
 
 			else if (name == "states")
 			{
-				std::vector<Node*>* stateChildren = (std::vector<Node*>*) topDef->getChildren();
+				std::vector<Node*> stateChildren = topDef->getChildren();
 
-				for (int i = 0; i < stateChildren->size(); i++)
+				for (int i = 0; i < stateChildren.size(); i++)
 				{
-					Node* curNode = (*stateChildren)[i];
+					Node* curNode = stateChildren[i];
 					std::string name = curNode->getName();
 					
 					State* newState = CORE_Factory::generateState(curNode);
@@ -417,11 +417,11 @@ namespace CORE_Resources
 	{
 		if (def->getName() == "templates")
 		{
-			std::vector<Node*>* templateVector = (std::vector<Node*>*) def->getChildren();
+			std::vector<Node*> templateVector = def->getChildren();
 
-			for (unsigned int i = 0; i < templateVector->size(); i++)
+			for (unsigned int i = 0; i < templateVector.size(); i++)
 			{
-				Node* curDefiner = (*templateVector)[i];
+				Node* curDefiner = templateVector[i];
 
 				TemplateDef* newTemplate = new TemplateDef(curDefiner);
 
@@ -461,11 +461,11 @@ namespace CORE_Resources
 			return;
 		}
 
-		std::vector<Node*>* prototypeVector = (std::vector<Node*>* ) def->getChildren();
+		std::vector<Node*> prototypeVector = def->getChildren();
 
-		for (unsigned int i = 0; i < prototypeVector->size(); i++)
+		for (unsigned int i = 0; i < prototypeVector.size(); i++)
 		{
-			Node* tempDef = (Node*)(*prototypeVector)[i];
+			Node* tempDef = prototypeVector[i];
 
 			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
 			std::string prototypeName = tempDef->getVariable("name");
@@ -537,11 +537,11 @@ namespace CORE_Resources
 
        std::string name = def->getName();
 
-	   std::vector<Node*>*  eventNodes = (std::vector<Node*>* ) def->getChildren();
+	   std::vector<Node*>  eventNodes = def->getChildren();
 
-       for (unsigned int i = 0; eventNodes && i < eventNodes->size(); i++) 
+       for (unsigned int i = 0; i < eventNodes.size(); i++) 
        {    
-           Node* cur = (*eventNodes)[i];
+           Node* cur = eventNodes[i];
            std::string curName = cur->getName();
 
            if (events.find(curName) != events.end()) 
@@ -572,11 +572,11 @@ namespace CORE_Resources
          return;
       }
 
-      std::vector<Node*>* handlerVector = (std::vector<Node*>*) def->getChildren();
+      std::vector<Node*> handlerVector = def->getChildren();
 
-      for (int i = 0; i < handlerVector->size(); i++)
+      for (int i = 0; i < handlerVector.size(); i++)
       {
-         Node* curHandlerNode = (Node*)(*handlerVector)[i];
+         Node* curHandlerNode = handlerVector[i];
          std::string handlerName = curHandlerNode->getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
