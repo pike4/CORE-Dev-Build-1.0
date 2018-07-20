@@ -178,7 +178,7 @@ namespace CORE_Resources
    void loadEvents(Node def);
    void loadEventHandlers(Node def);
 
-   Node* getFirstNodeFromFile(std::string fileName);
+   Node getFirstNodeFromFile(std::string fileName);
 
    //*****************
    //String variables

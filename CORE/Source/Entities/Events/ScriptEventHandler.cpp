@@ -15,16 +15,16 @@ ScriptEventHandler::ScriptEventHandler(Node def)
 
    scriptName = def.getVariable("file");
    std::string defName = def.getVariable("format");
-   Node* argNamesNode = def.getChild("argNames");
+   Node argNamesNode = def.getChild("argNames");
   
    //Event format is defined elsewhere
    if (defName == "")
    {
-      Node* eventDefNode = def.getChild("format");
+      Node eventDefNode = def.getChild("format");
 
-      std::vector<Node*> eventDefChildren = eventDefNode->getChildren();
+      std::vector<Node> eventDefChildren = eventDefNode.getChildren();
 
-      EventDef newDef = EventDef(*eventDefNode);
+      EventDef newDef = EventDef(eventDefNode);
       format = newDef.format;
    }
 
@@ -43,9 +43,9 @@ ScriptEventHandler::ScriptEventHandler(Node def)
       }
    }
 
-   if (argNamesNode)
+   if (!argNamesNode.null())
    {
-      std::vector<Node*> argNamesChildren = argNamesNode->getChildren();
+      std::vector<Node> argNamesChildren = argNamesNode.getChildren();
 
       if (argNamesChildren.size() != format.size())
       {
@@ -54,7 +54,7 @@ ScriptEventHandler::ScriptEventHandler(Node def)
 
       for (int i = 0; i < argNamesChildren.size(); i++)
       {
-         argNames.push_back(argNamesChildren[i]->getName());
+         argNames.push_back(argNamesChildren[i].getName());
       }
    }
 

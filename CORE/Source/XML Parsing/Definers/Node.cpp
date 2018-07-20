@@ -4,10 +4,13 @@
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"
 
-Node::Node() {}
+Node::Node() {
+	isNull = true;
+}
 
 Node::Node(pugi::xml_node myNode)
 {
+	isNull = false;
 	node = myNode;
 	name = node.name();
 	readAttributes(myNode);
@@ -36,7 +39,7 @@ void Node::readChildren(pugi::xml_node myNode)
 
 	while (child.name() != "")
 	{
-		addChild(*CORE_Factory::generateNode(child));
+		addChild(CORE_Factory::generateNode(child));
 		child = child.next_sibling();
 	}
 }
@@ -55,12 +58,12 @@ std::string Node::getVariable(std::string name)
 
 	if ( !found )
 	{
-		Node* child = getChild(name);
+		Node child = getChild(name);
 
-		if ( child )
+		if ( !child.null() )
 		{
-			Node* d = child;
-			ret = d->getMainValue();
+			Node d = child;
+			ret = d.getMainValue();
 		}
 	}
 
@@ -102,15 +105,15 @@ void Node::setName(std::string newName)
 	name = newName;
 }
 
-Node* Node::getChild(std::string name)
+Node Node::getChild(std::string name)
 {
-	Node* ret = NULL;
+	Node ret;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
 		if (children[i].getName() == name)
 		{
-			ret = &children[i];
+			ret = children[i];
 			break;
 		}
 	}
@@ -118,13 +121,13 @@ Node* Node::getChild(std::string name)
 	return ret;
 }
 
-std::vector<Node*> Node::getChildren()
+std::vector<Node> Node::getChildren()
 {
-	std::vector<Node*> ret;
+	std::vector<Node> ret;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
-		ret.push_back(&children[i]);
+		ret.push_back(children[i]);
 	}
 
 	return ret;

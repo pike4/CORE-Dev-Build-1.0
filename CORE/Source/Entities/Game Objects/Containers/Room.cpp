@@ -13,11 +13,11 @@ Room::Room(Node definer)
 //Load room from file- TODO: DELET file IO is the responsibility of Resources
 Room::Room(std::string fileName)
 {
-	Node* def = CORE_Resources::getFirstNodeFromFile(fileName);
+	Node def = CORE_Resources::getFirstNodeFromFile(fileName);
 
-	if (def)
+	if (!def.null())
 	{
-		getArgsFromNode(*def);
+		getArgsFromNode(def);
 	}
 }
 
@@ -71,16 +71,16 @@ void Room::getArgsFromNode(Node def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	Node* controlsParent = def.getChild("objects");
-	if (controlsParent)
+	Node controlsParent = def.getChild("objects");
+	if (!controlsParent.null())
 	{
-		std::vector<Node*> objectsVector = controlsParent->getChildren();
+		std::vector<Node> objectsVector = controlsParent.getChildren();
 
 		for (unsigned int i = 0; i < objectsVector.size(); i++)
 		{
-			Node* cur = objectsVector[i];
+			Node cur = objectsVector[i];
 
-			Entity* newObject = (Entity*) CORE_Factory::generateObject(*cur);
+			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
 
 			if (newObject)
 			{

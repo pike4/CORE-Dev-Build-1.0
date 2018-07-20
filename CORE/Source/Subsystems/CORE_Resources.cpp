@@ -74,61 +74,61 @@ namespace CORE_Resources
 
 		while (node)
 		{
-			Node* topDef = CORE_Factory::generateNode(node);
-			std::string name = topDef->getName();
+			Node topDef = CORE_Factory::generateNode(node);
+			std::string name = topDef.getName();
 
 			if (name == "imports")
 			{
-				std::vector<Node*> curChildren = topDef->getChildren();
+				std::vector<Node> curChildren = topDef.getChildren();
 
 				for (unsigned int i = 0; i < curChildren.size(); i++)
 				{
-					Node* curImportDef = curChildren[i];
-					std::string importName = curImportDef->getName();
+					Node curImportDef = curChildren[i];
+					std::string importName = curImportDef.getName();
 					loadResourceFile(importName);
 				}
 			}
 
 			else if (name == "prototypes")
 			{
-				loadPrototypes(*topDef);
+				loadPrototypes(topDef);
 			}
 
 			else if (name == "templates")
 			{
-				loadTemplates(*topDef);
+				loadTemplates(topDef);
 			}
 
 			else if (name == "environment")
 			{
-				new Environment(*topDef);
+				new Environment(topDef);
 			}
 
 			else if (name == "events")
 			{
-				loadEvents(*topDef);
+				loadEvents(topDef);
 			}
 
 			else if (name == "eventHandlers")
 			{
-			   loadEventHandlers(*topDef);
+			   loadEventHandlers(topDef);
 			}
 
 			else if (name == "menuSystem")
 			{
-				new MenuSystem(*topDef);
+				new MenuSystem(topDef);
 			}
 
 			else if (name == "strings")
 			{
-				std::vector<Node*> variableNodes = topDef->getChildren();
+				std::vector<Node> variableNodes = topDef.getChildren();
 
 				for (int i = 0; i < variableNodes.size(); i++)
 				{
-					Node* curNode = variableNodes[i];
+					Node curNode = variableNodes[i];
 
-					std::string variableName = curNode->getName();
-					std::string newStringVariable = curNode->getMainValue();
+					std::string variableName = curNode.getName();
+					std::string newStringVariable = curNode.getMainValue();
 
 					if (!newStringVariable.empty() && !variableName.empty())
 					{
@@ -149,14 +149,14 @@ namespace CORE_Resources
 
 			else if (name == "states")
 			{
-				std::vector<Node*> stateChildren = topDef->getChildren();
+				std::vector<Node> stateChildren = topDef.getChildren();
 
 				for (int i = 0; i < stateChildren.size(); i++)
 				{
-					Node* curNode = stateChildren[i];
-					std::string name = curNode->getName();
+					Node curNode = stateChildren[i];
+					std::string name = curNode.getName();
 					
-					State* newState = CORE_Factory::generateState(*curNode);
+					State* newState = CORE_Factory::generateState(curNode);
 					if (globalStates.find(name) == globalStates.end())
 					{
 						globalStates[name] = newState;
@@ -409,19 +409,19 @@ namespace CORE_Resources
 #pragma region XML Templating
 	void loadTemplates(std::string fileName)
 	{
-		Node* def = getFirstNodeFromFile(fileName);
-		loadTemplates(*def);
+		Node def = getFirstNodeFromFile(fileName);
+		loadTemplates(def);
 	}
 
 	void loadTemplates(Node def)
 	{
 		if (def.getName() == "templates")
 		{
-			std::vector<Node*> templateVector = def.getChildren();
+			std::vector<Node> templateVector = def.getChildren();
 
 			for (unsigned int i = 0; i < templateVector.size(); i++)
 			{
-				Node* curDefiner = templateVector[i];
+				Node curDefiner = templateVector[i];
 
 				TemplateDef* newTemplate = new TemplateDef(curDefiner);
 
@@ -434,8 +434,8 @@ namespace CORE_Resources
 #pragma region Prototyping
 	void loadPrototypes(std::string fileName)
 	{
-		Node* def = getFirstNodeFromFile(fileName);
-		loadPrototypes(*def);
+		Node def = getFirstNodeFromFile(fileName);
+		loadPrototypes(def);
 	}
 
 	/**
@@ -461,14 +461,14 @@ namespace CORE_Resources
 			return;
 		}
 
-		std::vector<Node*> prototypeVector = def.getChildren();
+		std::vector<Node> prototypeVector = def.getChildren();
 
 		for (unsigned int i = 0; i < prototypeVector.size(); i++)
 		{
-			Node* tempDef = prototypeVector[i];
+			Node tempDef = prototypeVector[i];
 
-			Entity* prototype = (Entity*) CORE_Factory::generateObject(*tempDef);
-			std::string prototypeName = tempDef->getVariable("name");
+			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
+			std::string prototypeName = tempDef.getVariable("name");
 
 			if (prototype)
 			{
@@ -537,12 +537,12 @@ namespace CORE_Resources
 
        std::string name = def.getName();
 
-	   std::vector<Node*>  eventNodes = def.getChildren();
+	   std::vector<Node>  eventNodes = def.getChildren();
 
        for (unsigned int i = 0; i < eventNodes.size(); i++) 
        {    
-           Node* cur = eventNodes[i];
-           std::string curName = cur->getName();
+           Node cur = eventNodes[i];
+           std::string curName = cur.getName();
 
            if (events.find(curName) != events.end()) 
            {
@@ -551,7 +551,7 @@ namespace CORE_Resources
 
            else 
            {
-               EventDef newEvent(*cur);
+               EventDef newEvent(cur);
                eventCodes[curName] = eventID++;
                events[curName] = newEvent;
            }
@@ -572,18 +572,18 @@ namespace CORE_Resources
          return;
       }
 
-      std::vector<Node*> handlerVector = def.getChildren();
+      std::vector<Node> handlerVector = def.getChildren();
 
       for (int i = 0; i < handlerVector.size(); i++)
       {
-         Node* curHandlerNode = handlerVector[i];
-         std::string handlerName = curHandlerNode->getName();
+         Node curHandlerNode = handlerVector[i];
+         std::string handlerName = curHandlerNode.getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
          if (eventHandlers.find(handlerName) == eventHandlers.end())
          {
             //Parse the format from the format node
-            EventHandler* newHandler = CORE_Factory::constructEventHandler(*curHandlerNode);
+            EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
 
             if (newHandler)
             {
@@ -745,7 +745,7 @@ namespace CORE_Resources
 
    //--------------------------------------------------------------------------------------------------
 
-	Node* getFirstNodeFromFile(std::string fileName)
+	Node getFirstNodeFromFile(std::string fileName)
 	{
 		pugi::xml_document* doc = new pugi::xml_document();
 		pugi::xml_parse_result* result = new pugi::xml_parse_result(

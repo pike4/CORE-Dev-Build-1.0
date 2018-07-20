@@ -26,7 +26,7 @@ struct StringAddress
 class TemplateDef
 {
 public:
-	TemplateDef(Node* def);
+	TemplateDef(Node def);
 	std::string getVariable(pugi::xml_node node, std::string name);
 	StringAddress getAddress(std::string name);
 

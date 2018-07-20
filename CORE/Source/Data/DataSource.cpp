@@ -17,14 +17,14 @@ DataSource::DataSource(Node* def, DataSource* newParent)
 	parent = newParent;
 	if ( def )
 	{
-		std::vector<Node*> dataNodes = def->getChildren();
+		std::vector<Node> dataNodes = def->getChildren();
 
 		for (unsigned int i = 0; i < dataNodes.size(); i++)
 		{
-			Node* curNode = dataNodes[i];
+			Node curNode = dataNodes[i];
 
 			CORE_TypeTraits::reflection curTraits;
-			CORE_TypeTraits::parseReflectionTraits(*curNode, &curTraits);
+			CORE_TypeTraits::parseReflectionTraits(curNode, &curTraits);
 			curTraits.pointer = CORE_TypeTraits::generateDataFromReflection(curTraits);
 
 			//Check if a Datum of the given name has already been instantiated for this DataSource

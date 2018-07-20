@@ -6,7 +6,7 @@
 #include "CORE.h"
 
 MenuSystem::MenuSystem(std::string fileName) 
-	: MenuSystem(*CORE_Resources::getFirstNodeFromFile(fileName))
+	: MenuSystem(CORE_Resources::getFirstNodeFromFile(fileName))
 {}
 
 MenuSystem::MenuSystem(Node def)
@@ -14,19 +14,19 @@ MenuSystem::MenuSystem(Node def)
 	menus = *(new std::map<std::string, MenuScreen*>);
 	name = def.getVariable("name");
 
-	Node* screenChild = def.getChild("menuScreens");
+	Node screenChild = def.getChild("menuScreens");
 	
-	std::vector<Node*> menuVector = screenChild->getChildren();
+	std::vector<Node> menuVector = screenChild.getChildren();
 
 	for (unsigned int i = 0; i < menuVector.size(); i++)
 	{
-		Node* cur = menuVector[i];
-		MenuScreen* newMenu = new MenuScreen(*cur);
+		Node cur = menuVector[i];
+		MenuScreen* newMenu = new MenuScreen(cur);
 
 		if (newMenu)
 		{
 			newMenu->finalize();
-			menus[cur->getVariable("name")] = newMenu;
+			menus[cur.getVariable("name")] = newMenu;
 		}
 	}
 

@@ -34,7 +34,7 @@ XML Parser, currently part of CORE_Factory implementation
 namespace CORE_Factory
 {
 	//Generation helpers
-	Node* generateNode(pugi::xml_node node);
+	Node generateNode(pugi::xml_node node);
 
    //Constructor mapping
 	Control* constructControl(Node definer);

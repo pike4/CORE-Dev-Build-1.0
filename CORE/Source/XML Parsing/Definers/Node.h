@@ -19,8 +19,8 @@ public:
 	virtual std::string getName();
 	virtual std::string getMainValue();
 
-	virtual Node* getChild(std::string name);
-	virtual std::vector<Node*> getChildren();
+	virtual Node getChild(std::string name);
+	virtual std::vector<Node> getChildren();
 
 	void addChild(Node child);
 	void addAttribute(std::string name, std::string value);

@@ -27,21 +27,21 @@ namespace CORE_Factory
    Allocate and return a definer for the current node
    Return a NodeTemplate if one exists under the current name, a genereic Node if it does not
 */
-	Node* generateNode(pugi::xml_node node)
+	Node generateNode(pugi::xml_node node)
 	{
-		Node* ret = NULL;
+		Node ret;
 		std::string nodeName = node.name();
 
 		TemplateDef* templ = CORE_Resources::getTemplate(nodeName);
 
 		if (templ)
 		{
-			ret = new Node(templ->invoke(node));
+			ret = Node(templ->invoke(node));
 		}
 
 		else
 		{
-			ret = new Node(node);
+			ret = Node(node);
 		}
 
 		return ret;
@@ -147,16 +147,16 @@ namespace CORE_Factory
    {
       EventHandler* ret = NULL;
 
-	  Node* typeNode =  def.getChild("type");
+	  Node typeNode =  def.getChild("type");
 
-      if (typeNode)
+      if (!typeNode.null())
       {
-         if (typeNode->getMainValue() == "script")
+         if (typeNode.getMainValue() == "script")
          {
             ret = new ScriptEventHandler(def);
          }
 
-         else if (typeNode->getMainValue() == "entityScript")
+         else if (typeNode.getMainValue() == "entityScript")
          {
             ret = new EntityScriptEventHandler(def);
          }
@@ -191,49 +191,49 @@ namespace CORE_Factory
 			bool good = true;
 
 			//Get the 'data' node and generate a DataSource from it for the current component parse
-			Node* dataNode = def.getChild("data");
+			Node dataNode = def.getChild("data");
 
 
-				DataSource currentSource = DataSource(dataNode, parentData);
+			DataSource currentSource = DataSource(&dataNode, parentData);
 
-				ret->get_data(&currentSource);
+			ret->get_data(&currentSource);
 
 			//Set up event handlers
-			Node* eventsNode = def.getChild("eventHandlers");
+			Node eventsNode = def.getChild("eventHandlers");
 
-			if (eventsNode)
+			if (!eventsNode.null())
 			{
-				ret->getEventHandlers(*eventsNode);
+				ret->getEventHandlers(eventsNode);
 			}
 
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			Node* handlerChild = def.getChild("eventHandlers");
+			Node handlerChild = def.getChild("eventHandlers");
 
-			if (handlerChild)
+			if (!handlerChild.null())
 			{
-				ret->getEventHandlers(*handlerChild);
+				ret->getEventHandlers(handlerChild);
 			}
 
 			#pragma region Child Components
 			//Get the Components node from definer*
-			Node* componentsParent = def.getChild("components");
+			Node componentsParent = def.getChild("components");
 
 			//Generate components from the components node
-			if (componentsParent)
+			if (!componentsParent.null())
 			{
 				if (!ret->isBasicComponent())
 				{
-					std::vector<Node*> componentsVector = componentsParent->getChildren();
+					std::vector<Node> componentsVector = componentsParent.getChildren();
 					for (unsigned int i = 0; i < componentsVector.size(); i++)
 					{
-						Node* curComponentDef = componentsVector[i];
-						Component* newComponent = constructComponent(*curComponentDef);
+						Node curComponentDef = componentsVector[i];
+						Component* newComponent = constructComponent(curComponentDef);
 						
 						newComponent->parent = (Entity*) ret;
 
-						newComponent = generateObject(*curComponentDef, &currentSource);
+						newComponent = generateObject(curComponentDef, &currentSource);
 
 						//TODO Will need to delete and NULL ret if something goes wrong
 						if (newComponent)

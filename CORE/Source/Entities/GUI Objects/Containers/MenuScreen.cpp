@@ -19,11 +19,11 @@ MenuScreen::MenuScreen(char* fileName)
 	pugi::xml_parse_result result = doc.load_file(fileName);
 	pugi::xml_node node = doc.first_child();
 
-	Node* newMenuDef = CORE_Factory::generateNode(node);
+	Node newMenuDef = CORE_Factory::generateNode(node);
 
-	if (newMenuDef->getName() == "MenuScreen")
+	if (newMenuDef.getName() == "MenuScreen")
 	{
-		getArgsFromNode(*newMenuDef);
+		getArgsFromNode(newMenuDef);
 	}
 }
 
@@ -36,19 +36,19 @@ void MenuScreen::getArgsFromNode(Node def)
 {
 	name = def.getVariable("name");
 
-	Node* controlsParent = def.getChild("controls");
+	Node controlsParent = def.getChild("controls");
 
-	if (controlsParent)
+	if (!controlsParent.null())
 	{
-		std::vector<Node*> controlsVector = controlsParent->getChildren();
+		std::vector<Node> controlsVector = controlsParent.getChildren();
 
 		for (unsigned int i = 0; i < controlsVector.size(); i++)
 		{
-			Node* cur = controlsVector[i];
+			Node cur = controlsVector[i];
 
 			Component* newControl = NULL;
 				
-			if(newControl = CORE_Factory::generateObject(*cur))
+			if(newControl = CORE_Factory::generateObject(cur))
 			{
 				components.push_back(newControl);
 			}
