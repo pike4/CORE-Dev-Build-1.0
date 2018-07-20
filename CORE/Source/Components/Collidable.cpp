@@ -14,15 +14,15 @@ Collidable::Collidable(int x, int y, int w, int h)
 	boundingBox.h = h;
 }
 
-Collidable::Collidable(Node* definer)
+Collidable::Collidable(Node definer)
 {
-	boundingBox.x = stoi(definer->getVariable("x"));
-	boundingBox.y = stoi(definer->getVariable("y"));
-	boundingBox.w = stoi(definer->getVariable("w"));
-	boundingBox.h = stoi(definer->getVariable("h"));
+	boundingBox.x = stoi(definer.getVariable("x"));
+	boundingBox.y = stoi(definer.getVariable("y"));
+	boundingBox.w = stoi(definer.getVariable("w"));
+	boundingBox.h = stoi(definer.getVariable("h"));
 }
 
-Collidable::Collidable(Node* definer, std::vector<Collidable*>* collidableVector)
+Collidable::Collidable(Node definer, std::vector<Collidable*>* collidableVector)
 	:Collidable(definer)
 {
 	collidableVector->push_back(this);

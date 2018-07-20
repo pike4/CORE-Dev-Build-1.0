@@ -10,7 +10,7 @@ public:
 	VariableElement();
 	VariableElement(VariableElement&);
 	virtual Component* spawnCopy();
-	virtual void getText(Node* def);
+	virtual void getText(Node def);
 
 
    virtual void handle(Event e);

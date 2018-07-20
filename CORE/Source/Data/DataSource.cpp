@@ -15,7 +15,7 @@ DataSource::DataSource(Node* def, DataSource* newParent)
 
 	node = def;
 	parent = newParent;
-	if (def)
+	if ( def )
 	{
 		std::vector<Node*> dataNodes = def->getChildren();
 
@@ -103,7 +103,7 @@ std::string DataSource::getText(std::string name)
 {
 	std::string ret = "";
 
-	if (node)
+	if ( !node->null() ) 
 	{
 		 ret = node->getVariable(name);
 	}

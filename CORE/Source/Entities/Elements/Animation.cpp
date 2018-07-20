@@ -3,17 +3,17 @@
 
 Animation::Animation() {}
 
-void Animation::getText(Node* definer)
+void Animation::getText(Node definer)
 
 {
 	VisibleElement::getText(definer);
-	std::string fileName = definer->getVariable("fileName");
-	millisecondsPerFrame = stoi(definer->getVariable("millisecondsPerFrame"));
-	int frameH = stoi(definer->getVariable("frameH"));
-	int frameW = stoi(definer->getVariable("frameW"));
-	int framesX = stoi(definer->getVariable("framesX"));
-	int framesY = stoi(definer->getVariable("framesY"));
-	int seperation = stoi(definer->getVariable("seperation"));
+	std::string fileName = definer.getVariable("fileName");
+	millisecondsPerFrame = stoi(definer.getVariable("millisecondsPerFrame"));
+	int frameH = stoi(definer.getVariable("frameH"));
+	int frameW = stoi(definer.getVariable("frameW"));
+	int framesX = stoi(definer.getVariable("framesX"));
+	int framesY = stoi(definer.getVariable("framesY"));
+	int seperation = stoi(definer.getVariable("seperation"));
 
 	frames = new VisibleElement*[framesX * framesY];
 	numFrames = framesX * framesY;

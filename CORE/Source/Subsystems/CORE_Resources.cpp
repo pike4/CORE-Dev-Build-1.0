@@ -91,32 +91,32 @@ namespace CORE_Resources
 
 			else if (name == "prototypes")
 			{
-				loadPrototypes(topDef);
+				loadPrototypes(*topDef);
 			}
 
 			else if (name == "templates")
 			{
-				loadTemplates(topDef);
+				loadTemplates(*topDef);
 			}
 
 			else if (name == "environment")
 			{
-				new Environment(topDef);
+				new Environment(*topDef);
 			}
 
 			else if (name == "events")
 			{
-				loadEvents(topDef);
+				loadEvents(*topDef);
 			}
 
 			else if (name == "eventHandlers")
 			{
-			   loadEventHandlers(topDef);
+			   loadEventHandlers(*topDef);
 			}
 
 			else if (name == "menuSystem")
 			{
-				new MenuSystem(topDef);
+				new MenuSystem(*topDef);
 			}
 
 			else if (name == "strings")
@@ -156,7 +156,7 @@ namespace CORE_Resources
 					Node* curNode = stateChildren[i];
 					std::string name = curNode->getName();
 					
-					State* newState = CORE_Factory::generateState(curNode);
+					State* newState = CORE_Factory::generateState(*curNode);
 					if (globalStates.find(name) == globalStates.end())
 					{
 						globalStates[name] = newState;
@@ -410,14 +410,14 @@ namespace CORE_Resources
 	void loadTemplates(std::string fileName)
 	{
 		Node* def = getFirstNodeFromFile(fileName);
-		loadTemplates(def);
+		loadTemplates(*def);
 	}
 
-	void loadTemplates(Node* def)
+	void loadTemplates(Node def)
 	{
-		if (def->getName() == "templates")
+		if (def.getName() == "templates")
 		{
-			std::vector<Node*> templateVector = def->getChildren();
+			std::vector<Node*> templateVector = def.getChildren();
 
 			for (unsigned int i = 0; i < templateVector.size(); i++)
 			{
@@ -435,7 +435,7 @@ namespace CORE_Resources
 	void loadPrototypes(std::string fileName)
 	{
 		Node* def = getFirstNodeFromFile(fileName);
-		loadPrototypes(def);
+		loadPrototypes(*def);
 	}
 
 	/**
@@ -444,15 +444,15 @@ namespace CORE_Resources
 	Purpose:
 		Load entity prototypes from the given node and store for global access
 	*/
-	void loadPrototypes(Node* def)
+	void loadPrototypes(Node def)
 	{
-		if (!def)
+		if ( def.null() )
 		{
 		    CORE_SystemIO::error("Null events node!");
 		    return;
 		}
 
-		std::string name = def->getName();
+		std::string name = def.getName();
 
 		if (name != "prototypes")
 		{
@@ -461,13 +461,13 @@ namespace CORE_Resources
 			return;
 		}
 
-		std::vector<Node*> prototypeVector = def->getChildren();
+		std::vector<Node*> prototypeVector = def.getChildren();
 
 		for (unsigned int i = 0; i < prototypeVector.size(); i++)
 		{
 			Node* tempDef = prototypeVector[i];
 
-			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
+			Entity* prototype = (Entity*) CORE_Factory::generateObject(*tempDef);
 			std::string prototypeName = tempDef->getVariable("name");
 
 			if (prototype)
@@ -527,17 +527,17 @@ namespace CORE_Resources
    Purpose:
       Load the event definitions from the given node and store for global access
    */
-   void loadEvents(Node* def)
+   void loadEvents(Node def)
    {
-       if (!def)
+       if (def.null() )
        {
            CORE_SystemIO::error("Null events node!");
            return;
        }
 
-       std::string name = def->getName();
+       std::string name = def.getName();
 
-	   std::vector<Node*>  eventNodes = def->getChildren();
+	   std::vector<Node*>  eventNodes = def.getChildren();
 
        for (unsigned int i = 0; i < eventNodes.size(); i++) 
        {    
@@ -551,7 +551,7 @@ namespace CORE_Resources
 
            else 
            {
-               EventDef newEvent(cur);
+               EventDef newEvent(*cur);
                eventCodes[curName] = eventID++;
                events[curName] = newEvent;
            }
@@ -564,15 +564,15 @@ namespace CORE_Resources
    Purpose:
       Define event handler prototypes from the given node
    */
-   void loadEventHandlers(Node* def)
+   void loadEventHandlers(Node def)
    {
-      if (!def)
+      if (def.null())
       {
          CORE_SystemIO::error("Null event handlers node!");
          return;
       }
 
-      std::vector<Node*> handlerVector = def->getChildren();
+      std::vector<Node*> handlerVector = def.getChildren();
 
       for (int i = 0; i < handlerVector.size(); i++)
       {
@@ -583,7 +583,7 @@ namespace CORE_Resources
          if (eventHandlers.find(handlerName) == eventHandlers.end())
          {
             //Parse the format from the format node
-            EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
+            EventHandler* newHandler = CORE_Factory::constructEventHandler(*curHandlerNode);
 
             if (newHandler)
             {

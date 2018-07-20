@@ -17,7 +17,7 @@ Environment::Environment(std::string fileName)
 		return;
 	}
 
-	getArgsFromNode(def);
+	getArgsFromNode(*def);
 	CORE_Resources::environments[name] = this;
 
 	if (name.empty())
@@ -27,17 +27,17 @@ Environment::Environment(std::string fileName)
 	}
 }
 
-Environment::Environment(Node* def)
+Environment::Environment(Node def)
 {
 	getArgsFromNode(def);
 	CORE_Resources::environments[name] = this;
 }
 
-void Environment::getArgsFromNode(Node* def)
+void Environment::getArgsFromNode(Node def)
 {
-	name = def->getVariable("name");
+	name = def.getVariable("name");
 
-	Node* roomParent = def->getChild("rooms");
+	Node* roomParent = def.getChild("rooms");
 	std::vector<Node*> roomVector = roomParent->getChildren();
 
 	for (unsigned int i = 0; i < roomVector.size(); i++)
@@ -49,7 +49,7 @@ void Environment::getArgsFromNode(Node* def)
 			continue;
 		}
 
-		Room* roomToAdd = new Room(cur);
+		Room* roomToAdd = new Room(*cur);
 
 		rooms[roomToAdd->name] = roomToAdd;
 	}

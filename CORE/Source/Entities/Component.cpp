@@ -24,7 +24,7 @@ Component* Component::spawnCopy()
 void Component::finalize() {}
 
 //Component gets no data or text by default
-void Component::getText(Node* def) {}
+void Component::getText(Node def) {}
 
 void Component::get_data(DataSource* source) {}
 
@@ -37,15 +37,15 @@ bool Component::getTrait(std::string trait)
 
 //Component gets only the event handlers assigned to it in the file. 
 //Subclasses may have handlers baked in
-void Component::getEventHandlers(Node* def)
+void Component::getEventHandlers(Node def)
 {
-    if (!def)
+    if (def.null())
     {
         CORE_SystemIO::error("Could not get Event Handlers from null Node*");
         return;
     }
 
-    std::vector<Node*> handlerVector = def->getChildren();
+    std::vector<Node*> handlerVector = def.getChildren();
    
     //Iterate over each event definition in the node
     for (int i = 0; i < handlerVector.size(); i++)

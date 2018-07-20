@@ -180,5 +180,5 @@ protected:
 	//The components that make up this object
 	std::vector<Component*> components;
 
-	void getArgsFromNode(Node* definer);
+	void getArgsFromNode(Node definer);
 };

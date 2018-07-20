@@ -5,7 +5,7 @@
 #include "Entity.h"
 
 //Load room from node
-Room::Room(Node* definer)
+Room::Room(Node definer)
 {
 	getArgsFromNode(definer);
 }
@@ -17,7 +17,7 @@ Room::Room(std::string fileName)
 
 	if (def)
 	{
-		getArgsFromNode(def);
+		getArgsFromNode(*def);
 	}
 }
 
@@ -67,11 +67,11 @@ void Room::spawn(std::string objectName)
 	add(newObject);
 }
 
-void Room::getArgsFromNode(Node* def)
+void Room::getArgsFromNode(Node def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	Node* controlsParent = def->getChild("objects");
+	Node* controlsParent = def.getChild("objects");
 	if (controlsParent)
 	{
 		std::vector<Node*> objectsVector = controlsParent->getChildren();
@@ -80,7 +80,7 @@ void Room::getArgsFromNode(Node* def)
 		{
 			Node* cur = objectsVector[i];
 
-			Entity* newObject = (Entity*) CORE_Factory::generateObject(cur);
+			Entity* newObject = (Entity*) CORE_Factory::generateObject(*cur);
 
 			if (newObject)
 			{
@@ -91,9 +91,9 @@ void Room::getArgsFromNode(Node* def)
 		}
 	}
 
-	name = def->getVariable("name");
-	w = stoi(def->getVariable("w"));
-	h = stoi(def->getVariable("h"));
+	name = def.getVariable("name");
+	w = stoi(def.getVariable("w"));
+	h = stoi(def.getVariable("h"));
 }
 
 void Room::handle(Event e)

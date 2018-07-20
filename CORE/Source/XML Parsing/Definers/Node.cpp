@@ -129,3 +129,8 @@ std::vector<Node*> Node::getChildren()
 
 	return ret;
 }
+
+bool Node::null()
+{
+	return isNull;
+}

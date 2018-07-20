@@ -23,17 +23,17 @@ struct EventDef
       format = form;
    }
 
-   EventDef(Node* def)
+   EventDef(Node def)
    {
-       if (!def)
+       if (def.null())
        {
            CORE_SystemIO::error("Could not construct EventDef from null Node*");
            return;
        }
 
-       name = def->getName();
+       name = def.getName();
 
-       std::vector<Node*> newFormat = def->getChildren();
+       std::vector<Node*> newFormat = def.getChildren();
 
        for (int i = 0; i < newFormat.size(); i++)
        {

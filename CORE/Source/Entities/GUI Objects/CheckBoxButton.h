@@ -5,7 +5,7 @@
 class CheckBoxButton : public Control
 {
 public:
-	void getText(Node* def);
+	void getText(Node def);
 
 	ImageElement* heldImage_Current;
 	ImageElement* hoverImage_Current;

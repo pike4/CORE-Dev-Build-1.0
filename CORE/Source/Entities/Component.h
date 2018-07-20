@@ -36,13 +36,13 @@ public:
 	#pragma region Creational
 	Component();
 	//Get private data from the given Node
-	virtual void getText(Node* def);
+	virtual void getText(Node def);
 
 	//Get public Data objects from the given map
 	virtual void get_data(DataSource* source);
 
    //Get event handlers from the given Node
-   virtual void getEventHandlers(Node* def);
+   virtual void getEventHandlers(Node def);
 
 	//Store the child without registering it. Basic components can't have children
 	virtual void storeChild(Component* child);

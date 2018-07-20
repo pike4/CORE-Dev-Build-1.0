@@ -1,10 +1,10 @@
 #include "Handler.h"
 #include "CORE_Resources.h"
 
-void Handler::getText(Node* node)
+void Handler::getText(Node node)
 {
 	// Get required format
-    Node* formatChild = node->getChild("format");
+    Node* formatChild = node.getChild("format");
     std::vector<Node*> formatChildren = formatChild->getChildren();
 
     for (int i = 0; i < formatChildren.size(); i++)
@@ -18,7 +18,7 @@ void Handler::getText(Node* node)
     }
 
 	// Get all traits
-	formatChild = node->getChild("traits");
+	formatChild = node.getChild("traits");
 
 	if (formatChild)
 	{

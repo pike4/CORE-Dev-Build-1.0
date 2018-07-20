@@ -37,14 +37,14 @@ namespace CORE_Factory
 	Node* generateNode(pugi::xml_node node);
 
    //Constructor mapping
-	Control* constructControl(Node* definer);
-	VisibleElement* constructVisibleElement(Node* definer);
-	Component* generateComponent(Node* definer);
-   Component* constructComponent(Node* def);
-   EventHandler* constructEventHandler(Node* def);
+	Control* constructControl(Node definer);
+	VisibleElement* constructVisibleElement(Node definer);
+	Component* generateComponent(Node definer);
+   Component* constructComponent(Node def);
+   EventHandler* constructEventHandler(Node def);
 
    //ObjectGeneration
    Entity* generate(std::string prototypeName);
-   State* generateState(Node* definer);
-   Component* generateObject(Node* definer, DataSource* parentData = NULL);
+   State* generateState(Node definer);
+   Component* generateObject(Node definer, DataSource* parentData = NULL);
 };

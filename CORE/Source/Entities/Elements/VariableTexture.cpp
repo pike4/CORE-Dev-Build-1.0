@@ -7,10 +7,10 @@ VariableElement::VariableElement()
 {
 }
 
-void VariableElement::getText(Node* definer)
+void VariableElement::getText(Node definer)
 {
 	VisibleElement::getText(definer);
-	Node* elemParent = definer->getChild("elements");
+	Node* elemParent = definer.getChild("elements");
 
 	if (elemParent)
 	{
@@ -20,7 +20,7 @@ void VariableElement::getText(Node* definer)
 		{
 			Node* elem = elementsNodes[i];
 
-			VisibleElement* newElement = CORE_Factory::constructVisibleElement(elem);
+			VisibleElement* newElement = CORE_Factory::constructVisibleElement(*elem);
 
 			//Assign pointers from this to the contained 
 			if (newElement)

@@ -48,9 +48,9 @@ namespace CORE_Factory
 	}
 
 #pragma region Component Constructor Mapping
-	Component* generateComponent(Node* def)
+	Component* generateComponent(Node def)
 	{
-		std::string name = def->getName();
+		std::string name = def.getName();
 
 		Component* ret = NULL;
 
@@ -80,9 +80,9 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Control* constructControl(Node* def)
+	Control* constructControl(Node def)
 	{
-		std::string name = def->getName();
+		std::string name = def.getName();
 
 		Control* ret = NULL;
 
@@ -98,9 +98,9 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	VisibleElement* constructVisibleElement(Node* def)
+	VisibleElement* constructVisibleElement(Node def)
 	{
-		std::string name = def->getName();
+		std::string name = def.getName();
 
 		VisibleElement* ret = NULL;
 
@@ -127,7 +127,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Component* constructComponent(Node* def)
+	Component* constructComponent(Node def)
 	{
 		Component* ret = NULL;
 
@@ -137,17 +137,17 @@ namespace CORE_Factory
 			return ret;
 		if (ret = constructVisibleElement(def))
 			return ret;
-		if (def->getName() == "entity")
+		if (def.getName() == "entity")
 			ret = new Entity();
 
 		return ret;
 	}
 
-   EventHandler* constructEventHandler(Node* def)
+   EventHandler* constructEventHandler(Node def)
    {
       EventHandler* ret = NULL;
 
-	  Node* typeNode =  def->getChild("type");
+	  Node* typeNode =  def.getChild("type");
 
       if (typeNode)
       {
@@ -166,7 +166,7 @@ namespace CORE_Factory
 
       if (!ret)
       {
-         CORE_SystemIO::error("EventHandler Node \'" + def->getName() + "\' is of an undefined type");
+         CORE_SystemIO::error("EventHandler Node \'" + def.getName() + "\' is of an undefined type");
       }
 
       return ret;
@@ -181,7 +181,7 @@ namespace CORE_Factory
    Purpose:
       Instantiate and return a copy of an existing prototype
    */
-	Component* generateObject(Node* def, DataSource* parentData)
+	Component* generateObject(Node def, DataSource* parentData)
 	{
 		Component* ret = constructComponent(def);
 
@@ -191,32 +191,34 @@ namespace CORE_Factory
 			bool good = true;
 
 			//Get the 'data' node and generate a DataSource from it for the current component parse
-			Node* dataNode = def->getChild("data");
-			DataSource currentSource = DataSource(dataNode, parentData);
+			Node* dataNode = def.getChild("data");
 
-			ret->get_data(&currentSource);
+
+				DataSource currentSource = DataSource(dataNode, parentData);
+
+				ret->get_data(&currentSource);
 
 			//Set up event handlers
-			Node* eventsNode = def->getChild("eventHandlers");
+			Node* eventsNode = def.getChild("eventHandlers");
 
 			if (eventsNode)
 			{
-				ret->getEventHandlers(eventsNode);
+				ret->getEventHandlers(*eventsNode);
 			}
 
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			Node* handlerChild = def->getChild("eventHandlers");
+			Node* handlerChild = def.getChild("eventHandlers");
 
 			if (handlerChild)
 			{
-			ret->getEventHandlers(handlerChild);
+				ret->getEventHandlers(*handlerChild);
 			}
 
 			#pragma region Child Components
 			//Get the Components node from definer*
-			Node* componentsParent = def->getChild("components");
+			Node* componentsParent = def.getChild("components");
 
 			//Generate components from the components node
 			if (componentsParent)
@@ -227,11 +229,11 @@ namespace CORE_Factory
 					for (unsigned int i = 0; i < componentsVector.size(); i++)
 					{
 						Node* curComponentDef = componentsVector[i];
-						Component* newComponent = constructComponent(curComponentDef);
+						Component* newComponent = constructComponent(*curComponentDef);
 						
 						newComponent->parent = (Entity*) ret;
 
-						newComponent = generateObject(curComponentDef, &currentSource);
+						newComponent = generateObject(*curComponentDef, &currentSource);
 
 						//TODO Will need to delete and NULL ret if something goes wrong
 						if (newComponent)
@@ -244,7 +246,7 @@ namespace CORE_Factory
 				else
 				{
 					//TODO error: 
-               CORE_SystemIO::error("Definer for object of type: " +  def->getName() + 
+               CORE_SystemIO::error("Definer for object of type: " +  def.getName() + 
                   " contains components node, but type is basic component.");
 				}
 			}
@@ -268,8 +270,8 @@ namespace CORE_Factory
 		else
       {
          std::string errorType = "";
-         if (!def->getName().empty())
-            errorType = def->getName();
+         if (!def.getName().empty())
+            errorType = def.getName();
          
          else
             errorType = "<NOT GIVEN>";
@@ -307,10 +309,10 @@ namespace CORE_Factory
 	}
 
    //
-   State* generateState(Node* definer)
+   State* generateState(Node definer)
    {
       State* ret = new State();
-      DataSource source = DataSource(definer, NULL);
+      DataSource source = DataSource(&definer, NULL);
       std::vector<std::pair<std::string, reflection>> data = source.getAllData();
 
       for (int i = 0; i < data.size(); i++)

@@ -40,49 +40,8 @@ void Entity::get_data(DataSource* source)
 	}
 }
 
-void Entity::getArgsFromNode(Node* definer)
-{
-	//Node* componentsNode = definer->getChild("components");
-
-	//if (componentsNode)
-	//{
-	//	std::vector<Node*>* componentsNodes = componentsNode->getChildren();
-
-	//	if (componentsNodes)
-	//	{
-	//		for (unsigned int i = 0; i < componentsNodes->size(); i++)
-	//		{
-	//			Node* curDefiner = (*componentsNodes)[i];
-	//			Component* newComponent = NULL;
-
-	//			if (newComponent = CORE_Factory::constructVisibleElement(curDefiner))
-	//			{
-	//				components.push_back(newComponent);
-	//			}
-
-	//			else if (newComponent = CORE_Factory::constructControl(curDefiner))
-	//			{
-	//				components.push_back(newComponent);
-	//			}
-
-	//			else if (newComponent = CORE_Factory::generateComponent(curDefiner))
-	//			{
-	//				components.push_back(newComponent);
-	//			}
-
-	//			if (newComponent)
-	//			{
-	//				newComponent->parent = this;
-	//			}
-
-	//			else
-	//			{
-	//				printf("Undefined object type %s\n", curDefiner->getName().c_str());
-	//			}
-	//		}
-	//	}
-	//}
-}
+void Entity::getArgsFromNode(Node definer)
+{}
 
 int Entity::addListener(int key, Controllable* listener)
 {

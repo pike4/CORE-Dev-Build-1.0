@@ -27,6 +27,8 @@ public:
 	void setValue(std::string value);
 	void setName(std::string name);
 
+	bool null();
+
 
 	pugi::xml_node node;
 
@@ -35,4 +37,6 @@ protected:
 	std::map<std::string, std::string> attributes;
 	std::string value;
 	std::string name;
+
+	bool isNull;
 };

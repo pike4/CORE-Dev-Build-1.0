@@ -12,7 +12,7 @@ public:
 	std::string name;
 
 	MenuSystem(std::string fileName);
-	MenuSystem(Node* def);
+	MenuSystem(Node def);
 
 	MenuScreen* getMenuScreen(std::string name);
 

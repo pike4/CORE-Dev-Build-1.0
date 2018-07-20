@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Node.h"
 
-void Position::getText(Node* def) {}
+void Position::getText(Node def) {}
 
 void Position::get_data(DataSource* source)
 {
@@ -30,7 +30,7 @@ Position::Position()
 	pointers.push_back({ "y", &y });
 }
 
-Position::Position(Node* definer)
+Position::Position(Node definer)
 	: Position()
 {}
 

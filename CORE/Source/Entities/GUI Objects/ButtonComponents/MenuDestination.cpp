@@ -8,9 +8,9 @@ MenuDestination::MenuDestination() : Component()
 	events.push_back(mouseRelease);
 }
 
-void MenuDestination::getText(Node* def)
+void MenuDestination::getText(Node def)
 {
-	destination = def->getVariable("destination");
+	destination = def.getVariable("destination");
 }
 
 void MenuDestination::handle(Event e)

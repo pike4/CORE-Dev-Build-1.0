@@ -10,7 +10,7 @@ public:
 
 	Animation(Animation& other);
 
-	virtual void getText(Node* def);
+	virtual void getText(Node def);
 
 	virtual VisibleElement* spawnCopy();
 	virtual void handle(Event e);

@@ -19,9 +19,9 @@ public:
 	SDL_Rect boundingBox;
 	SDL_Rect movementVector;
 
-	Collidable::Collidable(Node* definer);
+	Collidable::Collidable(Node definer);
 	Collidable(int, int, int, int);
-	Collidable(Node* definer, std::vector<Collidable*>* collidableVector);
+	Collidable(Node definer, std::vector<Collidable*>* collidableVector);
 	Collidable(Collidable&);
 
 	Collidable* spawnCopy();

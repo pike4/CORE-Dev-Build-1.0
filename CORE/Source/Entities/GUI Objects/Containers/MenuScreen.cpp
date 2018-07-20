@@ -4,12 +4,12 @@
 
 #include <vector>
 
-MenuScreen::MenuScreen(Node* def)
+MenuScreen::MenuScreen(Node def)
 {
 	getArgsFromNode(def);
 }
 
-MenuScreen::MenuScreen(Node* def, MenuSystem* root) : MenuScreen(def)
+MenuScreen::MenuScreen(Node def, MenuSystem* root) : MenuScreen(def)
 {
 }
 
@@ -23,20 +23,20 @@ MenuScreen::MenuScreen(char* fileName)
 
 	if (newMenuDef->getName() == "MenuScreen")
 	{
-		getArgsFromNode(newMenuDef);
+		getArgsFromNode(*newMenuDef);
 	}
 }
 
-void MenuScreen::getArgsFromNode(Node* def, MenuSystem* root)
+void MenuScreen::getArgsFromNode(Node def, MenuSystem* root)
 {
 	getArgsFromNode(def);
 }
 
-void MenuScreen::getArgsFromNode(Node* def)
+void MenuScreen::getArgsFromNode(Node def)
 {
-	name = def->getVariable("name");
+	name = def.getVariable("name");
 
-	Node* controlsParent = def->getChild("controls");
+	Node* controlsParent = def.getChild("controls");
 
 	if (controlsParent)
 	{
@@ -48,7 +48,7 @@ void MenuScreen::getArgsFromNode(Node* def)
 
 			Component* newControl = NULL;
 				
-			if(newControl = CORE_Factory::generateObject(cur))
+			if(newControl = CORE_Factory::generateObject(*cur))
 			{
 				components.push_back(newControl);
 			}

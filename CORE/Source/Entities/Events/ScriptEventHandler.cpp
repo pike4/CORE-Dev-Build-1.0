@@ -2,29 +2,29 @@
 #include "EventDef.h"
 #include "Core_Resources.h"
 
-ScriptEventHandler::ScriptEventHandler(Node* def)
+ScriptEventHandler::ScriptEventHandler(Node def)
 {
 
     L = lua_newthread(CORE_Resources::L);
 
-   if (!def)
+   if (def.null())
    {
       CORE_SystemIO::error("Could not construct ScriptEventHandler from null Node*");
       return;
    }
 
-   scriptName = def->getVariable("file");
-   std::string defName = def->getVariable("format");
-   Node* argNamesNode = def->getChild("argNames");
+   scriptName = def.getVariable("file");
+   std::string defName = def.getVariable("format");
+   Node* argNamesNode = def.getChild("argNames");
   
    //Event format is defined elsewhere
    if (defName == "")
    {
-      Node* eventDefNode = def->getChild("format");
+      Node* eventDefNode = def.getChild("format");
 
       std::vector<Node*> eventDefChildren = eventDefNode->getChildren();
 
-      EventDef newDef = EventDef(eventDefNode);
+      EventDef newDef = EventDef(*eventDefNode);
       format = newDef.format;
    }
 
@@ -38,7 +38,7 @@ ScriptEventHandler::ScriptEventHandler(Node* def)
 
       else
       {
-         CORE_SystemIO::error("Script \'" + def->getName() + 
+         CORE_SystemIO::error("Script \'" + def.getName() + 
             "\' refers to non existant event definition: \'" + defName);
       }
    }
@@ -60,12 +60,12 @@ ScriptEventHandler::ScriptEventHandler(Node* def)
 
    else if (format.size() > 0)
    {
-      CORE_SystemIO::error("ScriptEventHandler \'" + def->getName() + "\' has unnamed arguments");
+      CORE_SystemIO::error("ScriptEventHandler \'" + def.getName() + "\' has unnamed arguments");
    }
 
    if (scriptName == "")
    {
-      CORE_SystemIO::error("ScriptEventHandler \'" + def->getName() + "\' was not given a filename");
+      CORE_SystemIO::error("ScriptEventHandler \'" + def.getName() + "\' was not given a filename");
    }
 }
 

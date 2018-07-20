@@ -6,7 +6,7 @@ class MenuLayerAdd : public Component
 {
 public:
 	MenuLayerAdd();
-	void MenuLayerAdd::getText(Node* def);
+	void MenuLayerAdd::getText(Node def);
 
    virtual void handle(Event e);
 

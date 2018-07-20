@@ -26,7 +26,6 @@ public:
 
 	void add(Entity* object);
 
-	void remove(Entity* object);
 	void remove(Controllable* component);
 
 	std::string name;
@@ -37,7 +36,7 @@ public:
 
 	void update();
 
-	Room(Node* def);
+	Room(Node def);
 	Room(std::string fileName);
 
 	QuadTree* quadTree;
@@ -49,6 +48,6 @@ private:
 
    void insertEntity(Entity* newEntity);
 
-	void getArgsFromNode(Node* def);
+	void getArgsFromNode(Node def);
 	int w, h;
 };

@@ -16,10 +16,10 @@ public:
 	std::map<std::string, Room*> rooms;
 
 	Environment(std::string fileName);
-	Environment(Node* def);
+	Environment(Node def);
 
 	std::string name;
 
 private:
-	void getArgsFromNode(Node* def);
+	void getArgsFromNode(Node def);
 };

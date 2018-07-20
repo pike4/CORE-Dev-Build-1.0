@@ -163,20 +163,20 @@ namespace CORE_Resources
 	//Templating
 	//*****************
 	void loadTemplates(std::string fileName);
-	void loadTemplates(Node* definer);
+	void loadTemplates(Node definer);
 
 	//*****************
 	//Prototyping
 	//*****************
 	void loadPrototypes(std::string fileName);
-	void loadPrototypes(Node* def);
+	void loadPrototypes(Node def);
 	void addPrototype(std::string name, Entity* prototype);
 
    //*****************
    //Events
    //*****************
-   void loadEvents(Node* def);
-   void loadEventHandlers(Node* def);
+   void loadEvents(Node def);
+   void loadEventHandlers(Node def);
 
    Node* getFirstNodeFromFile(std::string fileName);
 
