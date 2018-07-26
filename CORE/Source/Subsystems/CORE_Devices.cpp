@@ -10,6 +10,12 @@ namespace CORE_Devices
 	// Instantiate mapping from proprietary keycodes to engine keycodes
 	void mapHW()
 	{
+		// Arrow keys
+		hwMap[SDLK_UP] = key_up;
+		hwMap[SDLK_DOWN] = key_down;
+		hwMap[SDLK_LEFT] = key_left;
+		hwMap[SDLK_RIGHT] = key_right;
+
 		// Alpha keys
 		hwMap[SDLK_q] = key_q;
 		hwMap[SDLK_w] = key_w;
@@ -51,17 +57,78 @@ namespace CORE_Devices
 		hwMap[SDLK_9] = key_9;
 
 		// Symbols
+		hwMap[SDLK_BACKQUOTE] = key_apos;
 		hwMap[SDLK_MINUS] = key_minus;
 		hwMap[SDLK_EQUALS] = key_eq;
 		hwMap[SDLK_LEFTBRACKET] = key_lbracket;
 		hwMap[SDLK_RIGHTBRACKET] = key_rbracket;
-		hwMap[SDLK_RIGHTBRACKET] = key_bslash;
+		hwMap[SDLK_BACKSLASH] = key_bslash;
 		hwMap[SDLK_SEMICOLON] = key_semicolon;
 		hwMap[SDLK_QUOTE] = key_quote;
-		hwMap[SDLK_LESS] = key_lt;
-		hwMap[SDLK_GREATER] = key_gt;
+		hwMap[SDLK_COMMA] = key_comma;
+		hwMap[SDLK_PERIOD] = key_period;
 		hwMap[SDLK_SLASH] = key_fslash;
+		hwMap[SDLK_SPACE] = key_space;
 
+		// Control Keys
+		hwMap[SDLK_ESCAPE]	= key_esc;
+		hwMap[SDLK_TAB]		= key_tab;
+		hwMap[SDLK_CAPSLOCK]= key_caps;
+		hwMap[SDLK_LSHIFT]	= key_lshift;
+		hwMap[SDLK_LCTRL]	= key_lctrl;
+		hwMap[SDLK_LALT]	= key_lalt;
+		hwMap[SDLK_BACKSPACE] = key_bspace;
+		hwMap[SDLK_RETURN]	= key_enter;
+		hwMap[SDLK_RSHIFT]	= key_rshift;
+		hwMap[SDLK_RALT]	= key_ralt;
+		hwMap[SDLK_MENU]	= key_menu;
+		hwMap[SDLK_RCTRL]	= key_rctl;
+		hwMap[SDLK_INSERT]	= key_ins;
+		hwMap[SDLK_HOME]	= key_home;
+		hwMap[SDLK_PAGEUP]	= key_pageup;
+		hwMap[SDLK_DELETE]	= key_del;
+		hwMap[SDLK_END]		= key_end;
+		hwMap[SDLK_PAGEDOWN] = key_pagedown;
+		hwMap[SDLK_PRINTSCREEN] = key_prtscn;
+		hwMap[SDLK_SCROLLLOCK] = key_scrolllock;
+		hwMap[SDLK_PAUSE] = key_pausebreak;
+		hwMap[SDLK_LGUI] = key_lwindows;
+		hwMap[SDLK_RGUI] = key_rwindows;
+		
+		// Function keys
+		hwMap[SDLK_F1]	= key_f1;
+		hwMap[SDLK_F2]	= key_f2;
+		hwMap[SDLK_F3]	= key_f3;
+		hwMap[SDLK_F4]	= key_f4;
+		hwMap[SDLK_F5]	= key_f5;
+		hwMap[SDLK_F6]	= key_f6;
+		hwMap[SDLK_F7]	= key_f7;
+		hwMap[SDLK_F8]	= key_f8;
+		hwMap[SDLK_F9]	= key_f9;
+		hwMap[SDLK_F10]	= key_f10;
+		hwMap[SDLK_F11]	= key_f11;
+		// hwMap[SDLK_F12]	= key_f12;
+
+		// Numpad numbers
+		hwMap[SDLK_KP_0] = key_num_0;
+		hwMap[SDLK_KP_1] = key_num_1;
+		hwMap[SDLK_KP_2] = key_num_2;
+		hwMap[SDLK_KP_3] = key_num_3;
+		hwMap[SDLK_KP_4] = key_num_4;
+		hwMap[SDLK_KP_5] = key_num_5;
+		hwMap[SDLK_KP_6] = key_num_6;
+		hwMap[SDLK_KP_7] = key_num_7;
+		hwMap[SDLK_KP_8] = key_num_8;
+		hwMap[SDLK_KP_9] = key_num_9;
+
+		// Other numpad keys
+		hwMap[SDLK_KP_DIVIDE] = key_num_fslash;
+		hwMap[SDLK_KP_MULTIPLY] = key_num_ast;
+		hwMap[SDLK_KP_MINUS] = key_num_minus;
+		hwMap[SDLK_KP_PLUS] = key_num_plus;
+		hwMap[SDLK_KP_ENTER] = key_num_enter;
+		hwMap[SDLK_KP_PERIOD] = key_num_period;
+		hwMap[SDLK_NUMLOCKCLEAR] = key_numlock;
 
 		// Mouse events
 		hwMap[SDL_MOUSEMOTION] = mouseMoved;

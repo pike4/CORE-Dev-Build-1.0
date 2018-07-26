@@ -211,11 +211,6 @@ namespace CORE_Graphics
 			tempY = *yOffset;
 		}
 
-		if (tempX != x)
-		{
-			int iawdn = 109;
-		}
-
 		dest.x = x - tempX + xOffsetInitial;
 		dest.y = y - tempY + yOffsetInitial;
 		dest.w = w;
@@ -230,7 +225,7 @@ namespace CORE_Graphics
 	}
 
 	void applyTexture(int x, int y, SDL_Texture* source, double rotation, 
-      SDL_RendererFlip flip, SDL_Point point)
+		SDL_RendererFlip flip, SDL_Point point)
 	{
 		SDL_Rect dest;
 		SDL_Rect src;
@@ -253,10 +248,10 @@ namespace CORE_Graphics
 		SDL_RenderCopyEx(mRenderer, source, &src, &dest, rotation, &point, flip);
 	}
 
-   void drawRect(int x, int y, int w, int h, SDL_Color color)
-   {
-
-   }
+	void drawRect(int x, int y, int w, int h, SDL_Color color)
+	{
+	
+	}
 
 	void setScreenBackground(std::string filename)
 	{

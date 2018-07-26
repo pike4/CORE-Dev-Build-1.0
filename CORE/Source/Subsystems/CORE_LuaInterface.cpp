@@ -1,6 +1,8 @@
 #include "CORE_LuaInterface.h"
 #include "CORE_Resources.h"
 
+
+
 namespace CORE_LuaInterface
 {
 	void initialize()
@@ -10,7 +12,8 @@ namespace CORE_LuaInterface
 	}
 
 
-	/* Lua interface for CORE::goToRoomInCurrentEnvironment */
+	// Function:	goToRoom(string roomName )
+	// Destination: CORE::goToRoomInCurrentEnvironment
 	static int goToRoom(lua_State* L)
 	{
 		int n = lua_gettop(L);
