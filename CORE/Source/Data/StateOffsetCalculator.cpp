@@ -16,7 +16,7 @@ StateOffsetCalculator::StateOffsetCalculator(std::vector<std::string> newVars)
 
     //Extract the names to a new vector for sorting 
     //and temporarily store the sizes in the offsets map
-    for (int i = 0; i < newVars.size(); i += 2)
+    for (unsigned int i = 0; i < newVars.size(); i += 2)
     {
         int newSize = CORE_TypeTraits::getDataObjectSize(newVars[i + 1]);
         if (newSize == 0)
@@ -32,7 +32,7 @@ StateOffsetCalculator::StateOffsetCalculator(std::vector<std::string> newVars)
 
     //Convert the sizes in the map to their relative offsets
     //based on lexographical order of the keys
-    for (int i = 0; i < names.size(); i++)
+    for (unsigned int i = 0; i < names.size(); i++)
     {
         temp = offsets[names[i]];
 

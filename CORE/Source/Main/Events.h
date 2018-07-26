@@ -7,6 +7,8 @@ enum UserDefinedEvents
 	updateStep,
 	drawStep,
 
+	collision,
+
 	////////////////////////////////
 	//Global Events
 	////////////////////////////////
@@ -37,7 +39,6 @@ enum UserDefinedEvents
 	walkDownButtonUp,
 	interactButtonDown,
 	interactButtonUp,
-
 
 	//Alpha Keys
 	key_q, key_w, key_e, key_r, key_t, key_y,
@@ -77,7 +78,6 @@ enum UserDefinedEvents
 	// Other numpad
 	key_num_fslash, key_num_ast, key_num_minus, key_num_plus,
 	key_num_enter, key_num_period, key_numlock,
-		
 
 	// Room
 	entity_added,

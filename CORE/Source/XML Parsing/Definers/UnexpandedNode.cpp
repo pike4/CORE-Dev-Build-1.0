@@ -76,12 +76,12 @@ XMLNode UnexpandedNode::expand(pugi::xml_node node)
 
 	ret.setName(name);
 
-    for (int i = 0; i < attributes.size(); i++)
+    for (unsigned int i = 0; i < attributes.size(); i++)
     {
         ret.addAttribute(attributes[i].first, attributes[i].second->getValue(node));
     }
 
-    for (int i = 0; i < children.size(); i++)
+    for (unsigned int i = 0; i < children.size(); i++)
     {
 		XMLNode child = children[i].expand(node);
 

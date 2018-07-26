@@ -52,7 +52,7 @@ ScriptEventHandler::ScriptEventHandler(XMLNode def)
 			CORE_SystemIO::error("Number of arg names given differs from length of event format");
 		}
 		
-		for (int i = 0; i < argNamesChildren.size(); i++)
+		for (unsigned int i = 0; i < argNamesChildren.size(); i++)
 		{
 			argNames.push_back(argNamesChildren[i].getName());
 		}
@@ -67,12 +67,6 @@ ScriptEventHandler::ScriptEventHandler(XMLNode def)
 	{
 		CORE_SystemIO::error("ScriptEventHandler \'" + def.getName() + "\' was not given a filename");
 	}
-}
-
-int callfunc(lua_State* L)
-{
-	std::cout << "aaaaaaa";
-	return 1;
 }
 
 EventHandler* ScriptEventHandler::spawnCopy()
@@ -94,7 +88,7 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
 	}
 
 	//Push arguments onto the stack and register global names
-	for (int i = 0; i < args.size(); i++)
+	for (unsigned int i = 0; i < args.size(); i++)
 	{
 		// The current argument is an entity
 		if (args[i].data == NULL)
@@ -113,7 +107,7 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
 	luaL_dofile(L, scriptName.c_str());
 	
 	//Update the arguments according to the stack values
-	for (int i = 0; i < args.size(); i++)
+	for (unsigned int i = 0; i < args.size(); i++)
 	{
 		//Update a global primitive
 		if (args[i].entity == NULL)
@@ -192,7 +186,7 @@ void ScriptEventHandler::pushEntity(std::string name, Entity* E1)
 		E1->getAllData();
 	
 	lua_newtable(L);
-	for (int j = 0; j < data.size(); j++)
+	for (unsigned int j = 0; j < data.size(); j++)
 	{
 		int tI = lua_gettop(L);
 		lua_pushstring(L, data[j].first.c_str());

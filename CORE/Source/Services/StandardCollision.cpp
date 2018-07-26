@@ -1,4 +1,6 @@
+#include "CORE_Resources.h"
 #include "StandardCollision.h"
+#include "CORE.h"
 
 void StandardCollision::handle(Event e)
 {
@@ -7,9 +9,9 @@ void StandardCollision::handle(Event e)
 	switch (e.opcode)
 	{
 	case updateStep:
-		for (int i = 0; i < boundingBoxes.size(); i++)
+		for (unsigned int i = 0; i < boundingBoxes.size(); i++)
 		{
-			for (int j = i; j < boundingBoxes.size(); j++)
+			for (unsigned int j = i; j < boundingBoxes.size(); j++)
 			{
 				if (i == j) continue;
 
@@ -21,7 +23,11 @@ void StandardCollision::handle(Event e)
 					&& *a.y < *b.y + *b.h
 					&& *a.y + *a.h > *b.y)
 				{
-					printf("collision\n");
+					Event e(collision);
+					e.pushEntity(a.e);
+					e.pushEntity(a.e);
+
+					CORE::handle(e);
 				}
 			}
 		}
@@ -33,6 +39,7 @@ void StandardCollision::add(Entity* newEntity)
 {
 	boundingBoxes.push_back(
 	{
+		newEntity,
 		newEntity->getData<int>("x"),
 		newEntity->getData<int>("y"),
 		newEntity->getData<int>("w"),

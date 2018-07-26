@@ -34,7 +34,7 @@ void Entity::get_data(DataSource* source)
 {
    std::vector<std::pair<std::string, reflection>> srcData = source->getAllData();
 
-	for (int i = 0; i < srcData.size(); i++)
+	for (unsigned int i = 0; i < srcData.size(); i++)
 	{
 		data[srcData[i].first] = srcData[i].second.pointer;
 	}
@@ -119,7 +119,7 @@ void Entity::storeChild(Component* component)
 */
 void Entity::finalize()
 {
-	for (int i = 0; i < components.size(); i++)
+	for (unsigned int i = 0; i < components.size(); i++)
 	{
 		Component* component = components[i];
 
@@ -127,7 +127,7 @@ void Entity::finalize()
 		component->finalize();
 	}
 
-	for (int i = 0; i < components.size(); i++)
+	for (unsigned int i = 0; i < components.size(); i++)
 	{
 		components[i]->registerEvents(this);
 	}

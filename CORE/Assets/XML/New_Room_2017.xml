@@ -34,6 +34,8 @@
       <data>
         <x type="int" link="self" value="?xVal"/>
         <y type="int" link="self" value="?yVal"/>
+        <w value ="36"/>
+        <h value ="50"/>
       </data>
       <components>
         <imageElement>
@@ -45,10 +47,13 @@
       <sources>
         <x>xVal</x>
         <y>yVal</y>
+
       </sources>
       <data>
         <x type="int" link="self" value="?xVal"/>
         <y type="int" link="self" value="?yVal"/>
+        <w value ="36"/>
+        <h value ="50"/>
       </data>
       <components>
         <imageElement>
@@ -61,18 +66,16 @@
   <environment>
     <name>first</name>
     <rooms>
-      <room>
-        <name>living room</name>
+      <living_room>
         <objects>
           <dog>
             <x>400</x>
             <y>400</y>
           </dog>
         </objects>
-      </room>
+      </living_room>
 
-      <room>
-        <name>garage</name>
+      <garage>
         <objects>
           <dog>
             <x>100</x>
@@ -83,7 +86,7 @@
             <y>100</y>
           </dog>
         </objects>
-      </room>
+      </garage>
     </rooms>
   </environment>
 </CORE>

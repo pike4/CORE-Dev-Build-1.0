@@ -35,7 +35,7 @@ struct EventDef
 
        std::vector<XMLNode> newFormat = def.getChildren();
 
-       for (int i = 0; i < newFormat.size(); i++)
+       for (unsigned int i = 0; i < newFormat.size(); i++)
        {
            XMLNode cur = newFormat[i];
 

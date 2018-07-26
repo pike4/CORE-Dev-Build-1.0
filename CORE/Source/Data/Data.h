@@ -64,7 +64,7 @@ public:
 	{
 		bool found = false;
 		
-		for (unsigned int i = 0; i < sourceCount; i++)
+		for (int i = 0; i < sourceCount; i++)
 		{
 			if (data[i] == other)
 			{

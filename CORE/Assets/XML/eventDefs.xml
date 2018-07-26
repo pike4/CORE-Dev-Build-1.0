@@ -13,19 +13,17 @@
      </getBoundingBox>
   </events>
    <eventHandlers>
-      <mouseClickHandler file ="handleMouse.lua">
-         <type>script</type>
-         <argNames>
-            <x/>
-            <y/>
-         </argNames>
-         <format>
-            <int/>
-            <int/>
-         </format>
-      </mouseClickHandler>
-      <explosionHandler file ="runEntity.lua">
-         <type>script</type>
+     <mouseClickHandler file ="handleMouse.lua" type="script">
+       <argNames>
+         <x/>
+         <y/>
+       </argNames>
+       <format>
+         <int/>
+         <int/>
+       </format>
+     </mouseClickHandler>
+      <explosionHandler file ="runEntity.lua" type="script" >
          <argNames>
             <E1/>
          </argNames>
@@ -33,8 +31,7 @@
             <entity/>
          </format>
       </explosionHandler>
-      <followHandler file ="runSelf.lua">
-         <type>entityScript</type>
+      <followHandler file ="runSelf.lua" type="entityScript">
          <argNames>
             <x/>
             <y/>

@@ -36,21 +36,6 @@
 #include <map>
 #undef main
 
-static int printNum(lua_State* q)
-{
-   int numArg = lua_gettop(q);
-
-   for (int i = 0; i < numArg; i++)
-   {
-      int a = lua_tonumber(q, i);
-      printf("lua sez: %i\n", a);
-   }
-
-   return 0;
-}
-
-
-
 int main()
 {
 	//Lua!

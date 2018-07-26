@@ -36,17 +36,23 @@ public:
 
 	void update();
 
+	void registerEvent(int opcode, Controllable* observer);
+
+	void unregisterEvent(int opcode, Controllable* observer);
+
 	Room(XMLNode def);
 	Room(std::string fileName);
 
 	QuadTree* quadTree;
 
 private:
-   std::vector<Entity*> entityQueue;
+	std::vector<Entity*> entityQueue;
 
-   void emptyQueue();
+	std::map<int, std::vector<Controllable*>> observers;
 
-   void insertEntity(Entity* newEntity);
+	void emptyQueue();
+
+	void insertEntity(Entity* newEntity);
 
 	void getArgsFromNode(XMLNode def);
 	int w, h;

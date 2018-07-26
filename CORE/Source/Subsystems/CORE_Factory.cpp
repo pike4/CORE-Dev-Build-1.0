@@ -21,11 +21,10 @@ namespace CORE_Factory
 {
 #pragma region Object Management
 /**
-   Function: generateNode
-
-   
-   Allocate and return a definer for the current node
-   Return a NodeTemplate if one exists under the current name, a genereic XMLNode if it does not
+	Function: generateNode
+	
+	Allocate and return a definer for the current node
+	Return a NodeTemplate if one exists under the current name, a genereic XMLNode if it does not
 */
 	XMLNode generateNode(pugi::xml_node node)
 	{
@@ -75,7 +74,7 @@ namespace CORE_Factory
 		else if (name == "StandardCollision")
 			ret = new StandardCollision();
 
-	  else if (name == "Handler")
+		else if (name == "Handler")
 		  ret = new Handler();
 		return ret;
 	}
@@ -143,44 +142,41 @@ namespace CORE_Factory
 		return ret;
 	}
 
-   EventHandler* constructEventHandler(XMLNode def)
-   {
-      EventHandler* ret = NULL;
-
-	  XMLNode typeNode =  def.getChild("type");
-
-      if (!typeNode.null())
-      {
-         if (typeNode.getMainValue() == "script")
-         {
-            ret = new ScriptEventHandler(def);
-         }
-
-         else if (typeNode.getMainValue() == "entityScript")
-         {
-            ret = new EntityScriptEventHandler(def);
-         }
-
-         //Add new cases as new hard-coded event handlers are added
-      }
-
-      if (!ret)
-      {
-         CORE_SystemIO::error("EventHandler XMLNode \'" + def.getName() + "\' is of an undefined type");
-      }
-
-      return ret;
-   }
+	EventHandler* constructEventHandler(XMLNode def)
+	{
+		EventHandler* ret = NULL;
+		
+		std::string type =  def.getVariable("type");
+		
+		if (type == "script")
+		{
+			ret = new ScriptEventHandler(def);
+		}
+		
+		else if (type == "entityScript")
+		{
+			ret = new EntityScriptEventHandler(def);
+		}
+		
+		//Add new cases as new hard-coded event handlers are added
+		
+		if (!ret)
+		{
+			CORE_SystemIO::error("EventHandler XMLNode \'" + def.getName() + "\' is of an undefined type");
+		}
+		
+		return ret;
+	}
 #pragma endregion
 
 #pragma region Game Object Generation
 	
-   /**
-   Function: generateObject
-
-   Purpose:
-      Instantiate and return a copy of an existing prototype
-   */
+	/**
+	Function: generateObject
+	
+	Purpose:
+		Instantiate and return a copy of an existing prototype
+	*/
 	Component* generateObject(XMLNode def, DataSource* parentData)
 	{
 		Component* ret = constructComponent(def);
@@ -246,8 +242,8 @@ namespace CORE_Factory
 				else
 				{
 					//TODO error: 
-               CORE_SystemIO::error("Definer for object of type: " +  def.getName() + 
-                  " contains components node, but type is basic component.");
+					CORE_SystemIO::error("Definer for object of type: " +  def.getName() + 
+						" contains components node, but type is basic component.");
 				}
 			}
 			#pragma endregion
@@ -268,27 +264,27 @@ namespace CORE_Factory
 
 		//Component was of undefined type
 		else
-      {
-         std::string errorType = "";
-         if (!def.getName().empty())
-            errorType = def.getName();
-         
-         else
-            errorType = "<NOT GIVEN>";
-         
-         //TODO log error undefined type in xml file
-         printf("undefined object type %s in xml file\n", errorType.c_str());
-      }
+		{
+			std::string errorType = "";
+			if (!def.getName().empty())
+				errorType = def.getName();
+			
+			else
+				errorType = "<NOT GIVEN>";
+			
+			//TODO log error undefined type in xml file
+			printf("undefined object type %s in xml file\n", errorType.c_str());
+		}
 
 		return ret;
 	}
 
-   /**
-   Function: generate
-
-   Purpose:
-      Generate an instance of the prototype of the given name
-   */
+	/**
+	Function: generate
+	
+	Purpose:
+		Generate an instance of the prototype of the given name
+	*/
 	Entity* generate(std::string prototypeName)
 	{
 		//TODO: 
@@ -308,19 +304,19 @@ namespace CORE_Factory
 		}
 	}
 
-   //
-   State* generateState(XMLNode definer)
-   {
-      State* ret = new State();
-      DataSource source = DataSource(&definer, NULL);
-      std::vector<std::pair<std::string, reflection>> data = source.getAllData();
-
-      for (int i = 0; i < data.size(); i++)
-      {
-         ret->addData(data[i].first, data[i].second.pointer);
-      }
-
-      return ret;
-   }
+	//
+	State* generateState(XMLNode definer)
+	{
+		State* ret = new State();
+		DataSource source = DataSource(&definer, NULL);
+		std::vector<std::pair<std::string, reflection>> data = source.getAllData();
+		
+		for (unsigned int i = 0; i < data.size(); i++)
+		{
+			ret->addData(data[i].first, data[i].second.pointer);
+		}
+		
+		return ret;
+	}
 #pragma endregion
 }

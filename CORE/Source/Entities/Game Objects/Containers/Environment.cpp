@@ -44,11 +44,6 @@ void Environment::getArgsFromNode(XMLNode def)
 	{
 		XMLNode cur = roomVector[i];
 
-		if (cur.getName() != "room")
-		{
-			continue;
-		}
-
 		Room* roomToAdd = new Room(cur);
 
 		rooms[roomToAdd->name] = roomToAdd;

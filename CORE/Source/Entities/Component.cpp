@@ -48,7 +48,7 @@ void Component::getEventHandlers(XMLNode def)
     std::vector<XMLNode> handlerVector = def.getChildren();
    
     //Iterate over each event definition in the node
-    for (int i = 0; i < handlerVector.size(); i++)
+    for (unsigned int i = 0; i < handlerVector.size(); i++)
     {
 		XMLNode cur = handlerVector[i];
 
@@ -122,7 +122,7 @@ void Component::handle(Event e)
 {
    if (eventHandlers.find(e.opcode) != eventHandlers.end())
    {
-      for (int i = 0; i < eventHandlers[e.opcode].size(); i++)
+      for (unsigned int i = 0; i < eventHandlers[e.opcode].size(); i++)
       {
          eventHandlers[e.opcode][i]->handleEvent(e.arguments);
       }
