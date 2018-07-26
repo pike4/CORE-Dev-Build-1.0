@@ -1,0 +1,33 @@
+<core>
+  <environment>
+    <name>other</name>
+    <rooms>
+      <room>
+        <name>room1</name>
+
+        <objects>
+          <dog>
+            <x>200</x>
+            <y>200</y>
+          </dog>
+          <dog>
+            <x>600</x>
+            <y>200</y>
+          </dog>
+          <dog>
+            <x>300</x>
+            <y>200</y>
+          </dog>
+
+          <cat>
+            <x>200</x>
+            <y>400</y>
+          </cat>
+          
+        </objects>
+      </room>
+      
+      
+    </rooms>
+  </environment>
+</core>

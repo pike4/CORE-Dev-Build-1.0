@@ -61,6 +61,9 @@ int main()
 	CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
+
+	CORE_Resources::loadResourceFile("Assets/XML/village_test.xml");
+
 	MenuSystem* newMenuSystem = CORE_Resources::getMenuSystem("main");
 	CORE::currentMenuSystem = newMenuSystem;
 	MenuScreen* newMenu = newMenuSystem->getMenuScreen("fourth");
@@ -70,6 +73,10 @@ int main()
 	CORE::goToRoomInCurrentEnvironment("living room");
 
 	CORE::goToRoomInCurrentEnvironment("garage");
+
+	CORE::goToEnvironment("other");
+
+	CORE::goToRoomInCurrentEnvironment("room1");
 
 	while (!CORE::quit)
 	{

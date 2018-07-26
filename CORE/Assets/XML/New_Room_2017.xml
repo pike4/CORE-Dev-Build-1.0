@@ -41,6 +41,22 @@
         </imageElement>
       </components>
     </entity>
+    <entity name="cat">
+      <sources>
+        <x>xVal</x>
+        <y>yVal</y>
+      </sources>
+      <data>
+        <x type="int" link="self" value="?xVal"/>
+        <y type="int" link="self" value="?yVal"/>
+      </data>
+      <components>
+        <imageElement>
+          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+        </imageElement>
+        <iVelocityControl/>
+      </components>
+    </entity>
   </templates>
   <environment>
     <name>first</name>
