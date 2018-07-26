@@ -40,7 +40,7 @@ void Entity::get_data(DataSource* source)
 	}
 }
 
-void Entity::getArgsFromNode(Node definer)
+void Entity::getArgsFromNode(XMLNode definer)
 {}
 
 int Entity::addListener(int key, Controllable* listener)

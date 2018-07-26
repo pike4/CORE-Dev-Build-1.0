@@ -8,8 +8,8 @@ class MenuScreen : public Entity
 {
 public:
 	MenuScreen() {};
-	MenuScreen(Node def);
-	MenuScreen(Node def, MenuSystem* root);
+	MenuScreen(XMLNode def);
+	MenuScreen(XMLNode def, MenuSystem* root);
 	MenuScreen(char* fileName);
 
 	std::string name;
@@ -25,6 +25,6 @@ public:
 	void add(Control* controlToAdd);
 
 private:
-	void getArgsFromNode(Node def);
-	void getArgsFromNode(Node def, MenuSystem* root);
+	void getArgsFromNode(XMLNode def);
+	void getArgsFromNode(XMLNode def, MenuSystem* root);
 };

@@ -4,11 +4,11 @@
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"
 
-Node::Node() {
+XMLNode::XMLNode() {
 	isNull = true;
 }
 
-Node::Node(pugi::xml_node myNode)
+XMLNode::XMLNode(pugi::xml_node myNode)
 {
 	isNull = false;
 	node = myNode;
@@ -22,7 +22,7 @@ Node::Node(pugi::xml_node myNode)
 	}
 }
 
-void Node::readAttributes(pugi::xml_node myNode)
+void XMLNode::readAttributes(pugi::xml_node myNode)
 {
 	pugi::xml_attribute attr = myNode.first_attribute();
 
@@ -33,7 +33,7 @@ void Node::readAttributes(pugi::xml_node myNode)
 	}
 }
 
-void Node::readChildren(pugi::xml_node myNode)
+void XMLNode::readChildren(pugi::xml_node myNode)
 {
 	pugi::xml_node child = myNode.first_child();
 
@@ -44,7 +44,7 @@ void Node::readChildren(pugi::xml_node myNode)
 	}
 }
 
-std::string Node::getVariable(std::string name)
+std::string XMLNode::getVariable(std::string name)
 {
 	std::string ret = "0";
 
@@ -58,11 +58,11 @@ std::string Node::getVariable(std::string name)
 
 	if ( !found )
 	{
-		Node child = getChild(name);
+		XMLNode child = getChild(name);
 
 		if ( !child.null() )
 		{
-			Node d = child;
+			XMLNode d = child;
 			ret = d.getMainValue();
 		}
 	}
@@ -75,39 +75,39 @@ std::string Node::getVariable(std::string name)
 	return ret;
 }
 
-std::string Node::getName()
+std::string XMLNode::getName()
 {
 	return name;
 }
 
-std::string Node::getMainValue()
+std::string XMLNode::getMainValue()
 {
 	return value;
 }
 
-void Node::addChild(Node child)
+void XMLNode::addChild(XMLNode child)
 {
 	children.push_back(child);
 }
 
-void Node::addAttribute(std::string name, std::string value)
+void XMLNode::addAttribute(std::string name, std::string value)
 {
 	attributes[name] = value;
 }
 
-void Node::setValue(std::string val)
+void XMLNode::setValue(std::string val)
 {
 	value = val;
 }
 
-void Node::setName(std::string newName)
+void XMLNode::setName(std::string newName)
 {
 	name = newName;
 }
 
-Node Node::getChild(std::string name)
+XMLNode XMLNode::getChild(std::string name)
 {
-	Node ret;
+	XMLNode ret;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
@@ -121,9 +121,9 @@ Node Node::getChild(std::string name)
 	return ret;
 }
 
-std::vector<Node> Node::getChildren()
+std::vector<XMLNode> XMLNode::getChildren()
 {
-	std::vector<Node> ret;
+	std::vector<XMLNode> ret;
 
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
@@ -133,7 +133,12 @@ std::vector<Node> Node::getChildren()
 	return ret;
 }
 
-bool Node::null()
+bool XMLNode::null()
 {
 	return isNull;
+}
+
+void XMLNode::setNull(bool n)
+{
+	isNull = n;
 }

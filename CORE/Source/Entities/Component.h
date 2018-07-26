@@ -35,14 +35,14 @@ class Component : public Controllable
 public:
 	#pragma region Creational
 	Component();
-	//Get private data from the given Node
-	virtual void getText(Node def);
+	//Get private data from the given XMLNode
+	virtual void getText(XMLNode def);
 
 	//Get public Data objects from the given map
 	virtual void get_data(DataSource* source);
 
-   //Get event handlers from the given Node
-   virtual void getEventHandlers(Node def);
+   //Get event handlers from the given XMLNode
+   virtual void getEventHandlers(XMLNode def);
 
 	//Store the child without registering it. Basic components can't have children
 	virtual void storeChild(Component* child);

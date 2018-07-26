@@ -36,7 +36,7 @@ public:
 
 	void update();
 
-	Room(Node def);
+	Room(XMLNode def);
 	Room(std::string fileName);
 
 	QuadTree* quadTree;
@@ -48,6 +48,6 @@ private:
 
    void insertEntity(Entity* newEntity);
 
-	void getArgsFromNode(Node def);
+	void getArgsFromNode(XMLNode def);
 	int w, h;
 };

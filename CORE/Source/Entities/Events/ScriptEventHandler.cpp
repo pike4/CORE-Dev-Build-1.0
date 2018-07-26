@@ -2,27 +2,27 @@
 #include "EventDef.h"
 #include "Core_Resources.h"
 
-ScriptEventHandler::ScriptEventHandler(Node def)
+ScriptEventHandler::ScriptEventHandler(XMLNode def)
 {
 
     L = lua_newthread(CORE_Resources::L);
 
    if (def.null())
    {
-      CORE_SystemIO::error("Could not construct ScriptEventHandler from null Node*");
+      CORE_SystemIO::error("Could not construct ScriptEventHandler from null XMLNode*");
       return;
    }
 
    scriptName = def.getVariable("file");
    std::string defName = def.getVariable("format");
-   Node argNamesNode = def.getChild("argNames");
+   XMLNode argNamesNode = def.getChild("argNames");
   
    //Event format is defined elsewhere
    if (defName == "")
    {
-      Node eventDefNode = def.getChild("format");
+      XMLNode eventDefNode = def.getChild("format");
 
-      std::vector<Node> eventDefChildren = eventDefNode.getChildren();
+      std::vector<XMLNode> eventDefChildren = eventDefNode.getChildren();
 
       EventDef newDef = EventDef(eventDefNode);
       format = newDef.format;
@@ -45,7 +45,7 @@ ScriptEventHandler::ScriptEventHandler(Node def)
 
    if (!argNamesNode.null())
    {
-      std::vector<Node> argNamesChildren = argNamesNode.getChildren();
+      std::vector<XMLNode> argNamesChildren = argNamesNode.getChildren();
 
       if (argNamesChildren.size() != format.size())
       {
@@ -92,10 +92,6 @@ void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
          "arguments but takes " + std::to_string( argNames.size() ));
       return;
    }
-
-   //commenting out these two lines gives like a 50,000 % performance boost
-   //L = luaL_newstate();
-   //luaL_openlibs(L);
 
    //Push arguments onto the stack and register global names
    for (int i = 0; i < args.size(); i++)

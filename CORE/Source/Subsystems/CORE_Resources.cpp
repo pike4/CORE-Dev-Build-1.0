@@ -74,16 +74,16 @@ namespace CORE_Resources
 
 		while (node)
 		{
-			Node topDef = CORE_Factory::generateNode(node);
+			XMLNode topDef = CORE_Factory::generateNode(node);
 			std::string name = topDef.getName();
 
 			if (name == "imports")
 			{
-				std::vector<Node> curChildren = topDef.getChildren();
+				std::vector<XMLNode> curChildren = topDef.getChildren();
 
 				for (unsigned int i = 0; i < curChildren.size(); i++)
 				{
-					Node curImportDef = curChildren[i];
+					XMLNode curImportDef = curChildren[i];
 					std::string importName = curImportDef.getName();
 					loadResourceFile(importName);
 				}
@@ -121,11 +121,11 @@ namespace CORE_Resources
 
 			else if (name == "strings")
 			{
-				std::vector<Node> variableNodes = topDef.getChildren();
+				std::vector<XMLNode> variableNodes = topDef.getChildren();
 
 				for (int i = 0; i < variableNodes.size(); i++)
 				{
-					Node curNode = variableNodes[i];
+					XMLNode curNode = variableNodes[i];
 
 					std::string variableName = curNode.getName();
 					std::string newStringVariable = curNode.getMainValue();
@@ -149,11 +149,11 @@ namespace CORE_Resources
 
 			else if (name == "states")
 			{
-				std::vector<Node> stateChildren = topDef.getChildren();
+				std::vector<XMLNode> stateChildren = topDef.getChildren();
 
 				for (int i = 0; i < stateChildren.size(); i++)
 				{
-					Node curNode = stateChildren[i];
+					XMLNode curNode = stateChildren[i];
 					std::string name = curNode.getName();
 					
 					State* newState = CORE_Factory::generateState(curNode);
@@ -409,19 +409,19 @@ namespace CORE_Resources
 #pragma region XML Templating
 	void loadTemplates(std::string fileName)
 	{
-		Node def = getFirstNodeFromFile(fileName);
+		XMLNode def = getFirstNodeFromFile(fileName);
 		loadTemplates(def);
 	}
 
-	void loadTemplates(Node def)
+	void loadTemplates(XMLNode def)
 	{
 		if (def.getName() == "templates")
 		{
-			std::vector<Node> templateVector = def.getChildren();
+			std::vector<XMLNode> templateVector = def.getChildren();
 
 			for (unsigned int i = 0; i < templateVector.size(); i++)
 			{
-				Node curDefiner = templateVector[i];
+				XMLNode curDefiner = templateVector[i];
 
 				TemplateDef* newTemplate = new TemplateDef(curDefiner);
 
@@ -434,7 +434,7 @@ namespace CORE_Resources
 #pragma region Prototyping
 	void loadPrototypes(std::string fileName)
 	{
-		Node def = getFirstNodeFromFile(fileName);
+		XMLNode def = getFirstNodeFromFile(fileName);
 		loadPrototypes(def);
 	}
 
@@ -444,7 +444,7 @@ namespace CORE_Resources
 	Purpose:
 		Load entity prototypes from the given node and store for global access
 	*/
-	void loadPrototypes(Node def)
+	void loadPrototypes(XMLNode def)
 	{
 		if ( def.null() )
 		{
@@ -461,11 +461,11 @@ namespace CORE_Resources
 			return;
 		}
 
-		std::vector<Node> prototypeVector = def.getChildren();
+		std::vector<XMLNode> prototypeVector = def.getChildren();
 
 		for (unsigned int i = 0; i < prototypeVector.size(); i++)
 		{
-			Node tempDef = prototypeVector[i];
+			XMLNode tempDef = prototypeVector[i];
 
 			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
 			std::string prototypeName = tempDef.getVariable("name");
@@ -527,7 +527,7 @@ namespace CORE_Resources
    Purpose:
       Load the event definitions from the given node and store for global access
    */
-   void loadEvents(Node def)
+   void loadEvents(XMLNode def)
    {
        if (def.null() )
        {
@@ -537,11 +537,11 @@ namespace CORE_Resources
 
        std::string name = def.getName();
 
-	   std::vector<Node>  eventNodes = def.getChildren();
+	   std::vector<XMLNode>  eventNodes = def.getChildren();
 
        for (unsigned int i = 0; i < eventNodes.size(); i++) 
        {    
-           Node cur = eventNodes[i];
+           XMLNode cur = eventNodes[i];
            std::string curName = cur.getName();
 
            if (events.find(curName) != events.end()) 
@@ -564,7 +564,7 @@ namespace CORE_Resources
    Purpose:
       Define event handler prototypes from the given node
    */
-   void loadEventHandlers(Node def)
+   void loadEventHandlers(XMLNode def)
    {
       if (def.null())
       {
@@ -572,11 +572,11 @@ namespace CORE_Resources
          return;
       }
 
-      std::vector<Node> handlerVector = def.getChildren();
+      std::vector<XMLNode> handlerVector = def.getChildren();
 
       for (int i = 0; i < handlerVector.size(); i++)
       {
-         Node curHandlerNode = handlerVector[i];
+         XMLNode curHandlerNode = handlerVector[i];
          std::string handlerName = curHandlerNode.getName();
          std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
@@ -745,7 +745,7 @@ namespace CORE_Resources
 
    //--------------------------------------------------------------------------------------------------
 
-	Node getFirstNodeFromFile(std::string fileName)
+	XMLNode getFirstNodeFromFile(std::string fileName)
 	{
 		pugi::xml_document* doc = new pugi::xml_document();
 		pugi::xml_parse_result* result = new pugi::xml_parse_result(

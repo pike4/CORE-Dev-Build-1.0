@@ -21,7 +21,7 @@ SpeechBox::SpeechBox(int aW, int aH, char* message, SDL_Texture* background,
 	charToLines(message);
 }
 
-SpeechBox::SpeechBox(Node def)
+SpeechBox::SpeechBox(XMLNode def)
 {
 	frequency = stoi(def.getVariable("frequency"));
 	variation = stoi(def.getVariable("variation"));

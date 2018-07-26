@@ -3,7 +3,7 @@
 #include "Node.h"
 
 class Data;
-class Node;
+class XMLNode;
 
 /* 
    Type traits subsystem
@@ -151,8 +151,8 @@ namespace CORE_TypeTraits
 	//Verify validity of and bind dependencies between two Data objects
 	void bindDependencies(reflection* child, reflection* parent);
 
-	//Parse out the type traits of a Data object from a Node
-	void parseReflectionTraits(Node def, reflection* ret);
+	//Parse out the type traits of a Data object from a XMLNode
+	void parseReflectionTraits(XMLNode def, reflection* ret);
 
 	//Generate a new Data object from given type traits
 	Data* generateDataFromReflection(reflection datum);

@@ -14,7 +14,7 @@ public:
 	UnexpandedNode();
 
 	// TODO implement expansions
-	Node expand(pugi::xml_node node);
+	XMLNode expand(pugi::xml_node node);
 
 private:
     void readNode(pugi::xml_node);

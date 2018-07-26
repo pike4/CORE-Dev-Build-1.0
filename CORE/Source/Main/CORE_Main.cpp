@@ -53,23 +53,23 @@ static int printNum(lua_State* q)
 
 int main()
 {
-   //Lua!
-   CORE_Resources::L = luaL_newstate();
-   luaL_openlibs(CORE_Resources::L);
+	//Lua!
+	CORE_Resources::L = luaL_newstate();
+	luaL_openlibs(CORE_Resources::L);
 
 	CORE::start();
 	CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
-   CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
+	CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
 	MenuSystem* newMenuSystem = CORE_Resources::getMenuSystem("main");
 	CORE::currentMenuSystem = newMenuSystem;
 	MenuScreen* newMenu = newMenuSystem->getMenuScreen("fourth");
 	CORE::addMenuScreenLayer(newMenu);
 
-   //CORE_SystemIO::openLogFile("out", "Asets/logs/out.txt");
+	CORE::goToEnvironment("first");
+	CORE::goToRoomInCurrentEnvironment("living room");
 
-   CORE::goToEnvironment("first");
-   CORE::goToRoomInCurrentEnvironment("living room");
+	CORE::goToRoomInCurrentEnvironment("garage");
 
 	while (!CORE::quit)
 	{

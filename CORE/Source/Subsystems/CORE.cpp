@@ -4,6 +4,7 @@
 #include "CORE_Devices.h"
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"
+#include "CORE_LuaInterface.h"
 #include "Entity.h"
 
 namespace CORE
@@ -12,6 +13,8 @@ namespace CORE
 	{
 		quit = false;
 
+		CORE_LuaInterface::initialize();
+
 		if (!CORE_Graphics::start())
 			printf("Video manager failed to start");
 
@@ -19,7 +22,7 @@ namespace CORE
 			printf("Sound manager failed to start");
 
 		CORE_Devices::start();
-      CORE_Resources::start();
+		CORE_Resources::start();
 
 		lag = 0;
 		msPerFrame = 17;
@@ -79,6 +82,11 @@ namespace CORE
 		if (currentEnvironment != NULL && !roomName.empty())
 		{
 			goToRoom(currentEnvironment->rooms[roomName]);
+		}
+
+		else 
+		{
+			CORE_SystemIO::error("Room " + roomName + " not found");
 		}
 	}
 

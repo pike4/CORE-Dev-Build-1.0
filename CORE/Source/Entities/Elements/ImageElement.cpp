@@ -10,7 +10,7 @@ ImageElement::ImageElement(int x, int y, int w, int h, SDL_Texture* texture)
 	this->texture = texture;
 }
 
-void ImageElement::getText(Node definer)
+void ImageElement::getText(XMLNode definer)
 {
 	VisibleElement::getText(definer);
 	texture = CORE_Resources::assignTexture(definer.getVariable("image"));

@@ -11,7 +11,7 @@ typedef std::map<std::string, CORE_TypeTraits::reflection> TypeTraitMap;
 class DataSource
 {
 public:
-   DataSource(Node* ownNode, DataSource* newParent);
+   DataSource(XMLNode* ownNode, DataSource* newParent);
 
 	//Return a fully formed and linked Data object to the requestor
 	template<typename T>
@@ -72,8 +72,8 @@ public:
 	std::string getText(std::string name);
 
 private:
-	//Node defining
-	Node* node;
+	//XMLNode defining
+	XMLNode* node;
 
 	//Map of type information for data belonging to requestor
 	TypeTraitMap dataMap;	

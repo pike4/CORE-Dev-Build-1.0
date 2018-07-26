@@ -9,18 +9,18 @@ MenuSystem::MenuSystem(std::string fileName)
 	: MenuSystem(CORE_Resources::getFirstNodeFromFile(fileName))
 {}
 
-MenuSystem::MenuSystem(Node def)
+MenuSystem::MenuSystem(XMLNode def)
 {
 	menus = *(new std::map<std::string, MenuScreen*>);
 	name = def.getVariable("name");
 
-	Node screenChild = def.getChild("menuScreens");
+	XMLNode screenChild = def.getChild("menuScreens");
 	
-	std::vector<Node> menuVector = screenChild.getChildren();
+	std::vector<XMLNode> menuVector = screenChild.getChildren();
 
 	for (unsigned int i = 0; i < menuVector.size(); i++)
 	{
-		Node cur = menuVector[i];
+		XMLNode cur = menuVector[i];
 		MenuScreen* newMenu = new MenuScreen(cur);
 
 		if (newMenu)

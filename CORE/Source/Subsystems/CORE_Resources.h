@@ -163,22 +163,22 @@ namespace CORE_Resources
 	//Templating
 	//*****************
 	void loadTemplates(std::string fileName);
-	void loadTemplates(Node definer);
+	void loadTemplates(XMLNode definer);
 
 	//*****************
 	//Prototyping
 	//*****************
 	void loadPrototypes(std::string fileName);
-	void loadPrototypes(Node def);
+	void loadPrototypes(XMLNode def);
 	void addPrototype(std::string name, Entity* prototype);
 
    //*****************
    //Events
    //*****************
-   void loadEvents(Node def);
-   void loadEventHandlers(Node def);
+   void loadEvents(XMLNode def);
+   void loadEventHandlers(XMLNode def);
 
-   Node getFirstNodeFromFile(std::string fileName);
+   XMLNode getFirstNodeFromFile(std::string fileName);
 
    //*****************
    //String variables

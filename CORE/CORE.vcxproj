@@ -225,6 +225,7 @@
     <ClInclude Include="Source\Subsystems\CORE_Devices.h" />
     <ClInclude Include="Source\Subsystems\CORE_Factory.h" />
     <ClInclude Include="Source\Subsystems\CORE_Graphics.h" />
+    <ClInclude Include="Source\Subsystems\CORE_LuaInterface.h" />
     <ClInclude Include="Source\Subsystems\CORE_Resources.h" />
     <ClInclude Include="Source\Subsystems\CORE_SystemIO.h" />
     <ClInclude Include="Source\Subsystems\CORE_TypeTraits.h" />
@@ -342,6 +343,7 @@
     <ClCompile Include="Source\Subsystems\CORE_Devices.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Factory.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Graphics.cpp" />
+    <ClCompile Include="Source\Subsystems\CORE_LuaInterface.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_Resources.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_SystemIO.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_TypeTraits.cpp" />

@@ -25,30 +25,30 @@ namespace CORE_Factory
 
    
    Allocate and return a definer for the current node
-   Return a NodeTemplate if one exists under the current name, a genereic Node if it does not
+   Return a NodeTemplate if one exists under the current name, a genereic XMLNode if it does not
 */
-	Node generateNode(pugi::xml_node node)
+	XMLNode generateNode(pugi::xml_node node)
 	{
-		Node ret;
+		XMLNode ret;
 		std::string nodeName = node.name();
 
 		TemplateDef* templ = CORE_Resources::getTemplate(nodeName);
 
 		if (templ)
 		{
-			ret = Node(templ->invoke(node));
+			ret = XMLNode(templ->invoke(node));
 		}
 
 		else
 		{
-			ret = Node(node);
+			ret = XMLNode(node);
 		}
 
 		return ret;
 	}
 
 #pragma region Component Constructor Mapping
-	Component* generateComponent(Node def)
+	Component* generateComponent(XMLNode def)
 	{
 		std::string name = def.getName();
 
@@ -80,7 +80,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Control* constructControl(Node def)
+	Control* constructControl(XMLNode def)
 	{
 		std::string name = def.getName();
 
@@ -98,7 +98,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	VisibleElement* constructVisibleElement(Node def)
+	VisibleElement* constructVisibleElement(XMLNode def)
 	{
 		std::string name = def.getName();
 
@@ -127,7 +127,7 @@ namespace CORE_Factory
 		return ret;
 	}
 
-	Component* constructComponent(Node def)
+	Component* constructComponent(XMLNode def)
 	{
 		Component* ret = NULL;
 
@@ -143,11 +143,11 @@ namespace CORE_Factory
 		return ret;
 	}
 
-   EventHandler* constructEventHandler(Node def)
+   EventHandler* constructEventHandler(XMLNode def)
    {
       EventHandler* ret = NULL;
 
-	  Node typeNode =  def.getChild("type");
+	  XMLNode typeNode =  def.getChild("type");
 
       if (!typeNode.null())
       {
@@ -166,7 +166,7 @@ namespace CORE_Factory
 
       if (!ret)
       {
-         CORE_SystemIO::error("EventHandler Node \'" + def.getName() + "\' is of an undefined type");
+         CORE_SystemIO::error("EventHandler XMLNode \'" + def.getName() + "\' is of an undefined type");
       }
 
       return ret;
@@ -181,7 +181,7 @@ namespace CORE_Factory
    Purpose:
       Instantiate and return a copy of an existing prototype
    */
-	Component* generateObject(Node def, DataSource* parentData)
+	Component* generateObject(XMLNode def, DataSource* parentData)
 	{
 		Component* ret = constructComponent(def);
 
@@ -191,7 +191,7 @@ namespace CORE_Factory
 			bool good = true;
 
 			//Get the 'data' node and generate a DataSource from it for the current component parse
-			Node dataNode = def.getChild("data");
+			XMLNode dataNode = def.getChild("data");
 
 
 			DataSource currentSource = DataSource(&dataNode, parentData);
@@ -199,7 +199,7 @@ namespace CORE_Factory
 			ret->get_data(&currentSource);
 
 			//Set up event handlers
-			Node eventsNode = def.getChild("eventHandlers");
+			XMLNode eventsNode = def.getChild("eventHandlers");
 
 			if (!eventsNode.null())
 			{
@@ -209,7 +209,7 @@ namespace CORE_Factory
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			Node handlerChild = def.getChild("eventHandlers");
+			XMLNode handlerChild = def.getChild("eventHandlers");
 
 			if (!handlerChild.null())
 			{
@@ -218,17 +218,17 @@ namespace CORE_Factory
 
 			#pragma region Child Components
 			//Get the Components node from definer*
-			Node componentsParent = def.getChild("components");
+			XMLNode componentsParent = def.getChild("components");
 
 			//Generate components from the components node
 			if (!componentsParent.null())
 			{
 				if (!ret->isBasicComponent())
 				{
-					std::vector<Node> componentsVector = componentsParent.getChildren();
+					std::vector<XMLNode> componentsVector = componentsParent.getChildren();
 					for (unsigned int i = 0; i < componentsVector.size(); i++)
 					{
-						Node curComponentDef = componentsVector[i];
+						XMLNode curComponentDef = componentsVector[i];
 						Component* newComponent = constructComponent(curComponentDef);
 						
 						newComponent->parent = (Entity*) ret;
@@ -309,7 +309,7 @@ namespace CORE_Factory
 	}
 
    //
-   State* generateState(Node definer)
+   State* generateState(XMLNode definer)
    {
       State* ret = new State();
       DataSource source = DataSource(&definer, NULL);

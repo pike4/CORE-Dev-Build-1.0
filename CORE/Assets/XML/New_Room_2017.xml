@@ -25,6 +25,22 @@
       </data>
       <name>$manName</name>
     </entity>
+
+    <entity name="dog">
+      <sources>
+        <x>xVal</x>
+        <y>yVal</y>
+      </sources>
+      <data>
+        <x type="int" link="self" value="?xVal"/>
+        <y type="int" link="self" value="?yVal"/>
+      </data>
+      <components>
+        <imageElement>
+          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+        </imageElement>
+      </components>
+    </entity>
   </templates>
   <environment>
     <name>first</name>
@@ -32,39 +48,24 @@
       <room>
         <name>living room</name>
         <objects>
-          <man>
-            <x>int, self, 200</x>
-            <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
-          </man>
+          <dog>
+            <x>400</x>
+            <y>400</y>
+          </dog>
+        </objects>
+      </room>
 
-          <entity>
-            <data>
-              <x type="int" value="400"/>
-              <y type="int" value="400"/>
-            </data>
-            <components>
-              <imageElement>
-                <data>
-                  <x value="100" link="parent"/>
-                  <y value="50" link="parent"/>
-                  <w>100</w>
-                  <h>100</h>
-                </data>
-                <zIndex>20</zIndex>
-                <image>Assets/Sprites/Happy_cow_man_big.png</image>
-              </imageElement>
-              <iVelocityControl/>
-            </components>
-          </entity>
-          
-          <StandardCollision>
-            <format>
-              <x type="int"/>
-              <y type="int"/>
-              <w type="int"/>
-              <h type="int"/>
-            </format>
-          </StandardCollision>
+      <room>
+        <name>garage</name>
+        <objects>
+          <dog>
+            <x>100</x>
+            <y>100</y>
+          </dog>
+          <dog>
+            <x>300</x>
+            <y>100</y>
+          </dog>
         </objects>
       </room>
     </rooms>

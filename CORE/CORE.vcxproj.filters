@@ -531,6 +531,9 @@
     <ClInclude Include="Source\Components\Motion\VelocityComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Subsystems\CORE_LuaInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main\CORE_Main.cpp">
@@ -819,6 +822,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entities\Events\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Subsystems\CORE_LuaInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

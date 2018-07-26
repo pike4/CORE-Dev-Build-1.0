@@ -23,21 +23,21 @@ struct EventDef
       format = form;
    }
 
-   EventDef(Node def)
+   EventDef(XMLNode def)
    {
        if (def.null())
        {
-           CORE_SystemIO::error("Could not construct EventDef from null Node*");
+           CORE_SystemIO::error("Could not construct EventDef from null XMLNode*");
            return;
        }
 
        name = def.getName();
 
-       std::vector<Node> newFormat = def.getChildren();
+       std::vector<XMLNode> newFormat = def.getChildren();
 
        for (int i = 0; i < newFormat.size(); i++)
        {
-           Node cur = newFormat[i];
+           XMLNode cur = newFormat[i];
 
            PrimitiveType newType = CORE_TypeTraits::getPrimitiveType(cur.getName());
 

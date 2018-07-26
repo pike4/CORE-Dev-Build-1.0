@@ -26,11 +26,11 @@ struct StringAddress
 class TemplateDef
 {
 public:
-	TemplateDef(Node def);
+	TemplateDef(XMLNode def);
 	std::string getVariable(pugi::xml_node node, std::string name);
 	StringAddress getAddress(std::string name);
 
-	Node invoke(pugi::xml_node invoker);
+	XMLNode invoke(pugi::xml_node invoker);
 	
 	//Name used to refer to this template
 	std::string name;

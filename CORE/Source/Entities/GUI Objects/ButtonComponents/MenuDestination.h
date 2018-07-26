@@ -7,7 +7,7 @@ class MenuDestination : public Component
 public:
 	MenuDestination();
 
-	virtual void getText(Node def);
+	virtual void getText(XMLNode def);
 
    virtual void handle(Event e);
 

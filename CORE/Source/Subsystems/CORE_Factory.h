@@ -34,17 +34,17 @@ XML Parser, currently part of CORE_Factory implementation
 namespace CORE_Factory
 {
 	//Generation helpers
-	Node generateNode(pugi::xml_node node);
+	XMLNode generateNode(pugi::xml_node node);
 
    //Constructor mapping
-	Control* constructControl(Node definer);
-	VisibleElement* constructVisibleElement(Node definer);
-	Component* generateComponent(Node definer);
-   Component* constructComponent(Node def);
-   EventHandler* constructEventHandler(Node def);
+	Control* constructControl(XMLNode definer);
+	VisibleElement* constructVisibleElement(XMLNode definer);
+	Component* generateComponent(XMLNode definer);
+   Component* constructComponent(XMLNode def);
+   EventHandler* constructEventHandler(XMLNode def);
 
    //ObjectGeneration
    Entity* generate(std::string prototypeName);
-   State* generateState(Node definer);
-   Component* generateObject(Node definer, DataSource* parentData = NULL);
+   State* generateState(XMLNode definer);
+   Component* generateObject(XMLNode definer, DataSource* parentData = NULL);
 };

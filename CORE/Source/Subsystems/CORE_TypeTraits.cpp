@@ -31,7 +31,7 @@ namespace CORE_TypeTraits
 		return ret;
 	}
 
-	void parseReflectionTraits(Node def, reflection* ret)
+	void parseReflectionTraits(XMLNode def, reflection* ret)
 	{
 		ret->name = def.getName();
 		ret->value = def.getVariable("value");
@@ -40,6 +40,8 @@ namespace CORE_TypeTraits
 		ret->primitiveType = getPrimitiveType(def.getVariable("type"));
 		ret->good = true;
 
+		if (ret->value == "")
+			ret->value = "0";
 
 		if (ret->dependenceType != DP_NONE && ret->funcType == TR_SIMPLE)
 			ret->funcType = TR_OFFSET;

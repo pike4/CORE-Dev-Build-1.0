@@ -4,8 +4,8 @@
 #include <vector>
 using namespace CORE_TypeTraits;
 
-//Reads trait info from Node, binds dependencies between own data and parent data
-DataSource::DataSource(Node* def, DataSource* newParent)
+//Reads trait info from XMLNode, binds dependencies between own data and parent data
+DataSource::DataSource(XMLNode* def, DataSource* newParent)
 {
 	if (!(def || newParent))
 	{
@@ -17,11 +17,11 @@ DataSource::DataSource(Node* def, DataSource* newParent)
 	parent = newParent;
 	if ( def )
 	{
-		std::vector<Node> dataNodes = def->getChildren();
+		std::vector<XMLNode> dataNodes = def->getChildren();
 
 		for (unsigned int i = 0; i < dataNodes.size(); i++)
 		{
-			Node curNode = dataNodes[i];
+			XMLNode curNode = dataNodes[i];
 
 			CORE_TypeTraits::reflection curTraits;
 			CORE_TypeTraits::parseReflectionTraits(curNode, &curTraits);

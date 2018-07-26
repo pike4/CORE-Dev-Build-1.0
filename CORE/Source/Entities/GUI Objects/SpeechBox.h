@@ -10,7 +10,7 @@ class SpeechBox : public Control
 public:
 
 	SpeechBox(int x, int y, char* message, SDL_Texture* background, RenderableCharSet* characterSet);
-	SpeechBox(Node def);
+	SpeechBox(XMLNode def);
 
    virtual void handle(Event e);
 

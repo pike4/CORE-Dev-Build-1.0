@@ -70,9 +70,9 @@ void UnexpandedNode::readNode(pugi::xml_node curNode)
 	}
 }
 
-Node UnexpandedNode::expand(pugi::xml_node node)
+XMLNode UnexpandedNode::expand(pugi::xml_node node)
 {
-	Node ret;
+	XMLNode ret;
 
 	ret.setName(name);
 
@@ -83,7 +83,7 @@ Node UnexpandedNode::expand(pugi::xml_node node)
 
     for (int i = 0; i < children.size(); i++)
     {
-		Node child = children[i].expand(node);
+		XMLNode child = children[i].expand(node);
 
         ret.addChild(child);
     }
@@ -92,6 +92,8 @@ Node UnexpandedNode::expand(pugi::xml_node node)
 	{
 		ret.setValue(mainValue->getValue(node));
 	}
+
+	ret.setNull(false);
 
     return ret;
 }

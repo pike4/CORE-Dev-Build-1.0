@@ -18,7 +18,7 @@ public:
 	VisibleElement(VisibleElement& copy);
 
 	virtual void get_data(DataSource* source);
-	virtual void getText(Node def);
+	virtual void getText(XMLNode def);
 
    void handle(Event e);
 

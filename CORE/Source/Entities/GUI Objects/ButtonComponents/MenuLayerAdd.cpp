@@ -7,7 +7,7 @@ MenuLayerAdd::MenuLayerAdd()
 	events.push_back(mouseRelease);
 }
 
-void MenuLayerAdd::getText(Node def)
+void MenuLayerAdd::getText(XMLNode def)
 {
 	source = def.getVariable("source");
 }

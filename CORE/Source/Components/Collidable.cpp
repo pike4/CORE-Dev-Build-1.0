@@ -14,7 +14,7 @@ Collidable::Collidable(int x, int y, int w, int h)
 	boundingBox.h = h;
 }
 
-Collidable::Collidable(Node definer)
+Collidable::Collidable(XMLNode definer)
 {
 	boundingBox.x = stoi(definer.getVariable("x"));
 	boundingBox.y = stoi(definer.getVariable("y"));
@@ -22,7 +22,7 @@ Collidable::Collidable(Node definer)
 	boundingBox.h = stoi(definer.getVariable("h"));
 }
 
-Collidable::Collidable(Node definer, std::vector<Collidable*>* collidableVector)
+Collidable::Collidable(XMLNode definer, std::vector<Collidable*>* collidableVector)
 	:Collidable(definer)
 {
 	collidableVector->push_back(this);

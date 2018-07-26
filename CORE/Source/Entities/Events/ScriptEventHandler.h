@@ -7,7 +7,7 @@ struct lua_State;
 class ScriptEventHandler : public EventHandler
 {
 public:
-   ScriptEventHandler(Node def);
+   ScriptEventHandler(XMLNode def);
    virtual EventHandler* spawnCopy();
    virtual void handleEvent(std::vector<EventArg>);
 
