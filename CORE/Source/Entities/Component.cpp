@@ -149,6 +149,25 @@ void Component::registerEvents(Entity* newParent)
 	}
 }
 
+void Component::registerRoom(Room* room)
+{
+	if (!room)
+	{
+		printf("cannot register to NULL room\n");
+		return;
+	}
+
+	for (unsigned int i = 0; i < events.size(); i++)
+	{
+		room->registerEvent(events[i], this);
+	}
+}
+
+void Component::registerScreen(MenuScreen* room)
+{
+	
+}
+
 #pragma endregion
 
 Entity* Component::getContext()

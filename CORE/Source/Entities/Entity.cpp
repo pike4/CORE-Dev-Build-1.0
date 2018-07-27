@@ -126,11 +126,6 @@ void Entity::finalize()
 		component->parent = this;
 		component->finalize();
 	}
-
-	for (unsigned int i = 0; i < components.size(); i++)
-	{
-		components[i]->registerEvents(this);
-	}
 }
 
 /**
@@ -142,6 +137,21 @@ void Entity::registerEvents(Entity* parent)
 	{
 		Component::registerEvents(parent);
 	}
+}
+
+void Entity::registerRoom(Room* room)
+{
+	Component::registerRoom(room);
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		components[i]->registerRoom(room);
+	}
+}
+
+void Entity::registerScreen(MenuScreen* room)
+{
+
 }
 
 Data* Entity::getRawPtr(std::string name)

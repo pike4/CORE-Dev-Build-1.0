@@ -163,6 +163,9 @@ public:
 
 	//Push recursive add down to children
 	virtual void registerEvents(Entity* parent);
+	virtual void registerRoom(Room* room);
+	virtual void registerScreen(MenuScreen* room);
+	//virtual void registerEv(Room* room);
 
 	//Listeners
 	int addListener(int key, Controllable* listener);

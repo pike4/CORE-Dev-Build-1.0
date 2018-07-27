@@ -10,7 +10,7 @@ Room::Room(XMLNode definer)
 	getArgsFromNode(definer);
 }
 
-//Load room from file- TODO: DELET file IO is the responsibility of Resources
+//Load room from file- TODO: delete. file IO is the responsibility of Resources
 Room::Room(std::string fileName)
 {
 	XMLNode def = CORE_Resources::getFirstNodeFromFile(fileName);
@@ -85,6 +85,7 @@ void Room::getArgsFromNode(XMLNode def)
 			if (newObject)
 			{
 				newObject->finalize();
+				newObject->registerRoom(this);
 			}
 
 			add(newObject);
@@ -103,6 +104,15 @@ void Room::handle(Event e)
 		if ((*controllableVector)[i] != NULL)
 		{
 			(*controllableVector)[i]->handle(e);
+		}
+	}
+
+	if (observers.find(e.opcode) != observers.end())
+	{
+		std::vector<Controllable*> vec = observers[e.opcode];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->handle(e);
 		}
 	}
 }
@@ -143,4 +153,35 @@ void Room::emptyQueue()
       insertEntity(entityQueue[ entityQueue.size() - 1 ]);
       entityQueue.pop_back();
    }
+}
+
+void Room::registerEvent(int opcode, Controllable* observer)
+{
+	if (observers.find(opcode) == observers.end())
+	{
+		observers[opcode] = std::vector<Controllable*>();
+	}
+
+	observers[opcode].push_back(observer);
+}
+
+void Room::unregisterEvent(int opcode, Controllable* observer)
+{
+	if (observers.find(opcode) != observers.end()) 
+	{
+		for (int i = 0; i < observers[opcode].size(); i++)
+		{
+			if (observers[opcode][i] == observer) {
+				observers[opcode].erase(observers[opcode].begin() + i);
+			}
+		}
+	}
+}
+
+void Room::unregisterObserver(Controllable* observer)
+{
+	for (std::map<int, std::vector<Controllable*>>::iterator it = observers.begin(); it != observers.end(); ++it)
+	{
+		unregisterEvent(it->first, observer);
+	}
 }

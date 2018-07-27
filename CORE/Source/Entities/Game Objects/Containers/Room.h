@@ -40,6 +40,8 @@ public:
 
 	void unregisterEvent(int opcode, Controllable* observer);
 
+	void unregisterObserver(Controllable* observer);
+
 	Room(XMLNode def);
 	Room(std::string fileName);
 
