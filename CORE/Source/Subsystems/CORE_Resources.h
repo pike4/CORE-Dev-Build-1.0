@@ -33,75 +33,75 @@ extern "C" {
 //CORE_SystemIO::streams;
 
 /*
-   Purpose:
-      1. Provide a global point of access to various constructed resources
-         such as character sets, string variables, and Entity prototypes
-      2. Provide access to global States
+	Purpose:
+		1. Provide a global point of access to various constructed resources
+			such as character sets, string variables, and Entity prototypes
+		2. Provide access to global States
 */
 
 namespace CORE_Resources
 {
-   extern lua_State* L;
-   void handle(Event e);
-   void start();
+	extern lua_State* L;
+	void handle(Event e);
+	void start();
 
 	Entity* getPrototype(std::string prototypeName);
 	TemplateDef* getTemplate(std::string name);
 	Environment* getEnvironment(std::string environmentName);
 	MenuSystem* getMenuSystem(std::string menuName);
 
-   StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables);
+	StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables);
 
-   //*******************************
-   //State Management
-   //*******************************
+	//*******************************
+	//State Management
+	//*******************************
 
-   //Get the value of the given variable from the default GLOBAL_STATE state
-   template <typename T>
-   T getStateValue(std::string variableName)
-   {
-       return getStateValue<T>("GLOBAL_STATE", variableName);
-   }
+	//Get the value of the given variable from the default GLOBAL_STATE state
+	template <typename T>
+	T getStateValue(std::string variableName)
+	{
+		 return getStateValue<T>("GLOBAL_STATE", variableName);
+	}
 
-   //Get the value of the given variable from the given state
-   template <typename T>
-   T getStateValue(std::string stateName, std::string variableName)
-   {
-      if (globalStates.find(stateName) != globalStates.end())
-      {
-         if (globalStates[stateName]->variableOfTypeExists<T>(variableName))
-         {
-            return globalStates[stateName]->getValue<T>(variableName);
-         }
+	//Get the value of the given variable from the given state
+	template <typename T>
+	T getStateValue(std::string stateName, std::string variableName)
+	{
+		if (globalStates.find(stateName) != globalStates.end())
+		{
+			if (globalStates[stateName]->variableOfTypeExists<T>(variableName))
+			{
+				return globalStates[stateName]->getValue<T>(variableName);
+			}
 
-         else
-         {
-            CORE_SystemIO::error("Requested variable does not exist");
-            return 0;
-         }
-      }
-   }
+			else
+			{
+				CORE_SystemIO::error("Requested variable does not exist");
+				return 0;
+			}
+		}
+	}
 
-   //Set the value of the given variable from the given state
-   template <typename T>
-   void setStateValue(std::string stateName, std::string variableName,
-      T newValue)
-   {
-      if (globalStates.find(stateName) != globalStates.end())
-      {
-         if (globalStates[stateName]->variableOfTypeExists<T>(variableName)) 
-         {
-            globalStates[stateName]->setValue<T>(variableName, newValue);
-         }
+	//Set the value of the given variable from the given state
+	template <typename T>
+	void setStateValue(std::string stateName, std::string variableName,
+		T newValue)
+	{
+		if (globalStates.find(stateName) != globalStates.end())
+		{
+			if (globalStates[stateName]->variableOfTypeExists<T>(variableName)) 
+			{
+				globalStates[stateName]->setValue<T>(variableName, newValue);
+			}
 
-         else 
-         {
-            CORE_SystemIO::error("Requested variable does not exist");
-         }
-      }
-   }
+			else 
+			{
+				CORE_SystemIO::error("Requested variable does not exist");
+			}
+		}
+	}
 
-   void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format);
+	void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format);
 
 	//****************************
 	//Resources
@@ -113,21 +113,21 @@ namespace CORE_Resources
 	extern std::map<std::string, RenderableCharSet*> loadedCharSets;
 	extern std::unordered_set<std::string> loadedFiles;
 	extern std::map<std::string, std::string> stringVariables;
-   
-   //****************************
-   //Events
-   //****************************
-   extern std::map<std::string, EventDef> events;
-   extern std::map<std::string, EventHandler*> eventHandlers;
-   EventHandler* getEventHandler(std::string name);
-   int getEventCode(std::string name);
+	
+	//****************************
+	//Events
+	//****************************
+	extern std::map<std::string, EventDef> events;
+	extern std::map<std::string, EventHandler*> eventHandlers;
+	EventHandler* getEventHandler(std::string name);
+	int getEventCode(std::string name);
 
 
-   //****************************
-   //State
-   //****************************
-   extern std::map<std::string, StateOffsetCalculator*> stateOffsets;
-   extern std::map<std::string, State*> globalStates;
+	//****************************
+	//State
+	//****************************
+	extern std::map<std::string, StateOffsetCalculator*> stateOffsets;
+	extern std::map<std::string, State*> globalStates;
 
 	//********************************
 	//Game Object Storage Structures
@@ -172,17 +172,17 @@ namespace CORE_Resources
 	void loadPrototypes(XMLNode def);
 	void addPrototype(std::string name, Entity* prototype);
 
-   //*****************
-   //Events
-   //*****************
-   void loadEvents(XMLNode def);
-   void loadEventHandlers(XMLNode def);
+	//*****************
+	//Events
+	//*****************
+	void loadEvents(XMLNode def);
+	void loadEventHandlers(XMLNode def);
 
-   XMLNode getFirstNodeFromFile(std::string fileName);
+	XMLNode getFirstNodeFromFile(std::string fileName);
 
-   //*****************
-   //String variables
-   //*****************
-   std::string resolveVariable(std::string variableName);
-   std::string checkVariable(std::string variableName);
+	//*****************
+	//String variables
+	//*****************
+	std::string resolveVariable(std::string variableName);
+	std::string checkVariable(std::string variableName);
 }

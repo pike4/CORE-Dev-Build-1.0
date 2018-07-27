@@ -3,6 +3,7 @@
 #include "CORE.h"
 #include "CORE_Factory.h"
 #include "Entity.h"
+#include "Events.h"
 
 //Load room from node
 Room::Room(XMLNode definer)
@@ -25,17 +26,17 @@ Room::Room(std::string fileName)
 
 void Room::add(Entity* object)
 {
-   entityQueue.push_back(object);
+	entityQueue.push_back(object);
 }
 
 void Room::insertEntity(Entity* newEntity)
 {
-   controllableVector->push_back(newEntity);
+	controllableVector->push_back(newEntity);
 
-   Event newEntityEvent = entity_added;
-   newEntityEvent.arguments.push_back(newEntity);
+	Event newEntityEvent = entity_added;
+	newEntityEvent.arguments.push_back(newEntity);
 
-   handle(newEntityEvent);
+	handle(newEntityEvent);
 }
 
 void Room::remove(Controllable* component)
@@ -85,7 +86,7 @@ void Room::getArgsFromNode(XMLNode def)
 			if (newObject)
 			{
 				newObject->finalize();
-				newObject->registerRoom(this);
+				newObject->registerEv(this);
 			}
 
 			add(newObject);
@@ -119,69 +120,21 @@ void Room::handle(Event e)
 
 void Room::draw()
 {
-	for (unsigned int i = 0; i < controllableVector->size(); i++)
-	{
-		if ((*controllableVector)[i] != NULL)
-		{
-			(*controllableVector)[i]->handle(drawStep);
-		}
-	}
+	handle(drawStep);
 }
 
 void Room::update()
 {
-   emptyQueue();
+	emptyQueue();
 
-	for (unsigned int i = 0; i < controllableVector->size(); i++)
-	{
-		if ((*controllableVector)[i] != NULL)
-		{
-			(*controllableVector)[i]->handle(updateStep);
-		}
-
-		else
-		{
-			printf("NULL update in room\n");
-		}
-	}
+	handle(updateStep);
 }
 
 void Room::emptyQueue()
 {
-   while(!entityQueue.empty())
-   {
-      insertEntity(entityQueue[ entityQueue.size() - 1 ]);
-      entityQueue.pop_back();
-   }
-}
-
-void Room::registerEvent(int opcode, Controllable* observer)
-{
-	if (observers.find(opcode) == observers.end())
+	while(!entityQueue.empty())
 	{
-		observers[opcode] = std::vector<Controllable*>();
-	}
-
-	observers[opcode].push_back(observer);
-}
-
-void Room::unregisterEvent(int opcode, Controllable* observer)
-{
-	if (observers.find(opcode) != observers.end()) 
-	{
-		for (int i = 0; i < observers[opcode].size(); i++)
-		{
-			if (observers[opcode][i] == observer) {
-				observers[opcode].erase(observers[opcode].begin() + i);
-			}
-		}
-	}
-}
-
-void Room::unregisterObserver(Controllable* observer)
-{
-	for (std::map<int, std::vector<Controllable*>>::iterator it = observers.begin(); it != observers.end(); ++it)
-	{
-		unregisterEvent(it->first, observer);
+		insertEntity(entityQueue[ entityQueue.size() - 1 ]);
+		entityQueue.pop_back();
 	}
 }

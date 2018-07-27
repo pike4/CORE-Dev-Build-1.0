@@ -1,5 +1,6 @@
 #pragma once
 #include "Data.h"
+#include "Events.h"
 #include <vector>
 
 class Entity;

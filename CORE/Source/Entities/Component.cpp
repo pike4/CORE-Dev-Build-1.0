@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "MessagePasser.h"
 #include "Entity.h"
 #include "CORE_Resources.h"
 
@@ -149,9 +150,9 @@ void Component::registerEvents(Entity* newParent)
 	}
 }
 
-void Component::registerRoom(Room* room)
+void Component::registerEv(MessagePasser* passer)
 {
-	if (!room)
+	if (!passer)
 	{
 		printf("cannot register to NULL room\n");
 		return;
@@ -159,13 +160,8 @@ void Component::registerRoom(Room* room)
 
 	for (unsigned int i = 0; i < events.size(); i++)
 	{
-		room->registerEvent(events[i], this);
+		passer->registerEvent(events[i], this);
 	}
-}
-
-void Component::registerScreen(MenuScreen* room)
-{
-	
 }
 
 #pragma endregion

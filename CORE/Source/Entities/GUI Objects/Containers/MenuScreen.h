@@ -1,10 +1,11 @@
 #pragma once
 #include "MenuSystem.h"
+#include "messagePasser.h"
 #include "Entity.h"
 #include "Control.h"
 #include <vector>
 
-class MenuScreen : public Entity
+class MenuScreen : public Entity, public MessagePasser
 {
 public:
 	MenuScreen() {};

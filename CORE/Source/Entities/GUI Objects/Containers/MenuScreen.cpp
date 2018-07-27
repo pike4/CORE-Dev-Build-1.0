@@ -51,6 +51,7 @@ void MenuScreen::getArgsFromNode(XMLNode def)
 			if(newControl = CORE_Factory::generateObject(cur))
 			{
 				components.push_back(newControl);
+				newControl->registerEv(this);
 			}
 		}
 	}
@@ -91,6 +92,15 @@ void MenuScreen::draw()
 		if (components[i] != NULL)
 		{
 			components[i]->handle(drawStep);
+		}
+	}
+
+	if (observers.find(drawStep) != observers.end())
+	{
+		std::vector<Controllable*>& vec = observers[drawStep];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->handle(drawStep);
 		}
 	}
 }

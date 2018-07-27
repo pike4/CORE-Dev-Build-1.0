@@ -196,7 +196,7 @@ namespace CORE_Devices
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 
-					newEvent.opcode = SDL_MOUSEBUTTONDOWN;
+					newEvent.opcode = mouse1Down;
 					newEvent.push(0);
 					newEvent.push(x);
 					newEvent.push(y);
@@ -210,7 +210,7 @@ namespace CORE_Devices
 					int x, y;
 					SDL_GetMouseState(&x, &y);
 
-					newEvent.opcode = SDL_MOUSEBUTTONUP;
+					newEvent.opcode = mouse1Up;
 					newEvent.push(0);
 					newEvent.push(x);
 					newEvent.push(y);
@@ -231,7 +231,7 @@ namespace CORE_Devices
 		}
 		
 		CORE_SystemIO::error("CORE_Devices error: keycode not found");
-		return 0;
+		return keyError;
 	}
 
 	void handleEvent(int eventCode, int posOrNeg, int x, int y)

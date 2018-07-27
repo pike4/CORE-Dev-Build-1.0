@@ -1,9 +1,10 @@
 #pragma once
-enum UserDefinedEvents
+enum OpCode : int
 {
 	////////////////////////////////
 	//Engine events
 	////////////////////////////////
+	keyError,
 	updateStep,
 	drawStep,
 

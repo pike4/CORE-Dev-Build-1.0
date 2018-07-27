@@ -11,8 +11,7 @@
 #include <stdlib.h>
 #include <vector>
 
-class Room;
-class MenuScreen;
+class MessagePasser;
 class Entity;
 
 typedef struct _field
@@ -93,8 +92,7 @@ public:
 
 	#pragma region Parent Registration
 	virtual void registerEvents(Entity* newParent);
-	virtual void registerRoom(Room* room);
-	virtual void registerScreen(MenuScreen* room);
+	virtual void registerEv(MessagePasser* passer);
 	#pragma endregion
 
 	std::vector<int> events;

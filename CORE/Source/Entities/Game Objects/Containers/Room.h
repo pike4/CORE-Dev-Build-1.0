@@ -1,7 +1,7 @@
 #pragma once
 #include "Collidable.h"
 #include "QuadTree.h"
-#include "Controllable.h"
+#include "MessagePasser.h"
 #include "Node.h"
 
 #include <vector>
@@ -10,14 +10,14 @@ class  Entity;
 
 /*
 	Provides a single context for the user to interact with the world. 
-   Contains and tracks a set of Entity objects. Rooms behave similarly 
-   to scenes in Unity and GameMaker.
+	Contains and tracks a set of Entity objects. Rooms behave similarly 
+	to scenes in Unity and GameMaker.
 	This is the second level in the interface between CORE and its game objects. 
-   No instances of game objects (other than prototypes) can exist in CORE outside 
-   of a room.
+	No instances of game objects (other than prototypes) can exist in CORE outside 
+	of a room.
 */
 
-class Room : public Controllable
+class Room : public MessagePasser, public Controllable
 {
 public:
 	std::vector<Controllable*>* controllableVector;
@@ -30,17 +30,11 @@ public:
 
 	std::string name;
 
-   void handle(Event e);
+	void handle(Event e);
 
 	void draw();
 
 	void update();
-
-	void registerEvent(int opcode, Controllable* observer);
-
-	void unregisterEvent(int opcode, Controllable* observer);
-
-	void unregisterObserver(Controllable* observer);
 
 	Room(XMLNode def);
 	Room(std::string fileName);
@@ -49,8 +43,6 @@ public:
 
 private:
 	std::vector<Entity*> entityQueue;
-
-	std::map<int, std::vector<Controllable*>> observers;
 
 	void emptyQueue();
 

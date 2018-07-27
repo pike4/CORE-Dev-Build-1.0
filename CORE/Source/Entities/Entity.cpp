@@ -139,19 +139,14 @@ void Entity::registerEvents(Entity* parent)
 	}
 }
 
-void Entity::registerRoom(Room* room)
+void Entity::registerEv(MessagePasser* passer)
 {
-	Component::registerRoom(room);
+	Component::registerEv(passer);
 
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i]->registerRoom(room);
+		components[i]->registerEv(passer);
 	}
-}
-
-void Entity::registerScreen(MenuScreen* room)
-{
-
 }
 
 Data* Entity::getRawPtr(std::string name)

@@ -16,48 +16,48 @@
 
 namespace CORE_Resources
 {
-   lua_State* L;
-   void handle(Event e)
-   {
+	lua_State* L;
+	void handle(Event e)
+	{
 
-   }
+	}
 
 #pragma region Resource Storage Structures
-   std::map<std::string, SDL_Texture*> loadedTextures;
-   std::map<std::string, Mix_Chunk*> loadedSounds;
-   std::map<std::string, Mix_Music*> loadedMusic;
-   std::map<std::string, TTF_Font*> loadedFonts;
-   std::map<std::string, RenderableCharSet*> loadedCharSets;
-   std::map<std::string, std::string> stringVariables;
-   std::unordered_set<std::string> loadedFiles;
-   std::map<std::string, StateOffsetCalculator*> stateOffsets;
-   std::map<std::string, State*> globalStates;
+	std::map<std::string, SDL_Texture*> loadedTextures;
+	std::map<std::string, Mix_Chunk*> loadedSounds;
+	std::map<std::string, Mix_Music*> loadedMusic;
+	std::map<std::string, TTF_Font*> loadedFonts;
+	std::map<std::string, RenderableCharSet*> loadedCharSets;
+	std::map<std::string, std::string> stringVariables;
+	std::unordered_set<std::string> loadedFiles;
+	std::map<std::string, StateOffsetCalculator*> stateOffsets;
+	std::map<std::string, State*> globalStates;
 #pragma endregion
 
 #pragma region Event and Event Handler Storage
-   std::map<std::string, EventDef> events;
-   std::map<std::string, int> eventCodes;
-   std::map<std::string, EventHandler*> eventHandlers;
+	std::map<std::string, EventDef> events;
+	std::map<std::string, int> eventCodes;
+	std::map<std::string, EventHandler*> eventHandlers;
 #pragma endregion
 
 #pragma region Game Object Storage Structures
-   std::map<std::string, Environment*> environments;
-   std::map<std::string, MenuSystem*> menuSystems;
-   std::map<std::string, Entity*> prototypes;
-   std::map<std::string, TemplateDef*> templates;
+	std::map<std::string, Environment*> environments;
+	std::map<std::string, MenuSystem*> menuSystems;
+	std::map<std::string, Entity*> prototypes;
+	std::map<std::string, TemplateDef*> templates;
 #pragma endregion
 
-   int eventID = 10000;
+	int eventID = 10000;
 
-   void start()
-   {
-      //Define some predefined events
-      predefineEvent(mouse1Down, "mouse1Down", { _integer, _integer });
-      predefineEvent(mouse1Up, "mouse1Up", { _integer, _integer });
-      predefineEvent(mouse2Down, "mouse2Down", { _integer, _integer });
-      predefineEvent(mouse2Up, "mouse2Up", { _integer, _integer });
-      predefineEvent(mouseMoved, "mouseMoved", { _integer, _integer });
-   }
+	void start()
+	{
+		//Define some predefined events
+		predefineEvent(mouse1Down, "mouse1Down", { _integer, _integer });
+		predefineEvent(mouse1Up, "mouse1Up", { _integer, _integer });
+		predefineEvent(mouse2Down, "mouse2Down", { _integer, _integer });
+		predefineEvent(mouse2Up, "mouse2Up", { _integer, _integer });
+		predefineEvent(mouseMoved, "mouseMoved", { _integer, _integer });
+	}
 
 #pragma region XML
 	void loadResourceFile(std::string fileName)
@@ -111,7 +111,7 @@ namespace CORE_Resources
 
 			else if (name == "eventHandlers")
 			{
-			   loadEventHandlers(topDef);
+				loadEventHandlers(topDef);
 			}
 
 			else if (name == "menuSystem")
@@ -171,16 +171,16 @@ namespace CORE_Resources
 
 			node = node.next_sibling();
 		}
-    }
+	 }
 #pragma endregion
 
 #pragma region Asset Loading
-   /**
-    Function: loadTexture
+	/**
+	 Function: loadTexture
 
-    Purpose:
-      Load and return the texture of the given file name
-    */
+	 Purpose:
+		Load and return the texture of the given file name
+	 */
 	SDL_Texture* loadTexture(std::string fileName)
 	{
 		SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
@@ -205,12 +205,12 @@ namespace CORE_Resources
 		return optimizedSurface;
 	}
 
-   /**
-   Function: loadMusic
+	/**
+	Function: loadMusic
 
-   Purpose:
-      Load and return a music track of the given file name
-   */
+	Purpose:
+		Load and return a music track of the given file name
+	*/
 	Mix_Music* loadMusic(std::string fileName)
 	{
 		Mix_Music* newMusic = Mix_LoadMUS(fileName.c_str());
@@ -252,12 +252,12 @@ namespace CORE_Resources
 		return newChunk;
 	}
 
-   /**
-   Function: loadFont
+	/**
+	Function: loadFont
 
-   Purpose:
-      
-   */
+	Purpose:
+		
+	*/
 	TTF_Font* loadFont(std::string fileName, int size)
 	{
 		TTF_Font* newFont = TTF_OpenFont(fileName.c_str(), size);
@@ -448,16 +448,16 @@ namespace CORE_Resources
 	{
 		if ( def.null() )
 		{
-		    CORE_SystemIO::error("Null events node!");
-		    return;
+			 CORE_SystemIO::error("Null events node!");
+			 return;
 		}
 
 		std::string name = def.getName();
 
 		if (name != "prototypes")
 		{
-          CORE_SystemIO::error("loadPrototypes was called with node: "
-              + name + " must be called with prototypes node");
+			 CORE_SystemIO::error("loadPrototypes was called with node: "
+				  + name + " must be called with prototypes node");
 			return;
 		}
 
@@ -477,12 +477,12 @@ namespace CORE_Resources
 		}
 	}
 
-   /**
-   Function: addPrototype
+	/**
+	Function: addPrototype
 
-   Purpose:
-      Store a prototype of the given name for global access
-   */
+	Purpose:
+		Store a prototype of the given name for global access
+	*/
 	void addPrototype(std::string name, Entity* prototype)
 	{
 		if (prototype && prototypes.find(name) == prototypes.end())
@@ -492,258 +492,258 @@ namespace CORE_Resources
 
 		else if(!prototype)
 		{
-         CORE_SystemIO::error("Entity prototype " + name + " is undefined and cannot be added");
+			CORE_SystemIO::error("Entity prototype " + name + " is undefined and cannot be added");
 		}
 
 		else
 		{
-         CORE_SystemIO::error("a prototype of this name already exists");
+			CORE_SystemIO::error("a prototype of this name already exists");
 		}
 	}
 
 #pragma endregion
 
 #pragma region Events
-   /**
-      Function: getEventCode
+	/**
+		Function: getEventCode
 
-      Purpose:
-         Get the event code for the given event name
-   */
-   int getEventCode(std::string name)
-   {
-      if (eventCodes.find(name) != eventCodes.end())
-      {
-         return eventCodes[name];
-      }
+		Purpose:
+			Get the event code for the given event name
+	*/
+	int getEventCode(std::string name)
+	{
+		if (eventCodes.find(name) != eventCodes.end())
+		{
+			return eventCodes[name];
+		}
 
-      CORE_SystemIO::error("Event " + name + " not found");
-      return 0;
-   }
+		CORE_SystemIO::error("Event " + name + " not found");
+		return keyError;
+	}
 
-   /**
-   Function: loadEvents
+	/**
+	Function: loadEvents
 
-   Purpose:
-      Load the event definitions from the given node and store for global access
-   */
-   void loadEvents(XMLNode def)
-   {
-       if (def.null() )
-       {
-           CORE_SystemIO::error("Null events node!");
-           return;
-       }
+	Purpose:
+		Load the event definitions from the given node and store for global access
+	*/
+	void loadEvents(XMLNode def)
+	{
+		 if (def.null() )
+		 {
+			  CORE_SystemIO::error("Null events node!");
+			  return;
+		 }
 
-       std::string name = def.getName();
+		 std::string name = def.getName();
 
-	   std::vector<XMLNode>  eventNodes = def.getChildren();
+		std::vector<XMLNode>  eventNodes = def.getChildren();
 
-       for (unsigned int i = 0; i < eventNodes.size(); i++) 
-       {    
-           XMLNode cur = eventNodes[i];
-           std::string curName = cur.getName();
+		 for (unsigned int i = 0; i < eventNodes.size(); i++) 
+		 {	 
+			  XMLNode cur = eventNodes[i];
+			  std::string curName = cur.getName();
 
-           if (events.find(curName) != events.end()) 
-           {
-               CORE_SystemIO::error("Event " + curName + " already defined");
-           }
+			  if (events.find(curName) != events.end()) 
+			  {
+					CORE_SystemIO::error("Event " + curName + " already defined");
+			  }
 
-           else 
-           {
-               EventDef newEvent(cur);
-               eventCodes[curName] = eventID++;
-               events[curName] = newEvent;
-           }
-       }
-   }
+			  else 
+			  {
+					EventDef newEvent(cur);
+					eventCodes[curName] = eventID++;
+					events[curName] = newEvent;
+			  }
+		 }
+	}
 
-   /**
-   Function: loadEventHandlers
+	/**
+	Function: loadEventHandlers
 
-   Purpose:
-      Define event handler prototypes from the given node
-   */
-   void loadEventHandlers(XMLNode def)
-   {
-      if (def.null())
-      {
-         CORE_SystemIO::error("Null event handlers node!");
-         return;
-      }
+	Purpose:
+		Define event handler prototypes from the given node
+	*/
+	void loadEventHandlers(XMLNode def)
+	{
+		if (def.null())
+		{
+			CORE_SystemIO::error("Null event handlers node!");
+			return;
+		}
 
-      std::vector<XMLNode> handlerVector = def.getChildren();
+		std::vector<XMLNode> handlerVector = def.getChildren();
 
-      for (unsigned int i = 0; i < handlerVector.size(); i++)
-      {
-         XMLNode curHandlerNode = handlerVector[i];
-         std::string handlerName = curHandlerNode.getName();
-         std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
+		for (unsigned int i = 0; i < handlerVector.size(); i++)
+		{
+			XMLNode curHandlerNode = handlerVector[i];
+			std::string handlerName = curHandlerNode.getName();
+			std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
 
-         if (eventHandlers.find(handlerName) == eventHandlers.end())
-         {
-            //Parse the format from the format node
-            EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
+			if (eventHandlers.find(handlerName) == eventHandlers.end())
+			{
+				//Parse the format from the format node
+				EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
 
-            if (newHandler)
-            {
-               eventHandlers[handlerName] = newHandler;
-            }
-         }
+				if (newHandler)
+				{
+					eventHandlers[handlerName] = newHandler;
+				}
+			}
 
-         else
-         {
-            CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
-         }
-      }
-   }
+			else
+			{
+				CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
+			}
+		}
+	}
 
-   /**
-   Function: getEventHandler
+	/**
+	Function: getEventHandler
 
-   Purpose:
-      Get an event handler, returning NULL if not available
-   */
-   EventHandler* getEventHandler(std::string name)
-   {
-      if (eventHandlers.find(name) != eventHandlers.end())
-      {
-         return eventHandlers[name]->spawnCopy();
-      }
+	Purpose:
+		Get an event handler, returning NULL if not available
+	*/
+	EventHandler* getEventHandler(std::string name)
+	{
+		if (eventHandlers.find(name) != eventHandlers.end())
+		{
+			return eventHandlers[name]->spawnCopy();
+		}
 
-      return NULL;
-   }
+		return NULL;
+	}
 
-   void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format)
-   {
-      if (eventCodes.find(name) == eventCodes.end() && events.find(name) == events.end())
-      {
-         eventCodes[name] = opCode;
-         events[name] = EventDef(name, format);
-      }
+	void predefineEvent(int opCode, std::string name, std::vector<PrimitiveType> format)
+	{
+		if (eventCodes.find(name) == eventCodes.end() && events.find(name) == events.end())
+		{
+			eventCodes[name] = opCode;
+			events[name] = EventDef(name, format);
+		}
 
-      else
-      {
-         CORE_SystemIO::error("Event " + name + " already defined");
-      }
-   }
+		else
+		{
+			CORE_SystemIO::error("Event " + name + " already defined");
+		}
+	}
 #pragma endregion
 
-   /**
-   Function: resolveVariable
+	/**
+	Function: resolveVariable
 
-   Purpose:
-      Return the value of the global string variable of the given name
-   */
-   std::string resolveVariable(std::string variableName)
-   {
-       std::string ret = "";
+	Purpose:
+		Return the value of the global string variable of the given name
+	*/
+	std::string resolveVariable(std::string variableName)
+	{
+		 std::string ret = "";
 
-       if (variableName[0] == '$')
-       {
-           variableName = variableName.substr(1);
+		 if (variableName[0] == '$')
+		 {
+			  variableName = variableName.substr(1);
 
-           if (stringVariables.find(variableName) != stringVariables.end())
-           {
-               ret = stringVariables[variableName];
-           }
+			  if (stringVariables.find(variableName) != stringVariables.end())
+			  {
+					ret = stringVariables[variableName];
+			  }
 
-           else
-           {
-               //TODO make error
-               CORE_SystemIO::print("Undefined variable: " + variableName);
-           }
-       }
+			  else
+			  {
+					//TODO make error
+					CORE_SystemIO::print("Undefined variable: " + variableName);
+			  }
+		 }
 
-       else
-       {
-           //TODO make dev error
-           CORE_SystemIO::print("Malformed variable name: " + variableName + 
-              " - Variable names must be lead by $\n");
-       }
+		 else
+		 {
+			  //TODO make dev error
+			  CORE_SystemIO::print("Malformed variable name: " + variableName + 
+				  " - Variable names must be lead by $\n");
+		 }
 
-       return ret;
-   }
+		 return ret;
+	}
 
-   /**
-   Function: checkVariable
+	/**
+	Function: checkVariable
 
-   Purpose:
-      Check if the given string is the name of a defined global variable, returning 
-      the value if defined, the original string otherwise
-   */
-   std::string checkVariable(std::string variableName)
-   {
-       std::string ret = variableName;
+	Purpose:
+		Check if the given string is the name of a defined global variable, returning 
+		the value if defined, the original string otherwise
+	*/
+	std::string checkVariable(std::string variableName)
+	{
+		 std::string ret = variableName;
 
-       if (variableName[0] == '$')
-       {
-           variableName = variableName.substr(1);
+		 if (variableName[0] == '$')
+		 {
+			  variableName = variableName.substr(1);
 
-           if (stringVariables.find(variableName) != stringVariables.end())
-           {
-               ret = stringVariables[variableName];
-           }
-       }
+			  if (stringVariables.find(variableName) != stringVariables.end())
+			  {
+					ret = stringVariables[variableName];
+			  }
+		 }
 
-       return ret;
-   }
+		 return ret;
+	}
 
-   //--------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------
 
-   StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables)
-   {
-       StateOffsetCalculator* ret = NULL;
+	StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables)
+	{
+		 StateOffsetCalculator* ret = NULL;
 
-       //Vector must be even: these are name-size pairs
-       if (variables.size() % 2)
-           return NULL;
+		 //Vector must be even: these are name-size pairs
+		 if (variables.size() % 2)
+			  return NULL;
 
-       std::vector<std::string>  names;
-       int runningSize = 0;
-       int temp = 0;
+		 std::vector<std::string>  names;
+		 int runningSize = 0;
+		 int temp = 0;
 
-       //Extract the names to a new vector for sorting 
-       //and temporarily store the sizes in the offsets map
-       for (unsigned int i = 0; i < variables.size(); i += 2)
-       {
-           int newSize = CORE_TypeTraits::getDataObjectSize(variables[i + 1]);
-           if (newSize == -1)
-               CORE_SystemIO::error("Undefined type in offset calculator constructor");
+		 //Extract the names to a new vector for sorting 
+		 //and temporarily store the sizes in the offsets map
+		 for (unsigned int i = 0; i < variables.size(); i += 2)
+		 {
+			  int newSize = CORE_TypeTraits::getDataObjectSize(variables[i + 1]);
+			  if (newSize == -1)
+					CORE_SystemIO::error("Undefined type in offset calculator constructor");
 
 
 
-           names.push_back("_" + variables[i] + "-" + std::to_string(newSize));
-       }
+			  names.push_back("_" + variables[i] + "-" + std::to_string(newSize));
+		 }
 
-       //Lexographically sort the names
-       std::sort(names.begin(), names.end(), std::less<std::string>());
+		 //Lexographically sort the names
+		 std::sort(names.begin(), names.end(), std::less<std::string>());
 
-       //The string containing all name-size pairs for the requested offsetCalculator
-       std::string fullName = "";
+		 //The string containing all name-size pairs for the requested offsetCalculator
+		 std::string fullName = "";
 
-       //Concatenate the sorted names and sizes into a string to look up the offset calculator
-       for (unsigned int i = 0; i < names.size(); i++)
-       {
-           fullName += names[i];
-       }
+		 //Concatenate the sorted names and sizes into a string to look up the offset calculator
+		 for (unsigned int i = 0; i < names.size(); i++)
+		 {
+			  fullName += names[i];
+		 }
 
-       if (stateOffsets.find(fullName) != stateOffsets.end())
-       {
-           ret = stateOffsets[fullName];
-       }
+		 if (stateOffsets.find(fullName) != stateOffsets.end())
+		 {
+			  ret = stateOffsets[fullName];
+		 }
 
-       else
-       {
-           //Create and store a new offset calculator if one is not available
-           ret = new StateOffsetCalculator(variables);
-           stateOffsets[fullName] = ret;
-       }
+		 else
+		 {
+			  //Create and store a new offset calculator if one is not available
+			  ret = new StateOffsetCalculator(variables);
+			  stateOffsets[fullName] = ret;
+		 }
 
-       return ret;
-   }
+		 return ret;
+	}
 
-   //--------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------
 
 	XMLNode getFirstNodeFromFile(std::string fileName)
 	{

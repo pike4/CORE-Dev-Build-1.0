@@ -210,6 +210,7 @@
     <ClInclude Include="Source\Entities\GUI Objects\Control.h" />
     <ClInclude Include="Source\Entities\GUI Objects\GUI_Area.h" />
     <ClInclude Include="Source\Entities\GUI Objects\SpeechBox.h" />
+    <ClInclude Include="Source\Entities\MessagePasser.h" />
     <ClInclude Include="Source\Main\ComponentTypes.h" />
     <ClInclude Include="Source\Main\controltypes.h" />
     <ClInclude Include="Source\Main\DrawOrder.h" />
@@ -334,6 +335,7 @@
     <ClCompile Include="Source\Entities\GUI Objects\GUI_Area.cpp" />
     <ClCompile Include="Source\Entities\GUI Objects\SpeechBox.cpp" />
     <ClCompile Include="Source\Entities\Events\ScriptEventHandler.cpp" />
+    <ClCompile Include="Source\Entities\MessagePasser.cpp" />
     <ClCompile Include="Source\Main\CORE_Main.cpp" />
     <ClCompile Include="Source\Other\Observer.cpp" />
     <ClCompile Include="Source\Other\Timer.cpp" />
