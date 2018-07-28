@@ -132,3 +132,20 @@ void MenuScreen::handle(Event e)
 		components[i]->handle(e);
 	}
 }
+
+void MenuScreen::receive(Event e)
+{
+	if (observers.find(e.opcode) != observers.end())
+	{
+		std::vector<Controllable*> vec = observers[e.opcode];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->receive(e);
+		}
+	}
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		components[i]->receive(e);
+	}
+}

@@ -22,13 +22,13 @@ int luaSendEventToEntity(lua_State* L)
 
 	int ID = lua_tointeger(L, 1);
 	
-	Event e = CORE_LuaInterface::getEventFromStack(n-1, 1, L);
+	Event e = CORE_LuaInterface::getEventFromStack(n-2, 1, L);
 
 	Entity* entity = CORE::getObjectByID(ID);
 
 	if (entity)
 	{
-		entity->handle(e);
+		entity->receive(e);
 	}
 
 	return 0;
@@ -76,7 +76,7 @@ int luaSendEventToSelf(lua_State* L)
 Set the given member of the given entity to the given value
 
 Lua Parameters:
-\param entity	- The name of the entity
+\param entity	- The id of the entity
 \param member	- The name of the member to set
 \param value	- The value to set
 */

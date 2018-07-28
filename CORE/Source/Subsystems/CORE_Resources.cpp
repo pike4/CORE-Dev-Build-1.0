@@ -353,11 +353,13 @@ namespace CORE_Resources
 			std::string name = children[i].getName();
 			std::string file = children[i].getVariable("file");
 
-			if (name.empty() || file.empty()) {
+			if (name.empty() || file.empty())
+			{
 				CORE_SystemIO::error("Bad sounds list in XML");
 			}
 
-			else {
+			else
+			{
 				CORE_Audio::addSound(name, file);
 			}
 		}

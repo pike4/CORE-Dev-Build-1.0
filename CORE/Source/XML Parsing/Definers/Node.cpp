@@ -28,7 +28,10 @@ void XMLNode::readAttributes(pugi::xml_node myNode)
 
 	while (attr.name() != "")
 	{
-		addAttribute(attr.name(), attr.value());
+		std::string t_name = attr.name();
+		std::string t_value = attr.value();
+
+		addAttribute(t_name, t_value);
 		attr = attr.next_attribute();
 	}
 }

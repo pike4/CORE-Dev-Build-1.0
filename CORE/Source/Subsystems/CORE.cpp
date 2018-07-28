@@ -73,6 +73,19 @@ namespace CORE
 		}
 	}
 
+	void receive(Event e)
+	{
+		if (currentRoom != NULL)
+		{
+			currentRoom->receive(e);
+		}
+
+		if (!currentMenuScreens.empty() && currentMenuScreens.back() != NULL)
+		{
+			currentMenuScreens.back()->receive(e);
+		}
+	}
+
 #pragma region Room and Environment transitions
 	void goToRoom(Room* room)
 	{

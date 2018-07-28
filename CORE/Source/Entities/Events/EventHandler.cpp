@@ -16,15 +16,15 @@ void EventHandler::handle(Event e)
 
 EventHandler* EventHandler::spawnCopy()
 {
-   return new EventHandler(*this);
+	return new EventHandler(*this);
 }
 
 bool EventHandler::matches(EventDef e)
 {
-   return (format == e.format);
+	return (format == e.format);
 }
 
 void EventHandler::registerOwner(Entity* owner)
 {
-   return;
+	return;
 }

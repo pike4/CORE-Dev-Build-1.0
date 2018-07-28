@@ -36,14 +36,14 @@ void MouseProcessor::handle(Event e)
 
 		if (mouseIsDownOnThis)
 		{
-         Event dragEvent = mouseDrag;
-         DataImpl<int> doX;
-         doX = dragOriginX;
-         DataImpl<int> doY;
-         doY = dragOriginY;
-         DataImpl<bool> isUp;
-         isUp = true;
-         dragEvent.arguments = { &doX, &doY, &isUp };
+			Event dragEvent = mouseDrag;
+			DataImpl<int> doX;
+			doX = dragOriginX;
+			DataImpl<int> doY;
+			doY = dragOriginY;
+			DataImpl<bool> isUp;
+			isUp = true;
+			dragEvent.arguments = { &doX, &doY, &isUp };
 
 			parent->handle(dragEvent);
 		}

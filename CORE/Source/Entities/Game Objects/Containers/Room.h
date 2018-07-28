@@ -30,7 +30,8 @@ public:
 
 	std::string name;
 
-	void handle(Event e);
+	virtual void handle(Event e);
+	virtual void receive(Event e);
 
 	void draw();
 

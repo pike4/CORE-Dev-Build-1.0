@@ -10,6 +10,7 @@
 #include <map>
 #include <stdlib.h>
 #include <vector>
+#include <list>
 
 class MessagePasser;
 class Entity;

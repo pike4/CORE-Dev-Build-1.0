@@ -1,7 +1,7 @@
 #include "TemplateDef.h"
 #include "Node.h"
 #include "CORE_Resources.h"
-#include "CORE_Utilities.h"
+#include "CORE_Util.h"
 //node	-	pugi node that defines the form of the NodeTemplate
 TemplateDef::TemplateDef(XMLNode def)
 {
@@ -13,7 +13,7 @@ TemplateDef::TemplateDef(XMLNode def)
     
     while (sourceChild.name() != "")
     {
-        std::vector<std::string> vars = CORE_Utilities::tokenize(sourceChild.first_child().value(), ',');
+        std::vector<std::string> vars = CORE_Util::tokenize(sourceChild.first_child().value(), ',');
         
         for (int i = 0; i < vars.size(); i++)
         {

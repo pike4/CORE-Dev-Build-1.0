@@ -1,6 +1,6 @@
-#include "CORE_Utilities.h"
+#include "CORE_Util.h"
 
-namespace CORE_Utilities
+namespace CORE_Util
 {
 	std::vector<std::string> tokenize(std::string src, char delim)
 	{
@@ -28,5 +28,23 @@ namespace CORE_Utilities
 		}
 
 		return ret;
+	}
+
+	std::string toLower(char* str)
+	{
+		int i = 0;
+		std::string ret;
+
+		while (str[i] != '\0')
+		{
+			ret.append(1, tolower(str[i++]));
+		}
+
+		return ret;
+	}
+
+	std::string toLower(const pugi::char_t* str)
+	{
+		return toLower((char*)str);
 	}
 }

@@ -55,17 +55,17 @@ void DragArea::handle(Event e)
 {
 	switch (e.opcode)
 	{
-   DataImpl<int>* aX;
-   DataImpl<int>* aY;
+		DataImpl<int>* aX;
+		DataImpl<int>* aY;
 	
-   case mouseDrag:
+	case mouseDrag:
 		int mouseX = 0;
 		int mouseY = 0;
 
 		SDL_GetMouseState(&mouseX, &mouseY);
 
-      aX = (DataImpl<int>*) e.arguments[0].data;
-      aY = (DataImpl<int>*) e.arguments[1].data;
+		aX = (DataImpl<int>*) e.arguments[0].data;
+		aY = (DataImpl<int>*) e.arguments[1].data;
 
 		*x = (mouseX - *aX);
 		*y = (mouseY - *aY);

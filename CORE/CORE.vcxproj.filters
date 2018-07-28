@@ -537,7 +537,7 @@
     <ClInclude Include="Source\Entities\MessagePasser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Subsystems\CORE_Utilities.h">
+    <ClInclude Include="Source\Subsystems\CORE_Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -836,7 +836,10 @@
     <ClCompile Include="Source\Entities\MessagePasser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Subsystems\CORE_Utlilities.cpp">
+    <ClCompile Include="Source\Components\Controllable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Subsystems\CORE_Utlil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

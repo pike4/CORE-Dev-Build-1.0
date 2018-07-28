@@ -110,6 +110,18 @@ void Room::handle(Event e)
 	}
 }
 
+void Room::receive(Event e)
+{
+	if (observers.find(e.opcode) != observers.end())
+	{
+		std::vector<Controllable*> vec = observers[e.opcode];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->receive(e);
+		}
+	}
+}
+
 void Room::draw()
 {
 	handle(drawStep);
@@ -121,6 +133,8 @@ void Room::update()
 
 	handle(updateStep);
 }
+
+
 
 void Room::emptyQueue()
 {

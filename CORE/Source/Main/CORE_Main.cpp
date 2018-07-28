@@ -20,7 +20,7 @@
 
 int main()
 {
-	printf("sizeof component: %d\n", sizeof(Component) - sizeof(std::map<int, int>) - sizeof(std::vector<int>) * 2);
+	printf("sizeof component: %d\n", sizeof(Component) );
 	//Lua!
 	CORE_Resources::L = luaL_newstate();
 	luaL_openlibs(CORE_Resources::L);

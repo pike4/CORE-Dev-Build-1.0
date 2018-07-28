@@ -30,72 +30,72 @@ void Component::get_data(DataSource* source) {}
 // Get a trait from this component. Components have no traits by default
 bool Component::getTrait(std::string trait)
 {
-   return false;
+	return false;
 }
 
 //Component gets only the event handlers assigned to it in the file. 
 //Subclasses may have handlers baked in
 void Component::getEventHandlers(XMLNode def)
 {
-    if (def.null())
-    {
-        CORE_SystemIO::error("Could not get Event Handlers from null XMLNode*");
-        return;
-    }
+	if (def.null())
+	{
+		CORE_SystemIO::error("Could not get Event Handlers from null XMLNode*");
+		return;
+	}
 
-    std::vector<XMLNode> handlerVector = def.getChildren();
-   
-    //Iterate over each event definition in the node
-    for (unsigned int i = 0; i < handlerVector.size(); i++)
-    {
+	std::vector<XMLNode> handlerVector = def.getChildren();
+
+	//Iterate over each event definition in the node
+	for (unsigned int i = 0; i < handlerVector.size(); i++)
+	{
 		XMLNode cur = handlerVector[i];
 
-        std::string eventName = cur.getName();
-        EventDef curDef;
-        
-        if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
-        {
-           curDef = CORE_Resources::events[eventName];
-           std::vector<XMLNode> handlers = cur.getChildren();
+		std::string eventName = cur.getName();
+		EventDef curDef;
+		
+		if (CORE_Resources::events.find(eventName) != CORE_Resources::events.end())
+		{
+			curDef = CORE_Resources::events[eventName];
+			std::vector<XMLNode> handlers = cur.getChildren();
 
-           //Add a handler for each entry in the event node
-           for (int j = 0; j < handlers.size(); j++)
-           {
-              XMLNode curHandler = handlers[j];
-              std::string handlerName = curHandler.getName();
-              int curEventOpcode = CORE_Resources::getEventCode(eventName);
-              EventHandler* eventHandler = 
-                 CORE_Resources::getEventHandler(handlerName);
+			//Add a handler for each entry in the event node
+			for (int j = 0; j < handlers.size(); j++)
+			{
+				XMLNode curHandler = handlers[j];
+				std::string handlerName = curHandler.getName();
+				int curEventOpcode = CORE_Resources::getEventCode(eventName);
+				EventHandler* eventHandler = 
+				 CORE_Resources::getEventHandler(handlerName);
 
-              if (eventHandler)
-              {
-                 if (eventHandler->matches(CORE_Resources::events[eventName]))
-                 {
-                    eventHandlers[curEventOpcode].push_back ( eventHandler );
-                    eventHandler->registerOwner( getContext() );
-                 }
+				if (eventHandler)
+				{
+					if (eventHandler->matches(CORE_Resources::events[eventName]))
+					{
+						eventHandlers[curEventOpcode].push_back ( eventHandler );
+						eventHandler->registerOwner( getContext() );
+					}
 
-                 else
-                 {
-                    CORE_SystemIO::error("EventHandler \'" + handlerName +
-                       "\' does not match EventDef " + eventName);
-                 }
-              }
+					else
+					{
+						CORE_SystemIO::error("EventHandler \'" + handlerName +
+							"\' does not match EventDef " + eventName);
+					}
+				}
 
-              else
-              {
-                 CORE_SystemIO::error(
-                    "Event handler \'" + handlerName + "\' does not exist");
-              }
-           }
-        }
+				else
+				{
+					CORE_SystemIO::error(
+					"Event handler \'" + handlerName + "\' does not exist");
+				}
+			}
+		}
 
-        //Handlers can only be assigned for predefined events
-        else
-        {
-           CORE_SystemIO::error("Event \'" + eventName + "\' does not exist");
-        }
-    }
+		//Handlers can only be assigned for predefined events
+		else
+		{
+			CORE_SystemIO::error("Event \'" + eventName + "\' does not exist");
+		}
+	}
 }
 
 #pragma endregion
@@ -111,12 +111,22 @@ bool Component::isBasicComponent()
 #pragma region Parent Registration
 
 /**
-   Function: handle
+	Function: handle
 
-   Purpose:
-      Handle the given event
+	Purpose:
+		Handle the given event
 */
-void Component::handle(Event e) {}
+void Component::handle(Event e) {
+	if (e.opcode == updateStep)
+	{
+		for each (Event ev in eventQueue)
+		{
+			handle(ev);
+		}
+
+		eventQueue.clear();
+	}
+}
 
 void Component::registerEv(MessagePasser* passer)
 {
@@ -147,7 +157,7 @@ void Component::registerEv(MessagePasser* passer)
 
 Entity* Component::getContext()
 {
-   return parent;
+	return parent;
 }
 
 //void* Component::findAncestorPointer(std::string name) const
