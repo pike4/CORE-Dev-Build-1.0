@@ -9,6 +9,7 @@ enum OpCode : int
 	drawStep,
 
 	collision,
+	selfCollision,
 
 	////////////////////////////////
 	//Global Events

@@ -57,7 +57,7 @@ void ScriptEventHandler::handle(Event e)
 	if (e.arguments.size() != argNames.size())
 	{
 		CORE_SystemIO::error("Script called with " + std::to_string(e.arguments.size()) +
-			"arguments but takes " + std::to_string(argNames.size()));
+			" arguments but takes " + std::to_string(argNames.size()));
 		return;
 	}
 

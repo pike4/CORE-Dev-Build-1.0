@@ -42,6 +42,11 @@
           <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
         </imageElement>
       </components>
+      <eventHandlers>
+        <collision>
+          <doorHandler/>
+        </collision>
+      </eventHandlers>
     </entity>
     <entity name="cat">
       <sources>

@@ -5,8 +5,9 @@
     <getBoundingBox format="entity"/>
   </events>
    <eventHandlers>
-     <mouseClickHandler file ="handleMouse.lua" type="script"       args="int,x;int,y"/>
-     <explosionHandler  file ="runEntity.lua"   type="script"       args="entity,E1"/>
-     <followHandler     file ="runSelf.lua"     type="entityScript" args="int,x;int,y"/>
+     <mouseClickHandler file="handleMouse.lua"  type="script"       args="int,x;int,y"/>
+     <explosionHandler  file="runEntity.lua"    type="script"       args="entity,E1"/>
+     <followHandler     file="runSelf.lua"      type="entityScript" args="int,x;int,y"/>
+     <doorHandler       file="door.lua"         type="script"       args="entity,other;entity,other2"/>
    </eventHandlers>
 </CORE>

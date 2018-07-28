@@ -25,7 +25,7 @@ void StandardCollision::handle(Event e)
 				{
 					Event e(collision);
 					e.pushEntity(a.e);
-					e.pushEntity(a.e);
+					e.pushEntity(b.e);
 
 					CORE::handle(e);
 				}

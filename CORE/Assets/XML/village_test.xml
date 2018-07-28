@@ -22,11 +22,26 @@
           </cat>
           <StandardCollision>
             <eventHandlers>
-              
+              <collision>
+                <doorHandler/>
+              </collision>
             </eventHandlers>
           </StandardCollision>
         </objects>
       </room1>
+
+      <room2>
+        <objects>
+          <dog>
+            <x>100</x>
+            <y>300</y>
+          </dog>
+          <dog>
+            <x>100</x>
+            <y>600</y>
+          </dog>
+        </objects>
+      </room2>
     </rooms>
   </environment>
 </core>

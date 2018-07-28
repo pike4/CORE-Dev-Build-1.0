@@ -57,6 +57,8 @@ namespace CORE_Resources
 		predefineEvent(mouse2Down, "mouse2Down", { _integer, _integer });
 		predefineEvent(mouse2Up, "mouse2Up", { _integer, _integer });
 		predefineEvent(mouseMoved, "mouseMoved", { _integer, _integer });
+		predefineEvent(collision, "collision", { _entity, _entity });
+		predefineEvent(selfCollision, "selfCollision", { _entity });
 	}
 
 #pragma region XML
