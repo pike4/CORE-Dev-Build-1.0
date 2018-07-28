@@ -166,14 +166,12 @@ namespace CORE_Resources
 	//*****************
 	//Templating
 	//*****************
-	void loadTemplates(std::string fileName);
 	void loadTemplates(XMLNode definer);
 	void loadStates(XMLNode node);
 
 	//*****************
 	//Prototyping
 	//*****************
-	void loadPrototypes(std::string fileName);
 	void loadPrototypes(XMLNode def);
 	void addPrototype(std::string name, Entity* prototype);
 

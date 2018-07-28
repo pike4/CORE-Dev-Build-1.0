@@ -14,8 +14,22 @@
 #include "pugixml.hpp"
 #include<map>
 
+
+
 namespace CORE_Resources
 {
+	std::map<std::string, void(*)(XMLNode)> loadFunctions = {
+		{ "imports",		loadImports},
+		{ "prototypes",		loadPrototypes},
+		{ "templates",		loadTemplates},
+		{ "events",			loadEvents},
+		{ "eventHandlers",	loadEventHandlers},
+		{ "sounds",			loadSounds},
+		{ "music",			loadTracks },
+		{ "strings",		loadStrings },
+		{ "states",			loadStates}
+	};
+
 	lua_State* L;
 	void handle(Event e)
 	{
@@ -79,19 +93,9 @@ namespace CORE_Resources
 			XMLNode topDef = CORE_Factory::generateNode(node);
 			std::string name = topDef.getName();
 
-			if (name == "imports")
+			if (loadFunctions.find(name) != loadFunctions.end())
 			{
-				loadImports(topDef);
-			}
-
-			else if (name == "prototypes")
-			{
-				loadPrototypes(topDef);
-			}
-
-			else if (name == "templates")
-			{
-				loadTemplates(topDef);
+				loadFunctions[name](topDef);
 			}
 
 			else if (name == "environment")
@@ -99,39 +103,9 @@ namespace CORE_Resources
 				new Environment(topDef);
 			}
 
-			else if (name == "events")
-			{
-				loadEvents(topDef);
-			}
-
-			else if (name == "eventHandlers")
-			{
-				loadEventHandlers(topDef);
-			}
-
 			else if (name == "menuSystem")
 			{
 				new MenuSystem(topDef);
-			}
-
-			else if (name == "sounds")
-			{
-				loadSounds(topDef);
-			}
-
-			else if (name == "music")
-			{
-				loadTracks(topDef);
-			}
-
-			else if (name == "strings")
-			{
-				loadStrings(topDef);
-			}
-
-			else if (name == "states")
-			{
-				loadStates(topDef);
 			}
 
 			node = node.next_sibling();
@@ -220,7 +194,141 @@ namespace CORE_Resources
 
 		return newFont;
 	}
+#pragma endregion
 
+#pragma region Loading helper functions
+	// Load the resource files listed in the given node
+	void loadImports(XMLNode node)
+	{
+		std::vector<XMLNode> curChildren = node.getChildren();
+
+		for (unsigned int i = 0; i < curChildren.size(); i++)
+		{
+			XMLNode curImportDef = curChildren[i];
+			std::string importName = curImportDef.getName();
+			loadResourceFile(importName);
+		}
+	}
+
+	// Load entity prototypes from the given node and store for global access
+	void loadPrototypes(XMLNode def)
+	{
+		if (def.null())
+		{
+			CORE_SystemIO::error("Null events node!");
+			return;
+		}
+
+		std::string name = def.getName();
+
+		if (name != "prototypes")
+		{
+			CORE_SystemIO::error("loadPrototypes was called with node: "
+				+ name + " must be called with prototypes node");
+			return;
+		}
+
+		std::vector<XMLNode> prototypeVector = def.getChildren();
+
+		for (unsigned int i = 0; i < prototypeVector.size(); i++)
+		{
+			XMLNode tempDef = prototypeVector[i];
+
+			Entity* prototype = (Entity*)CORE_Factory::generateObject(tempDef);
+			std::string prototypeName = tempDef.getVariable("name");
+
+			if (prototype)
+			{
+				addPrototype(prototypeName, prototype);
+			}
+		}
+	}
+
+	// Load the template definitions from the given node
+	void loadTemplates(XMLNode def)
+	{
+		if (def.getName() == "templates")
+		{
+			std::vector<XMLNode> templateVector = def.getChildren();
+
+			for (unsigned int i = 0; i < templateVector.size(); i++)
+			{
+				XMLNode curDefiner = templateVector[i];
+
+				TemplateDef* newTemplate = new TemplateDef(curDefiner);
+
+				templates[newTemplate->name] = newTemplate;
+			}
+		}
+	}
+
+	// Load the event definitions from the given node and store for global access
+	void loadEvents(XMLNode def)
+	{
+		if (def.null())
+		{
+			CORE_SystemIO::error("Null events node!");
+			return;
+		}
+
+		std::string name = def.getName();
+
+		std::vector<XMLNode>  eventNodes = def.getChildren();
+
+		for (unsigned int i = 0; i < eventNodes.size(); i++)
+		{
+			XMLNode cur = eventNodes[i];
+			std::string curName = cur.getName();
+
+			if (events.find(curName) != events.end())
+			{
+				CORE_SystemIO::error("Event " + curName + " already defined");
+			}
+
+			else
+			{
+				EventDef newEvent(cur);
+				eventCodes[curName] = eventID++;
+				events[curName] = newEvent;
+			}
+		}
+	}
+
+	// Define event handler prototypes from the given node
+	void loadEventHandlers(XMLNode def)
+	{
+		if (def.null())
+		{
+			CORE_SystemIO::error("Null event handlers node!");
+			return;
+		}
+
+		std::vector<XMLNode> handlerVector = def.getChildren();
+
+		for (unsigned int i = 0; i < handlerVector.size(); i++)
+		{
+			XMLNode curHandlerNode = handlerVector[i];
+			std::string handlerName = curHandlerNode.getName();
+			std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
+
+			if (eventHandlers.find(handlerName) == eventHandlers.end())
+			{
+				//Parse the format from the format node
+				EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
+
+				if (newHandler)
+				{
+					eventHandlers[handlerName] = newHandler;
+				}
+			}
+
+			else
+			{
+				CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
+			}
+		}
+	}
+	
 	// Load sounds from the given node
 	void loadSounds(XMLNode node)
 	{
@@ -240,7 +348,28 @@ namespace CORE_Resources
 			}
 		}
 	}
+	
+	// Load music tracks from the given node
+	void loadTracks(XMLNode node)
+	{
+		std::vector<XMLNode> children = node.getChildren();
 
+		for (int i = 0; i < children.size(); i++)
+		{
+			std::string name = children[i].getName();
+			std::string file = children[i].getVariable("file");
+
+			if (name.empty() || file.empty()) {
+				CORE_SystemIO::error("Bad sounds list in XML");
+			}
+
+			else {
+				CORE_Audio::addTrack(name, file);
+			}
+		}
+	}
+
+	// Load string variable definitions from the given node
 	void loadStrings(XMLNode node)
 	{
 		std::vector<XMLNode> variableNodes = node.getChildren();
@@ -269,38 +398,7 @@ namespace CORE_Resources
 		}
 	}
 
-	void loadImports(XMLNode node)
-	{
-		std::vector<XMLNode> curChildren = node.getChildren();
-
-		for (unsigned int i = 0; i < curChildren.size(); i++)
-		{
-			XMLNode curImportDef = curChildren[i];
-			std::string importName = curImportDef.getName();
-			loadResourceFile(importName);
-		}
-	}
-
-	// Load music tracks from the given node
-	void loadTracks(XMLNode node)
-	{
-		std::vector<XMLNode> children = node.getChildren();
-
-		for (int i = 0; i < children.size(); i++)
-		{
-			std::string name = children[i].getName();
-			std::string file = children[i].getVariable("file");
-
-			if (name.empty() || file.empty()) {
-				CORE_SystemIO::error("Bad sounds list in XML");
-			}
-
-			else {
-				CORE_Audio::addTrack(name, file);
-			}
-		}
-	}
-
+	// Load states from the given node
 	void loadStates(XMLNode node)
 	{
 		std::vector<XMLNode> stateChildren = node.getChildren();
@@ -453,76 +551,8 @@ namespace CORE_Resources
 	}
 #pragma endregion
 
-#pragma region XML Templating
-	void loadTemplates(std::string fileName)
-	{
-		XMLNode def = getFirstNodeFromFile(fileName);
-		loadTemplates(def);
-	}
-
-	void loadTemplates(XMLNode def)
-	{
-		if (def.getName() == "templates")
-		{
-			std::vector<XMLNode> templateVector = def.getChildren();
-
-			for (unsigned int i = 0; i < templateVector.size(); i++)
-			{
-				XMLNode curDefiner = templateVector[i];
-
-				TemplateDef* newTemplate = new TemplateDef(curDefiner);
-
-				templates[newTemplate->name] = newTemplate;
-			}
-		}
-	}
-#pragma endregion
 
 #pragma region Prototyping
-	void loadPrototypes(std::string fileName)
-	{
-		XMLNode def = getFirstNodeFromFile(fileName);
-		loadPrototypes(def);
-	}
-
-	/**
-	Function: loadPrototype
-
-	Purpose:
-		Load entity prototypes from the given node and store for global access
-	*/
-	void loadPrototypes(XMLNode def)
-	{
-		if ( def.null() )
-		{
-			 CORE_SystemIO::error("Null events node!");
-			 return;
-		}
-
-		std::string name = def.getName();
-
-		if (name != "prototypes")
-		{
-			 CORE_SystemIO::error("loadPrototypes was called with node: "
-				  + name + " must be called with prototypes node");
-			return;
-		}
-
-		std::vector<XMLNode> prototypeVector = def.getChildren();
-
-		for (unsigned int i = 0; i < prototypeVector.size(); i++)
-		{
-			XMLNode tempDef = prototypeVector[i];
-
-			Entity* prototype = (Entity*) CORE_Factory::generateObject(tempDef);
-			std::string prototypeName = tempDef.getVariable("name");
-
-			if (prototype)
-			{
-				addPrototype(prototypeName, prototype);
-			}
-		}
-	}
 
 	/**
 	Function: addPrototype
@@ -566,83 +596,6 @@ namespace CORE_Resources
 
 		CORE_SystemIO::error("Event " + name + " not found");
 		return keyError;
-	}
-
-	/**
-	Function: loadEvents
-
-	Purpose:
-		Load the event definitions from the given node and store for global access
-	*/
-	void loadEvents(XMLNode def)
-	{
-		 if (def.null() )
-		 {
-			  CORE_SystemIO::error("Null events node!");
-			  return;
-		 }
-
-		 std::string name = def.getName();
-
-		std::vector<XMLNode>  eventNodes = def.getChildren();
-
-		 for (unsigned int i = 0; i < eventNodes.size(); i++) 
-		 {	 
-			  XMLNode cur = eventNodes[i];
-			  std::string curName = cur.getName();
-
-			  if (events.find(curName) != events.end()) 
-			  {
-					CORE_SystemIO::error("Event " + curName + " already defined");
-			  }
-
-			  else 
-			  {
-					EventDef newEvent(cur);
-					eventCodes[curName] = eventID++;
-					events[curName] = newEvent;
-			  }
-		 }
-	}
-
-	/**
-	Function: loadEventHandlers
-
-	Purpose:
-		Define event handler prototypes from the given node
-	*/
-	void loadEventHandlers(XMLNode def)
-	{
-		if (def.null())
-		{
-			CORE_SystemIO::error("Null event handlers node!");
-			return;
-		}
-
-		std::vector<XMLNode> handlerVector = def.getChildren();
-
-		for (unsigned int i = 0; i < handlerVector.size(); i++)
-		{
-			XMLNode curHandlerNode = handlerVector[i];
-			std::string handlerName = curHandlerNode.getName();
-			std::vector<CORE_TypeTraits::PrimitiveType> handlerFormat;
-
-			if (eventHandlers.find(handlerName) == eventHandlers.end())
-			{
-				//Parse the format from the format node
-				EventHandler* newHandler = CORE_Factory::constructEventHandler(curHandlerNode);
-
-				if (newHandler)
-				{
-					eventHandlers[handlerName] = newHandler;
-				}
-			}
-
-			else
-			{
-				CORE_SystemIO::error("EventHandler \'" + handlerName + "\' is already defined");
-			}
-		}
 	}
 
 	/**
