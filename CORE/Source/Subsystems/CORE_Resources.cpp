@@ -121,6 +121,16 @@ namespace CORE_Resources
 				new MenuSystem(topDef);
 			}
 
+			else if (name == "sounds")
+			{
+				loadSounds(topDef);
+			}
+
+			else if (name == "music")
+			{
+				loadTracks(topDef);
+			}
+
 			else if (name == "strings")
 			{
 				std::vector<XMLNode> variableNodes = topDef.getChildren();
@@ -177,12 +187,7 @@ namespace CORE_Resources
 #pragma endregion
 
 #pragma region Asset Loading
-	/**
-	 Function: loadTexture
-
-	 Purpose:
-		Load and return the texture of the given file name
-	 */
+	// Load and return the texture of the given file name
 	SDL_Texture* loadTexture(std::string fileName)
 	{
 		SDL_Surface* loadedTexture = IMG_Load(fileName.c_str());
@@ -207,12 +212,7 @@ namespace CORE_Resources
 		return optimizedSurface;
 	}
 
-	/**
-	Function: loadMusic
-
-	Purpose:
-		Load and return a music track of the given file name
-	*/
+	// Load and return a music track of the given file name
 	Mix_Music* loadMusic(std::string fileName)
 	{
 		Mix_Music* newMusic = Mix_LoadMUS(fileName.c_str());
@@ -230,13 +230,8 @@ namespace CORE_Resources
 		return newMusic;
 	}
 
-	/**
-	Function: loadChunk
-
-	Purpose:
-		Load and return an audio chunk of the given file name
-	*/
-	Mix_Chunk* loadChunk(std::string fileName)
+	// Load and return an audio chunk of the given file name
+	Mix_Chunk* loadSound(std::string fileName)
 	{
 
 		Mix_Chunk* newChunk = Mix_LoadWAV(fileName.c_str());
@@ -254,12 +249,7 @@ namespace CORE_Resources
 		return newChunk;
 	}
 
-	/**
-	Function: loadFont
-
-	Purpose:
-		
-	*/
+	//
 	TTF_Font* loadFont(std::string fileName, int size)
 	{
 		TTF_Font* newFont = TTF_OpenFont(fileName.c_str(), size);
@@ -276,6 +266,46 @@ namespace CORE_Resources
 		}
 
 		return newFont;
+	}
+
+	// Load sounds from the given node
+	void loadSounds(XMLNode node)
+	{
+		std::vector<XMLNode> children = node.getChildren();
+
+		for (int i = 0; i < children.size(); i++)
+		{
+			std::string name = children[i].getName();
+			std::string file = children[i].getVariable("file");
+
+			if (name.empty() || file.empty()) {
+				CORE_SystemIO::error("Bad sounds list in XML");
+			}
+
+			else {
+				CORE_Audio::addSound(name, file);
+			}
+		}
+	}
+
+	// Load music tracks from the given node
+	void loadTracks(XMLNode node)
+	{
+		std::vector<XMLNode> children = node.getChildren();
+
+		for (int i = 0; i < children.size(); i++)
+		{
+			std::string name = children[i].getName();
+			std::string file = children[i].getVariable("file");
+
+			if (name.empty() || file.empty()) {
+				CORE_SystemIO::error("Bad sounds list in XML");
+			}
+
+			else {
+				CORE_Audio::addTrack(name, file);
+			}
+		}
 	}
 #pragma endregion
 
@@ -305,7 +335,7 @@ namespace CORE_Resources
 			return loadedSounds[fileName];
 		}
 
-		Mix_Chunk* newSound = loadChunk(fileName);
+		Mix_Chunk* newSound = loadSound(fileName);
 		if (newSound != NULL)
 		{
 			loadedSounds.insert(std::pair<std::string, Mix_Chunk*>(fileName, newSound));

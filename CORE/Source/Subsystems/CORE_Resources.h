@@ -147,8 +147,10 @@ namespace CORE_Resources
 	//****************************
 	SDL_Texture* loadTexture(std::string fileName);
 	Mix_Music* loadMusic(std::string fileName);
-	Mix_Chunk* loadChunk(std::string fileName);
+	Mix_Chunk* loadSound(std::string fileName);
 	TTF_Font* loadFont(std::string fileName, int size);
+	void loadSounds(XMLNode node);
+	void loadTracks(XMLNode node);
 
 	//****************************
 	//Asset Assignment

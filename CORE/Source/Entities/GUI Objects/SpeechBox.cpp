@@ -36,7 +36,7 @@ void SpeechBox::update()
 		if (characterIndex < lines[firstLineIndex].length() - 1)
 		{
 			characterIndex++;
-			CORE_Audio::playSound(CORE_Resources::assignSound("Assets/Music/talk_sample_1.wav"));
+			CORE_Audio::playSound("Assets/Music/talk_sample_1.wav");
 		}
 
 		else if (lastLineIndex < maxLines - 1)

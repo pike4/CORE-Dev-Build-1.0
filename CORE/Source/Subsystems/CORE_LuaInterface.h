@@ -12,5 +12,10 @@ namespace CORE_LuaInterface
 	
 	void initialize();
 
-	static int goToRoom(lua_State* L);
+	// Game
+	static int goToRoom		(lua_State* L);
+
+	// Audio
+	static int playMusic	(lua_State* L);
+	static int playSound	(lua_State* L);
 }
