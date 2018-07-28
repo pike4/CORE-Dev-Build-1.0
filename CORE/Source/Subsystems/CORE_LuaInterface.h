@@ -20,4 +20,6 @@ namespace CORE_LuaInterface
 	static int playMusic	(lua_State* L);
 	static int playSound	(lua_State* L);
 	static int pauseMusic	(lua_State* L);
+
+	Event getEventFromStack	(int n, int stackIndex, lua_State* L);
 }

@@ -38,9 +38,9 @@ namespace CORE
 
 	void handle(Event e);
 
-	Component* getObjectByID(int ID);
+	Entity* getObjectByID(int ID);
 	void removeObject(int ID);
-	int storeObject(Component* object);
+	int storeObject(Entity* object);
 
 	extern Environment* currentEnvironment;
 	extern Room* currentRoom;

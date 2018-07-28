@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Collidable.h"
 #include "Controllable.h"
-
+#include "CORE.h"
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"
 #include "ComponentTypes.h"
@@ -11,6 +11,7 @@
 
 Entity::Entity()
 {
+	ID = CORE::storeObject(this);
 	DataImpl<int>* myID = new DataImpl<int>();
 	*myID = ID;
 
@@ -193,6 +194,11 @@ void Entity::on(std::string eventName, std::string handlerName)
 }
 
 void Entity::handle(Event e) {}
+
+int Entity::getID()
+{
+	return ID;
+}
 
 /**
  *  Get a vector of key-value pairs representing all data members in the entity

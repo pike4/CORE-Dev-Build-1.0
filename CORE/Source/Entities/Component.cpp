@@ -7,10 +7,7 @@
 #include <cstring>
 
 #pragma region Creational
-Component::Component()
-{
-	ID = CORE::storeObject(this);
-}
+Component::Component() {}
 
 void Component::storeChild(Component* child)
 {
@@ -35,7 +32,6 @@ bool Component::getTrait(std::string trait)
 {
    return false;
 }
-
 
 //Component gets only the event handlers assigned to it in the file. 
 //Subclasses may have handlers baked in

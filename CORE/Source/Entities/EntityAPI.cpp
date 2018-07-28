@@ -1,11 +1,13 @@
 #include "EntityAPI.h"
+#include "CORE_LuaInterface.h"
+#include "CORE_Resources.h"
 #include "CORE.h"
 
 /**
 Send the given event to the given entity
 
 Lua Parameters:
-\param E1		- A table containing a pointer to the entity in question
+\param E1		- The ID of the target entity
 \param name		- The name of the event to generate
 \param arg1-argn- The arguments list
 */
@@ -13,18 +15,20 @@ int luaSendEventToEntity(lua_State* L)
 {
 	int n = lua_gettop(L);
 
-	if (n < 2) {
+	if (n < 2) 
+	{
 		CORE_SystemIO::error("Function sendToOther requires at least 2 arguments");
 	}
 
 	int ID = lua_tointeger(L, 1);
+	
+	Event e = CORE_LuaInterface::getEventFromStack(n-1, 1, L);
 
-	if (CORE::getObjectByID(ID) != NULL) {
-		printf("found object\n");
-	}
+	Entity* entity = CORE::getObjectByID(ID);
 
-	for (int i = 2; i < n; i++) {
-
+	if (entity)
+	{
+		entity->handle(e);
 	}
 
 	return 0;
@@ -44,6 +48,8 @@ int luaSendEventOwnChildren(lua_State* L)
 	if (n < 1) {
 		CORE_SystemIO::error("Function sendToChildren requires at least 1 argument");
 	}
+
+
 
 	return 0;
 }

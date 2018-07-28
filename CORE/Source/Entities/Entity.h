@@ -37,6 +37,8 @@ public:
 	Entity(Entity& other);
 
 	virtual Entity* getContext();
+
+	int Entity::getID();
 	
 #pragma region Instantiation
 	virtual void get_data(DataSource* source);
@@ -170,6 +172,8 @@ public:
 #pragma endregion
 
 protected:
+	int ID;
+
 	//Maps event codes to vectors of Controllable objects that listen for those events
 	std::map<int, std::vector<Controllable*>> listeners;
 

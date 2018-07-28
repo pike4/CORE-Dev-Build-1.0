@@ -12,7 +12,7 @@
 namespace CORE
 {
 	int globalID;
-	std::map<int, Component*> objects;
+	std::map<int, Entity*> objects;
 
 	void start()
 	{
@@ -198,9 +198,9 @@ namespace CORE
 	}
 #pragma endregion
 
-	Component* getObjectByID(int ID)
+	Entity* getObjectByID(int ID)
 	{
-		Component* ret = NULL;
+		Entity* ret = NULL;
 
 		if (objects.find(ID) != objects.end()) {
 			ret = objects[ID];
@@ -222,7 +222,7 @@ namespace CORE
 		}
 	}
 
-	int storeObject(Component* object)
+	int storeObject(Entity* object)
 	{
 		int newID = globalID++;
 

@@ -196,6 +196,20 @@ namespace CORE_Resources
 	}
 #pragma endregion
 
+	EventDef getEventDef(std::string name)
+	{
+		if (events.find(name) != events.end())
+		{
+			return events[name];
+		}
+
+		else
+		{
+			EventDef a;
+			return a;
+		}
+	}
+
 #pragma region Loading helper functions
 	// Load the resource files listed in the given node
 	void loadImports(XMLNode node)

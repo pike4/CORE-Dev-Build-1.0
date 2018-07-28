@@ -49,6 +49,7 @@ namespace CORE_Resources
 	TemplateDef* getTemplate(std::string name);
 	Environment* getEnvironment(std::string environmentName);
 	MenuSystem* getMenuSystem(std::string menuName);
+	EventDef getEventDef(std::string name);
 
 	StateOffsetCalculator* getStateOffsetCalculator(std::vector<std::string> variables);
 

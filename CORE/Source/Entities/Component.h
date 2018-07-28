@@ -100,10 +100,6 @@ public:
 	Entity* parent;
 
 protected:
-	//ID to *almost certainly* uniquely identify every componenet and entity in order to 
-	//prevent hash collisions between parent and child variables of the same name.
-	int ID;
-
 	//Maps event names to event handlers that will be called when an event is received
 	std::map<int, std::vector< EventHandler*> > eventHandlers;
 };

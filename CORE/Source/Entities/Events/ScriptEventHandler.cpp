@@ -113,7 +113,7 @@ void ScriptEventHandler::pushPrimitive(lua_State* L, Data* data)
 		lua_pushboolean(L, *((DataImpl<bool>*) data));
 		break;
 	case CORE_TypeTraits::_floatingPoint:
-		lua_pushnumber(L, *((DataImpl<float>*) data));
+		lua_pushnumber(L, *((DataImpl<double>*) data));
 		break;
 	default:
 		lua_pushinteger(L, 0);
@@ -146,7 +146,7 @@ void ScriptEventHandler::topToPrimitive(Data* dat)
 		*((DataImpl<bool>*) dat) = lua_toboolean(L, -1);
 		break;
 	case _floatingPoint:
-		*((DataImpl<float>*) dat) = (float)lua_tonumber(L, -1);
+		*((DataImpl<double>*) dat) = (double)lua_tonumber(L, -1);
 		break;
 	}
 }
