@@ -151,6 +151,8 @@ namespace CORE_Resources
 	TTF_Font* loadFont(std::string fileName, int size);
 	void loadSounds(XMLNode node);
 	void loadTracks(XMLNode node);
+	void loadStrings(XMLNode node);
+	void loadImports(XMLNode node);
 
 	//****************************
 	//Asset Assignment
@@ -166,6 +168,7 @@ namespace CORE_Resources
 	//*****************
 	void loadTemplates(std::string fileName);
 	void loadTemplates(XMLNode definer);
+	void loadStates(XMLNode node);
 
 	//*****************
 	//Prototyping

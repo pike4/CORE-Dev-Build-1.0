@@ -81,14 +81,7 @@ namespace CORE_Resources
 
 			if (name == "imports")
 			{
-				std::vector<XMLNode> curChildren = topDef.getChildren();
-
-				for (unsigned int i = 0; i < curChildren.size(); i++)
-				{
-					XMLNode curImportDef = curChildren[i];
-					std::string importName = curImportDef.getName();
-					loadResourceFile(importName);
-				}
+				loadImports(topDef);
 			}
 
 			else if (name == "prototypes")
@@ -133,52 +126,12 @@ namespace CORE_Resources
 
 			else if (name == "strings")
 			{
-				std::vector<XMLNode> variableNodes = topDef.getChildren();
-
-				for (unsigned int i = 0; i < variableNodes.size(); i++)
-				{
-					XMLNode curNode = variableNodes[i];
-
-					std::string variableName = curNode.getName();
-					std::string newStringVariable = curNode.getMainValue();
-
-					if (!newStringVariable.empty() && !variableName.empty())
-					{
-						if (stringVariables.find(newStringVariable) == stringVariables.end())
-						{
-							stringVariables[variableName] = newStringVariable;
-						}
-					}
-
-					else
-					{
-						//TODO dev output instead
-						CORE_SystemIO::print("Multiple instantiations of string variable \'" +
-							variableName + "\'");
-					}
-				}
+				loadStrings(topDef);
 			}
 
 			else if (name == "states")
 			{
-				std::vector<XMLNode> stateChildren = topDef.getChildren();
-
-				for (unsigned int i = 0; i < stateChildren.size(); i++)
-				{
-					XMLNode curNode = stateChildren[i];
-					std::string name = curNode.getName();
-					
-					State* newState = CORE_Factory::generateState(curNode);
-					if (globalStates.find(name) == globalStates.end())
-					{
-						globalStates[name] = newState;
-					}
-				
-					else
-					{
-						CORE_SystemIO::error("State: " + name + "already exists");
-					}
-				}
+				loadStates(topDef);
 			}
 
 			node = node.next_sibling();
@@ -288,6 +241,46 @@ namespace CORE_Resources
 		}
 	}
 
+	void loadStrings(XMLNode node)
+	{
+		std::vector<XMLNode> variableNodes = node.getChildren();
+
+		for (unsigned int i = 0; i < variableNodes.size(); i++)
+		{
+			XMLNode curNode = variableNodes[i];
+
+			std::string variableName = curNode.getName();
+			std::string newStringVariable = curNode.getMainValue();
+
+			if (!newStringVariable.empty() && !variableName.empty())
+			{
+				if (stringVariables.find(newStringVariable) == stringVariables.end())
+				{
+					stringVariables[variableName] = newStringVariable;
+				}
+			}
+
+			else
+			{
+				//TODO dev output instead
+				CORE_SystemIO::print("Multiple instantiations of string variable \'" +
+					variableName + "\'");
+			}
+		}
+	}
+
+	void loadImports(XMLNode node)
+	{
+		std::vector<XMLNode> curChildren = node.getChildren();
+
+		for (unsigned int i = 0; i < curChildren.size(); i++)
+		{
+			XMLNode curImportDef = curChildren[i];
+			std::string importName = curImportDef.getName();
+			loadResourceFile(importName);
+		}
+	}
+
 	// Load music tracks from the given node
 	void loadTracks(XMLNode node)
 	{
@@ -304,6 +297,28 @@ namespace CORE_Resources
 
 			else {
 				CORE_Audio::addTrack(name, file);
+			}
+		}
+	}
+
+	void loadStates(XMLNode node)
+	{
+		std::vector<XMLNode> stateChildren = node.getChildren();
+
+		for (unsigned int i = 0; i < stateChildren.size(); i++)
+		{
+			XMLNode curNode = stateChildren[i];
+			std::string name = curNode.getName();
+
+			State* newState = CORE_Factory::generateState(curNode);
+			if (globalStates.find(name) == globalStates.end())
+			{
+				globalStates[name] = newState;
+			}
+
+			else
+			{
+				CORE_SystemIO::error("State: " + name + "already exists");
 			}
 		}
 	}
