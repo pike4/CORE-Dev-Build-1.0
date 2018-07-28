@@ -21,6 +21,7 @@ public:
 
 	virtual void draw();
 	virtual void update();
+	virtual void handle(Event e);
 
 	void add(Control* controlsToAdd[], int numButtons);
 	void add(Control* controlToAdd);

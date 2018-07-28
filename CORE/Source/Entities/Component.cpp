@@ -119,36 +119,7 @@ bool Component::isBasicComponent()
    Purpose:
       Handle the given event
 */
-void Component::handle(Event e)
-{
-   if (eventHandlers.find(e.opcode) != eventHandlers.end())
-   {
-      for (unsigned int i = 0; i < eventHandlers[e.opcode].size(); i++)
-      {
-         eventHandlers[e.opcode][i]->handleEvent(e.arguments);
-      }
-   }
-}
-
-/**
-Function: registerEvents
-
-Purpose:
-   Register events 
-*/
-void Component::registerEvents(Entity* newParent)
-{
-	if (!parent)
-	{
-		printf("NULL parent\n");
-		return;
-	}
-
-	for (unsigned int i = 0; i < events.size(); i++)
-	{
-		parent->addListener(events[i], this);
-	}
-}
+void Component::handle(Event e) {}
 
 void Component::registerEv(MessagePasser* passer)
 {
@@ -161,6 +132,13 @@ void Component::registerEv(MessagePasser* passer)
 	for (unsigned int i = 0; i < events.size(); i++)
 	{
 		passer->registerEvent(events[i], this);
+	}
+
+	for (std::map<int, std::vector<EventHandler*>>::iterator it = eventHandlers.begin(); it != eventHandlers.end(); ++it)
+	{
+		std::vector<EventHandler*>& vec = it->second;
+		for (int i = 0; i < vec.size(); i++)
+			passer->registerEvent(it->first, vec[i]);
 	}
 }
 

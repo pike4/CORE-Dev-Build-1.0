@@ -12,8 +12,6 @@ public:
 
 	void Control::get_data(DataSource* source);
 
-	void registerEvents(Entity* parent);
-
    virtual void handle(Event e);
 
 	//Enable or disable the control for drawing

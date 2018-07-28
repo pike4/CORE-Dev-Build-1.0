@@ -91,7 +91,6 @@ public:
 	#pragma endregion
 
 	#pragma region Parent Registration
-	virtual void registerEvents(Entity* newParent);
 	virtual void registerEv(MessagePasser* passer);
 	#pragma endregion
 

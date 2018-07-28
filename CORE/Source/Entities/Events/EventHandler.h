@@ -2,6 +2,7 @@
 
 #include "EventDef.h"
 #include "Event.h"
+#include "Controllable.h"
 
 
 #include "CORE_TypeTraits.h"
@@ -12,10 +13,10 @@
 using CORE_TypeTraits::PrimitiveType;
 class Entity;
 
-class EventHandler
+class EventHandler : public Controllable
 {
 public:
-   virtual void handleEvent(std::vector<EventArg> args);
+   virtual void handle(Event e);
 
    virtual void registerOwner(Entity* owner);
 

@@ -115,3 +115,20 @@ void MenuScreen::update()
 		}
 	}
 }
+
+void MenuScreen::handle(Event e)
+{
+	if (observers.find(e.opcode) != observers.end())
+	{
+		std::vector<Controllable*> vec = observers[e.opcode];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->handle(e);
+		}
+	}
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		components[i]->handle(e);
+	}
+}

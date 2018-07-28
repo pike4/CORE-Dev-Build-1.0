@@ -3,7 +3,7 @@
 class EntityScriptEventHandler : public ScriptEventHandler
 {
 public:
-   virtual void handleEvent(std::vector<EventArg>);
+   virtual void handle(Event e);
    EntityScriptEventHandler(XMLNode def);
    virtual void registerOwner(Entity* owner);
    virtual EventHandler* spawnCopy();

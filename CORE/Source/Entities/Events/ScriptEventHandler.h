@@ -9,7 +9,7 @@ class ScriptEventHandler : public EventHandler
 public:
    ScriptEventHandler(XMLNode def);
    virtual EventHandler* spawnCopy();
-   virtual void handleEvent(std::vector<EventArg>);
+   virtual void handle(Event e);
 
 protected:
     lua_State* L;

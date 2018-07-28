@@ -38,6 +38,11 @@
 
 int main()
 {
+	printf("sizeof: %d\n", sizeof(Entity));
+	printf("sizeof: %d\n", sizeof(std::vector<Controllable*>));
+	printf("sizeof: %d\n", sizeof(std::map<int, int>));
+
+
 	//Lua!
 	CORE_Resources::L = luaL_newstate();
 	luaL_openlibs(CORE_Resources::L);

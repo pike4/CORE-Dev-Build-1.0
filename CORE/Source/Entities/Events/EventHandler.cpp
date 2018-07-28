@@ -3,15 +3,15 @@
 
 #include "CORE_SystemIO.h"
 
-void EventHandler::handleEvent(std::vector<EventArg> arguments)
+void EventHandler::handle(Event e)
 {
-   if (format.size() != arguments.size())
-   {
-      CORE_SystemIO::error("Event handler " + name + " was called with " 
-         + std::to_string(arguments.size()) + " arguments but is meant to be called with " 
-         + std::to_string(format.size()));
-      return;
-   }  
+	if (format.size() != e.arguments.size())
+	{
+		CORE_SystemIO::error("Event handler " + name + " was called with "
+			+ std::to_string(e.arguments.size()) + " arguments but is meant to be called with "
+			+ std::to_string(format.size()));
+		return;
+	}
 }
 
 EventHandler* EventHandler::spawnCopy()

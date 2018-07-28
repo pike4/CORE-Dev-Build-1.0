@@ -20,11 +20,6 @@ void Control::get_data(DataSource* source)
 	h = source->getData<int>("h");
 }
 
-void Control::registerEvents(Entity* parent)
-{
-	Entity::registerEvents(parent);
-}
-
 bool Control::isWithin(int aX, int aY)
 {
 	return (aX > *x && aX < *x + *w && aY > *y && aY < *y + *h);

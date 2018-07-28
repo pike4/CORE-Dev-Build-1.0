@@ -293,7 +293,6 @@ namespace CORE_Factory
 		if (objectToSpawn != NULL)
 		{
 			Entity* ret = new Entity(*objectToSpawn);
-			ret->registerEvents(NULL);
 			return ret;
 		}
 

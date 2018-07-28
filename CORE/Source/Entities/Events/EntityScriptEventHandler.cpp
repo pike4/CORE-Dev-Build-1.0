@@ -5,13 +5,12 @@ EventHandler* EntityScriptEventHandler::spawnCopy()
    return new EntityScriptEventHandler(*this);
 }
 
-void EntityScriptEventHandler::handleEvent(std::vector<EventArg> args)
+
+void EntityScriptEventHandler::handle(Event e)
 {
-   args.push_back(owner);
-
-   ScriptEventHandler::handleEvent(args);
-
-   popEntity("me", owner);
+	e.arguments.push_back(owner);
+	ScriptEventHandler::handle(e);
+	popEntity("me", owner);
 }
 
 EntityScriptEventHandler::EntityScriptEventHandler(XMLNode def)

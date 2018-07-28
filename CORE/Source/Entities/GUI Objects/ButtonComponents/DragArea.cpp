@@ -39,7 +39,6 @@ void DragArea::finalize()
 {
 	processor->parent = this;
 	processor->finalize();
-	processor->registerEvents(this);
 }
 
 void DragArea::get_data(DataSource* source)
@@ -90,7 +89,6 @@ void DragArea::registerEvents(Entity* parent)
 		setData("h", parent->getData<int>("h"));
 		h = getData<int>("h");
 	}
-	Control::registerEvents(parent);
 }
 
 void DragArea::handleMouseEnter()

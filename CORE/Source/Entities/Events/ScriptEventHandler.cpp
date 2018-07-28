@@ -78,47 +78,47 @@ EventHandler* ScriptEventHandler::spawnCopy()
    Push the arguments onto the lua stack, run the script, and update argument
    values when values change in script
 */
-void ScriptEventHandler::handleEvent(std::vector<EventArg> args)
+void ScriptEventHandler::handle(Event e)
 {
-	if (args.size() != argNames.size())
+	if (e.arguments.size() != argNames.size())
 	{
-		CORE_SystemIO::error("Script called with " + std::to_string(args.size()) +
-			"arguments but takes " + std::to_string( argNames.size() ));
+		CORE_SystemIO::error("Script called with " + std::to_string(e.arguments.size()) +
+			"arguments but takes " + std::to_string(argNames.size()));
 		return;
 	}
 
 	//Push arguments onto the stack and register global names
-	for (unsigned int i = 0; i < args.size(); i++)
+	for (unsigned int i = 0; i < e.arguments.size(); i++)
 	{
 		// The current argument is an entity
-		if (args[i].data == NULL)
+		if (e.arguments[i].data == NULL)
 		{
-			pushEntity(argNames[i], args[i].entity);
+			pushEntity(argNames[i], e.arguments[i].entity);
 		}
-		
+
 		// The current argument is a primitive
 		else
 		{
-			pushPrimitive(L, args[i].data);
+			pushPrimitive(L, e.arguments[i].data);
 			lua_setglobal(L, argNames[i].c_str());
 		}
 	}
-	
+
 	luaL_dofile(L, scriptName.c_str());
-	
+
 	//Update the arguments according to the stack values
-	for (unsigned int i = 0; i < args.size(); i++)
+	for (unsigned int i = 0; i < e.arguments.size(); i++)
 	{
 		//Update a global primitive
-		if (args[i].entity == NULL)
+		if (e.arguments[i].entity == NULL)
 		{
-			popPrimitive(argNames[i], args[i].data);
+			popPrimitive(argNames[i], e.arguments[i].data);
 		}
-		
+
 		//Update an entity
 		else
 		{
-			popEntity(argNames[i], args[i].entity);
+			popEntity(argNames[i], e.arguments[i].entity);
 		}
 	}
 }

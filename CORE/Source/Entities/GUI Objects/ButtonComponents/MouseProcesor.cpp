@@ -90,8 +90,3 @@ void MouseProcessor::handle(Event e)
 		break;
 	}
 }
-
-void MouseProcessor::registerEvents(Entity* parent)
-{
-	Component::registerEvents(parent);
-}

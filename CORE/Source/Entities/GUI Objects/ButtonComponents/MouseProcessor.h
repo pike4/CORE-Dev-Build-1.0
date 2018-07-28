@@ -9,10 +9,7 @@ class MouseProcessor : public Component
 {
 public:
 	MouseProcessor();
-   virtual void handle(Event e);
-
-	virtual void registerEvents(Entity* parent);
-
+	virtual void handle(Event e);
 
 	//The coordinates of the parent control
 	DataImpl<int>* x;

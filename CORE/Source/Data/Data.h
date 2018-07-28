@@ -51,13 +51,13 @@ public:
 		}
 
 		
-      if (CORE_TypeTraits::dataIsType<T>(other))
-          data[sourceCount++] = (DataImpl<T>*) other;
+		if (CORE_TypeTraits::dataIsType<T>(other))
+			 data[sourceCount++] = (DataImpl<T>*) other;
 
-      else
-          CORE_SystemIO::error("Tried to add dependency of incompatible type. Underlying data is "
-              + CORE_TypeTraits::getPrimitiveTypeName(typeOfT<T>()) + " but new dependency is "
-              + CORE_TypeTraits::getPrimitiveTypeName(other->getType()));
+		else
+			 CORE_SystemIO::error("Tried to add dependency of incompatible type. Underlying data is "
+				  + CORE_TypeTraits::getPrimitiveTypeName(typeOfT<T>()) + " but new dependency is "
+				  + CORE_TypeTraits::getPrimitiveTypeName(other->getType()));
 	}
 
 	virtual void remove(Data* other)
@@ -176,11 +176,11 @@ T DataImpl<T>::get() const
 template <typename T>
 DataImpl<T>::DataImpl(int funcType = 1)
 {
-    if (funcType == TR_SIMPLE)
-        data = NULL;
+	 if (funcType == TR_SIMPLE)
+		  data = NULL;
 
-    else
-        data = (DataImpl<T>**)malloc(maxSources * sizeof(Data*));
+	 else
+		  data = (DataImpl<T>**)malloc(maxSources * sizeof(Data*));
 
 	switch (funcType)
 	{
@@ -197,7 +197,7 @@ DataImpl<T>::DataImpl(int funcType = 1)
 		transform = new TR_Average<T>();
 		break;
 	default:
-      
+		
 		break;
 	}
 }

@@ -9,7 +9,7 @@ class DragArea : public Control
 {
 public:
 	virtual void update();
-   virtual void handle(Event e);
+	virtual void handle(Event e);
 
 	DragArea(int x, int y, int w, int h, GUI_Area* owner);
 	DragArea();
