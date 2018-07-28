@@ -1,2 +1,2 @@
-playMusic("cantinaMusic")
+pauseMusic()
 goToRoom("room2")

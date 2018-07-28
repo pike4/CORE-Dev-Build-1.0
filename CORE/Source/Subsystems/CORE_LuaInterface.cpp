@@ -11,6 +11,7 @@ namespace CORE_LuaInterface
 		// Bind CORE API functions to lua state
 		lua_register(CORE_Resources::L, "goToRoom", goToRoom);
 		lua_register(CORE_Resources::L, "playMusic", playMusic);
+		lua_register(CORE_Resources::L, "pauseMusic", pauseMusic);
 		lua_register(CORE_Resources::L, "playSound", playSound);
 	}
 
@@ -58,6 +59,12 @@ namespace CORE_LuaInterface
 			CORE_Audio::playSound(soundName);
 		}
 
+		return 0;
+	}
+
+	static int pauseMusic(lua_State* L)
+	{
+		CORE_Audio::pauseMusic();
 		return 0;
 	}
 }

@@ -68,6 +68,8 @@ int main()
 
 	CORE::goToRoomInCurrentEnvironment("room1");
 
+	CORE_Audio::startMusicLoop("cantinaMusic");
+
 	while (!CORE::quit)
 	{
 		CORE::update();
