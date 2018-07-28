@@ -100,14 +100,6 @@ void Room::getArgsFromNode(XMLNode def)
 
 void Room::handle(Event e)
 {
-	for (unsigned int i = 0; i < controllableVector->size(); i++)
-	{
-		if ((*controllableVector)[i] != NULL)
-		{
-			(*controllableVector)[i]->handle(e);
-		}
-	}
-
 	if (observers.find(e.opcode) != observers.end())
 	{
 		std::vector<Controllable*> vec = observers[e.opcode];

@@ -2,6 +2,12 @@
 #include "StandardCollision.h"
 #include "CORE.h"
 
+StandardCollision::StandardCollision() : Handler()
+{
+	events.push_back(updateStep);
+	events.push_back(entity_added);
+}
+
 void StandardCollision::handle(Event e)
 {
 	Handler::handle(e);

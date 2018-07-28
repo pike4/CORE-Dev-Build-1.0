@@ -1,6 +1,6 @@
 #pragma once
 #include "Entity.h"
-#include "lua.h"
+#include "lua.hpp"
 
 /*
    Entity API to make available to the lua scripting environment

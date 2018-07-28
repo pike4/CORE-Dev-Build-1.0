@@ -6,7 +6,7 @@ void MessagePasser::registerEvent(int opcode, Controllable* observer)
 	{
 		observers[opcode] = std::vector<Controllable*>();
 	}
-
+	std::vector<Controllable*> opvec = observers[opcode];
 	observers[opcode].push_back(observer);
 }
 
@@ -16,7 +16,8 @@ void MessagePasser::unregisterEvent(int opcode, Controllable* observer)
 	{
 		for (int i = 0; i < observers[opcode].size(); i++)
 		{
-			if (observers[opcode][i] == observer) {
+			if (observers[opcode][i] == observer) 
+			{
 				observers[opcode].erase(observers[opcode].begin() + i);
 			}
 		}

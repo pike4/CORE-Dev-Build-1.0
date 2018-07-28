@@ -38,6 +38,10 @@ namespace CORE
 
 	void handle(Event e);
 
+	Component* getObjectByID(int ID);
+	void removeObject(int ID);
+	int storeObject(Component* object);
+
 	extern Environment* currentEnvironment;
 	extern Room* currentRoom;
 	extern std::vector<MenuScreen*> currentMenuScreens;

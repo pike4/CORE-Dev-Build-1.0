@@ -7,8 +7,13 @@
 #include "CORE_LuaInterface.h"
 #include "Entity.h"
 
+
+
 namespace CORE
 {
+	int globalID;
+	std::map<int, Component*> objects;
+
 	void start()
 	{
 		quit = false;
@@ -26,6 +31,7 @@ namespace CORE
 
 		lag = 0;
 		msPerFrame = 17;
+		globalID = 0;
 	}
 
 	void update()
@@ -192,6 +198,38 @@ namespace CORE
 	}
 #pragma endregion
 
+	Component* getObjectByID(int ID)
+	{
+		Component* ret = NULL;
+
+		if (objects.find(ID) != objects.end()) {
+			ret = objects[ID];
+		}
+		else {
+			CORE_SystemIO::error("Object " + std::to_string(ID) + " could not be found");
+		}
+
+		return ret;
+	}
+
+	void removeObject(int ID)
+	{
+		if (objects.find(ID) != objects.end()) {
+			objects.erase(ID);
+		}
+		else {
+			CORE_SystemIO::error("Object " + std::to_string(ID) + " does not be deleted");
+		}
+	}
+
+	int storeObject(Component* object)
+	{
+		int newID = globalID++;
+
+		objects[newID] = object;
+
+		return newID;
+	}
 
 #pragma region Static data members
 	int lag;

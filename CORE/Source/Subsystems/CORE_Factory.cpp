@@ -205,12 +205,12 @@ namespace CORE_Factory
 			//Pass the definer* to the component for it to get raw text values from free child nodes
 			ret->getText(def);
          
-			XMLNode handlerChild = def.getChild("eventHandlers");
-
-			if (!handlerChild.null())
-			{
-				ret->getEventHandlers(handlerChild);
-			}
+			//XMLNode handlerChild = def.getChild("eventHandlers");
+			//
+			//if (!handlerChild.null())
+			//{
+			//	ret->getEventHandlers(handlerChild);
+			//}
 
 			#pragma region Child Components
 			//Get the Components node from definer*

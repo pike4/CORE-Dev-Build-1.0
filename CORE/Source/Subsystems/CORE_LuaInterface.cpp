@@ -13,6 +13,9 @@ namespace CORE_LuaInterface
 		lua_register(CORE_Resources::L, "playMusic", playMusic);
 		lua_register(CORE_Resources::L, "pauseMusic", pauseMusic);
 		lua_register(CORE_Resources::L, "playSound", playSound);
+		lua_register(CORE_Resources::L, "notifyOther", luaSendEventToEntity);
+		lua_register(CORE_Resources::L, "notifySelf", luaSendEventToSelf);
+		lua_register(CORE_Resources::L, "notifyChildren", luaSendEventOwnChildren);
 	}
 
 

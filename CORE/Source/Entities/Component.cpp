@@ -2,13 +2,14 @@
 #include "MessagePasser.h"
 #include "Entity.h"
 #include "CORE_Resources.h"
+#include "CORE.h"
 
 #include <cstring>
 
 #pragma region Creational
 Component::Component()
 {
-	ID = std::to_string((rand() << 0) | rand());
+	ID = CORE::storeObject(this);
 }
 
 void Component::storeChild(Component* child)
@@ -136,9 +137,13 @@ void Component::registerEv(MessagePasser* passer)
 
 	for (std::map<int, std::vector<EventHandler*>>::iterator it = eventHandlers.begin(); it != eventHandlers.end(); ++it)
 	{
+		
 		std::vector<EventHandler*>& vec = it->second;
 		for (int i = 0; i < vec.size(); i++)
+		{
 			passer->registerEvent(it->first, vec[i]);
+		}
+			
 	}
 }
 

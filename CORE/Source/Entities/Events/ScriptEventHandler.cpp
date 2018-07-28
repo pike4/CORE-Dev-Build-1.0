@@ -168,6 +168,7 @@ void ScriptEventHandler::pushEntity(std::string name, Entity* E1)
 
 		lua_settable(L, tI);
 	}
+
 	lua_setglobal(L, name.c_str());
 }
 

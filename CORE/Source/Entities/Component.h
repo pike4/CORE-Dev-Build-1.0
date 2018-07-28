@@ -21,14 +21,14 @@ typedef struct _field
 }field;
 
 /*
-   Component class
+	Component class
 
-   Purpose:
-      1. Act as the default translation unit for Entity composition 
-         and 
-      2. Receive and act on events from the parent Entity
-      3. Provide reflection info for what type of object the given component
-         represents
+	Purpose:
+		1. Act as the default translation unit for Entity composition 
+			and 
+		2. Receive and act on events from the parent Entity
+		3. Provide reflection info for what type of object the given component
+			represents
 */
 
 class Component : public Controllable
@@ -42,8 +42,8 @@ public:
 	//Get public Data objects from the given map
 	virtual void get_data(DataSource* source);
 
-   //Get event handlers from the given XMLNode
-   virtual void getEventHandlers(XMLNode def);
+	//Get event handlers from the given XMLNode
+	virtual void getEventHandlers(XMLNode def);
 
 	//Store the child without registering it. Basic components can't have children
 	virtual void storeChild(Component* child);
@@ -51,11 +51,11 @@ public:
 	//Finalize the component. Represents the recursive root for finalizing an Entity
 	virtual void finalize();
 
-   //Handle an event
-   virtual void handle(Event e);
+	//Handle an event
+	virtual void handle(Event e);
 
-   //Return true if this component has a certain trait
-   virtual bool getTrait(std::string trait);
+	//Return true if this component has a certain trait
+	virtual bool getTrait(std::string trait);
 
 	template <typename T>
 	DataImpl<T>initializeData(std::string name, DataSource* source)
@@ -79,12 +79,12 @@ public:
 	//Determine if this instance can have children
 	virtual bool isBasicComponent();
 
-   //Return a pointer to the entity context for the component, in most cases, this is the parent entity
-   virtual Entity* getContext();
-   
+	//Return a pointer to the entity context for the component, in most cases, this is the parent entity
+	virtual Entity* getContext();
+	
 	//TODO: something like get heirarchy, and every component would have a static string name and return
 	//its inheiritance heirarchy
-   //virtual std::vector<std::string> getHeirarchy();
+	//virtual std::vector<std::string> getHeirarchy();
 
 	//TODO: something like getCategory, where components would have categories like visibleElement, 
 	//Control etc
@@ -102,8 +102,8 @@ public:
 protected:
 	//ID to *almost certainly* uniquely identify every componenet and entity in order to 
 	//prevent hash collisions between parent and child variables of the same name.
-	std::string ID;
+	int ID;
 
-   //Maps event names to event handlers that will be called when an event is received
-   std::map<int, std::vector< EventHandler*> > eventHandlers;
+	//Maps event names to event handlers that will be called when an event is received
+	std::map<int, std::vector< EventHandler*> > eventHandlers;
 };

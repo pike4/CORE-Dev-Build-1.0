@@ -5,6 +5,7 @@
 class StandardCollision : public Handler
 {
 public:
+	StandardCollision();
 	virtual void handle(Event e);
 
 

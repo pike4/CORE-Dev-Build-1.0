@@ -1,5 +1,6 @@
 #pragma once
 #include "CORE.h"
+#include "EntityAPI.h"
 
 extern "C" {
 	#include "lua.h"

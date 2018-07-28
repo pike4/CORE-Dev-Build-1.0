@@ -10,7 +10,12 @@
 #include <iostream>
 
 Entity::Entity()
-{}
+{
+	DataImpl<int>* myID = new DataImpl<int>();
+	*myID = ID;
+
+	data["ID"] = myID;
+}
 
 Entity::Entity(Entity& other)
 	: Entity()

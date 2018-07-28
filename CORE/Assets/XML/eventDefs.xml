@@ -1,10 +1,4 @@
 <CORE>
-  <music>
-    <cantinaMusic file="assets/music/CIRCUSBEAT.mp3"/>
-  </music>
-  <sounds>
-    <gunshot file="Assets/Music/Pew.wav"/>
-  </sounds>
   <events>
     <mouseClick format="int,int,bool"/>
     <explosion format="entity"/>
