@@ -14,53 +14,27 @@ ScriptEventHandler::ScriptEventHandler(XMLNode def)
 	}
 	
 	scriptName = def.getVariable("file");
-	std::string defName = def.getVariable("format");
-	XMLNode argNamesNode = def.getChild("argNames");
-	
-	//Event format is defined elsewhere
-	if (defName == "")
+
+	std::string argumentString = def.getVariable("args");
+	std::vector<std::string> argVector = CORE_Utilities::tokenize(argumentString, ';');
+
+	std::vector<PrimitiveType>	argFormat;
+	std::vector<std::string>	names;
+
+	for (int i = 0; i < argVector.size(); i++)
 	{
-		XMLNode eventDefNode = def.getChild("format");
-		
-		std::vector<XMLNode> eventDefChildren = eventDefNode.getChildren();
-		
-		EventDef newDef = EventDef(eventDefNode);
-		format = newDef.format;
-	}
-	
-	//Event format is defined here
-	else
-	{
-		if (CORE_Resources::events.find(defName) != CORE_Resources::events.end())
+		std::vector<std::string> curArg = CORE_Utilities::tokenize(argVector[i], ',');
+
+		if (curArg.size() == 2)
 		{
-			format = CORE_Resources::events[defName].format;
+			format.push_back(CORE_TypeTraits::getPrimitiveType(curArg[0]));
+			argNames.push_back(curArg[1]);
 		}
-	
+
 		else
 		{
-			CORE_SystemIO::error("Script \'" + def.getName() + 
-				"\' refers to non existant event definition: \'" + defName);
+			CORE_SystemIO::error("Event handler " + def.getName() + " has malformed format string");
 		}
-	}
-	
-	if (!argNamesNode.null())
-	{
-		std::vector<XMLNode> argNamesChildren = argNamesNode.getChildren();
-		
-		if (argNamesChildren.size() != format.size())
-		{
-			CORE_SystemIO::error("Number of arg names given differs from length of event format");
-		}
-		
-		for (unsigned int i = 0; i < argNamesChildren.size(); i++)
-		{
-			argNames.push_back(argNamesChildren[i].getName());
-		}
-	}
-	
-	else if (format.size() > 0)
-	{
-		CORE_SystemIO::error("ScriptEventHandler \'" + def.getName() + "\' has unnamed arguments");
 	}
 	
 	if (scriptName == "")

@@ -1,35 +1,7 @@
 #include "TemplateDef.h"
 #include "Node.h"
 #include "CORE_Resources.h"
-
-std::vector<std::string> tokenize(std::string src, char delim)
-{
-	std::string cur = "";
-
-	std::vector<std::string> ret;
-
-	for (int i = 0; i < src.length(); i++)
-	{
-		if (src[i] == delim || src[i] == ' ')
-		{
-			ret.push_back(cur);
-			cur = "";
-		}
-
-		else
-		{
-			cur += src.substr(i, 1);
-		}
-	}
-
-	if (cur != "")
-	{
-		ret.push_back(cur);
-	}
-
-	return ret;
-}
-
+#include "CORE_Utilities.h"
 //node	-	pugi node that defines the form of the NodeTemplate
 TemplateDef::TemplateDef(XMLNode def)
 {
@@ -41,7 +13,7 @@ TemplateDef::TemplateDef(XMLNode def)
     
     while (sourceChild.name() != "")
     {
-        std::vector<std::string> vars = tokenize(sourceChild.first_child().value(), ',');
+        std::vector<std::string> vars = CORE_Utilities::tokenize(sourceChild.first_child().value(), ',');
         
         for (int i = 0; i < vars.size(); i++)
         {

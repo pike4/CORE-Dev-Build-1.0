@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 
+#include "CORE_Utilities.h"
 #include "CORE_TypeTraits.h"
 #include "CORE_SystemIO.h"
 
@@ -33,13 +34,15 @@ struct EventDef
 
        name = def.getName();
 
-       std::vector<XMLNode> newFormat = def.getChildren();
+	   std::string formatString = def.getVariable("format");
 
-       for (unsigned int i = 0; i < newFormat.size(); i++)
+	   std::vector<std::string> newFormat = CORE_Utilities::tokenize(formatString, ',');
+
+       for (int i = 0; i < newFormat.size(); i++)
        {
-           XMLNode cur = newFormat[i];
+           std::string cur = newFormat[i];
 
-           PrimitiveType newType = CORE_TypeTraits::getPrimitiveType(cur.getName());
+           PrimitiveType newType = CORE_TypeTraits::getPrimitiveType(cur);
 
            if (newType != CORE_TypeTraits::_errorType)
                format.push_back(newType);

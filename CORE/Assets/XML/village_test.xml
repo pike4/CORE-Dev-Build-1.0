@@ -21,6 +21,9 @@
             <y>400</y>
           </cat>
           <StandardCollision>
+            <eventHandlers>
+              
+            </eventHandlers>
           </StandardCollision>
         </objects>
       </room1>

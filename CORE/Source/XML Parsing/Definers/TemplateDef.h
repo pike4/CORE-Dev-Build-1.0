@@ -45,5 +45,3 @@ protected:
 
 	UnexpandedNode definer;
 };
-
-std::vector<std::string> tokenize(std::string src, char delim);

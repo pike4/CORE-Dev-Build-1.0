@@ -1,45 +1,12 @@
 <CORE>
   <events>
-    <mouseClick>
-      <int/>
-      <int/>
-      <bool/>
-    </mouseClick>
-     <explosion>
-        <entity/>
-     </explosion>
-     <getBoundingBox>
-        <entity/>
-     </getBoundingBox>
+    <mouseClick format="int,int,bool"/>
+    <explosion format="entity"/>
+    <getBoundingBox format="entity"/>
   </events>
    <eventHandlers>
-     <mouseClickHandler file ="handleMouse.lua" type="script">
-       <argNames>
-         <x/>
-         <y/>
-       </argNames>
-       <format>
-         <int/>
-         <int/>
-       </format>
-     </mouseClickHandler>
-      <explosionHandler file ="runEntity.lua" type="script" >
-         <argNames>
-            <E1/>
-         </argNames>
-         <format>
-            <entity/>
-         </format>
-      </explosionHandler>
-      <followHandler file ="runSelf.lua" type="entityScript">
-         <argNames>
-            <x/>
-            <y/>
-         </argNames>
-         <format>
-            <int/>
-            <int/>
-         </format>
-      </followHandler>
+     <mouseClickHandler file ="handleMouse.lua" type="script"       args="int,x;int,y"/>
+     <explosionHandler  file ="runEntity.lua"   type="script"       args="entity,E1"/>
+     <followHandler     file ="runSelf.lua"     type="entityScript" args="int,x;int,y"/>
    </eventHandlers>
 </CORE>

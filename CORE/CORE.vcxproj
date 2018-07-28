@@ -231,6 +231,7 @@
     <ClInclude Include="Source\Subsystems\CORE_Resources.h" />
     <ClInclude Include="Source\Subsystems\CORE_SystemIO.h" />
     <ClInclude Include="Source\Subsystems\CORE_TypeTraits.h" />
+    <ClInclude Include="Source\Subsystems\CORE_Utilities.h" />
     <ClInclude Include="Source\Subsystems\Logging\LogFileStream.h" />
     <ClInclude Include="Source\Subsystems\Logging\LoggingStream.h" />
     <ClInclude Include="Source\Subsystems\Logging\LogWindowStream.h" />
@@ -350,6 +351,7 @@
     <ClCompile Include="Source\Subsystems\CORE_Resources.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_SystemIO.cpp" />
     <ClCompile Include="Source\Subsystems\CORE_TypeTraits.cpp" />
+    <ClCompile Include="Source\Subsystems\CORE_Utlilities.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogFileStream.cpp" />
     <ClCompile Include="Source\Subsystems\Logging\LogWindowStream.cpp" />
     <ClCompile Include="Source\XML Parsing\Definers\Node.cpp" />
