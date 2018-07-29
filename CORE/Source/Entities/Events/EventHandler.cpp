@@ -14,6 +14,14 @@ void EventHandler::handle(Event e)
 	}
 }
 
+void EventHandler::condReceive(Event e, Entity* ancestor)
+{
+	if (owner && owner->isAncestor(ancestor))
+	{
+		handle(e);
+	}
+}
+
 EventHandler* EventHandler::spawnCopy()
 {
 	return new EventHandler(*this);
@@ -24,7 +32,7 @@ bool EventHandler::matches(EventDef e)
 	return (format == e.format);
 }
 
-void EventHandler::registerOwner(Entity* owner)
+void EventHandler::registerOwner(Entity* o)
 {
-	return;
+	owner = o;
 }

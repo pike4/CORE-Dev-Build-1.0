@@ -37,6 +37,8 @@ namespace CORE
 #pragma endregion
 
 	void handle(Event e);
+	void receive(Event e);
+	void direct(Event e, Entity* ancestor);
 
 	Entity* getObjectByID(int ID);
 	void removeObject(int ID);

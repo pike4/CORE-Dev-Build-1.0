@@ -7,8 +7,6 @@
 #include "CORE_LuaInterface.h"
 #include "Entity.h"
 
-
-
 namespace CORE
 {
 	int globalID;
@@ -83,6 +81,14 @@ namespace CORE
 		if (!currentMenuScreens.empty() && currentMenuScreens.back() != NULL)
 		{
 			currentMenuScreens.back()->receive(e);
+		}
+	}
+
+	void direct(Event e, Entity* ancestor)
+	{
+		if (currentRoom)
+		{
+			currentRoom->direct(e, ancestor);
 		}
 	}
 

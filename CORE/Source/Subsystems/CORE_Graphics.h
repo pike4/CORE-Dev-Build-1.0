@@ -15,15 +15,14 @@ class VisibleElement;
 class Entity;
 
 /*
-   Purpose: To expose a common, public API to the rest of the engine for:
-   
-   1. Decoupling engine implementation from third party graphics libraries
-   2. Getting graphical assets such as images and fonts from the system
-   3. Drawing CORE-defined graphical primitives
-   4. Enqueueing draws so that they occur asynchronously from other steps in the game loop and in a 
-      proper order
-*/
+	Purpose: To expose a common, public API to the rest of the engine for:
 
+	1. Decoupling engine implementation from third party graphics libraries
+	2. Getting graphical assets such as images and fonts from the system
+	3. Drawing CORE-defined graphical primitives
+	4. Enqueueing draws so that they occur asynchronously from other steps in the game loop and in a 
+		proper order
+*/
 namespace CORE_Graphics
 {
 	extern int state;
@@ -79,7 +78,7 @@ namespace CORE_Graphics
 
 	void handle(Event e);
 
-   void drawRect(int x, int y, int w, int h, SDL_Color color);
+	void drawRect(int x, int y, int w, int h, SDL_Color color);
 
 	void applyTexture(int x, int y, SDL_Texture* source);
 

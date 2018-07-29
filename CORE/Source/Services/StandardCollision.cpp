@@ -4,7 +4,6 @@
 
 StandardCollision::StandardCollision() : Handler()
 {
-	events.push_back(updateStep);
 	events.push_back(entity_added);
 }
 
@@ -32,8 +31,16 @@ void StandardCollision::handle(Event e)
 					Event e(collision);
 					e.pushEntity(a.e);
 					e.pushEntity(b.e);
+					
+					CORE::receive(e);
 
-					CORE::handle(e);
+					Event e2(selfCollision);
+					e2.pushEntity(a.e);
+					CORE::direct(e2, b.e);
+
+					Event e3(selfCollision);
+					e3.pushEntity(b.e);
+					CORE::direct(e3, a.e);
 				}
 			}
 		}

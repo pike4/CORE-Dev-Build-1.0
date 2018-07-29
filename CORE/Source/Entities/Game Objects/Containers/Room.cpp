@@ -106,6 +106,7 @@ void Room::handle(Event e)
 		for (int i = 0; i < vec.size(); i++)
 		{
 			vec[i]->handle(e);
+			vec[i]->update();
 		}
 	}
 }
@@ -118,6 +119,18 @@ void Room::receive(Event e)
 		for (int i = 0; i < vec.size(); i++)
 		{
 			vec[i]->receive(e);
+		}
+	}
+}
+
+void Room::direct(Event e, Entity* ancestor)
+{
+	if (observers.find(e.opcode) != observers.end())
+	{
+		std::vector<Controllable*> vec = observers[e.opcode];
+		for (int i = 0; i < vec.size(); i++)
+		{
+			vec[i]->condReceive(e, ancestor);
 		}
 	}
 }

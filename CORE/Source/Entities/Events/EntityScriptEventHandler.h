@@ -9,5 +9,4 @@ public:
    virtual EventHandler* spawnCopy();
 
 protected:
-   Entity* owner;
 };

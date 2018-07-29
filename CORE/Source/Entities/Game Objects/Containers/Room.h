@@ -32,6 +32,7 @@ public:
 
 	virtual void handle(Event e);
 	virtual void receive(Event e);
+	virtual void direct(Event e, Entity* ancestor);
 
 	void draw();
 

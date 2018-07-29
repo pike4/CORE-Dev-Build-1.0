@@ -2,7 +2,7 @@
 
 #include "EventDef.h"
 #include "Event.h"
-#include "Controllable.h"
+#include "Component.h"
 
 
 #include "CORE_TypeTraits.h"
@@ -17,6 +17,7 @@ class EventHandler : public Controllable
 {
 public:
    virtual void handle(Event e);
+   virtual void condReceive(Event e, Entity* ancestor);
 
    virtual void registerOwner(Entity* owner);
 
@@ -26,4 +27,7 @@ public:
 
    std::vector<PrimitiveType> format;
    std::string name;
+
+protected:
+	Entity* owner;
 };

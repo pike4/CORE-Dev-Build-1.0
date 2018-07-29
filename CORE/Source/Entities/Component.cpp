@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "EventHandler.h"
 #include "MessagePasser.h"
 #include "Entity.h"
 #include "CORE_Resources.h"
@@ -7,7 +8,9 @@
 #include <cstring>
 
 #pragma region Creational
-Component::Component() {}
+Component::Component() {
+	events.push_back(updateStep);
+}
 
 void Component::storeChild(Component* child)
 {
@@ -116,15 +119,13 @@ bool Component::isBasicComponent()
 	Purpose:
 		Handle the given event
 */
-void Component::handle(Event e) {
-	if (e.opcode == updateStep)
-	{
-		for each (Event ev in eventQueue)
-		{
-			handle(ev);
-		}
+void Component::handle(Event e) {}
 
-		eventQueue.clear();
+void Component::condReceive(Event e, Entity* ancestor)
+{
+	if (isAncestor(ancestor))
+	{
+		receive(e);
 	}
 }
 
@@ -158,6 +159,22 @@ void Component::registerEv(MessagePasser* passer)
 Entity* Component::getContext()
 {
 	return parent;
+}
+
+// Check 
+bool Component::isAncestor(Component* toCheck)
+{
+	if (this == toCheck) {
+		return true;
+	}
+
+	else if (parent == NULL) {
+		return false;
+	}
+
+	else {
+		return parent->isAncestor(toCheck);
+	}
 }
 
 //void* Component::findAncestorPointer(std::string name) const

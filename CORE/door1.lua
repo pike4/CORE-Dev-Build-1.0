@@ -1,0 +1,2 @@
+
+goToRoom("room2")

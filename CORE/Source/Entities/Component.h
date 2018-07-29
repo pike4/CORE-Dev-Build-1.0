@@ -3,7 +3,6 @@
 #include "Data.h"
 #include "Node.h"
 #include "DataSource.h"
-#include "EventHandler.h"
 #include "Event.h"
 
 #include <type_traits>
@@ -12,6 +11,7 @@
 #include <vector>
 #include <list>
 
+class EventHandler;
 class MessagePasser;
 class Entity;
 
@@ -54,6 +54,7 @@ public:
 
 	//Handle an event
 	virtual void handle(Event e);
+	virtual void condReceive(Event e, Entity* ancestor);
 
 	//Return true if this component has a certain trait
 	virtual bool getTrait(std::string trait);
@@ -82,6 +83,8 @@ public:
 
 	//Return a pointer to the entity context for the component, in most cases, this is the parent entity
 	virtual Entity* getContext();
+
+	virtual bool isAncestor(Component* toCheck);
 	
 	//TODO: something like get heirarchy, and every component would have a static string name and return
 	//its inheiritance heirarchy

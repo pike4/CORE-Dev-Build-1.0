@@ -1,21 +1,89 @@
 <core>
+  <templates>
+    <entity name="door1">
+      <sources>
+        <x>xVal</x>
+        <y>yVal</y>
+      </sources>
+      <data>
+        <x type="int" link="self" value="?xVal"/>
+        <y type="int" link="self" value="?yVal"/>
+        <w value ="36"/>
+        <h value ="50"/>
+      </data>
+      <components>
+        <imageElement>
+          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+        </imageElement>
+      </components>
+      <eventHandlers>
+        <selfCollision>
+          <doorHandler1/>
+        </selfCollision>
+    </eventHandlers>
+    </entity>
+    <entity name="door2">
+      <sources>
+        <x>xVal</x>
+        <y>yVal</y>
+      </sources>
+      <data>
+        <x type="int" link="self" value="?xVal"/>
+        <y type="int" link="self" value="?yVal"/>
+        <w value ="36"/>
+        <h value ="50"/>
+      </data>
+      <components>
+        <imageElement>
+          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+        </imageElement>
+      </components>
+      <eventHandlers>
+        <selfCollision>
+          <doorHandler2/>
+        </selfCollision>
+      </eventHandlers>
+    </entity>
+    <entity name="door3">
+      <sources>
+        <x>xVal</x>
+        <y>yVal</y>
+      </sources>
+      <data>
+        <x type="int" link="self" value="?xVal"/>
+        <y type="int" link="self" value="?yVal"/>
+        <w value ="36"/>
+        <h value ="50"/>
+      </data>
+      <components>
+        <imageElement>
+          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
+        </imageElement>
+      </components>
+      <eventHandlers>
+        <selfCollision>
+          <doorHandler3/>
+        </selfCollision>
+      </eventHandlers>
+    </entity>
+  </templates>
   <environment>
     <name>other</name>
     <rooms>
       <room1>
         <objects>
-          <dog>
+          <door1>
             <x>200</x>
             <y>200</y>
-          </dog>
-          <dog>
+          </door1>
+          <door2>
             <x>300</x>
             <y>200</y>
-          </dog>
-          <dog>
+          </door2>
+          <door3>
             <x>400</x>
             <y>200</y>
-          </dog>
+          </door3>
           <cat>
             <x>200</x>
             <y>400</y>
@@ -34,14 +102,36 @@
         <objects>
           <dog>
             <x>100</x>
-            <y>300</y>
+            <y>100</y>
           </dog>
           <dog>
             <x>100</x>
-            <y>600</y>
+            <y>200</y>
           </dog>
         </objects>
       </room2>
+
+      <room3>
+        <objects>
+          <dog>
+            <x>600</x>
+            <y>700</y>
+          </dog>
+          <dog>
+            <x>700</x>
+            <y>700</y>
+          </dog>
+        </objects>
+      </room3>
+
+      <room4>
+        <objects>
+          <dog>
+            <x>600</x>
+            <y>200</y>
+          </dog>
+        </objects>
+      </room4>
     </rooms>
   </environment>
 </core>
