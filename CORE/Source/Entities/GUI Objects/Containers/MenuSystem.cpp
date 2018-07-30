@@ -16,9 +16,12 @@ MenuSystem::MenuSystem(XMLNode def)
 
 	XMLNode screenChild = def.getChild("menuScreens");
 	
-	std::vector<XMLNode> menuVector = screenChild.getChildren();
+	std::vector<XMLNode> childVector = screenChild.getChildren();
+	std::vector<XMLNode> menuVector = def.getChildren({ "children", "name" });
 
-	for (unsigned int i = 0; i < menuVector.size(); i++)
+	menuVector.insert(menuVector.end(), childVector.begin(), childVector.end());
+
+	for (int i = 0; i < menuVector.size(); i++)
 	{
 		XMLNode cur = menuVector[i];
 		MenuScreen* newMenu = new MenuScreen(cur);

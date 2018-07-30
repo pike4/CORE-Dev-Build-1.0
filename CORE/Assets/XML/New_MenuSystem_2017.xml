@@ -13,8 +13,7 @@
    </states>
    <menuSystem>
     <name>main</name>
-    <menuScreens>
-      <menuScreen>
+    <menuScreen>
       <name>fourth</name>
       <controls>
         <GUI_Area>
@@ -66,6 +65,5 @@
         </GUI_Area>
       </controls>
     </menuScreen>
-    </menuScreens>
   </menuSystem>
 </CORE>
