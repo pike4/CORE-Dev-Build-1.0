@@ -8,12 +8,12 @@ void Animation::getText(XMLNode definer)
 {
 	VisibleElement::getText(definer);
 	std::string fileName = definer.getVariable("fileName");
-	millisecondsPerFrame = stoi(definer.getVariable("millisecondsPerFrame"));
-	int frameH = stoi(definer.getVariable("frameH"));
-	int frameW = stoi(definer.getVariable("frameW"));
-	int framesX = stoi(definer.getVariable("framesX"));
-	int framesY = stoi(definer.getVariable("framesY"));
-	int seperation = stoi(definer.getVariable("seperation"));
+	millisecondsPerFrame =	Util::toInt(definer.getVariable("millisecondsPerFrame"));
+	int frameH =			Util::toInt(definer.getVariable("frameH"));
+	int frameW =			Util::toInt(definer.getVariable("frameW"));
+	int framesX =			Util::toInt(definer.getVariable("framesX"));
+	int framesY =			Util::toInt(definer.getVariable("framesY"));
+	int seperation =		Util::toInt(definer.getVariable("seperation"));
 
 	frames = new VisibleElement*[framesX * framesY];
 	numFrames = framesX * framesY;

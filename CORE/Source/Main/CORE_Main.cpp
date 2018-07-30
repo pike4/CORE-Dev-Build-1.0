@@ -26,7 +26,7 @@ int main()
 	luaL_openlibs(CORE_Resources::L);
 
 	CORE::start();
-	CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
+	//CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	//CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");
 

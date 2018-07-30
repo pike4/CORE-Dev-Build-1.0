@@ -36,7 +36,7 @@ struct EventDef
 
 		std::string formatString = def.getVariable("format");
 
-		std::vector<std::string> newFormat = CORE_Util::tokenize(formatString, ',');
+		std::vector<std::string> newFormat = Util::tokenize(formatString, ',');
 
 		 for (int i = 0; i < newFormat.size(); i++)
 		 {

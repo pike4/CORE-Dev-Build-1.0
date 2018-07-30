@@ -32,8 +32,8 @@ void VisibleElement::get_data(DataSource* source)
 
 void VisibleElement::getText(XMLNode def)
 {
-	w = stoi(def.getVariable("w"));
-	h = stoi(def.getVariable("h"));
+	w = Util::toInt(def.getVariable("w"));
+	h = Util::toInt(def.getVariable("h"));
 }
 
 void VisibleElement::handle(Event e)

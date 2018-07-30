@@ -94,8 +94,8 @@ void Room::getArgsFromNode(XMLNode def)
 	}
 
 	name = def.getName();
-	w = stoi(def.getVariable("w"));
-	h = stoi(def.getVariable("h"));
+	w = Util::toInt(def.getVariable("w"));
+	h = Util::toInt(def.getVariable("h"));
 }
 
 void Room::handle(Event e)

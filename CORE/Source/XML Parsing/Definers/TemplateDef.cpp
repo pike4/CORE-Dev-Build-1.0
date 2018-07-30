@@ -13,7 +13,7 @@ TemplateDef::TemplateDef(XMLNode def)
     
     while (sourceChild.name() != "")
     {
-        std::vector<std::string> vars = CORE_Util::tokenize(sourceChild.first_child().value(), ',');
+        std::vector<std::string> vars = Util::tokenize(sourceChild.first_child().value(), ',');
         
         for (int i = 0; i < vars.size(); i++)
         {

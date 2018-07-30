@@ -2,6 +2,7 @@
 #include "Data.h"
 #include "Node.h"
 #include "DataSource.h"
+#include "CORE_Util.h"
 
 #include <type_traits>
 
@@ -16,11 +17,11 @@ namespace CORE_TypeTraits
 		{
 		case _integer:
 			ret = new DataImpl<int>(datum.funcType);
-			(*(DataImpl<int>*) ret) = stoi(datum.value);
+			(*(DataImpl<int>*) ret) = Util::toInt(datum.value);
 			break;
 		case _floatingPoint:
 			ret = new DataImpl<double>(datum.funcType);
-			(*(DataImpl<double>*) ret) = stod(datum.value);
+			(*(DataImpl<double>*) ret) = Util::toDouble(datum.value);
 			break;
 		case _boolean:
 			ret = new DataImpl<bool>(datum.funcType);
@@ -31,10 +32,23 @@ namespace CORE_TypeTraits
 		return ret;
 	}
 
+	std::string tryGetValue(XMLNode def)
+	{
+		std::string ret = "";
+
+		ret = def.getVariable("value");
+		if (ret.empty())
+			ret = def.getVariable("val");
+		if (ret.empty())
+			ret = def.getMainValue();
+
+		return ret;
+	}
+
 	void parseReflectionTraits(XMLNode def, reflection* ret)
 	{
 		ret->name = def.getName();
-		ret->value = def.getVariable("value");
+		ret->value = tryGetValue(def);
 		ret->dependenceType = getDependenceType(def.getVariable("link"));
 		ret->funcType = getFunctionType(def.getVariable("function"));
 		ret->primitiveType = getPrimitiveType(def.getVariable("type"));

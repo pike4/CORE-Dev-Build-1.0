@@ -16,14 +16,14 @@ ScriptEventHandler::ScriptEventHandler(XMLNode def)
 	scriptName = def.getVariable("file");
 
 	std::string argumentString = def.getVariable("args");
-	std::vector<std::string> argVector = CORE_Util::tokenize(argumentString, ';');
+	std::vector<std::string> argVector = Util::tokenize(argumentString, ';');
 
 	std::vector<PrimitiveType>	argFormat;
 	std::vector<std::string>	names;
 
 	for (int i = 0; i < argVector.size(); i++)
 	{
-		std::vector<std::string> curArg = CORE_Util::tokenize(argVector[i], ',');
+		std::vector<std::string> curArg = Util::tokenize(argVector[i], ',');
 
 		if (curArg.size() == 2)
 		{

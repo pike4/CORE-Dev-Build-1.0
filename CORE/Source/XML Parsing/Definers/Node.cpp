@@ -49,7 +49,7 @@ void XMLNode::readChildren(pugi::xml_node myNode)
 
 std::string XMLNode::getVariable(std::string name)
 {
-	std::string ret = "0";
+	std::string ret = "";
 
 	bool found = false;
 

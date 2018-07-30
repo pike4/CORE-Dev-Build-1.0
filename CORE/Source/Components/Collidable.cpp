@@ -16,10 +16,10 @@ Collidable::Collidable(int x, int y, int w, int h)
 
 Collidable::Collidable(XMLNode definer)
 {
-	boundingBox.x = stoi(definer.getVariable("x"));
-	boundingBox.y = stoi(definer.getVariable("y"));
-	boundingBox.w = stoi(definer.getVariable("w"));
-	boundingBox.h = stoi(definer.getVariable("h"));
+	boundingBox.x = Util::toInt(definer.getVariable("x"));
+	boundingBox.y = Util::toInt(definer.getVariable("y"));
+	boundingBox.w = Util::toInt(definer.getVariable("w"));
+	boundingBox.h = Util::toInt(definer.getVariable("h"));
 }
 
 Collidable::Collidable(XMLNode definer, std::vector<Collidable*>* collidableVector)

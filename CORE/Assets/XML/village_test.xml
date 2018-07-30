@@ -6,8 +6,8 @@
         <y>yVal</y>
       </sources>
       <data>
-        <x type="int" link="self" value="?xVal"/>
-        <y type="int" link="self" value="?yVal"/>
+        <x type="int" link="self" val="?xVal"/>
+        <y type="int" link="self" val="?yVal"/>
         <w value ="36"/>
         <h value ="50"/>
       </data>
@@ -28,8 +28,8 @@
         <y>yVal</y>
       </sources>
       <data>
-        <x type="int" link="self" value="?xVal"/>
-        <y type="int" link="self" value="?yVal"/>
+        <x type="int" link="self" val="?xVal"/>
+        <y type="int" link="self" val="?yVal"/>
         <w value ="36"/>
         <h value ="50"/>
       </data>
@@ -50,8 +50,8 @@
         <y>yVal</y>
       </sources>
       <data>
-        <x type="int" link="self" value="?xVal"/>
-        <y type="int" link="self" value="?yVal"/>
+        <x type="int" link="self" val="?xVal"/>
+        <y type="int" link="self" val="?yVal"/>
         <w value ="36"/>
         <h value ="50"/>
       </data>
