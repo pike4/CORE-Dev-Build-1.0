@@ -21,6 +21,7 @@ public:
 
 	virtual	XMLNode getChild(std::string name);
 	virtual	std::vector<XMLNode> getChildren();
+	virtual	std::vector<XMLNode> getChildren(std::vector<std::string> exclusions);
 
 	void	addChild(XMLNode child);
 	void	addAttribute(std::string name, std::string value);

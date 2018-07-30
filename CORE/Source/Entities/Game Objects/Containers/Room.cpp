@@ -72,10 +72,10 @@ void Room::getArgsFromNode(XMLNode def)
 {
 	controllableVector = new std::vector<Controllable*>;
 
-	XMLNode controlsParent = def.getChild("objects");
-	if (!controlsParent.null())
+	XMLNode objectsParent = def.getChild("objects");
+	if (!objectsParent.null())
 	{
-		std::vector<XMLNode> objectsVector = controlsParent.getChildren();
+		std::vector<XMLNode> objectsVector = objectsParent.getChildren();
 
 		for (unsigned int i = 0; i < objectsVector.size(); i++)
 		{
@@ -96,6 +96,23 @@ void Room::getArgsFromNode(XMLNode def)
 	name = def.getName();
 	w = Util::toInt(def.getVariable("w"));
 	h = Util::toInt(def.getVariable("h"));
+
+	std::vector<XMLNode> otherChildren = def.getChildren( { "objects", "w", "h" } );
+
+	for(int i = 0; i < otherChildren.size(); i++)
+	{
+		XMLNode cur = otherChildren[i];
+
+		Entity* newObject = (Entity*)CORE_Factory::generateObject(cur);
+
+		if (newObject)
+		{
+			newObject->finalize();
+			newObject->registerEv(this);
+		}
+
+		add(newObject);
+	}
 }
 
 void Room::handle(Event e)

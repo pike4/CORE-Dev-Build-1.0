@@ -136,6 +136,30 @@ std::vector<XMLNode> XMLNode::getChildren()
 	return ret;
 }
 
+std::vector<XMLNode> XMLNode::getChildren(std::vector<std::string> exclusions)
+{
+	std::vector<XMLNode> ret;
+
+	for (int i = 0; i < children.size(); i++)
+	{
+		bool good = true;
+
+		for (int j = 0; j < exclusions.size(); j++)
+		{
+			if (children[i].getName() == exclusions[j])
+			{
+				good = false;
+				break;
+			}
+		}
+
+		if(good)
+			ret.push_back(children[i]);
+	}
+
+	return ret;
+}
+
 bool XMLNode::null()
 {
 	return isNull;

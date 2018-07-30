@@ -40,12 +40,25 @@ void Environment::getArgsFromNode(XMLNode def)
 	XMLNode roomParent = def.getChild("rooms");
 	std::vector<XMLNode> roomVector = roomParent.getChildren();
 
+	// Get all rooms from "rooms" node
 	for (unsigned int i = 0; i < roomVector.size(); i++)
 	{
 		XMLNode cur = roomVector[i];
 
 		Room* roomToAdd = new Room(cur);
 
+		rooms[roomToAdd->name] = roomToAdd;
+	}
+
+	// Get all rooms from main node. If a node is not the 
+	// name or rooms node, it is assumed to be just a room
+	roomVector = def.getChildren({ "rooms", "name" });
+
+	for(int i = 0; i < roomVector.size(); i++)
+	{
+		XMLNode cur = roomVector[i];
+
+		Room* roomToAdd = new Room(cur);
 		rooms[roomToAdd->name] = roomToAdd;
 	}
 }
