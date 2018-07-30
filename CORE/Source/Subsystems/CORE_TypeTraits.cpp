@@ -185,8 +185,6 @@ namespace CORE_TypeTraits
 			return DP_CHILDREN;
 		else
 		{
-			//TODO: warning: dependency type <type> is not defined. Dependency type
-			// defaulting to no dependencies
 			return DP_NONE;
 		}
 	}

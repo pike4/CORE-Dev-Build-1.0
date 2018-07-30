@@ -13,12 +13,19 @@ void Animation::getText(XMLNode definer)
 	int frameW =			Util::toInt(definer.getVariable("frameW"));
 	int framesX =			Util::toInt(definer.getVariable("framesX"));
 	int framesY =			Util::toInt(definer.getVariable("framesY"));
-	int seperation =		Util::toInt(definer.getVariable("seperation"));
+	int seperation =		Util::toInt(definer.getVariable("separation"));
 
 	frames = new VisibleElement*[framesX * framesY];
 	numFrames = framesX * framesY;
 	
 	CORE_Graphics::getAnimationFromSpriteSheet(framesX, framesY, frameW, frameH, seperation, fileName, frames);
+
+	for (int i = 0; i < framesX * framesY; i++)
+	{
+		frames[i]->x = x;
+		frames[i]->y = y;
+		frames[i]->zIndex = zIndex;
+	}
 }
 
 Animation::Animation(Animation& other)

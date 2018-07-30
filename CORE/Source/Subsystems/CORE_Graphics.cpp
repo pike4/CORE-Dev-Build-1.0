@@ -126,9 +126,9 @@ namespace CORE_Graphics
       SDL_Rect blitFrame = { 0, 0, frameW, frameH };
       int totalFramesIndex = 0;
 
-      for (int i = 0; i < framesX; i++)
+      for (int i = 0; i < framesY; i++)
       {
-         for (int j = 0; j < framesY; j++)
+         for (int j = 0; j < framesX; j++)
          {
             tempSurface = SDL_CreateRGBSurface(0, frameW, frameH, 32, 0, 0, 0, 0);
             printf(SDL_GetError());

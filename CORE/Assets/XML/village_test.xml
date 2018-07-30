@@ -12,9 +12,16 @@
         <h value ="50"/>
       </data>
       <components>
-        <imageElement>
-          <image>Assets/Sprites/Happy_Cow_Man_Big.png</image>
-        </imageElement>
+
+        <animation>
+          <fileName>assets/sprites/anim.png</fileName>
+          <millisecondsPerFrame>800</millisecondsPerFrame>
+          <frameH>39</frameH>
+          <frameW>39</frameW>
+          <separation>5</separation>
+          <framesX>5</framesX>
+          <framesY>2</framesY>
+        </animation>
       </components>
       <eventHandlers>
         <selfCollision>
