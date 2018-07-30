@@ -99,7 +99,7 @@ public:
 	#pragma endregion
 
 	std::vector<int> events;
-	std::vector<field> pointers;
+	//std::vector<field> pointers;
 
 	Entity* parent;
 

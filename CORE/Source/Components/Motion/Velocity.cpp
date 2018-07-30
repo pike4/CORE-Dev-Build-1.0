@@ -4,9 +4,9 @@
 Velocity::Velocity()
 	:Position()
 {
-	pointers.push_back({ "xVel", &xVel });
-	pointers.push_back({ "yVel", &yVel });
-	pointers.push_back({ "direction", &direction });
+	//pointers.push_back({ "xVel", &xVel });
+	//pointers.push_back({ "yVel", &yVel });
+	//pointers.push_back({ "direction", &direction });
 }
 
 Velocity::Velocity(pugi::xml_node node)

@@ -26,8 +26,8 @@ void Position::handle(Event e)
 
 Position::Position()
 {
-	pointers.push_back({ "x", &x });
-	pointers.push_back({ "y", &y });
+	//pointers.push_back({ "x", &x });
+	//pointers.push_back({ "y", &y });
 }
 
 Position::Position(XMLNode definer)

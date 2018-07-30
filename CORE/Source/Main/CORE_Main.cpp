@@ -20,7 +20,8 @@
 
 int main()
 {
-	printf("sizeof component: %d\n", sizeof(Component) );
+	printf("sizeof Component: %d\n", sizeof(Component) );
+	printf("sizeof Entity: %d\n", sizeof(Entity));
 	//Lua!
 	CORE_Resources::L = luaL_newstate();
 	luaL_openlibs(CORE_Resources::L);
