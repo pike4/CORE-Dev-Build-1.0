@@ -222,7 +222,7 @@ namespace CORE_Factory
 				if (!ret->isBasicComponent())
 				{
 					std::vector<XMLNode> componentsVector = componentsParent.getChildren();
-					for (unsigned int i = 0; i < componentsVector.size(); i++)
+					for (int i = 0; i < componentsVector.size(); i++)
 					{
 						XMLNode curComponentDef = componentsVector[i];
 						Component* newComponent = constructComponent(curComponentDef);
@@ -310,7 +310,7 @@ namespace CORE_Factory
 		DataSource source = DataSource(&definer, NULL);
 		std::vector<std::pair<std::string, reflection>> data = source.getAllData();
 		
-		for (unsigned int i = 0; i < data.size(); i++)
+		for (int i = 0; i < data.size(); i++)
 		{
 			ret->addData(data[i].first, data[i].second.pointer);
 		}

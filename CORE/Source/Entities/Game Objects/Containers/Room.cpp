@@ -41,7 +41,7 @@ void Room::insertEntity(Entity* newEntity)
 
 void Room::remove(Controllable* component)
 {
-	for (unsigned int i = 0; i < controllableVector->size(); i++)
+	for (int i = 0; i < controllableVector->size(); i++)
 	{
 		if ((*controllableVector)[i] == component)
 		{
@@ -77,7 +77,7 @@ void Room::getArgsFromNode(XMLNode def)
 	{
 		std::vector<XMLNode> objectsVector = objectsParent.getChildren();
 
-		for (unsigned int i = 0; i < objectsVector.size(); i++)
+		for (int i = 0; i < objectsVector.size(); i++)
 		{
 			XMLNode cur = objectsVector[i];
 

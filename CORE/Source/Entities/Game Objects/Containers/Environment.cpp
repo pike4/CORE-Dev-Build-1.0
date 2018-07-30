@@ -41,7 +41,7 @@ void Environment::getArgsFromNode(XMLNode def)
 	std::vector<XMLNode> roomVector = roomParent.getChildren();
 
 	// Get all rooms from "rooms" node
-	for (unsigned int i = 0; i < roomVector.size(); i++)
+	for (int i = 0; i < roomVector.size(); i++)
 	{
 		XMLNode cur = roomVector[i];
 

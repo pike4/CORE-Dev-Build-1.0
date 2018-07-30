@@ -21,7 +21,7 @@ Entity::Entity()
 Entity::Entity(Entity& other)
 	: Entity()
 {
-	for (unsigned int i = 0; i < other.components.size(); i++)
+	for (int i = 0; i < other.components.size(); i++)
 	{
 		Component* newComponent = other.components[i]->spawnCopy();
 		components.push_back(newComponent);
@@ -40,7 +40,7 @@ void Entity::get_data(DataSource* source)
 {
 	std::vector<std::pair<std::string, reflection>> srcData = source->getAllData();
 
-	for (unsigned int i = 0; i < srcData.size(); i++)
+	for (int i = 0; i < srcData.size(); i++)
 	{
 		data[srcData[i].first] = srcData[i].second.pointer;
 	}
@@ -83,7 +83,7 @@ int Entity::removeListener(int key, Controllable* listener)
 
 	std::vector<Controllable*> list = listeners[key];
 
-	for (unsigned int i = 0; i < list.size(); i++)
+	for (int i = 0; i < list.size(); i++)
 	{
 		if (listener == list[i])
 		{
@@ -125,7 +125,7 @@ void Entity::storeChild(Component* component)
 */
 void Entity::finalize()
 {
-	for (unsigned int i = 0; i < components.size(); i++)
+	for (int i = 0; i < components.size(); i++)
 	{
 		Component* component = components[i];
 

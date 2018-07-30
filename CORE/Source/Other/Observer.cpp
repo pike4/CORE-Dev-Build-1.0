@@ -23,7 +23,7 @@ int Observer::deregisterListener(int key, Controllable* listener)
 
 	std::vector<Controllable*>* list = listeners[key];
 
-	for (unsigned int i = 0; i < list->size(); i++)
+	for (int i = 0; i < list->size(); i++)
 	{
 		if (listener == (*list)[i])
 		{
@@ -48,7 +48,7 @@ void Observer::handle(Event e)
 
 	std::vector<Controllable*> listenerList = *(listeners[e.opcode]);
 
-	for (unsigned int i = 0; i < listenerList.size(); i++)
+	for (int i = 0; i < listenerList.size(); i++)
 	{
 		listenerList[i]->handle(e);
 	}

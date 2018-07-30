@@ -42,7 +42,7 @@ void MenuScreen::getArgsFromNode(XMLNode def)
 	{
 		std::vector<XMLNode> controlsVector = controlsParent.getChildren();
 
-		for (unsigned int i = 0; i < controlsVector.size(); i++)
+		for (int i = 0; i < controlsVector.size(); i++)
 		{
 			XMLNode cur = controlsVector[i];
 
@@ -87,7 +87,7 @@ void MenuScreen::checkMouseUp(int x, int y)
 
 void MenuScreen::draw()
 {
-	for (unsigned int i = 0; i < components.size(); i++)
+	for (int i = 0; i < components.size(); i++)
 	{
 		if (components[i] != NULL)
 		{
@@ -107,7 +107,7 @@ void MenuScreen::draw()
 
 void MenuScreen::update()
 {
-	for (unsigned int i = 0; i < components.size(); i++)
+	for (int i = 0; i < components.size(); i++)
 	{
 		if (components[i] != NULL)
 		{

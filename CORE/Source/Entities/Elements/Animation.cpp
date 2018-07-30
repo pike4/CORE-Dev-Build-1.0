@@ -26,7 +26,7 @@ Animation::Animation(Animation& other)
 {
 	numFrames = other.numFrames;
 	frames = new VisibleElement*[numFrames];
-	for (unsigned int i = 0; i < numFrames; i++)
+	for (int i = 0; i < numFrames; i++)
 	{
 		frames[i] = (VisibleElement*)other.frames[i]->spawnCopy();
 		frames[i]->zIndex = zIndex;
@@ -60,7 +60,7 @@ void Animation::draw()
 
 void Animation::move(int x, int y)
 {
-	for (unsigned int i = 0; i < numFrames; i++)
+	for (int i = 0; i < numFrames; i++)
 	{
 		frames[i]->move(x, y);
 	}

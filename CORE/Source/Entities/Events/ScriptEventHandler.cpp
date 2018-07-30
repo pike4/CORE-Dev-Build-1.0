@@ -62,7 +62,7 @@ void ScriptEventHandler::handle(Event e)
 	}
 
 	//Push arguments onto the stack and register global names
-	for (unsigned int i = 0; i < e.arguments.size(); i++)
+	for (int i = 0; i < e.arguments.size(); i++)
 	{
 		// The current argument is an entity
 		if (e.arguments[i].data == NULL)
@@ -81,7 +81,7 @@ void ScriptEventHandler::handle(Event e)
 	luaL_dofile(L, scriptName.c_str());
 
 	//Update the arguments according to the stack values
-	for (unsigned int i = 0; i < e.arguments.size(); i++)
+	for (int i = 0; i < e.arguments.size(); i++)
 	{
 		//Update a global primitive
 		if (e.arguments[i].entity == NULL)
@@ -160,7 +160,7 @@ void ScriptEventHandler::pushEntity(std::string name, Entity* E1)
 		E1->getAllData();
 	
 	lua_newtable(L);
-	for (unsigned int j = 0; j < data.size(); j++)
+	for (int j = 0; j < data.size(); j++)
 	{
 		int tI = lua_gettop(L);
 		lua_pushstring(L, data[j].first.c_str());

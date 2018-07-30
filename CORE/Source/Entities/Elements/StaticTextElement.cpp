@@ -41,9 +41,9 @@ void StaticTextElement::draw()
 	int penX = *x;
 	int penY = *y;
 
-	for (unsigned int i = lineIndex; i < lines.size() && i < maxLines; i++)
+	for (int i = lineIndex; i < lines.size() && i < maxLines; i++)
 	{
-		for (unsigned int j = 0; j < lines[i].length(); j++)
+		for (int j = 0; j < lines[i].length(); j++)
 		{
 			char curChar = lines[i][j];
 			CORE_Graphics::addDraw(penX, penY, (*charSet)[curChar], *zIndex);
@@ -63,7 +63,7 @@ void StaticTextElement::stringToLines(std::string message)
 	std::string buffer = "";
 
 	//Convert given char* to vector of char* words
-	for (unsigned int x = 0; x < length; x++)
+	for (int x = 0; x < length; x++)
 	{
 		if (message[x] != ' ')
 		{
@@ -84,7 +84,7 @@ void StaticTextElement::stringToLines(std::string message)
 	buffer = "";
 
 	//Push down words onto lines vector so they wrap
-	for (unsigned int x = 0; x < words.size(); x++)
+	for (int x = 0; x < words.size(); x++)
 	{
 		if (words[x].length() + buffer.length() < maxLineLength)
 		{

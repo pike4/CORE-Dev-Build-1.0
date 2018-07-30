@@ -7,7 +7,7 @@ void Handler::getText(XMLNode node)
 	XMLNode formatChild = node.getChild("format");
 	std::vector<XMLNode> formatChildren = formatChild.getChildren();
 
-	for (unsigned int i = 0; i < formatChildren.size(); i++)
+	for (int i = 0; i < formatChildren.size(); i++)
 	{
 		XMLNode curNode = formatChildren[i];
 
@@ -24,7 +24,7 @@ void Handler::getText(XMLNode node)
 	{
 		formatChildren = formatChild.getChildren();
 
-		for (unsigned int i = 0; i < formatChildren.size(); i++)
+		for (int i = 0; i < formatChildren.size(); i++)
 		{
 			XMLNode curNode = formatChildren[i];
 			std::string traitName = curNode.getName();
@@ -58,7 +58,7 @@ bool Handler::entityMatchesFormat(Entity* ent)
     bool matches = true;
 	std::vector<CORE_TypeTraits::reflection> form = getFormat();
 
-    for (unsigned int i = 0; i < form.size(); i++)
+    for (int i = 0; i < form.size(); i++)
     {
         Data* curData = ent->getRawPtr(form[i].name);
 
@@ -76,7 +76,7 @@ bool Handler::entityHasAllTraits(Entity* ent)
 {
 	std::vector<std::string> reqdTraits = getTraits();
 
-	for (unsigned int i = 0; i < reqdTraits.size(); i++)
+	for (int i = 0; i < reqdTraits.size(); i++)
 	{
 		if (!ent->getTrait(reqdTraits[i]))
 		{

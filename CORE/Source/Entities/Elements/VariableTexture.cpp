@@ -16,7 +16,7 @@ void VariableElement::getText(XMLNode definer)
 	{
 		std::vector<XMLNode> elementsNodes = elemParent.getChildren();
 
-		for (unsigned int i = 0; i < elementsNodes.size(); i++)
+		for (int i = 0; i < elementsNodes.size(); i++)
 		{
 			XMLNode elem = elementsNodes[i];
 

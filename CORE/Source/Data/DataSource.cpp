@@ -19,7 +19,7 @@ DataSource::DataSource(XMLNode* def, DataSource* newParent)
 	{
 		std::vector<XMLNode> dataNodes = def->getChildren();
 
-		for (unsigned int i = 0; i < dataNodes.size(); i++)
+		for (int i = 0; i < dataNodes.size(); i++)
 		{
 			XMLNode curNode = dataNodes[i];
 

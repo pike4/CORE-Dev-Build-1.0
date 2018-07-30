@@ -216,7 +216,7 @@ namespace CORE_Resources
 	{
 		std::vector<XMLNode> curChildren = node.getChildren();
 
-		for (unsigned int i = 0; i < curChildren.size(); i++)
+		for (int i = 0; i < curChildren.size(); i++)
 		{
 			XMLNode curImportDef = curChildren[i];
 			std::string importName = curImportDef.getName();
@@ -244,7 +244,7 @@ namespace CORE_Resources
 
 		std::vector<XMLNode> prototypeVector = def.getChildren();
 
-		for (unsigned int i = 0; i < prototypeVector.size(); i++)
+		for (int i = 0; i < prototypeVector.size(); i++)
 		{
 			XMLNode tempDef = prototypeVector[i];
 
@@ -265,7 +265,7 @@ namespace CORE_Resources
 		{
 			std::vector<XMLNode> templateVector = def.getChildren();
 
-			for (unsigned int i = 0; i < templateVector.size(); i++)
+			for (int i = 0; i < templateVector.size(); i++)
 			{
 				XMLNode curDefiner = templateVector[i];
 
@@ -289,7 +289,7 @@ namespace CORE_Resources
 
 		std::vector<XMLNode>  eventNodes = def.getChildren();
 
-		for (unsigned int i = 0; i < eventNodes.size(); i++)
+		for (int i = 0; i < eventNodes.size(); i++)
 		{
 			XMLNode cur = eventNodes[i];
 			std::string curName = cur.getName();
@@ -319,7 +319,7 @@ namespace CORE_Resources
 
 		std::vector<XMLNode> handlerVector = def.getChildren();
 
-		for (unsigned int i = 0; i < handlerVector.size(); i++)
+		for (int i = 0; i < handlerVector.size(); i++)
 		{
 			XMLNode curHandlerNode = handlerVector[i];
 			std::string handlerName = curHandlerNode.getName();
@@ -390,7 +390,7 @@ namespace CORE_Resources
 	{
 		std::vector<XMLNode> variableNodes = node.getChildren();
 
-		for (unsigned int i = 0; i < variableNodes.size(); i++)
+		for (int i = 0; i < variableNodes.size(); i++)
 		{
 			XMLNode curNode = variableNodes[i];
 
@@ -419,7 +419,7 @@ namespace CORE_Resources
 	{
 		std::vector<XMLNode> stateChildren = node.getChildren();
 
-		for (unsigned int i = 0; i < stateChildren.size(); i++)
+		for (int i = 0; i < stateChildren.size(); i++)
 		{
 			XMLNode curNode = stateChildren[i];
 			std::string name = curNode.getName();
@@ -721,7 +721,7 @@ namespace CORE_Resources
 
 		 //Extract the names to a new vector for sorting 
 		 //and temporarily store the sizes in the offsets map
-		 for (unsigned int i = 0; i < variables.size(); i += 2)
+		 for (int i = 0; i < variables.size(); i += 2)
 		 {
 			  int newSize = CORE_TypeTraits::getDataObjectSize(variables[i + 1]);
 			  if (newSize == -1)
@@ -739,7 +739,7 @@ namespace CORE_Resources
 		 std::string fullName = "";
 
 		 //Concatenate the sorted names and sizes into a string to look up the offset calculator
-		 for (unsigned int i = 0; i < names.size(); i++)
+		 for (int i = 0; i < names.size(); i++)
 		 {
 			  fullName += names[i];
 		 }

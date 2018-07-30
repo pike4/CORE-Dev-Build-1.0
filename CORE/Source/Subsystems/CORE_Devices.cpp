@@ -243,7 +243,7 @@ namespace CORE_Devices
 	//Manager along with some other info as needed
 	void notifyStateManager(Event e)
 	{
-		for (unsigned int i = 0; i < keyMap[e.opcode].size(); i++)
+		for (int i = 0; i < keyMap[e.opcode].size(); i++)
 		{
 			Event keyEvent = e;
 			keyEvent.opcode = keyMap[e.opcode][i];

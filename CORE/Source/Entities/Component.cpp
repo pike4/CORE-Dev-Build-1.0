@@ -49,7 +49,7 @@ void Component::getEventHandlers(XMLNode def)
 	std::vector<XMLNode> handlerVector = def.getChildren();
 
 	//Iterate over each event definition in the node
-	for (unsigned int i = 0; i < handlerVector.size(); i++)
+	for (int i = 0; i < handlerVector.size(); i++)
 	{
 		XMLNode cur = handlerVector[i];
 
@@ -137,7 +137,7 @@ void Component::registerEv(MessagePasser* passer)
 		return;
 	}
 
-	for (unsigned int i = 0; i < events.size(); i++)
+	for (int i = 0; i < events.size(); i++)
 	{
 		passer->registerEvent(events[i], this);
 	}

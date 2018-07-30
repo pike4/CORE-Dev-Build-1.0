@@ -112,7 +112,7 @@ XMLNode XMLNode::getChild(std::string name)
 {
 	XMLNode ret;
 
-	for (unsigned int i = 0; i < children.size(); i++)
+	for (int i = 0; i < children.size(); i++)
 	{
 		if (children[i].getName() == name)
 		{
@@ -128,7 +128,7 @@ std::vector<XMLNode> XMLNode::getChildren()
 {
 	std::vector<XMLNode> ret;
 
-	for (unsigned int i = 0; i < children.size(); i++)
+	for (int i = 0; i < children.size(); i++)
 	{
 		ret.push_back(children[i]);
 	}

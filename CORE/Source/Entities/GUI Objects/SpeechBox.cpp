@@ -90,7 +90,7 @@ void SpeechBox::charToLines(char* message)
 			{
 				lines.push_back("");
 				curLineWidth = 0;
-				for (unsigned int i = 0; i < curWord.length(); i++)
+				for (int i = 0; i < curWord.length(); i++)
 				{
 					lines.back() += curWord[i];
 					curLineWidth += charSet->fontWidth(curWord[i]);
@@ -150,7 +150,7 @@ void SpeechBox::draw()
 
 	for (int i= firstLineIndex; i <= lastLineIndex; i++)
 	{
-		for (unsigned int j = 0; j < lines[i].length(); j++)
+		for (int j = 0; j < lines[i].length(); j++)
 		{
 			if (i == lastLineIndex && j == characterIndex)
 			{

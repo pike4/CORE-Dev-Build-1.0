@@ -14,9 +14,9 @@ void StandardCollision::handle(Event e)
 	switch (e.opcode)
 	{
 	case updateStep:
-		for (unsigned int i = 0; i < boundingBoxes.size(); i++)
+		for (int i = 0; i < boundingBoxes.size(); i++)
 		{
-			for (unsigned int j = i; j < boundingBoxes.size(); j++)
+			for (int j = i; j < boundingBoxes.size(); j++)
 			{
 				if (i == j) continue;
 
