@@ -52,6 +52,11 @@ namespace CORE_TypeTraits
 		ret->dependenceType = getDependenceType(def.getVariable("link"));
 		ret->funcType = getFunctionType(def.getVariable("function"));
 		ret->primitiveType = getPrimitiveType(def.getVariable("type"));
+
+		PrimitiveType inferredType = inferPrimitiveType(ret->value);
+		if (def.getVariable("type") == "" && inferredType != _errorType)
+			ret->primitiveType = inferredType;
+
 		ret->good = true;
 
 		if (ret->value == "")
@@ -155,6 +160,19 @@ namespace CORE_TypeTraits
 			return _entity;
 		
 		return _errorType;
+	}
+
+	// Return the best guess as to the primitive type
+	// given the string value of the Data
+	PrimitiveType inferPrimitiveType(std::string value)
+	{
+		if (Util::isIntegral(value))
+			return _integer;
+		else if (Util::isDecimal(value))
+			return _floatingPoint;
+		else if (Util::isBool(value))
+			return _boolean;
+		else return _errorType;
 	}
 
 	DependenceType getDependenceType(std::string type)

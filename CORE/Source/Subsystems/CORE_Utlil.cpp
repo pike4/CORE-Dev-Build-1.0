@@ -54,16 +54,8 @@ namespace Util
 	// contains non-digits
 	int toInt(std::string str)
 	{
-		if (str.empty())
+		if (str.empty() || !isIntegral(str))
 			return 0;
-
-		for (int i = 0; i < str.length(); i++)
-		{
-			if (!isdigit(str[i]))
-			{
-				return 0;
-			}
-		}
 
 		return stoi(str);
 	}
@@ -72,23 +64,8 @@ namespace Util
 	// contains non-digits or more than one decimal point
 	float toFloat(std::string str)
 	{
-		if (str.empty())
+		if (str.empty() || !isDecimal(str))
 			return 0;
-
-		bool hasDot = false;
-
-		for (int i = 0; i < str.length(); i++)
-		{
-			if (!isdigit(str[i]) || (str[i] == '.' && hasDot))
-			{
-				return 0;
-			}
-
-			if (str[i] == '.')
-			{
-				hasDot = true;
-			}
-		}
 
 		return stof(str);
 	}
@@ -97,16 +74,42 @@ namespace Util
 	// contains non-digits or more than one decimal point
 	double toDouble(std::string str)
 	{
-		if (str.empty())
+		if (str.empty() || !isDecimal(str))
 			return 0;
 
+		return stod(str);
+	}
+
+	// Converts a string to boolean. Return false if not valid
+	bool toBool(std::string str)
+	{
+		return toLower(str.c_str()) == "true";
+	}
+
+	// Return true if string is a valid integral number
+	bool isIntegral(std::string str)
+	{
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (!isdigit(str[i]))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// Return true if the string is a valid decimal number
+	bool isDecimal(std::string str)
+	{
 		bool hasDot = false;
 
 		for (int i = 0; i < str.length(); i++)
 		{
-			if (!isdigit(str[i]) || (str[i] == '.' && hasDot))
+			if (!isdigit(str[i]) && (str[i] != '.' || (str[i] == '.' && hasDot)))
 			{
-				return 0;
+				return false;
 			}
 
 			if (str[i] == '.')
@@ -115,6 +118,14 @@ namespace Util
 			}
 		}
 
-		return stod(str);
+		return true;
+	}
+
+	// Return true if the given string is a valid boolean
+	// Case-insensitive
+	bool isBool(std::string str)
+	{
+		str = toLower(str.c_str());
+		return (str == "false") || (str == "true");
 	}
 }

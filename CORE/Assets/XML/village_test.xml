@@ -28,8 +28,8 @@
         <y>yVal</y>
       </sources>
       <data>
-        <x type="int" link="self" val="?xVal"/>
-        <y type="int" link="self" val="?yVal"/>
+        <x val="?xVal"/>
+        <y val="?yVal"/>
         <w value ="36"/>
         <h value ="50"/>
       </data>
@@ -50,8 +50,8 @@
         <y>yVal</y>
       </sources>
       <data>
-        <x type="int" link="self" val="?xVal"/>
-        <y type="int" link="self" val="?yVal"/>
+        <x val="?xVal"/>
+        <y val="?yVal"/>
         <w value ="36"/>
         <h value ="50"/>
       </data>
@@ -97,7 +97,6 @@
           </StandardCollision>
         </objects>
       </room1>
-
       <room2>
         <objects>
           <dog>
@@ -110,7 +109,6 @@
           </dog>
         </objects>
       </room2>
-
       <room3>
         <objects>
           <dog>
@@ -123,7 +121,6 @@
           </dog>
         </objects>
       </room3>
-
       <room4>
         <objects>
           <dog>

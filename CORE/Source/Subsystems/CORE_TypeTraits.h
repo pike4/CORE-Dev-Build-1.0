@@ -127,6 +127,7 @@ namespace CORE_TypeTraits
 
 	#pragma region Get traits by name
 	PrimitiveType getPrimitiveType(std::string type);
+	PrimitiveType inferPrimitiveType(std::string value);
 	DependenceType getDependenceType(std::string type);
 	FuncType getFunctionType(std::string type);
 	#pragma endregion
