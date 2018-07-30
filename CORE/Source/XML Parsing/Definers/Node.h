@@ -1,4 +1,6 @@
 #pragma once
+#include "XMLString.h"
+
 #include <string>
 #include <vector>
 #include <map>

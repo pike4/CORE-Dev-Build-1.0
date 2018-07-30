@@ -245,6 +245,7 @@
     <ClInclude Include="Source\XML Parsing\Providers\Provider.h" />
     <ClInclude Include="Source\XML Parsing\Providers\Variable.h" />
     <ClInclude Include="Source\XML Parsing\Providers\VariableGetter.h" />
+    <ClInclude Include="Source\XML Parsing\Providers\XMLString.h" />
     <ClInclude Include="Subsystems\Headers\CORE_Resources.h" />
     <ClInclude Include="Subsystems\Headers\CORE_SystemIO.h" />
     <ClInclude Include="Subsystems\Headers\CORE_TypeTraits.h" />
@@ -364,6 +365,7 @@
     <ClCompile Include="Source\XML Parsing\Providers\NodeValue.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\Variable.cpp" />
     <ClCompile Include="Source\XML Parsing\Providers\VariableGetter.cpp" />
+    <ClCompile Include="Source\XML Parsing\Providers\XMLString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\lua 5.3.4\Makefile" />

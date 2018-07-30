@@ -9,9 +9,11 @@
 #include "CORE.h"
 #include "CORE_Audio.h"
 #include "CORE_Resources.h"
-
+#include "Data.h"
 #include <fstream>
 #include <iostream>
+
+#include "XMLString.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,6 +29,7 @@ int main()
 	luaL_openlibs(CORE_Resources::L);
 
 	CORE::start();
+
 	CORE_Resources::loadResourceFile("Assets/XML/eventDefs.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_MenuSystem_2017.xml");
 	CORE_Resources::loadResourceFile("Assets/XML/New_Room_2017.xml");

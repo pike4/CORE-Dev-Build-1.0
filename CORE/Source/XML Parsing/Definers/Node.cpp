@@ -1,5 +1,4 @@
 #include "Node.h"
-#include "Node.h"
 
 #include "CORE_Resources.h"
 #include "CORE_Factory.h"

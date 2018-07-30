@@ -17,8 +17,29 @@
 
 using namespace CORE_TypeTraits;
 
+std::map<std::string, std::string> aliases = 
+{
+	{"val", "value"},
+	{"func", "function"},
+	{"msPerFrame", "millisecondsPerFrame"},
+	{"",""}
+};
+
+
 namespace CORE_Factory
 {
+	std::string getAlias(std::string alias)
+	{
+		std::string ret = "";
+
+		if (aliases.find(alias) != aliases.end())
+		{
+			ret = aliases[alias];
+		}
+
+		return ret;
+	}
+
 #pragma region Object Management
 /**
 	Function: generateNode

@@ -7,6 +7,7 @@ namespace Util
 {
 	std::vector<std::string> tokenize(std::string src, char delim);
 
+	std::string toLower(std::string);
 	std::string toLower(char* str);
 	std::string toLower(const pugi::char_t* str);
 

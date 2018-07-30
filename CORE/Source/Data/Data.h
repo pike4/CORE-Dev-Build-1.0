@@ -197,7 +197,6 @@ DataImpl<T>::DataImpl(int funcType = 1)
 		transform = new TR_Average<T>();
 		break;
 	default:
-		
 		break;
 	}
 }

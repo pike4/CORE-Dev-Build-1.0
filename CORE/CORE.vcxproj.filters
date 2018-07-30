@@ -540,6 +540,9 @@
     <ClInclude Include="Source\Subsystems\CORE_Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\XML Parsing\Providers\XMLString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main\CORE_Main.cpp">
@@ -840,6 +843,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Subsystems\CORE_Utlil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XML Parsing\Providers\XMLString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

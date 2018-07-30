@@ -45,6 +45,11 @@ namespace Util
 		return ret;
 	}
 
+	std::string toLower(std::string str)
+	{
+		return toLower(str.c_str());
+	}
+
 	std::string toLower(const pugi::char_t* str)
 	{
 		return toLower((char*)str);
